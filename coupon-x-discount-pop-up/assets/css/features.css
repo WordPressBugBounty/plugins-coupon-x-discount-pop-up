@@ -1,0 +1,95 @@
+#wpcontent {
+    background-color: #fff;
+}
+.couponapp-new-widget-wrap {
+    font-family: "Poppins", Open Sans Hebrew !important;
+    margin: 0 auto ;
+    width: 90%;
+}
+.couponapp-new-widget-wrap h2 {
+    font-size: 20px;
+}
+.couponapp-new-widget-wrap .upgrade-couponapps a {
+    transition: all ease-in-out 0.3s;
+}
+.couponapp-new-widget-wrap .couponapp-features ul {
+    margin: 0 -10px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.couponapp-new-widget-wrap .couponapp-features ul li {
+    width: 100%;
+    padding: 10px;
+}
+
+.couponapp-new-widget-wrap .couponapp-feature {
+    height: 100%;
+    position: relative;
+    padding-top: 25px;
+  }
+  
+  .couponapp-new-widget-wrap .couponapp-feature .couponapp-feature-top {
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    padding: 10px;
+    overflow: hidden;
+    border: 1px solid #605DEC;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 25px);
+    z-index: 1;
+  }
+  
+  .couponapp-new-widget-wrap .couponapp-feature .couponapp-feature-top img {
+    max-width: 28px;
+  }
+  
+  .couponapp-new-widget-wrap .couponapp-feature .couponapp-feature-bottom {
+    background-color: #fff;
+    height: 120px;
+    padding: 35px 20px 20px 20px;
+    border: 1px solid #605DEC;
+    border-radius: 6px;
+  }
+  
+  .couponapp-new-widget-wrap .couponapp-feature .couponapp-feature-bottom h4 {
+    margin: 0 0 6px;
+  }
+  
+  .couponapp-new-widget-wrap .couponapp-feature .couponapp-feature-bottom p {
+    margin: 0;
+  }
+  
+  .couponapp-new-widget-wrap .upgrade-couponapps {
+    margin-top: 20px;
+  }
+
+  .upgrade-couponapps a {
+    cursor: pointer;
+    max-width: 100px;
+    width: 100%;
+    padding: 10px 25px !important;
+    line-height: 21px;
+    font-family: "Poppins", Open Sans Hebrew !important;
+    font-weight: 500;
+    border-radius: 25px !important; 
+    cursor: pointer;
+    margin: 0 5px;
+    text-decoration: none;
+    display: inline-block;
+    
+}
+.upgrade-couponapps a {
+    background: #fff !important;
+    color: #605DEC !important;
+    border: 1px solid #605DEC !important;
+    text-align: center;
+}
+.upgrade-couponapps a:hover {
+    background: #605DEC !important;
+    color: #fff !important;
+}

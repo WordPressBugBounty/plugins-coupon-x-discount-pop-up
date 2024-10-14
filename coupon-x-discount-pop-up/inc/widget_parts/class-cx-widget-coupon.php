@@ -53,9 +53,9 @@ class Cx_Widget_Coupon
                         <div class="coupon-code-option4  select-no-coupon-code coupon-type <?php echo esc_attr(4 === $type ? 'active-type' : ''); ?>">
                             <div class="coupon-code-option-titlebox">
                                 <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000" style='width:60%; float:left'> <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"/> </svg></span>
-                                <h4><?php esc_html_e('Don\'t show a coupon code', 'coupon-x'); ?></h4>
+                                <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x'); ?></h4>
                             </div>
-                            <p><?php esc_html_e('Use this mode to collect emails, for announcements or showing promotional offers via attention grabbing widget', 'coupon-x'); ?></p>
+                            <p><?php esc_html_e("Don't want to show coupons? Use the widget for only collecting emails, showing announcements, or showing promotional offers via attention-grabbing widget pop-ups!", 'coupon-x'); ?></p>
                             <span class='svg-icon'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
                                 <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
@@ -67,9 +67,9 @@ class Cx_Widget_Coupon
                     <div class="custom-coupon-code coupon-type <?php echo esc_attr(3 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon1.svg'); ?>"></span>
-                            <h4><?php esc_html_e('Create a new discount from Coupon X', 'coupon-x'); ?></h4>
+                            <h4><?php esc_html_e('Create a new Woocommerce discount with Coupon X', 'coupon-x'); ?></h4>
                         </div>
-                        <p><?php esc_html_e('Create a new discount that Coupon X will display to everyone as per your preference', 'coupon-x'); ?></p>
+                        <p><?php esc_html_e("Create a new Woocommerce percentage or fixed discount coupon for your users. You can also customize the targeting on a coupon level and it's active dates from one plugin!", 'coupon-x'); ?></p>
                         <span class='svg-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
                             <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
@@ -94,9 +94,9 @@ class Cx_Widget_Coupon
                     <div class="coupon-code-option2 select-wp-exisitng-coupon coupon-type <?php echo esc_attr(1 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon2.svg'); ?>"></span>
-                            <h4><?php esc_html_e('Use an existing Discount from WooCommerce Discounts', 'coupon-x'); ?></h4>
+                            <h4><?php esc_html_e('Use a pre-existing Woocommerce discount coupon', 'coupon-x'); ?></h4>
                         </div>
-                        <p><?php esc_html_e('Use an already created discount that Coupon X will display to everyone as per your preference', 'coupon-x'); ?></p>
+                        <p><?php esc_html_e('Have an existing Woocommerce coupon? Use it with Coupon X!', 'coupon-x'); ?></p>
 
                         <span class='svg-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
@@ -122,9 +122,9 @@ class Cx_Widget_Coupon
                     <div class="coupon-code-option3  select-wp-generate-unique-coupon coupon-type <?php echo esc_attr(2 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon3.svg'); ?>"></span>
-                            <h4><?php esc_html_e('Generate unique coupons for each new user', 'coupon-x'); ?></h4>
+                            <h4><?php esc_html_e('Generate unique Woocommerce coupons for each new visitor', 'coupon-x'); ?></h4>
                         </div>
-                        <p><?php esc_html_e('Create a new &amp; unique coupon for every new visitor. (Many new coupons will be generated by the app)', 'coupon-x'); ?></p>
+                        <p><?php esc_html_e('Coupon X will create unique coupons for every new visitor. Coupon X will create many new coupons.', 'coupon-x'); ?></p>
                         <span class='svg-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
                             <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
@@ -154,9 +154,9 @@ class Cx_Widget_Coupon
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000" style='width:60%; float:left'> <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"/> </svg>
                                 </span>
-                                <h4><?php esc_html_e('Don\'t show a coupon code', 'coupon-x'); ?></h4>
+                                <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x'); ?></h4>
                             </div>
-                            <p><?php esc_html_e('Use this mode to collect emails, for announcements or showing promotional offers via attention grabbing widget', 'coupon-x'); ?></p>
+                            <p><?php esc_html_e("Don't want to show coupons? Use the widget for only collecting emails, showing announcements, or showing promotional offers via attention-grabbing widget pop-ups!", 'coupon-x'); ?></p>
                             <span class='svg-icon'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
                                 <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>

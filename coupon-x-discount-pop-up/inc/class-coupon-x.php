@@ -46,6 +46,7 @@ class Coupon_X
         }
     }
 
+
     /**
      * Redirect user to plugin settings page on first activation.
      */
@@ -62,10 +63,10 @@ class Coupon_X
                 } else if ($widget_count > 0) {
                     exit(wp_redirect(admin_url('admin.php?page=couponx')));
                 }
-            } else if (get_option('cx_signup_popup')) {
+            } else if (get_option('cx_signup_popup') === false) {
                 $page = isset($_GET['page'])?$_GET['page']:"";
                 if(!empty($page)) {
-                    if(in_array($page, ["leads_list", "cx_integrations", "couponx_pricing_tbl"])) {
+                    if(in_array($page, ["leads_list", "cx_integrations", "couponx_pricing_tbl", "cx-recommended-plugins"])) {
                         wp_redirect(admin_url('admin.php?page=couponx'));
                         exit;
                     }

@@ -1130,7 +1130,7 @@ textarea ~ .sp-replacer {
     border: 1px solid #605DEC !important;
 }
 
-.prev-step:hover, .btn-cancel:hover, .buttons-csv:hover, .btn-rule:hover, .upgrade-cx a:hover, .upgrade-timer.new-widget:hover a {
+.prev-step:hover, .btn-cancel:hover, .buttons-csv:hover, .btn-rule:hover, .upgrade-cx a:hover, .upgrade-timer.new-widget:hover a, .upgrade-cx-button:hover {
     background: #605DEC !important;
     color: #fff !important;
 }
@@ -1299,7 +1299,7 @@ textarea ~ .sp-replacer {
     /*padding: 20px;*/
 }
 
-.custom-position {
+.custom-position, .popup-custom-position {
     background-color: #F4F3FA;
     /*padding: 20px;*/
     padding-left: 20px;
@@ -2066,10 +2066,10 @@ img.custom-tab-img {
     margin: 0
 }
 
-.tab-box-content h4 {
+.tab-box-content h4, .tab-box-content h4 p {
     font-size: 16px;
     font-weight: 600;
-    margin: 0 0 20px
+    margin: 0 0 20px;
 }
 
 .tab-box-content p {
@@ -3505,7 +3505,7 @@ a:focus {
 
 }
 
-.updates-form-form-right p:after {
+.updates-form-form-right p.couponx-signup-desc:after {
     content: "";
     border: 1px solid #3c85f7;
     position: absolute;
@@ -3583,6 +3583,7 @@ a:focus {
     position: absolute;
     top: 8px;
     left: 10px;
+    z-index: 1;
 }
 
 .update-notice {
@@ -3719,7 +3720,45 @@ div.page-rule {
     position: absolute;
     border-radius: 6px;
     visibility: hidden;
-    width: 80%;
+    width: 100%;
+    height: 100%;
+}
+.upgrade-cx-button {
+    text-align: center;
+    left: 50%;
+    right: auto;
+    top: 50%;
+    bottom: 12px;
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+    max-width: 130px;
+    padding: 20px 35px !important;
+    line-height: 0px !important;
+    font-weight: 600;
+    border-radius: 25px !important;
+    margin: 0 5px;
+    text-decoration: none;
+    display: inline-block;
+    background: #fff !important;
+    color: #605DEC !important;
+    border: 1px solid #605DEC !important;
+    transform: translate(-50%, -20px);
+    max-height: 0;
+}
+.upgrade-cx-button .dashicons {
+    line-height: 0;
+}
+
+.cart-rule:hover .upgrade-cx-button,
+.order-rule:hover .upgrade-cx-button,
+.page-rule:hover .upgrade-cx-button,
+.country-rule:hover .upgrade-cx-button,
+.os-rule:hover .upgrade-cx-button,
+.traffic-rule-main:hover .upgrade-cx-button,
+.day-rule:hover .upgrade-cx-button,
+.date-rule:hover .upgrade-cx-button {
+    visibility: visible;
 }
 
 .os-rule .upgrade-cx {
@@ -3727,7 +3766,7 @@ div.page-rule {
 }
 
 .traffic-rule-main .upgrade-cx, .date-rule .upgrade-cx {
-    top: 80px
+    /*top: 80px*/
 }
 
 .cart-rule:hover .upgrade-cx,
@@ -4561,8 +4600,128 @@ div.day-rule {
     position: relative;
 }
 .ui-tab-content {
-    display: none
+    display: none;
 }
 .ui-tab-content.active {
-    display: block
+    display: block;
+}
+.traffic-rule-main .upgrade-cx a, .date-rule .upgrade-cx a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.d-flex {
+    display: flex;
+    align-items: flex-start;
+}
+.custom-list input[type='radio'] {
+    display: inline-block;
+}
+.popup-fonts-input + .select2 {
+    width: 308px !important;
+    max-width: 100%;
+}
+.popup-fonts-input + .select2 .select2-selection__rendered {
+    line-height: 38px;
+    font-family: "Poppins", Open Sans Hebrew;
+}
+.popup-fonts-input + .select2 .select2-selection--single {
+    height: 38px;
+}
+#suggestion {
+    margin: 10px 0 0;
+    padding: 0;
+    font-size: 14px;
+    color: #970029;
+}
+#suggestion i {
+    color: #2596be;
+    font-weight: bold;
+    cursor: pointer;
+}
+.eac-sugg{
+    color:#c1c1c1;
+    margin-left: -4px;
+}
+
+/* Custom color UI */
+.custom-color-box {
+    position: relative;
+    padding: 8px;
+    border: 1px solid #EDEAF2;
+    border-radius: 4px;
+}
+.custom-color-box .custom-color-info {
+    display: grid;
+    line-height: 30px;
+}
+.custom-color-box .field-color {
+    line-height: 21px;
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 180px;
+}
+.custom-color-box .custom-color-val {
+    color: #4A4A4A;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16.5px;
+}
+.custom-color-box .sp-replacer {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 8px;
+}
+@media only screen and (min-width: 1240px) and (max-width: 1320px) {
+    .show-tab-settings .custom-color-box .field-color {
+        max-width: 150px;
+    }
+}
+@media only screen and (max-width: 540px) {
+    .show-tab-settings .custom-color-box .field-color {
+        max-width: 150px;
+    }
+}
+.sp-replacer {
+    border: 1px solid #d9d9d9 !important;
+    margin-left: -48px;
+}
+
+td.mce-grid-cell:has( > div[title="Custom color"]) {
+    display: none;
+}
+.show-icon-notice {
+    box-shadow: 0px 0px 10px rgb(152 152 152 / 25%);
+    margin: 10px 0 0 auto;
+    background: #ffffff;
+    padding: 10px;
+    width: 450px;
+    max-width: 100%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: none;
+}
+.show-icon-notice.active {
+    display: block;
+}
+.show-icon-info {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    color: #565d68;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+.show-icon-info svg {
+    height: 16px;
+    width: 16px;
+}
+.show-icon-info svg path {
+    stroke: #565d68;
+}
+.show-icon-info.active {
+    display: flex;
 }

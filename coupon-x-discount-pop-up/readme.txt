@@ -1,9 +1,9 @@
-﻿=== Coupon X: Discount Pop Up, Promo Code Pop Ups, Announcement Pop Up ===
+﻿=== Coupon X: Discount Pop Up, Promo Code Pop Ups, Announcement Pop Up, WooCommerce Popups ===
 Contributors: galdub, tomeraharon, premio
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
 Tested up to: 6.6
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -65,11 +65,13 @@ Surprise your visitors with discount pop ups and boost your overall sales conver
 
 Aside from getting more sales, you can also improve shopping cart value, reduce cart abandonment, and even drive more email subscribers. You can even add a countdown timer to give a sense of urgency. The process is easy! For your promo codes, you can just use existing ones or generate new coupon code for your discount popup.
 
+You can show your popups after your visitors click on the coupon icon, or just show the pop ups right away.
+
 = 🖼️ Add Images to Your Discount Pop Ups =
 Enhance your discount pop ups with captivating images. Now, you have the power to add visually appealing visuals to different sections of your pop-up. Showcase your latest products, feature eye-catching promotions, or create a sense of urgency with enticing visuals.
 You can place images in different position inside your discount pop ups and make your pop ups stand out. Customize your pop ups do align with your brand.
 
-= 🎯 Easy. Effective. Highly Targeted. =
+= 🎯 Easy. Effective. Highly Targeted =
 Coupon X for WordPress comes with a user-friendly coupon code pop up builder with easy UI and powerful popup features, no coding required. In just a few clicks, you can create your own attractive discount code pop ups and coupon popups and launch them directly on your WordPress website.
 
 To better reach out to your target audience, optimize your discount pop ups with Coupon X’s targeting rules. Supplement your popup with the right smart trigger like exit intent trigger to recover abandoned carts, so you won’t interfere with their browsing experience and reduce your bumps from increasing your sales.
@@ -113,7 +115,7 @@ With endless possibilities for targeting visitors and a wide range of triggers t
 
 Trigger your pop ups on scroll, after some time or even when the visitor is about to exit the page. What’s more, use our smart cart targeting feature to target visitors based on their previous purchases or what they have in their cart. Choose to show or not show the pop ups only to users from specific sources such as direct visits, Google ads, search engine results, or social networks. 
 
-Choose to show or not show the discount pop up to visitors from a particular country, on specific pages, and even to users with a particular OS or browser. The plugin has a very powerful potential to help you target your users and create lead-generating experiences. 
+Choose to show or not show the discount pop up to visitors from a particular country, on specific pages (including posts, pages, categories and other WordPress settings), and even to users with a particular OS or browser. The plugin has a very powerful potential to help you target your users and create lead-generating experiences. 
 
 = 👬 Join the Premio community =
 Have any questions or feature suggestions? We'd love to hear from you. <strong><a href="https://www.facebook.com/groups/premioplugins/" target="_blank" title="Premio Facebook group">Join our Facebook group</a></strong> to share ideas and get updates about new features.
@@ -123,7 +125,7 @@ We don't store any local data about your visitors on our servers. All the data i
 
 == Screenshots ==
 1. Coupon X is specially designed to create targeted discount pop ups, coupon codes, and promo widgets to boost sales.
-2. Customize your tab design to fully match your branding preferences and make it more attractive.
+2. Customize your icon design to fully match your branding preferences and make it more attractive.
 3. Choose from 4 coupon types. You can generate your own unique coupon for customers, generate a unique coupon for every visitor, use an existing coupon code, or even not offer coupons at all.
 4. Create beautiful coupon pop up designs to convert visitors into subscribers, sales, and leads.
 5. Effectively convert more qualified visitors based on your set behaviour and targeting rules.
@@ -166,6 +168,17 @@ Yes! You can even decide what widgets will show up on each device (desktop/mobil
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.3.4 =
+Option to hide the icon and show the pop ups right away
+Improved flow for creating a pop up
+Show or hide the Coupon X widget in specific posts, pages, tags, or categories (Pro) 
+The call-to-action text is now clickable for better user experience 
+Added editing options to the headline area
+Improved color-picker
+Widget visibility based on date bugs fixed
+Mobile bug fixed
+WPML bug fixed
 
 = 1.3.3 =
 Added plugin recommendations

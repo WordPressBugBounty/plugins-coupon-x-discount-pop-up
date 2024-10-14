@@ -9,6 +9,8 @@
 
 namespace Coupon_X\Dashboard;
 
+use Automattic\Jetpack\Status\Cache;
+
 if (! defined('ABSPATH')) {
     exit;
 }
@@ -96,6 +98,115 @@ class Cx_Widget_Popup
                                 </label>
                             </li>
                         </ul>                        
+                    </div>
+                </div>
+                <?php $showIcon = isset($settings['tab']['show_icon']) ? $settings['tab']['show_icon'] : 1; ?>
+                <div class="full show-icon-popup-setting <?php echo ($showIcon == 1) ? 'hide' : ''; ?>">
+                    <div class="slide-in-position">
+                        <?php
+                        $position = isset($popup_settings['slide_in_position']) ? $popup_settings['slide_in_position'] : 'right';
+                        ?>
+                        <div class='row mx-height-110'>
+                            <div class='row-elements full'>
+                                <label>
+                                    <?php esc_html_e('Position', 'coupon-x'); ?>
+                                </label>
+                                <div>
+                                    <ul class='custom-list'>
+                                        <?php
+                                        $positions = [
+                                            'left'    => esc_html__('Left', 'coupon-x'),
+                                            'right'   => esc_html__('Right', 'coupon-x'),
+                                            'custom'  => esc_html__('Custom', 'coupon-x'),
+                                        ];
+                                        $pos = $position;
+                                        foreach ($positions as $key => $value) { ?>
+                                            <li>
+                                                <label>
+                                                    <input type='radio' name='cx_settings[popup][slide_in_position]' class='popup-custom-pos' value='<?php echo esc_attr($key); ?>' <?php checked($pos, $key) ?> >
+                                                    <?php echo esc_attr($value); ?>
+                                                </label>
+                                            </li>
+                                            <?php
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row popup-custom-position first <?php echo esc_attr('custom' !== $position ? 'hide' : ''); ?>'>
+                            <div class='row-elements'>
+                                <label>
+                                    <?php esc_html_e('Slide Selection', 'coupon-x'); ?>
+                                </label>
+                                <div>
+                                    <ul class='custom-list'>
+                                        <?php
+                                        $custom_pos = isset($popup_settings['custom_position']) ? $popup_settings['custom_position'] : 'right';
+                                        $custom_positions = [
+                                            'left'   => esc_html__('Left', 'coupon-x'),
+                                            'right'  => esc_html__('Right', 'coupon-x'),
+                                        ];
+
+                                        foreach ($custom_positions as $key => $value) {
+                                            $checked = $key === $custom_pos ? 'checked' : '';
+                                            ?>
+                                            <li>
+                                                <label>
+                                                    <input type='radio' name='cx_settings[popup][custom_position]' value='<?php echo esc_attr($key); ?>' <?php echo esc_attr($checked); ?> class='popup_custom_position'>
+                                                    <?php echo esc_attr($value); ?>
+                                                </label>
+                                            </li>
+                                            <?php
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row popup-custom-position last <?php echo 'custom' !== @$popup_settings['slide_in_position'] ? 'hide' : ''; ?>'>
+                            <div class='row-elements half'>
+                                <?php $bottomSpacing = isset($popup_settings['bottom_spacing']) ? $popup_settings['bottom_spacing'] : 100; ?>
+                                <label>
+                                    <?php esc_html_e('Bottom Spacing (px)', 'coupon-x'); ?>
+                                </label>
+                                <input type='number' name='cx_settings[popup][bottom_spacing]' value='<?php echo esc_attr($bottomSpacing); ?>' class='input-element num bottom-spacing'>
+                            </div>
+                            <div class='row-elements half'>
+                                <?php $sideSpacing = isset($popup_settings['side_spacing']) ? $popup_settings['side_spacing'] : 50; ?>
+                                <label>
+                                    <?php esc_html_e('Side Spacing (px)', 'coupon-x'); ?>
+                                </label>
+                                <input type='number' name='cx_settings[popup][side_spacing]' value='<?php echo esc_attr($sideSpacing); ?>' class='input-element num side-spacing'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row-elements popup-font-family full'>
+                        <label>
+                            <?php esc_html_e('Font Family', 'coupon-x'); ?>
+                        </label>
+                        <select name='cx_settings[popup][font]' class='popup-fonts-input input-element'>
+                            <?php
+                            $fnt = $popup_settings['font'];
+                            $fonts = Cx_Helper::couponx_fonts();
+                            foreach ($fonts as $key => $val) {
+                                ?>
+                                <optgroup label="<?php echo esc_attr($key); ?>">
+                                    <?php
+                                    foreach ($val as $font) {
+                                        $font_value = str_replace(' ', '_', $key) . '-' . str_replace(' ', '_', $font);
+                                        ?>
+                                        <option value='<?php echo esc_attr($font_value); ?>' <?php echo selected($fnt, $font_value, false); ?>>
+                                            <?php echo esc_attr($font); ?>
+                                        </option>
+                                        <?php
+                                    }
+                                    ?>
+                                </optgroup>
+                                <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <div class='popup-wrapper <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>'>
@@ -260,7 +371,7 @@ class Cx_Widget_Popup
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='row-elements full color-row'>
+                    <div class='row-elements full color-row error-msg-color-row'>
                         <label>
                             <span class="icon label-tooltip" title="<?php esc_html_e('Set an error message that your visitors get when they try to add the same email more than one time', 'coupon-x'); ?>">
                                 <span class="dashicons dashicons-editor-help"></span>
@@ -361,8 +472,25 @@ class Cx_Widget_Popup
                 <label> 
                     <?php esc_html_e('Headline', 'coupon-x'); ?>
                 </label>
-                <textarea name='cx_settings[main][headline]' class='main-headline'><?php echo esc_attr($settings['headline']); ?></textarea>                
-                <input type='text' id='main_hcolor' class='jsspan tab-clr' name='cx_settings[main][headline_color]' value='<?php echo esc_attr($settings['headline_color']); ?>'/>
+                <?php
+                $args = array(
+                    'textarea_name'    => 'cx_settings[main][headline]',
+                    'quicktags'        => false,
+                    'media_buttons'    => false,
+                    'wpautop'          => false,
+                    'drag_drop_upload' => false,
+                    'editor_class'     => 'main-headline',
+                    'tinymce'          => array(
+                        'toolbar1'      => 'italic,underline,forecolor',
+                        'toolbar2'      => '',
+                        'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
+                    ),
+                );
+                wp_editor( $settings['headline'], 'main_headline', $args );
+                ?>
+<!--                <textarea name='cx_settings[main][headline]' class='main-headline'>--><?php //echo esc_attr($settings['headline']); ?><!--</textarea>                -->
+<!--                <input type='text' id='main_hcolor' class='jsspan tab-clr' name='cx_settings[main][headline_color]' value='--><?php //echo esc_attr($settings['headline_color']); ?><!--'/>-->
             </div>
         </div>
         <?php
@@ -432,8 +560,25 @@ class Cx_Widget_Popup
                 <label> 
                     <?php esc_html_e('Description', 'coupon-x'); ?>
                 </label>
-                <textarea name='cx_settings[main][desc]' class='main-desc'><?php echo esc_attr($settings['desc']); ?></textarea>
-                <input type='text' id='main_desc_color' class='jsspan tab-clr' name='cx_settings[main][desc_color]' value='<?php echo esc_attr($settings['desc_color']); ?>'/>
+                <?php
+                $args = array(
+                    'textarea_name' => 'cx_settings[main][desc]',
+                    'quicktags'        => false,
+                    'media_buttons'    => false,
+                    'wpautop'          => false,
+                    'drag_drop_upload' => false,
+                    'editor_class' => 'main-desc',
+                    'tinymce'       => array(
+                        'toolbar1'      => 'bold,italic,underline,forecolor',
+                        'toolbar2'      => '',
+                        'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
+                    ),
+                );
+                wp_editor( $settings['desc'], 'main_desc', $args );
+                ?>
+<!--                <textarea name='cx_settings[main][desc]' class='main-desc'>--><?php //echo esc_attr($settings['desc']); ?><!--</textarea>-->
+<!--                <input type='text' id='main_desc_color' class='jsspan tab-clr' name='cx_settings[main][desc_color]' value='--><?php //echo esc_attr($settings['desc_color']); ?><!--'/>-->
             </div>
         </div>
         <div class='row'>
@@ -470,6 +615,7 @@ class Cx_Widget_Popup
                         'toolbar1'      => 'bold,italic,underline,separator,separator,link,unlink,forecolor',
                         'toolbar2'      => '',
                         'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
                     ),
                 );
                 wp_editor( $settings['consent_text'], 'consent_text', $args );
@@ -484,10 +630,7 @@ class Cx_Widget_Popup
         echo $this->render_bg_image_preview($settings, $type) ?>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Background color', 'coupon-x'); ?>
-                    <input type='text' id='main_bgcolor' class='jsspan tab-clr' name='cx_settings[main][bgcolor]' value='<?php echo esc_attr($settings['bgcolor']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Background color', 'main_bgcolor', 'jsspan tab-clr', 'cx_settings[main][bgcolor]', $settings['bgcolor']) ?>
             </div>
             <div class='row-elements half'>
             </div>
@@ -508,39 +651,24 @@ class Cx_Widget_Popup
         ?>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <label>
-                    <span class="field-color"><?php echo $fieldColor; ?></span>
-                    <input type='text' id='main_email_bgcolor' class='jsspan tab-clr' name='cx_settings[main][email_color]' value='<?php echo esc_attr($settings['email_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template($fieldColor, 'main_email_bgcolor', 'jsspan tab-clr', 'cx_settings[main][email_color]', $settings['email_color']) ?>
             </div>
             <div class='row-elements half color-row'>
-                <label>
-                    <span class="field-text-color"><?php echo $textColor; ?></span>
-                    <input type='text' id='main_email_color' class='jsspan tab-clr' name='cx_settings[main][text_color]' value='<?php echo esc_attr($settings['text_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template($textColor, 'main_email_color', 'jsspan tab-clr', 'cx_settings[main][text_color]', $settings['text_color']) ?>
             </div>
         </div>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <label>
-                    <span class="field-border-color"><?php echo $borderColor; ?></span>
-                    <input type='text' id='main_email_brdcolor' class='jsspan tab-clr' name='cx_settings[main][email_brdcolor]' value='<?php echo esc_attr($settings['email_brdcolor']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template($borderColor, 'main_email_brdcolor', 'jsspan tab-clr', 'cx_settings[main][email_brdcolor]', $settings['email_brdcolor']) ?>
             </div>
             <div class='row-elements half'></div>
         </div>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Button Color', 'coupon-x'); ?>
-                    <input type='text' id='main_btn_bgcolor' class='jsspan tab-clr' name='cx_settings[main][btn_color]' value='<?php echo esc_attr($settings['btn_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Button Color', 'main_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[main][btn_color]', $settings['btn_color']) ?>
             </div>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Button Text Color', 'coupon-x'); ?>
-                    <input type='text' id='main_btn_color' class='jsspan tab-clr' name='cx_settings[main][btn_text_color]' value='<?php echo esc_attr($settings['btn_text_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Button Text Color', 'main_btn_color', 'jsspan tab-clr', 'cx_settings[main][btn_text_color]', $settings['btn_text_color']) ?>
             </div>
         </div>
         <div class='row'>
@@ -660,8 +788,25 @@ class Cx_Widget_Popup
                 <label> 
                     <?php esc_html_e('Headline', 'coupon-x'); ?>
                 </label>
-                <textarea name='cx_settings[coupon][headline]' class='coupon-headline'><?php echo esc_attr($settings['headline']); ?></textarea>                
-                <input type='text' id='coupon_headline_clr' class='jsspan tab-clr' name='cx_settings[coupon][headline_color]' value='<?php echo esc_attr($settings['headline_color']); ?>'/>                
+                <?php
+                $args = array(
+                    'textarea_name'    => 'cx_settings[coupon][headline]',
+                    'quicktags'        => false,
+                    'media_buttons'    => false,
+                    'wpautop'          => false,
+                    'drag_drop_upload' => false,
+                    'editor_class'     => 'coupon-headline',
+                    'tinymce'          => array(
+                        'toolbar1'      => 'italic,underline,forecolor',
+                        'toolbar2'      => '',
+                        'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
+                    ),
+                );
+                wp_editor( $settings['headline'], 'coupon_headline', $args );
+                ?>
+<!--                <textarea name='cx_settings[coupon][headline]' class='coupon-headline'>--><?php //echo esc_attr($settings['headline']); ?><!--</textarea>                -->
+<!--                <input type='text' id='coupon_headline_clr' class='jsspan tab-clr' name='cx_settings[coupon][headline_color]' value='--><?php //echo esc_attr($settings['headline_color']); ?><!--'/>                -->
             </div>
         </div>
         <div class='row'>
@@ -677,8 +822,25 @@ class Cx_Widget_Popup
                 <label> 
                     <?php esc_html_e('Description', 'coupon-x'); ?>
                 </label>
-                <textarea name='cx_settings[coupon][desc]' class='coupon-desc'><?php echo esc_attr($settings['desc']); ?></textarea>
-                <input type='text' id='coupon_desc_color' class='jsspan tab-clr' name='cx_settings[coupon][desc_color]' value='<?php echo esc_attr($settings['desc_color']); ?>'/> 
+                <?php
+                $args = array(
+                    'textarea_name' => 'cx_settings[coupon][desc]',
+                    'quicktags'        => false,
+                    'media_buttons'    => false,
+                    'wpautop'          => false,
+                    'drag_drop_upload' => false,
+                    'editor_class' => 'coupon-desc',
+                    'tinymce'       => array(
+                        'toolbar1'      => 'bold,italic,underline,forecolor',
+                        'toolbar2'      => '',
+                        'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
+                    ),
+                );
+                wp_editor( $settings['desc'], 'coupon_desc', $args );
+                ?>
+<!--                <textarea name='cx_settings[coupon][desc]' class='coupon-desc'>--><?php //echo esc_attr($settings['desc']); ?><!--</textarea>-->
+<!--                <input type='text' id='coupon_desc_color' class='jsspan tab-clr' name='cx_settings[coupon][desc_color]' value='--><?php //echo esc_attr($settings['desc_color']); ?><!--'/> -->
             </div>
         </div>
         <?php
@@ -686,10 +848,7 @@ class Cx_Widget_Popup
         echo $this->render_bg_image_preview($settings, $type) ?>
         <div class='row cp-clr'>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Background Color', 'coupon-x'); ?>
-                    <input type='text' id='coupon_bgcolor' class='jsspan tab-clr' name='cx_settings[coupon][bg_color]' value='<?php echo esc_attr($settings['bg_color']); ?>'/>                
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Background Color', 'coupon_bgcolor', 'jsspan tab-clr', 'cx_settings[coupon][bg_color]', $settings['bg_color']) ?>
             </div>
             <div class='row-elements half'>
             </div>
@@ -699,44 +858,26 @@ class Cx_Widget_Popup
         ?>
         <div class='row cp-clr'>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Coupon Color', 'coupon-x'); ?>
-                    <input type='text' id='coupon_pbgcolor' class='jsspan tab-clr' name='cx_settings[coupon][coupon_color]' value='<?php echo esc_attr($settings['coupon_color']); ?>'/>                    
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Coupon Color', 'coupon_pbgcolor', 'jsspan tab-clr', 'cx_settings[coupon][coupon_color]', $settings['coupon_color']) ?>
             </div>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Text Color(Coupon)', 'coupon-x'); ?>
-                    <input type='text' id='coupon_color' class='jsspan tab-clr' name='cx_settings[coupon][text_color]' value='<?php echo esc_attr($settings['text_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Text Color(Coupon)', 'coupon_color', 'jsspan tab-clr', 'cx_settings[coupon][text_color]', $settings['text_color']) ?>
             </div>
         </div>
         <div class='row cp-clr'>
             <div class='row-elements half extra color-row'>
-                <label> 
-                    <span class='lbl'><?php esc_html_e('Coupon Field Border Color', 'coupon-x'); ?> </span>
-                    <input type='text' id='coupon_brdcolor' class='jsspan tab-clr' name='cx_settings[coupon][coupon_brdcolor]' value='<?php echo esc_attr($settings['coupon_brdcolor']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Coupon Field Border Color', 'coupon_brdcolor', 'jsspan tab-clr', 'cx_settings[coupon][coupon_brdcolor]', $settings['coupon_brdcolor']) ?>
             </div>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Close Button Color', 'coupon-x'); ?>
-                    <input type='text' id='cls_btn_color' class='jsspan tab-clr' name='cx_settings[coupon][clsbtn_color]' value='<?php echo esc_attr($settings['clsbtn_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Close Button Color', 'cls_btn_color', 'jsspan tab-clr', 'cx_settings[coupon][clsbtn_color]', $settings['clsbtn_color']) ?>
             </div>
         </div>
         <div class='row cp-clr mx-height-50'>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Button Color', 'coupon-x'); ?>
-                    <input type='text' id='cpy_btn_bgcolor' class='jsspan tab-clr' name='cx_settings[coupon][btn_color]' value='<?php echo esc_attr($settings['btn_color']); ?>'/>
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Button Color', 'cpy_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[coupon][btn_color]', $settings['btn_color']) ?>
             </div>
             <div class='row-elements half color-row'>
-                <label> 
-                    <?php esc_html_e('Text Color', 'coupon-x'); ?>
-                    <input type='text' id='cpy_btn_color' class='jsspan tab-clr' name='cx_settings[coupon][txt_color]' value='<?php echo esc_attr($settings['txt_color']); ?>'/> 
-                </label>                
+                <?php echo Cx_Helper::color_picker_template('Text Color', 'cpy_btn_color', 'jsspan tab-clr', 'cx_settings[coupon][txt_color]', $settings['txt_color']) ?>
             </div>
         </div>
         <?php
@@ -968,11 +1109,25 @@ class Cx_Widget_Popup
         $style           = $popup_settings['style'];
         $css = Cx_Helper::get_popup_css_backend($options);
         // Create an array of all applicable class and assign it to parent div.
+
+        $tabShowIcon = isset($tab_settings['show_icon']) ? $tab_settings['show_icon'] : 1;
+        $slideInPosition = isset($popup_settings['slide_in_position']) ? $popup_settings['slide_in_position'] : 'right';
+        $floatingPosition = isset($popup_settings['floating_position']) ? $popup_settings['floating_position'] : 'bottom';
+        $customSlideInPosition = isset($popup_settings['custom_position']) ? $popup_settings['custom_position'] : 'right';
+
         $couponapp_class = [];
-        if ('custom' === $tab_settings['position']) {
-            $couponapp_class[] = 'couponapp-position-'.$tab_settings['custom_position'];
+        if($tabShowIcon == 1) {
+            if ('custom' === $tab_settings['position']) {
+                $couponapp_class[] = 'couponapp-position-' . $tab_settings['custom_position'];
+            } else {
+                $couponapp_class[] = 'couponapp-position-' . $tab_settings['position'];
+            }
         } else {
-            $couponapp_class[] = 'couponapp-position-'.$tab_settings['position'];
+            if('custom' === $popup_settings['slide_in_position']) {
+                $couponapp_class[] = 'couponapp-position-' . $customSlideInPosition;
+            } else {
+                $couponapp_class[] = 'couponapp-position-' . $slideInPosition;
+            }
         }
 
         $couponapp_class[] = 'couponapp-tab-shape-'.$tab_settings['tab_shape'];
@@ -1053,8 +1208,8 @@ class Cx_Widget_Popup
 				<?php } ?>
                 <div class="content-preview">
                     <div class="couponx-preview-notfloating-bar">
-                        <h4 style="color:<?php echo esc_attr($settings['headline_color']); ?>;" >
-                            <?php echo esc_attr($settings['headline']); ?>
+                        <h4>
+                            <?php echo wp_kses($settings['headline'], $allowedTags); ?>
                         </h4>
                         <div class="form-wrap clear customer-name-box <?php echo (@$settings['collect_name'] == 1) ? "" : "hide" ?>" style="border-color:<?php echo esc_attr($settings['email_brdcolor']); ?>; background-color:<?php echo esc_attr($settings['email_color']); ?>">
                             <p class="customer-name-text" style="color:<?php echo esc_attr($settings['text_color']); ?>; "><?php echo esc_attr(@$settings['name']); ?></p>
@@ -1070,9 +1225,9 @@ class Cx_Widget_Popup
                             <input type="checkbox" disabled />
                             <span class="consent_text_preview"><?php echo wp_kses($settings['consent_text'], $allowedTags); ?></span>
                         </label>
-                        <p class="coupon-description" style="color:<?php echo esc_attr($settings['desc_color']); ?>;" >
-                            <?php echo esc_attr($settings['desc']); ?>
-                        </p>
+                        <span class="coupon-description">
+                            <?php echo wp_kses($settings['desc'], $allowedTags); ?>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -1106,7 +1261,7 @@ class Cx_Widget_Popup
                     <div class="couponx-preview-notfloating-bar">
                         <h4>
                             <?php
-                            echo esc_attr($coupon_settings['headline']);
+                            echo wp_kses($coupon_settings['headline'], $allowedTags);
                             ?>
                         </h4>
                         <div class="form-wrap clear">
@@ -1116,9 +1271,9 @@ class Cx_Widget_Popup
                                 <path d="M4.584 3.384C4.722 3.084 4.8 2.754 4.8 2.4C4.8 1.074 3.726 0 2.4 0C1.074 0 0 1.074 0 2.4C0 3.726 1.074 4.8 2.4 4.8C2.754 4.8 3.084 4.722 3.384 4.584L4.8 6L3.384 7.416C3.084 7.278 2.754 7.2 2.4 7.2C1.074 7.2 0 8.274 0 9.6C0 10.926 1.074 12 2.4 12C3.726 12 4.8 10.926 4.8 9.6C4.8 9.246 4.722 8.916 4.584 8.616L6 7.2L10.2 11.4H12V10.8L4.584 3.384ZM2.4 3.6C1.74 3.6 1.2 3.066 1.2 2.4C1.2 1.734 1.74 1.2 2.4 1.2C3.06 1.2 3.6 1.734 3.6 2.4C3.6 3.066 3.06 3.6 2.4 3.6ZM2.4 10.8C1.74 10.8 1.2 10.266 1.2 9.6C1.2 8.934 1.74 8.4 2.4 8.4C3.06 8.4 3.6 8.934 3.6 9.6C3.6 10.266 3.06 10.8 2.4 10.8ZM6 6.3C5.832 6.3 5.7 6.168 5.7 6C5.7 5.832 5.832 5.7 6 5.7C6.168 5.7 6.3 5.832 6.3 6C6.3 6.168 6.168 6.3 6 6.3ZM10.2 0.6L6 4.8L7.2 6L12 1.2V0.6H10.2Z" fill='<?php echo esc_attr($coupon_settings['coupon_brdcolor']); ?> '/>
                             </svg>
                         </div>
-                        <p class="coupon-description">
-                            <?php echo esc_attr($coupon_settings['desc']); ?>
-                        </p>
+                        <span class="coupon-description">
+                            <?php echo wp_kses($coupon_settings['desc'], $allowedTags); ?>
+                        </span>
                     </div>
                 </div>
         </div>
@@ -1130,17 +1285,17 @@ class Cx_Widget_Popup
             <?php } ?>
             <div class="content-preview">
                 <div class="couponx-preview-notfloating-bar">
-                    <h4 style="color:<?php echo esc_attr($coupon_settings['headline_color']); ?>;">
+                    <h4>
                         <?php
-                        echo esc_attr($coupon_settings['headline']);
+                        echo wp_kses($coupon_settings['headline'], $allowedTags);
                         ?>
                     </h4>
                     <div class="form-wrap clear" style="border-color:<?php echo esc_attr($coupon_settings['coupon_brdcolor']); ?>">
                         <button class="button btn btn-blue coupon-button" id= 'coupon-buttonn' style="color:<?php echo esc_attr($coupon_settings['txt_color']); ?> !important; background-color:<?php echo esc_attr($coupon_settings['btn_color']); ?> !important" disabled><?php echo esc_attr($coupon_settings['cpy_btn']); ?></button>
                     </div>
-                    <p class="coupon-description" style="color:<?php echo esc_attr($coupon_settings['desc_color']); ?>;" >
-                        <?php echo esc_attr($coupon_settings['desc']); ?>
-                    </p>
+                    <span class="coupon-description">
+                        <?php echo wp_kses($coupon_settings['desc'], $allowedTags); ?>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1174,7 +1329,7 @@ class Cx_Widget_Popup
                 <div class="couponx-preview-notfloating-bar">
                     <h4>
                         <?php
-                        echo esc_attr($ann_settings['headline']);
+                        echo wp_kses($ann_settings['headline'], $allowedTags);
                         ?>
                     </h4>
                     <?php
@@ -1183,9 +1338,9 @@ class Cx_Widget_Popup
                     <div class="form-wrap clear <?php echo esc_attr(1 !== $enable_btn  ? 'hide' : ''); ?>" >
                         <button class="button btn btn-blue announcement-button" id= 'announcement-button'  disabled><?php echo esc_attr($ann_settings['cpy_btn']); ?></button>
                     </div>
-                    <p class="coupon-description"  >
-                        <?php echo esc_attr($ann_settings['desc']); ?>
-                    </p>
+                    <span class="coupon-description"  >
+                        <?php echo wp_kses($ann_settings['desc'], $allowedTags); ?>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1233,8 +1388,25 @@ class Cx_Widget_Popup
                 <label>
                     <?php esc_html_e('Headline', 'coupon-x'); ?>
                 </label>
-                <textarea name='cx_settings[announcement][headline]' class='announcement-headline'><?php echo esc_attr($settings['headline']); ?></textarea>
-                <input type='text' id='announcement_headline_clr' class='jsspan tab-clr' name='cx_settings[announcement][headline_color]' value='<?php echo esc_attr($settings['headline_color']); ?>'/>
+                <?php
+                $args = array(
+                    'textarea_name' => 'cx_settings[announcement][headline]',
+                    'quicktags'        => false,
+                    'media_buttons'    => false,
+                    'wpautop'          => false,
+                    'drag_drop_upload' => false,
+                    'editor_class' => 'announcement-headline',
+                    'tinymce'       => array(
+                        'toolbar1'      => 'italic,underline,forecolor',
+                        'toolbar2'      => '',
+                        'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
+                    ),
+                );
+                wp_editor( $settings['headline'], 'announcement_headline', $args );
+                ?>
+<!--                <textarea name='cx_settings[announcement][headline]' class='announcement-headline'>--><?php //echo esc_attr($settings['headline']); ?><!--</textarea>-->
+<!--                <input type='text' id='announcement_headline_clr' class='jsspan tab-clr' name='cx_settings[announcement][headline_color]' value='--><?php //echo esc_attr($settings['headline_color']); ?><!--'/>-->
             </div>
         </div>
         <div class='row'>
@@ -1242,8 +1414,25 @@ class Cx_Widget_Popup
                 <label>
                     <?php esc_html_e('Description', 'coupon-x'); ?>
                 </label>
-                <textarea name='cx_settings[announcement][desc]' class='announcement-desc'><?php echo esc_attr($settings['desc']); ?></textarea>
-                <input type='text' id='announcement_desc_color' class='jsspan tab-clr' name='cx_settings[announcement][desc_color]' value='<?php echo esc_attr($settings['desc_color']); ?>'/>
+                <?php
+                $args = array(
+                    'textarea_name' => 'cx_settings[announcement][desc]',
+                    'quicktags'        => false,
+                    'media_buttons'    => false,
+                    'wpautop'          => false,
+                    'drag_drop_upload' => false,
+                    'editor_class' => 'announcement-desc',
+                    'tinymce'       => array(
+                        'toolbar1'      => 'bold,italic,underline,forecolor',
+                        'toolbar2'      => '',
+                        'toolbar3'      => '',
+                        'content_css' => COUPON_X_URL . 'assets/css/myEditorCSS.css'
+                    ),
+                );
+                wp_editor( $settings['desc'], 'announcement_desc', $args );
+                ?>
+<!--                <textarea name='cx_settings[announcement][desc]' class='announcement-desc'>--><?php //echo esc_attr($settings['desc']); ?><!--</textarea>-->
+<!--                <input type='text' id='announcement_desc_color' class='jsspan tab-clr' name='cx_settings[announcement][desc_color]' value='--><?php //echo esc_attr($settings['desc_color']); ?><!--'/>-->
             </div>
         </div>
         <div class='row'>
@@ -1308,10 +1497,7 @@ class Cx_Widget_Popup
         ?>
         <div class='row an-clr <?php echo esc_attr(1 === $enable_styles ? 'hide' : ''); ?>'>
             <div class='row-elements half color-row'>
-                <label>
-                    <?php esc_html_e('Background Color', 'coupon-x'); ?>
-                    <input type='text' id='announcement_bgcolor' class='jsspan tab-clr' name='cx_settings[announcement][bg_color]' value='<?php echo esc_attr($settings['bg_color']); ?>'/>
-                </label>
+                <?php echo Cx_Helper::color_picker_template('Background Color', 'announcement_bgcolor', 'jsspan tab-clr', 'cx_settings[announcement][bg_color]', $settings['bg_color']) ?>
             </div>
             <div class='row-elements half'>
             </div>
@@ -1321,16 +1507,10 @@ class Cx_Widget_Popup
         ?>
         <div class='row btn-div btn-clr <?php echo esc_attr(( 1 === $enable_btn && 2 === (int) $settings['btn_action'] ) ? '' : 'hide'); ?>'>
             <div class='row-elements half color-row'>
-                <label>
-                    <?php esc_html_e('Button Color', 'coupon-x'); ?>
-                    <input type='text' id='announcement_btn_bgcolor' class='jsspan tab-clr' name='cx_settings[announcement][btn_color]' value='<?php echo esc_attr($settings['btn_color']); ?>'/>
-                </label>
+                <?php echo Cx_Helper::color_picker_template('Button Color', 'announcement_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[announcement][btn_color]', $settings['btn_color']) ?>
             </div>
             <div class='row-elements half color-row'>
-                <label>
-                    <?php esc_html_e('Text Color', 'coupon-x'); ?>
-                    <input type='text' id='announcement_btn_color' class='jsspan tab-clr' name='cx_settings[announcement][txt_color]' value='<?php echo esc_attr($settings['txt_color']); ?>'/>
-                </label>
+                <?php echo Cx_Helper::color_picker_template('Text Color', 'announcement_btn_color', 'jsspan tab-clr', 'cx_settings[announcement][txt_color]', $settings['txt_color']); ?>
             </div>
         </div>
         <?php

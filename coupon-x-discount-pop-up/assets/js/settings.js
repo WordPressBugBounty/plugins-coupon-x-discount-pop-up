@@ -80,7 +80,8 @@ jQuery(document).ready(function($) {
 		$('.cart_products').select2();
 
 		$('.fonts-input').select2();
-		$('.select2-selection__rendered').removeAttr('title')
+		$('.select2-selection__rendered').removeAttr('title');
+		$('.popup-fonts-input').select2();
 
 		$(".tab-shape").select2({
 		    minimumResultsForSearch: Infinity
@@ -168,11 +169,81 @@ jQuery(document).ready(function($) {
 	if($("#consent_text").length) {
 		tinymce.get("consent_text").on('keyup',function(e){
 			$(".consent_text_preview").html(tinymce.get("consent_text").getContent());
-			$("#consent_text").text(tinymce.get("consent_text").getContent());
+			$("#consent_text").val(tinymce.get("consent_text").getContent());
 		});
 		tinymce.get("consent_text").on('change',function(e){
 			$(".consent_text_preview").html(tinymce.get("consent_text").getContent());
-			$("#consent_text").text(tinymce.get("consent_text").getContent());
+			$("#consent_text").val(tinymce.get("consent_text").getContent());
+		});
+	}
+
+	if($("#main_headline").length) {
+		tinymce.get("main_headline").on('keyup',function(e){
+			$(".couponapp-email-option h4").html(tinymce.get("main_headline").getContent());
+			$("#main_headline").val(tinymce.get("main_headline").getContent());
+		});
+		tinymce.get("main_headline").on('change',function(e){
+			$(".couponapp-email-option h4").html(tinymce.get("main_headline").getContent());
+			$("#main_headline").val(tinymce.get("main_headline").getContent());
+		});
+	}
+
+	if($("#coupon_headline").length) {
+		tinymce.get("coupon_headline").on('keyup',function(e){
+			$(".couponapp-link-option h4").html(tinymce.get("coupon_headline").getContent());
+			$(".couponapp-code-option h4").html(tinymce.get("coupon_headline").getContent());
+			$(".couponapp-scratch-code-option h4").html(tinymce.get("coupon_headline").getContent());
+			$("#coupon_headline").val(tinymce.get("coupon_headline").getContent());
+		});
+		tinymce.get("coupon_headline").on('change',function(e){
+			$(".couponapp-link-option h4").html(tinymce.get("coupon_headline").getContent());
+			$(".couponapp-code-option h4").html(tinymce.get("coupon_headline").getContent());
+			$(".couponapp-scratch-code-option h4").html(tinymce.get("coupon_headline").getContent());
+			$("#coupon_headline").val(tinymce.get("coupon_headline").getContent());
+		});
+	}
+
+	if($("#announcement_headline").length) {
+		tinymce.get("announcement_headline").on('keyup',function(e){
+			$(".couponapp-no-coupon-option h4").html(tinymce.get("announcement_headline").getContent());
+			$("#announcement_headline").val(tinymce.get("announcement_headline").getContent());
+		});
+		tinymce.get("announcement_headline").on('change',function(e){
+			$(".couponapp-no-coupon-option h4").html(tinymce.get("announcement_headline").getContent());
+			$("#announcement_headline").val(tinymce.get("announcement_headline").getContent());
+		});
+	}
+
+	if($("#main_desc").length) {
+		tinymce.get("main_desc").on('keyup',function(e){
+			$(".couponapp-email-option .coupon-description").html(tinymce.get("main_desc").getContent());
+			$("#main_desc").val(tinymce.get("main_desc").getContent());
+		});
+		tinymce.get("main_desc").on('change',function(e){
+			$(".couponapp-email-option .coupon-description").html(tinymce.get("main_desc").getContent());
+			$("#main_desc").val(tinymce.get("main_desc").getContent());
+		});
+	}
+
+	if($("#coupon_desc").length) {
+		tinymce.get("coupon_desc").on('keyup',function(e){
+			$(".couponapp-link-option .coupon-description, .couponapp-code-option .coupon-description, .couponapp-scratch-code-option .coupon-description").html(tinymce.get("coupon_desc").getContent());
+			$("#coupon_desc").val(tinymce.get("coupon_desc").getContent());
+		});
+		tinymce.get("coupon_desc").on('change',function(e){
+			$(".couponapp-link-option .coupon-description, .couponapp-code-option .coupon-description").html(tinymce.get("coupon_desc").getContent());
+			$("#coupon_desc").val(tinymce.get("coupon_desc").getContent());
+		});
+	}
+
+	if($("#announcement_desc").length) {
+		tinymce.get("announcement_desc").on('keyup',function(e){
+			$(".couponapp-no-coupon-option .coupon-description").html(tinymce.get("announcement_desc").getContent());
+			$("#announcement_desc").val(tinymce.get("announcement_desc").getContent());
+		});
+		tinymce.get("announcement_desc").on('change',function(e){
+			$(".couponapp-no-coupon-option .coupon-description").html(tinymce.get("announcement_desc").getContent());
+			$("#announcement_desc").val(tinymce.get("announcement_desc").getContent());
 		});
 	}
 
@@ -286,6 +357,79 @@ jQuery(document).ready(function($) {
 	setSelect2Field("cart_products", "product", "Select Products");
 
 	calculateImageHeightWidth();
+
+	$(document).on("click", ".show-icon", function(){
+		var popup_type = $('.popup-type:not(.hide)').find('.popup-style-lable').text().trim();
+		if($(this).is(":checked")) {
+			$('.show-tab-settings').removeClass('hide');
+			$('.show-icon-popup-setting').addClass('hide');
+			$("#tab_design").find(".tab-preview .tab-box").removeClass("hide");
+			$('.custom-pos').trigger("click");
+			$('.fonts-input').trigger("change");
+			$(".show-icon-notice").removeClass("active");
+			$(".show-icon-info").removeClass("active");
+		} else {
+			$('.show-tab-settings').addClass("hide");
+			$('.show-icon-popup-setting').removeClass('hide');
+			$("#tab_design").find(".tab-preview .tab-box").addClass("hide");
+			if(popup_type == 'Slide-in Pop up') {
+				$('.popup-custom-pos:checked').trigger("click");
+			} else if(popup_type == 'Floating Bar') {
+				$(".float-custom-pos").trigger("click");
+			}
+			$('.popup-fonts-input').trigger('change');
+			$(".show-icon-notice").addClass("active");
+			$(".show-icon-info").addClass("active");
+		}
+	});
+
+	$(document).on("click", ".popup-custom-pos", function (){
+		$('.popup-preview .tab-box').removeClass (function (index, css) {
+			return (css.match (/(^|\s)couponapp-position-\S+/g) || []).join(' ');
+		});
+		if($(this).val() == 'custom') {
+			$('.popup-custom-position').removeClass('hide');
+			$("#popup_design").find(".popup-preview .tab-box").addClass("couponapp-position-"+$(".popup_custom_position:checked").val());
+		} else {
+			$('.popup-custom-position').addClass('hide');
+			$("#popup_design").find(".popup-preview .tab-box").addClass("couponapp-position-"+$(this).val());
+		}
+	});
+
+	$(document).on("click", ".popup_custom_position", function (){
+		$('.popup-preview .tab-box').removeClass (function (index, css) {
+			return (css.match (/(^|\s)couponapp-position-\S+/g) || []).join(' ');
+		});
+		$("#popup_design").find(".popup-preview .tab-box").addClass("couponapp-position-"+$(this).val());
+	});
+
+	$(document).on("click", ".float-custom-pos", function (){
+		$('.popup-preview .tab-box').removeClass (function (index, css) {
+			return (css.match (/(^|\s)couponapp-position-\S+/g) || []).join(' ');
+		});
+		$("#popup_design").find(".popup-preview .tab-box").addClass("couponapp-position-"+$(this).val());
+	});
+
+	$('.popup-fonts-input').on( 'change', function(){
+		$('.select2-selection__rendered').removeAttr('title')
+		var font_val = $(this).val();
+		font_arr = font_val.split('-');
+		font = font_arr[1].replace(/_/g, ' ');
+		font_type = font_arr[0].replace(/_/g, '');
+		$( '.couponapp-google-font' ).remove();
+		$( 'head' ).append( '<link href="https://fonts.googleapis.com/css?family='+ font +':400,600,700" rel="stylesheet" type="text/css" class="couponapp-google-font">' );
+		if ( font == 'System stack' ) {
+			font = '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+		}
+
+		$( '.tab-preview .preview-box' ).css( 'font-family',font );
+		// $( '.popup-preview .preview-box, .popup-preview .preview-box button' ).css( 'cssText', 'font-family: '+font+ '!important' );
+		var css = "";
+		css += ".coupon-button, .popup-preview .preview-box, .popup-preview .preview-box button {font-family: "+font+" !important;}";
+		$("#popup_fonts_input_css").remove();
+		$("head").append("<style id='popup_fonts_input_css'>"+css+"</style>");
+		// $('.coupon-button').css( {'font-family': font+' !important'} );
+	});
 
 	//Tabs on create widget page
 	tabs = $( ".tabs" ).tabs({
@@ -597,6 +741,19 @@ jQuery(document).ready(function($) {
 		else {
 			$('.custom-position').addClass('hide');
 		}
+		$(".show-icon-popup-setting").find("input[value='"+pos+"']").prop("checked", true);
+	});
+
+	$(document).on("click", ".custom_position", function (){
+		$(".popup-custom-position").find("input[value='"+$(this).val()+"']").prop("checked", true);
+	});
+
+	$(document).on("keyup", ".custom-position .bottom-spacing", function (){
+		$(".popup-custom-position").find(".bottom-spacing").val($(this).val());
+	});
+
+	$(document).on("keyup", ".custom-position .side-spacing", function (){
+		$(".popup-custom-position").find(".side-spacing").val($(this).val());
 	});
 
 	// Hide/show pending message div
@@ -1089,16 +1246,17 @@ jQuery(document).ready(function($) {
 			$('.cp-clr').removeClass('hide');
 			$('#coupon_headline_clr').next('.sp-replacer').removeClass('hide');
 			$('#coupon_desc_color').next('.sp-replacer').removeClass('hide');
-			if( ! $('.main-headline').hasClass('changed') ) {				
-				if( $('.coupon-widget-style').find('.input-field-radio:checked').val() == 'style-3')  {
-					$('.coupon-headline').val('Unlock exclusive deals awaiting you');
-					$('.couponapp-link-option h4').text('Unlock exclusive deals awaiting you');
-				}
-				else {
-					$('.coupon-headline').val($(".coupon-headline").text());
-					$('.couponapp-code-option h4').text($(".coupon-headline").text());
-				}
-			}
+			// if( ! $('.main-headline').hasClass('changed') ) {
+            //     alert()
+			// 	if( $('.coupon-widget-style').find('.input-field-radio:checked').val() == 'style-3')  {
+			// 		$('.coupon-headline').val('Unlock exclusive deals awaiting you 🎉');
+			// 		$('.couponapp-link-option h4').text('Unlock exclusive deals awaiting you 🎉');
+			// 	}
+			// 	else {
+			// 		$('.coupon-headline').val('Unlock exclusive deals awaiting you 🎉');
+			// 		$('.couponapp-code-option h4').text('Unlock exclusive deals awaiting you 🎉');
+			// 	}
+			// }
 			var style = $("input[name='cx_settings[popup][style]']:checked").val();
 			if(style == "style-1") {
 				$(".tab-box-content.couponapp-code-option").removeClass("hide");
@@ -1220,12 +1378,12 @@ jQuery(document).ready(function($) {
 			if($('.widget-id').val() == '') {
 
 				if( ! $('.announcement-headline').hasClass('changed') ) {
-					$('.announcement-headline').val($('.announcement-headline').val());
-					$('.couponapp-no-coupon-option h4').text($('.announcement-headline').val());
+					$('.announcement-headline').val('Check out our latest collection');
+					$('.couponapp-no-coupon-option h4').text('Check out our latest collection');
 				}
 				if( ! $('.announcement-desc').hasClass('changed') ) {
-					$('.couponapp-no-coupon-option .coupon-description').text($('.announcement-desc').val());
-					$('.announcement-desc').val($('.announcement-desc').val());
+					$('.couponapp-no-coupon-option .coupon-description').text('New fall collection is now on sale');
+					$('.announcement-desc').val('New fall collection is now on sale');
 				}
 			}
 			$('.an-clr').removeClass('hide');
@@ -1278,13 +1436,13 @@ jQuery(document).ready(function($) {
 					$('.couponapp-email-option .coupon-description').text('Keep in touch with latest discounts and promos');
 				}
 				if( ! $('.announcement-headline').hasClass('changed') ) {
-					$('.announcement-headline').val($('.announcement-headline').val());
-					$('.couponapp-no-coupon-option h4').text($('.announcement-headline').val())
+					$('.announcement-headline').val('Check out our latest collection');
+					$('.couponapp-no-coupon-option h4').text('Check out our latest collection')
 				}
 				if( ! $('.announcement-desc').hasClass('changed') ) {
 					
-					$('.couponapp-no-coupon-option .coupon-description').text($('.announcement-desc').val())
-					$('.announcement-desc').val($('.announcement-desc').val());
+					$('.couponapp-no-coupon-option .coupon-description').text('New fall collection is now on sale')
+					$('.announcement-desc').val('New fall collection is now on sale');
 				}
 			}
 			if($('.cpy-style').is(':checked')) {
@@ -1764,8 +1922,8 @@ jQuery(document).ready(function($) {
 		$('.an').removeClass('hide')
 		style = $('.coupon-widget-style').find('.input-field-radio:checked').val();
 		if( style != 'style-4' || style != 'style-5' ) {
-			$('.announcement-headline').val($('.announcement-headline').val());
-			$('.couponapp-no-coupon-option h4').text($('.announcement-headline').val());
+			$('.announcement-headline').val('Check out our latest collection');
+			$('.couponapp-no-coupon-option h4').text('Check out our latest collection');
 			$('#input-field-radio-style-4').trigger('click');
 
 		}
@@ -1957,81 +2115,97 @@ jQuery(document).ready(function($) {
 	$('#tab_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.tab-icon').css( 'background-color', clr );
 			$('.icon-img').css( 'background-color', clr );
+			show_color_text(color, 'tab_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.tab-icon').css( 'background-color', clr );
 			$('.icon-img').css( 'background-color', clr );
+			show_color_text(color , 'tab_color');
 		}	
 	})
 	$('#icon_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-icon-svg').css( 'fill', clr );
+			show_color_text(color, 'icon_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-icon-svg').css( 'fill', clr );
+			show_color_text(color, 'icon_color')
 		}	
 	})
 	$('#no_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.coupon-pending-message').css( 'color', clr );
+			show_color_text(color, 'no_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.coupon-pending-message').css( 'color', clr );
+			show_color_text(color, 'no_color');
 		}	
 	});
 	$('#no_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.coupon-pending-message').css( 'background-color', clr );
+			show_color_text(color, 'no_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.coupon-pending-message').css( 'background-color', clr );
+			show_color_text(color, 'no_bgcolor');
 		}	
 	})
 	$('#action_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-text').css( 'color', clr );
+			show_color_text(color, 'action_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-text').css( 'color', clr );
+			show_color_text(color, 'action_color');
 		}	
 	})
 
 	$('#action_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-text').css( 'background-color', clr );
 			$('.custom-icon-bg').remove();
@@ -2044,9 +2218,10 @@ jQuery(document).ready(function($) {
 				($('.custom-pos:checked').val() == 'custom' && $('.custom_position:checked').val() == 'right')) {
 				$('body').append('<style class="custom-icon-bg">.tab-text:after {border-left-color:'+clr+' !important;border-right-color:transparent !important}</style>' );
 			}
+			show_color_text(color, 'action_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-text').css( 'background-color', clr );
 			$('.custom-icon-bg').remove();
@@ -2057,6 +2232,7 @@ jQuery(document).ready(function($) {
 			else if($('.custom-pos:checked').val() == 'right') {
 				$('body').append('<style class="custom-icon-bg">.tab-text:after {border-left-color:'+clr+' !important;border-right-color:transparent !important}</style>' );
 			}
+			show_color_text(color, 'action_bgcolor');
 		}	
 	})
 
@@ -2073,14 +2249,16 @@ jQuery(document).ready(function($) {
 	$('#main_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
-			change_bg_color(color)
+            $(this).val(color.toHexString());
+			change_bg_color(color);
+			show_color_text(color, 'main_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
-			change_bg_color(color)
-			
+			$(this).val(color.toHexString());
+			change_bg_color(color);
+			show_color_text(color, 'main_bgcolor');
 		}	
 	})
 
@@ -2097,13 +2275,14 @@ jQuery(document).ready(function($) {
 	$('#main_hcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			change_heading_color(color)
 
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			change_heading_color(color)
 		}	
 	})
@@ -2120,13 +2299,16 @@ jQuery(document).ready(function($) {
 	$('#main_email_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
-			change_email_bg_color(color)
+            $(this).val(color.toHexString());
+			change_email_bg_color(color);
+			show_color_text(color, 'main_email_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
-			change_email_bg_color(color)
+			$(this).val(color.toHexString());
+			change_email_bg_color(color);
+			show_color_text(color, 'main_email_bgcolor');
 		}	
 	})
 
@@ -2142,13 +2324,16 @@ jQuery(document).ready(function($) {
 	$('#main_email_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
-			change_email_color(color)
+            $(this).val(color.toHexString());
+			change_email_color(color);
+			show_color_text(color, 'main_email_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
-			change_email_color(color)
+			$(this).val(color.toHexString());
+			change_email_color(color);
+			show_color_text(color, 'main_email_color');
 		}	
 	})
 
@@ -2163,13 +2348,16 @@ jQuery(document).ready(function($) {
 	$('#main_email_brdcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
-			change_email_border_color(color)
+            $(this).val(color.toHexString());
+			change_email_border_color(color);
+			show_color_text(color, 'main_email_brdcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			change_email_border_color(color);
+			show_color_text(color, 'main_email_brdcolor');
 		}	
 	})
 
@@ -2186,13 +2374,16 @@ jQuery(document).ready(function($) {
 	$('#main_btn_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
-			change_btn_bg_color(color)
+            $(this).val(color.toHexString());
+			change_btn_bg_color(color);
+			show_color_text(color, 'main_btn_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
-			change_btn_bg_color(color)
+			$(this).val(color.toHexString());
+			change_btn_bg_color(color);
+			show_color_text(color, 'main_btn_bgcolor');
 		}	
 	})
 	function change_btn_color(color){
@@ -2208,13 +2399,16 @@ jQuery(document).ready(function($) {
 	$('#main_btn_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
-			change_btn_color(color)
+            $(this).val(color.toHexString());
+			change_btn_color(color);
+			show_color_text(color, 'main_btn_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
-			change_btn_color(color)
+			$(this).val(color.toHexString());
+			change_btn_color(color);
+			show_color_text(color, 'main_btn_color');
 		}	
 	})
 	function change_desc_color(color) {
@@ -2230,46 +2424,51 @@ jQuery(document).ready(function($) {
 	$('#main_desc_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			change_desc_color(color)
 			
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			change_desc_color(color);
 		}	
 	})
 	$('#coupon_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-code-option').css( 'background-color', clr );
 			$('.couponapp-link-option').css( 'background-color', clr );
+			show_color_text(color, 'coupon_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-code-option').css( 'background-color', clr );
 			$('.couponapp-link-option').css( 'background-color', clr );
+			show_color_text(color, 'coupon_bgcolor');
 		}	
 	})
 	$('#coupon_headline_clr').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-code-option h4').css( 'color', clr );
 			$('.couponapp-link-option h4').css( 'color', clr );
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-code-option h4').css( 'color', clr );
@@ -2279,23 +2478,24 @@ jQuery(document).ready(function($) {
 	$('#coupon_pbgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			style = 'background-color:'+ clr + ' !important;'+
 					'color: '+ $('#coupon_color').val() + '!important;' +
 					'border-color: ' + $("#coupon_brdcolor").val() + '!important';
 			$('.couponapp-email-code-option .form-wrap p.coupon-code-text, .couponapp-email-code-option .form-wrap').attr( 'style', style ); 
-
+			show_color_text(color, 'coupon_pbgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			style = 'background-color:'+ clr + ' !important;'+
 					'color: '+ $('#coupon_color').val() + '!important;' +
 					'border-color: ' + $("#coupon_brdcolor").val() + '!important';
 			$('.couponapp-email-code-option .form-wrap p.coupon-code-text, .couponapp-email-code-option .form-wrap').attr( 'style', style ); 
-
+			show_color_text(color, 'coupon_pbgcolor');
 		},
 		hide : function( color ) {
 			clr =  color.toHexString();
@@ -2303,47 +2503,53 @@ jQuery(document).ready(function($) {
 				'color: '+ $('#coupon_color').val() + '!important;' +
 				'border-color: ' + $("#coupon_brdcolor").val() + '!important';
 			$('.couponapp-email-code-option .form-wrap p.coupon-code-text, .couponapp-email-code-option .form-wrap').attr( 'style', style );
-
+			show_color_text(color, 'coupon_pbgcolor');
 		}
 	})
 	$('#coupon_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-code-option .coupon-code-text').css( 'color', clr );
+			show_color_text(color, 'coupon_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-code-option .coupon-code-text').css( 'color', clr );
+			show_color_text(color, 'coupon_color');
 		}	
 	})
 	$('#coupon_brdcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			style = 'border-color:'+ clr + ' !important;' +
 				'background-color:'+ $("#coupon_pbgcolor").val() + ' !important;' +
 				'color: '+ $('#coupon_color').val() + '!important;';
 			$('.couponapp-email-code-option .form-wrap').attr( 'style', style );
 			// $('.coupon-code-text').parent('.form-wrap').css( 'border-color', clr );
-			$('#vector-nonfloat-bar path').attr('fill', clr)
+			$('#vector-nonfloat-bar path').attr('fill', clr);
+			show_color_text(color, 'coupon_brdcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			style = 'border-color:'+ clr + ' !important;' +
 				'background-color:'+ $("#coupon_pbgcolor").val() + ' !important;' +
 				'color: '+ $('#coupon_color').val() + '!important;';
 			$('.couponapp-email-code-option .form-wrap').attr( 'style', style );
 			// $('.coupon-code-text').parent('.form-wrap').css( 'border-color', clr );
-			$('#vector-nonfloat-bar path').attr('fill', clr)
+			$('#vector-nonfloat-bar path').attr('fill', clr);
+			show_color_text(color, 'coupon_brdcolor');
 		},
 		hide: function (color) {
 			clr =  color.toHexString();
@@ -2352,78 +2558,89 @@ jQuery(document).ready(function($) {
 				'color: '+ $('#coupon_color').val() + '!important;';
 			$('.couponapp-email-code-option .form-wrap').attr( 'style', style );
 			// $('.coupon-code-text').parent('.form-wrap').css( 'border-color', clr );
-			$('#vector-nonfloat-bar path').attr('fill', clr)
+			$('#vector-nonfloat-bar path').attr('fill', clr);
+			show_color_text(color, 'coupon_brdcolor');
 		}
 	})
 	$('#cls_btn_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.close-design-popup').css( 'color', clr );
+			show_color_text(color, 'cls_btn_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.close-design-popup').css( 'color', clr );
+			show_color_text(color, 'cls_btn_color');
 		}	
 	})
 	$('#cpy_btn_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			text_color = $('#cpy_btn_color').val();
 			style = 'background-color:'+ clr + '!important;'+
 				'color: '+ text_color + '!important;';
 			$('.couponapp-code-option .coupon-button').attr( 'style', style );
 			$('.couponapp-link-option .coupon-button').attr( 'style', style );
+			show_color_text(color, 'cpy_btn_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			text_color = $('#cpy_btn_color').val();
 			style = 'background-color:'+ clr + '!important;'+
 				'color: '+ text_color + '!important;';
 			$('.couponapp-code-option .coupon-button').attr( 'style', style );
 			$('.couponapp-link-option .coupon-button').attr( 'style', style );
+			show_color_text(color, 'cpy_btn_bgcolor');
 		}	
 	})
 	$('#cpy_btn_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			bg_color = $('#cpy_btn_bgcolor').val();
 			style = 'background-color:'+ bg_color + '!important;'+
 				'color: '+ clr + '!important;';
 			$('.couponapp-code-option .coupon-button').attr( 'style', style );
 			$('.couponapp-link-option .coupon-button').attr( 'style', style );
+			show_color_text(color, 'cpy_btn_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			bg_color = $('#cpy_btn_bgcolor').val();
 			style = 'background-color:'+ bg_color + '!important;'+
 				'color: '+ clr + '!important;';
 			$('.couponapp-code-option .coupon-button').attr( 'style', style );
 			$('.couponapp-link-option .coupon-button').attr( 'style', style );
+			show_color_text(color, 'cpy_btn_color');
 		}	
 	})
 	$('#coupon_desc_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-code-option .coupon-description').css( 'color', clr );
 			$('.couponapp-link-option .coupon-description').css( 'color', clr );
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-code-option .coupon-description').css( 'color', clr );
 			$('.couponapp-link-option .coupon-description').css( 'color', clr );
@@ -2433,15 +2650,16 @@ jQuery(document).ready(function($) {
 	$('#announcement_headline_clr').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			
 			$('.couponapp-no-coupon-option h4').css( 'color', clr );
 			
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-no-coupon-option h4').css( 'color', clr );
 		}	
@@ -2450,13 +2668,14 @@ jQuery(document).ready(function($) {
 	$('#announcement_desc_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-no-coupon-option p').css( 'color', clr );
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-no-coupon-option p').css( 'color', clr );
 		}	
@@ -2465,67 +2684,81 @@ jQuery(document).ready(function($) {
 	$('#announcement_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-no-coupon-option').css( 'background-color', clr );
-			
+			show_color_text(color, 'announcement_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			$('.couponapp-no-coupon-option').css( 'background-color', clr );
-			
+			show_color_text(color, 'announcement_bgcolor');
 		}	
 	})
+
 	$('#announcement_btn_bgcolor').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			text_color = $('#announcement_btn_color').val();
 			style = 'background-color:'+ clr + '!important;'+
 				'color: '+ text_color + '!important;';
 			$('.announcement-button').attr( 'style', style );
+			show_color_text(color, 'announcement_btn_bgcolor');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			text_color = $('#announcement_btn_color').val();
 			style = 'background-color:'+ clr + '!important;'+
 				'color: '+ text_color + '!important;';
 			$('.announcement-button').attr( 'style', style );
+			show_color_text(color, 'announcement_btn_bgcolor');
 		}	
 	})
 
 	$('#announcement_btn_color').spectrum({
 	    preferredFormat: "hex",
 	    showInput: true,
+		showAlpha: true,
 	    move: function (color) {
-            $(this).val(color.toRgbString());
+            $(this).val(color.toHexString());
 			clr =  color.toHexString();
 			bg_color = $('#announcement_btn_bgcolor').val();
 			style = 'background-color:'+ bg_color + '!important;'+
 				'color: '+ clr + '!important;';
 			$('.announcement-button').attr( 'style', style );
+			show_color_text(color, 'announcement_btn_color');
         },
 		change : function( color ) {
-			$(this).val(color.toRgbString());
+			$(this).val(color.toHexString());
 			clr =  color.toHexString();
 			bg_color = $('#announcement_btn_bgcolor').val();
 			style = 'background-color:'+ bg_color + '!important;'+
 				'color: '+ clr + '!important;';
 			$('.announcement-button').attr( 'style', style );
+			show_color_text(color, 'announcement_btn_color');
 		}	
 	})
+
 	$('#error_color').spectrum({
 	    preferredFormat: "hex",
-	    showInput: true
+	    showInput: true,
+		showAlpha: true,
 	});
 	$('.couponapp-inner-text').click(function() {
 		$('.select-wp-coupon-code').trigger('click')
-	})
+	});
+
+	function show_color_text(color, id) {
+		$("#" + id).closest(".custom-color-box").find(".custom-color-val").text(color.toHexString());
+	}
 
 	$( '.preview-box .tab-icon').click(function() {
 		$('.preview-box .tab-tooltip' ).addClass('tooltip-show');
@@ -2595,27 +2828,27 @@ jQuery(document).ready(function($) {
 
 
 	//Mailjet sign up
-	$(document).on("click", ".updates-form button, a.form-cancel-btn", function () {
-		var updateStatus = 0;
-		if ($(this).hasClass("yes")) {
-			updateStatus = 1;
-		}
-		$(".updates-form button").attr("disabled", true);
-		$.ajax({
-			url: cx_data.url,
-			data: {
-				action: "coupon_x_update_signup_status",
-				status: updateStatus,
-				nonce: $('.signup-nonce').val(),
-				email: jQuery("#starts_testimonials_update_email").val()
-			},
-			type: 'post',
-			cache: false,
-			success: function () {
-				window.location.reload();
-			}
-		})
-	});
+	// $(document).on("click", ".updates-form button, a.form-cancel-btn", function () {
+	// 	var updateStatus = 0;
+	// 	if ($(this).hasClass("yes")) {
+	// 		updateStatus = 1;
+	// 	}
+	// 	$(".updates-form button").attr("disabled", true);
+	// 	$.ajax({
+	// 		url: cx_data.url,
+	// 		data: {
+	// 			action: "coupon_x_update_signup_status",
+	// 			status: updateStatus,
+	// 			nonce: $('.signup-nonce').val(),
+	// 			email: jQuery("#starts_testimonials_update_email").val()
+	// 		},
+	// 		type: 'post',
+	// 		cache: false,
+	// 		success: function () {
+	// 			window.location.reload();
+	// 		}
+	// 	})
+	// });
 
 
 	$('input.cart-rule').click(function() {
@@ -2862,7 +3095,7 @@ jQuery(document).ready(function($) {
 					'color: '+ $('#coupon_color').val() + '!important;';
 			$('.couponapp-email-code-option .form-wrap p.coupon-code-text').attr( 'style', style ); 
 			style = 'background-color:'+ $('#coupon_pbgcolor').val() + '!important;'+
-				'border-color:'+$('#coupon_brdcolor').val();
+				'border-color:'+$('#coupon_brdcolor').val() + ' !important';
 			$('.couponapp-email-code-option .form-wrap').attr( 'style', style );
 			$('#coupon_headline_clr').next('.sp-replacer').removeClass('hide');
 			$('#coupon_desc_color').next('.sp-replacer').removeClass('hide');
@@ -2919,6 +3152,9 @@ jQuery(document).ready(function($) {
 		$('.popup-preview').removeClass('hide')
 		$(this).find('.btn-select-layout').addClass('hide');
 		$('#popup_type').val('Slide-in Pop Up');
+		$('.slide-in-position').removeClass('hide');
+		$(".popup-font-family").removeClass("hide");
+		$('.popup-custom-pos:checked').trigger("click");
 	});
 
 	$('.lightbox-popup, .floating-bar').click(function(){
@@ -2957,7 +3193,7 @@ jQuery(document).ready(function($) {
 		$('div.date-rule').removeClass('hide'); 
 			
 	})
-	$('.remove-day-targeting').click(function(){
+	$('.remove-date-targeting').click(function(){
 		$('div.date-rule').addClass('hide'); 
 		$('input.date-rule').removeClass('hide');
 		

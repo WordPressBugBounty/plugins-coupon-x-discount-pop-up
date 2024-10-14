@@ -248,7 +248,7 @@ class Dashboard
      */
     public function display_couponx_settings_widget()
     {
-        if (get_option('cx_signup_popup')) {
+        if (get_option('cx_signup_popup') === false) {
             include_once 'class-cx-signup.php';
             new Cx_SignUp();
         } else {
@@ -264,7 +264,7 @@ class Dashboard
      */
     public function add_coupon_settings()
     {
-        if (get_option('cx_signup_popup')) {
+        if (get_option('cx_signup_popup') === false) {
             include_once 'class-cx-signup.php';
             new Cx_SignUp();
         } else {
@@ -303,10 +303,11 @@ class Dashboard
             wp_enqueue_script('jquery-ui-datepicker');
             wp_enqueue_script('jquery-ui-slider');
             wp_enqueue_script('js-timpepicker', COUPON_X_URL.'assets/js/timepicker.min.js', '', COUPON_X_VERSION);
-            wp_enqueue_script('jscolorpicker', COUPON_X_URL.'assets/js/spectrum.min.js', '', COUPON_X_VERSION);
+            wp_enqueue_script('jscolorpicker', COUPON_X_URL.'assets/js/spectrum.js', '', COUPON_X_VERSION);
             wp_enqueue_script('select2-js', COUPON_X_URL.'assets/js/select2.min.js', '', COUPON_X_VERSION);
 
             wp_enqueue_script('cx-settings-script', COUPON_X_URL.'assets/js/settings.min.js', [ 'jquery', 'jquery-ui-tabs', 'jquery-ui-dialog', 'jscolorpicker', 'wp-i18n', 'js-timpepicker', 'jquery-ui-tooltip', 'jquery-ui-slider' ], COUPON_X_VERSION);
+            wp_enqueue_script('cx-mailcheck-script', COUPON_X_URL.'assets/js/mailcheck.js', [ 'jquery' ], time());
 
             wp_localize_script(
                 'cx-settings-script',
@@ -777,7 +778,7 @@ class Dashboard
         if (! empty($nonce) && wp_verify_nonce($nonce, 'cx_signup_status')) {
             $status = filter_input(INPUT_POST, 'status');
             $email  = filter_input(INPUT_POST, 'email');
-            update_option('cx_signup_popup', false);
+            update_option('cx_signup_popup', true);
             if (1 === (int) $status) {
                 $url       = 'https://premioapps.com/premio/signup/email.php';
                 $apiParams = [

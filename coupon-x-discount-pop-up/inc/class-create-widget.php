@@ -50,6 +50,7 @@ class Create_Widget
 
         $default = [
             'tab'           => [
+                'show_icon'        => 1,
                 'widget_title'    => esc_html__('My widget #', 'coupon-x').$number,
                 'tab_color'       => '#FFC600',
                 'icon_color'      => '#605DEC',
@@ -72,7 +73,7 @@ class Create_Widget
                 'no_bgcolor'      => '#DD0000',
                 'font'            => 'Google_Fonts-Poppins',
                 'effect'          => 'none',
-
+                'show_attention' => 2
             ],
             'popup'         => [
                 'style'       => 'style-1',
@@ -81,6 +82,11 @@ class Create_Widget
                 'coupon_type' => '',
                 'custom_css'  => '',
                 'type'        => 'Slide-in Pop up',
+                'slide_in_position' => 'right',
+                'custom_position'   => 'right',
+                'bottom_spacing'    => 100,
+                'side_spacing'      => 50,
+                'font'              => 'Google_Fonts-Poppins'
             ],
             'main'          => [
                 'bgcolor'          => '#ffffff',

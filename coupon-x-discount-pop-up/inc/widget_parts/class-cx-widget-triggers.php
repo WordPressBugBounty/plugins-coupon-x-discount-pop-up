@@ -178,11 +178,9 @@ class Cx_Widget_Triggers
                             <select class='input-element country-dropdown' name='' multiple>
                                 <option value='' selected><?php esc_html_e('All countries', 'coupon-x'); ?></option>
                             </select>
-                            <span class="upgrade-cx">                        
-                                <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                    <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                                </a>
-                            </span>
+                            <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                            </a>
                         </div>
                     </div>
                 </div>    
@@ -258,11 +256,9 @@ class Cx_Widget_Triggers
                                 </svg>
                             </a>
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a  target='_blank'  href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>                    
                 </div>                
             </div>
@@ -299,28 +295,47 @@ class Cx_Widget_Triggers
                             </option>
                         </select>
                         <select class='cart-type page-type input-element' name=''>
-                                <option disabled value='' ><?php esc_html_e('Select rule', 'coupon-x'); ?></option>
-                                <option value='1' >
-                                    <?php esc_html_e('Homepage', 'coupon-x'); ?>
+                            <option disabled value='' ><?php esc_html_e('Select rule', 'coupon-x'); ?></option>
+                            <option value='1' >
+                                <?php esc_html_e('Homepage', 'coupon-x'); ?>
+                            </option>
+                            <option value='2'>
+                                <?php esc_html_e('Links that contain', 'coupon-x'); ?>
+                            </option>
+                            <option value='3'>
+                                <?php esc_html_e('A specific link', 'coupon-x'); ?>
+                            </option>
+                            <option value='4'>
+                                <?php esc_html_e('Links starting with', 'coupon-x'); ?>
+                            </option>
+                            <option value='5'>
+                                <?php esc_html_e('Links ending with', 'coupon-x'); ?>
+                            </option>
+                            <option value='6'>
+                                <?php esc_html_e('WordPress Pages', 'coupon-x'); ?>
+                            </option>
+                            <option value='7'>
+                                <?php esc_html_e('WordPress Posts', 'coupon-x'); ?>
+                            </option>
+                            <option value='8'>
+                                <?php esc_html_e('WordPress Categories', 'coupon-x'); ?>
+                            </option>
+                            <option value='9'>
+                                <?php esc_html_e('WordPress Tags', 'coupon-x'); ?>
+                            </option>
+                            <?php if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) { ?>
+                                <option value='10'>
+                                    <?php esc_html_e('Woocommerce products', 'coupon-x'); ?>
                                 </option>
-                                <option value='2'>
-                                    <?php esc_html_e('pages that contain', 'coupon-x'); ?>
+                                <option value='11'>
+                                    <?php esc_html_e('Woocommerce products on sale', 'coupon-x'); ?>
                                 </option>
-                                <option value='3'>
-                                    <?php esc_html_e('a specific page', 'coupon-x'); ?>
-                                </option>
-                                <option value='4'>
-                                    <?php esc_html_e('pages starting with', 'coupon-x'); ?>
-                                </option>
-                                <option value='5'>
-                                    <?php esc_html_e('pages ending with', 'coupon-x'); ?>
-                                </option>
-                            </optgroup>
+                            <?php } ?>
                         </select>
                         <span class='site-url '> 
-        <?php echo site_url().'/'; ?>
+                            <?php echo site_url().'/'; ?>
                         </span>
-                        <input type='text' class='input-element page-rule-val ' name='' value=''>
+                        <input type='text' class='input-element page-rule-val ' name='' value='' readonly>
                         <div class="day-buttons">
                             <a class="remove-page-targeting" href="javascript:;">
                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -329,11 +344,9 @@ class Cx_Widget_Triggers
                                 </svg>
                             </a>
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a  target='_blank'  href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>                    
                     <input type='button' value='<?php esc_html_e('Add Rule', 'coupon-x'); ?>' class='page-rule btn-rule '>
                 </div>
@@ -399,11 +412,9 @@ class Cx_Widget_Triggers
                                 </svg>
                             </a>
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a  target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>
                 </div>                
             </div>
@@ -462,7 +473,7 @@ class Cx_Widget_Triggers
                                 <input   type='text'  class='display_end_time input-element'/>
                             </div>
                             <div class="day-buttons" style='margin-top:5%'>
-                                <a class="remove-day-targeting" href="javascript:;">
+                                <a class="remove-date-targeting" href="javascript:;">
                                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                         <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>
@@ -470,11 +481,9 @@ class Cx_Widget_Triggers
                                 </a>
                             </div>
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>
                 </div>                
             </div>
@@ -554,11 +563,9 @@ class Cx_Widget_Triggers
                                 </svg>
                             </a>
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>                
                     <input type='button' value='<?php esc_html_e('Add Rule', 'coupon-x'); ?>' class='day-rule btn-rule'>
                 </div>
@@ -581,13 +588,13 @@ class Cx_Widget_Triggers
                     <span class="icon label-tooltip" title="<?php esc_html_e('Show the widget only to visitors who come from specific traffic sources including direct traffic, social networks, search engines, Google Ads, or any other traffic source', 'coupon-x'); ?>">
                         <span class="dashicons dashicons-editor-help"></span>
                     </span> 
-        <?php esc_html_e('Traffic source (When Off: Show for any traffic source)', 'coupon-x'); ?> 
+                    <?php esc_html_e('Traffic source (When Off: Show for any traffic source)', 'coupon-x'); ?>
                 </label>
                 <div class='rule-box gray-bg'>
                     <div class='traffic-rule-main hide'>
                         <div class='row-elements full'>
                             <label class="couponapp-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" disabled/>
                                 <span class="cx-slider round">
                                     <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
                                     <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
@@ -602,7 +609,7 @@ class Cx_Widget_Triggers
                         </div>
                         <div class='row-elements full'>
                             <label class="couponapp-switch">
-                                <input type="checkbox"  />
+                                <input type="checkbox" disabled />
                                 <span class="cx-slider round">
                                     <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
                                     <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
@@ -617,7 +624,7 @@ class Cx_Widget_Triggers
                         </div>
                         <div class='row-elements full'>
                             <label class="couponapp-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" disabled />
                                 <span class="cx-slider round">
                                     <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
                                     <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
@@ -632,7 +639,7 @@ class Cx_Widget_Triggers
                         </div>
                         <div class='row-elements full'>
                             <label class="couponapp-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" disabled />
                                 <span class="cx-slider round">
                                     <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
                                     <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
@@ -657,15 +664,13 @@ class Cx_Widget_Triggers
                                     </select>
                                 </div>
                                 <div>
-                                    <input type='text' class='input-element url-val' value='' placeholder='http://www.example.com'>
+                                    <input type='text' class='input-element url-val' value='' placeholder='http://www.example.com' readonly>
                                 </div>
                             </div>                                                            
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>
                     <input type='button' value='<?php esc_html_e('Add Rule', 'coupon-x'); ?>' 
                         class='traffic-rule btn-rule invalid-key'
@@ -856,11 +861,9 @@ class Cx_Widget_Triggers
                                 </select>
                             </div>                            
                         </div>
-                        <span class="upgrade-cx">                        
-                            <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
-                                <span class="dashicons dashicons-lock"></span>UPGRADE NOW
-                            </a>
-                        </span>
+                        <a target='_blank' class="upgrade-cx-button" href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
+                            <span class="dashicons dashicons-lock"></span>UPGRADE NOW
+                        </a>
                     </div>                    
                 </div>
             </div>

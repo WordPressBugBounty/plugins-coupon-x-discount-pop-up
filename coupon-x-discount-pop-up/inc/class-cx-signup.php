@@ -67,8 +67,9 @@ class Cx_SignUp
                             </svg>
                         </div>
                         <input type='hidden' class='signup-nonce' value='<?php echo wp_create_nonce('cx_signup_status'); ?>'/>
-                        <input id="starts_testimonials_update_email" autocomplete="off" value="<?php echo esc_attr($email); ?>" placeholder="Email address">
+                        <input id="couponx_update_email" autocomplete="off" value="<?php echo esc_attr($email); ?>" placeholder="Email address">
                         <button href="javascript:;" class="button button-primary form-submit-btn yes befirst-btn"><?php esc_html_e('Sign Up', 'coupon-x'); ?></button>
+                        <p id="suggestion"></p>
                     </div>
                     <!--div class="update-form-skip-button">
                         <button href="javascript:;" class="button button-secondary form-cancel-btn no">Skip</button>
@@ -91,3 +92,93 @@ class Cx_SignUp
 
 }//end class
 
+?>
+
+<script>
+    var suggestionText = "";
+    jQuery(document).ready(function($) {
+        jQuery(document).on("focus", ".updates-form button", function () {
+            suggestionText = jQuery("#suggestion").text();
+        });
+        jQuery(document).on("mouseover", ".updates-form button", function () {
+            suggestionText = jQuery("#suggestion").text();
+        }).on("mouseleave", "updates-form button", function () {
+            suggestionText = jQuery("#suggestion").text();
+        });
+
+        var domains = ['hotmail.com', 'gmail.com', 'aol.com'];
+        var topLevelDomains = ["com", "net", "org"];
+
+        jQuery("#couponx_update_email").emailautocomplete({
+            domains: ['example.com', 'protonmail.com', 'yahoo.com', 'gmail.com'],
+            caseSensitive: false
+        });
+
+        jQuery(document).on("click", "#suggestion i", function (){
+            jQuery("#couponx_update_email").val(jQuery(this).text()).focus();
+            jQuery("#suggestion").html('');
+        });
+
+        $(document).on("click", ".updates-form button, a.form-cancel-btn", function () {
+            var updateStatus = 0;
+            if ($(this).hasClass("yes")) {
+                updateStatus = 1;
+            }
+            $(".updates-form button").attr("disabled", true);
+            $.ajax({
+                url: cx_data.url,
+                data: {
+                    action: "coupon_x_update_signup_status",
+                    status: updateStatus,
+                    nonce: $('.signup-nonce').val(),
+                    email: jQuery("#couponx_update_email").val()
+                },
+                type: 'post',
+                cache: false,
+                success: function () {
+                    window.location.reload();
+                }
+            })
+        });
+
+        jQuery(document).on("change", "#couponx_update_email", function (){
+            isValidEmailAddress();
+        });
+        jQuery(document).on("keyup", "#couponx_update_email", function (){
+            if(isValidEmailAddress()) {
+                jQuery(this).mailcheck({
+                    // domains: domains,                       // optional
+                    // topLevelDomains: topLevelDomains,       // optional
+                    suggested: function(element, suggestion) {
+                        // callback code
+                        jQuery('#suggestion').html("Did you mean <b><i>" + suggestion.full + "</b></i>?");
+                    },
+                    empty: function(element) {
+                        // callback code
+                        jQuery('#suggestion').html('');
+                    }
+                });
+            } else {
+                jQuery('#suggestion').html('');
+            }
+        });
+    });
+
+    function isValidEmailAddress() {
+        if(jQuery.trim(jQuery("#couponx_update_email").val()) == "") {
+            jQuery(".form-submit-btn").prop("disabled", true);
+            return false;
+        } else if(!isValidEmail(jQuery("#couponx_update_email").val())) {
+            jQuery(".form-submit-btn").prop("disabled", true);
+            return false;
+        } else {
+            jQuery(".form-submit-btn").prop("disabled", false);
+        }
+        return true;
+    }
+
+    function isValidEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+</script>

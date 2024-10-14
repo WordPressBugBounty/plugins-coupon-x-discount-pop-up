@@ -58,13 +58,13 @@ class Cx_Widget_List
                         <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e(' The number of people who viewed your widget', 'coupon-x'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span>
-            <?php esc_html_e('Visitors', 'coupon-x'); ?> 
+                        <?php esc_html_e('Visitors', 'coupon-x'); ?>
                     </th>
                     <th>
                         <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of unique times your widget was opened', 'coupon-x'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span> 
-            <?php esc_html_e('Open Rate', 'coupon-x'); ?> 
+                        <?php esc_html_e('Open Rate', 'coupon-x'); ?>
                     </th>
                     <th> 
                         <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of times people click on the Copy button on your widget', 'coupon-x'); ?>">

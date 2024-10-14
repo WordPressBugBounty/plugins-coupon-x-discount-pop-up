@@ -63,7 +63,7 @@ jQuery(document).ready(function($) {
 		}
 
 		var couponapp_email = $( '#' + coupon_widget_id + ' .coupon-code-email-text input[name="couponapp-email"]' ).length;
-		if ( unique_code == null && couponapp_email != '1' ) {	
+		if ( unique_code == null && couponapp_email != '1' && $("#"+coupon_widget_id).data("type") != 4) {
 			let url = cx_data.url;
 			
 			// $( '#' + coupon_widget_id + ' .tab-box-couponcode-content .coupon-code-text').hide();
@@ -177,7 +177,8 @@ jQuery(document).ready(function($) {
 		localStorage.removeItem( 'show_coupon_code'+widget_id );
 		localStorage.removeItem( 'couponapp_pending_message'+widget_id );
 		localStorage.removeItem( 'couponapp_open'+widget_id );
-		localStorage.removeItem( 'couponapp_animation'+widget_id )
+		localStorage.removeItem( 'couponapp_animation'+widget_id );
+		localStorage.removeItem( 'couponapp_hide_cta_icon'+widget_id );
 		name = 'couponx_unique'+widget_id;
 		document.cookie = escape(name) + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/; SameSite=Lax';
 		name = 'couponx-exist-'+widget_id;
@@ -372,6 +373,18 @@ jQuery(document).ready(function($) {
 		if ( session_tab === 'close' ) {			
 			container.find('.tab-text').hide();
 		}
+
+		if(container.hasClass('couponapp-hide-cta-icon')
+			&& localStorage.getItem('couponapp_hide_cta_icon'+widget_id) == null ) {
+			container.addClass('couonapp-active');
+			container.removeClass('hide');
+			container.find('.tab-box-wrap').addClass('hide');
+		}
+
+		if ( localStorage.getItem('couponapp_hide_cta_icon'+widget_id) == 'yes'
+			&&  container.hasClass( 'couponapp-hide-cta-icon' ) ) {
+			container.hide();
+		}
     }
 
     $('.tab-front-box').each(function() {
@@ -535,6 +548,10 @@ jQuery(document).ready(function($) {
 		
 		if ( container.hasClass( "couponapp-open-always" ) ) {
 			container.find('.tab-text').show();
+		}
+
+		if( container.hasClass( "couponapp-hide-cta-icon" ) ) {
+			localStorage.setItem('couponapp_hide_cta_icon'+widget_id, 'yes');
 		}
 		
 	});

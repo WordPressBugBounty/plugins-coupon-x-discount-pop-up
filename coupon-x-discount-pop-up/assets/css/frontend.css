@@ -1,4 +1,4 @@
-.clear,
+.cx-clear,
 .tab-box,
 .tab-box .tab-box-wrap {
 	clear: both;
@@ -8,8 +8,8 @@
 	overflow: unset
 }
 
-.clear:after,
-.clear:before,
+.cx-clear:after,
+.cx-clear:before,
 .tab-box .tab-box-wrap:after,
 .tab-box .tab-box-wrap:before,
 .tab-box:after,
@@ -18,7 +18,7 @@
 	display: table
 }
 
-.clear:after,
+.cx-clear:after,
 .tab-box .tab-box-wrap:after,
 .tab-box:after {
 	clear: both

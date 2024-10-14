@@ -63,7 +63,13 @@ class Couponx_Frontend
             foreach ($widgets as $widget) {
                 $widget_id       = $widget->ID;
                 $widget_settings = unserialize($widget->post_content);
-                $font            = explode('-', $widget_settings['tab']['font']);
+                $showIcon = isset($widget_settings['tab']['show_icon']) ? $widget_settings['tab']['show_icon'] : 1;
+                $popupFont = isset($widget_settings['popup']['font']) ? $widget_settings['popup']['font'] : "Google_Fonts-Poppins";
+                if($showIcon == 1) {
+                    $font = explode('-', $widget_settings['tab']['font']);
+                } else {
+                    $font = explode('-', $popupFont);
+                }
                 $font_type       = str_replace('_', ' ', $font[0]);
                 $font_family     = str_replace('_', ' ', $font[1]);
 
@@ -303,10 +309,22 @@ class Couponx_Frontend
 
         $settings        = $widget_settings['tab'];
         $couponapp_class = [];
-        if ('custom' === $settings['position']) {
-            $couponapp_class[] = 'couponapp-position-custom couponapp-position-'.esc_attr($settings['custom_position']);
+        if($settings['show_icon'] == 1) {
+            if ('custom' === $settings['position']) {
+                $couponapp_class[] = 'couponapp-position-custom couponapp-position-' . $settings['custom_position'];
+            } else {
+                $couponapp_class[] = 'couponapp-position-' . $settings['position'];
+            }
         } else {
-            $couponapp_class[] = 'couponapp-position-'.esc_attr($settings['position']);
+            if('custom' === $widget_settings['popup']['slide_in_position']) {
+                $couponapp_class[] = 'couponapp-position-custom couponapp-position-' . $widget_settings['popup']['custom_position'];
+            } else {
+                $couponapp_class[] = 'couponapp-position-' . $widget_settings['popup']['slide_in_position'];
+            }
+        }
+
+        if (1 !== (int) $settings['show_icon']) {
+            $couponapp_class[] = 'couponapp-hide-cta-icon';
         }
 
         $couponapp_class[] = 'couponapp-tab-shape-'.esc_attr($settings['tab_shape']);
@@ -335,7 +353,7 @@ class Couponx_Frontend
             $couponapp_class[] = 'couponapp-open-first';
         }
 
-        if(1 == (int) $settings['show_attention']) {
+        if(1 == (int) @$settings['show_attention']) {
             $couponapp_class[] = "couponapp-attention-always";
         } else {
             $couponapp_class[] = "couponapp-attention-once";
@@ -534,7 +552,32 @@ class Couponx_Frontend
             $isElements = isset($coupon_settings['add_elements']) ? $coupon_settings['add_elements'] : 1;
             $elementType = isset($coupon_settings['element_type']) ? $coupon_settings['element_type'] : 'confetti';
         }
-    
+
+        $allowedTags = [
+            'a'       => [
+                'href'   => [],
+                'title'  => [],
+                'target' => [],
+            ],
+            'abbr'    => [ 'title' => [] ],
+            'acronym' => [ 'title' => [] ],
+            'code'    => [],
+            'pre'     => [],
+            'em'      => [],
+            'strong'  => [],
+            'ul'      => [],
+            'ol'      => [],
+            'li'      => [],
+            'span'    => [
+                'style' => []
+            ],
+            'p'       => [],
+            'br'      => [],
+            'img'     => [
+                'src' => [],
+                'alt' => []
+            ]
+        ];
 
         ?>
         <style>
@@ -556,9 +599,9 @@ class Couponx_Frontend
             <?php } ?>
             <div class="content-preview">
                 <h4 >
-                    <?php echo esc_attr($coupon_settings['headline']); ?>
+                    <?php echo wp_kses($coupon_settings['headline'], $allowedTags); ?>
                 </h4>
-                <div class="form-wrap clear" >
+                <div class="form-wrap cx-clear" >
                     <div class="coupon-code-text">
                     <span id="copy-couponapp-code-<?php echo esc_attr($widgetcounter); ?>" class="label-tooltip" data-title="<?php echo esc_attr($coupon_settings['cpy_msg']); ?>">   <div class="sr-only">
                         <input id="copy-coupon-inputcode-<?php echo esc_attr($widgetcounter); ?>" type="text" value="<?php echo esc_attr($coupon_code_text); ?>" readonly />
@@ -573,9 +616,9 @@ class Couponx_Frontend
                         <path d="M4.584 3.384C4.722 3.084 4.8 2.754 4.8 2.4C4.8 1.074 3.726 0 2.4 0C1.074 0 0 1.074 0 2.4C0 3.726 1.074 4.8 2.4 4.8C2.754 4.8 3.084 4.722 3.384 4.584L4.8 6L3.384 7.416C3.084 7.278 2.754 7.2 2.4 7.2C1.074 7.2 0 8.274 0 9.6C0 10.926 1.074 12 2.4 12C3.726 12 4.8 10.926 4.8 9.6C4.8 9.246 4.722 8.916 4.584 8.616L6 7.2L10.2 11.4H12V10.8L4.584 3.384ZM2.4 3.6C1.74 3.6 1.2 3.066 1.2 2.4C1.2 1.734 1.74 1.2 2.4 1.2C3.06 1.2 3.6 1.734 3.6 2.4C3.6 3.066 3.06 3.6 2.4 3.6ZM2.4 10.8C1.74 10.8 1.2 10.266 1.2 9.6C1.2 8.934 1.74 8.4 2.4 8.4C3.06 8.4 3.6 8.934 3.6 9.6C3.6 10.266 3.06 10.8 2.4 10.8ZM6 6.3C5.832 6.3 5.7 6.168 5.7 6C5.7 5.832 5.832 5.7 6 5.7C6.168 5.7 6.3 5.832 6.3 6C6.3 6.168 6.168 6.3 6 6.3ZM10.2 0.6L6 4.8L7.2 6L12 1.2V0.6H10.2Z" fill='<?php echo esc_attr($coupon_settings['coupon_brdcolor']); ?> '/>
                     </svg>
                 </div>
-                <p class="coupon-description" >
-                    <?php echo esc_attr($coupon_settings['desc']); ?>
-                </p>
+                <div class="coupon-description" >
+                    <?php echo wp_kses($coupon_settings['desc'], $allowedTags); ?>
+                </div>
             </div>
         </div>
         <?php
@@ -651,18 +694,18 @@ class Couponx_Frontend
                 </div>
             <?php } ?>
             <div class="content-preview">
-                <h4><?php echo esc_attr($email_settings['headline']); ?></h4>
+                <h4><?php echo wp_kses($email_settings['headline'], $allowedTags); ?></h4>
                 <?php
                 $consent = isset($email_settings['consent']) ? $email_settings['consent'] : 0;
                 ?>
                 <form class="tab-box-front-<?php echo esc_attr($widgetcounter); ?>" action="" method="post">
-                    <div class="form-wrap clear cx-form-wrap <?php echo (@$email_settings['collect_name'] == 1) ? "" : "hide" ?> mb-10">
+                    <div class="form-wrap cx-clear cx-form-wrap <?php echo (@$email_settings['collect_name'] == 1) ? "" : "hide" ?> mb-10">
                         <p class="customer-name-text coupon-code-email-text">
                             <input type="text" name="couponapp-name" value="" placeholder=" <?php echo esc_attr(@$email_settings['name']); ?>" class="<?php echo (@$email_settings['required_name'] == 1) ? "required-name" : "" ?>" />
                         </p>
                     </div>
                     <span class="required-text-msg"><?php echo esc_attr(@$email_settings['validation_text']) ?></span>
-                    <div class="form-wrap clear cx-form-wrap">
+                    <div class="form-wrap cx-clear cx-form-wrap">
                         <p class="coupon-code-email-text">
                             <input type="hidden" name="hide_coup_code" class='hide_coup_code' value="<?php echo esc_attr($coupon_code_text); ?>">
                             <input type="email" name="couponapp-email" value="" placeholder=" <?php echo esc_attr($email_settings['email']); ?>" data-widget-id="<?php echo esc_attr($widget_id); ?>" required pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}"/>
@@ -676,9 +719,9 @@ class Couponx_Frontend
                     echo ( 1 === (int) $consent ) ? '<label class="email-content-checkbox"><input type="checkbox" name="" value="1" id="email-content-'.esc_attr($widgetcounter).'" '.esc_attr($required).'/>&nbsp;'. wp_kses($email_settings['consent_text'], $allowedTags) .'</label>' : '';
                     ?>
                 </form>
-                <p class="coupon-description">
-                    <?php echo esc_attr($email_settings['desc']); ?>
-                </p>
+                <div class="coupon-description">
+                    <?php echo wp_kses($email_settings['desc'], $allowedTags); ?>
+                </div>
             </div>
         </div>
         <?php
@@ -738,6 +781,33 @@ class Couponx_Frontend
         }
         $isElements = isset($coupon_settings['add_elements']) ? $coupon_settings['add_elements'] : 1;
         $elementType = isset($coupon_settings['element_type']) ? $coupon_settings['element_type'] : 'confetti';
+
+        $allowedTags = [
+            'a'       => [
+                'href'   => [],
+                'title'  => [],
+                'target' => [],
+            ],
+            'abbr'    => [ 'title' => [] ],
+            'acronym' => [ 'title' => [] ],
+            'code'    => [],
+            'pre'     => [],
+            'em'      => [],
+            'strong'  => [],
+            'ul'      => [],
+            'ol'      => [],
+            'li'      => [],
+            'span'    => [
+                'style' => []
+            ],
+            'p'       => [],
+            'br'      => [],
+            'img'     => [
+                'src' => [],
+                'alt' => []
+            ]
+        ];
+
         ?>
 
         <style>
@@ -759,17 +829,17 @@ class Couponx_Frontend
             <div class="content-preview">
                 <h4>
                     <?php
-                    echo esc_attr($coupon_settings['headline']);
+                    echo wp_kses($coupon_settings['headline'], $allowedTags);
                     ?>
                 </h4>
-                <div class="form-wrap clear">
+                <div class="form-wrap cx-clear">
                     <a href="<?php echo esc_attr($couponcode_link); ?>" class="button btn btn-blue coupon-button coupon-code-link"  <?php echo esc_attr($target); ?> data-widget-id="<?php echo esc_attr($widget_id); ?>" data-type="<?php echo esc_attr($settings['coupon']['link_type']); ?>" data-url = '<?php echo esc_url($link); ?>' >
                         <?php echo esc_attr($coupon_settings['cpy_btn']); ?>
                     </a>
                 </div>
-                <p class="coupon-description">
-                    <?php echo esc_attr($coupon_settings['desc']); ?>
-                </p>
+                <div class="coupon-description">
+                    <?php echo wp_kses($coupon_settings['desc'], $allowedTags); ?>
+                </div>
             </div>
         </div>
         <?php
@@ -853,6 +923,32 @@ class Couponx_Frontend
             $elementType = isset($an_settings['element_type']) ? $an_settings['element_type'] : 'confetti';
         }
 
+        $allowedTags = [
+            'a'       => [
+                'href'   => [],
+                'title'  => [],
+                'target' => [],
+            ],
+            'abbr'    => [ 'title' => [] ],
+            'acronym' => [ 'title' => [] ],
+            'code'    => [],
+            'pre'     => [],
+            'em'      => [],
+            'strong'  => [],
+            'ul'      => [],
+            'ol'      => [],
+            'li'      => [],
+            'span'    => [
+                'style' => []
+            ],
+            'p'       => [],
+            'br'      => [],
+            'img'     => [
+                'src' => [],
+                'alt' => []
+            ]
+        ];
+
         ?>
         <style>
             <?php if(!empty($imageUrl) && $imgPosition == "cover") { ?>
@@ -873,7 +969,7 @@ class Couponx_Frontend
             <div class="content-preview">
                 <h4>
                     <?php
-                    echo esc_attr($an_settings['headline']);
+                    echo wp_kses($an_settings['headline'], $allowedTags);
                     ?>
                 </h4>
                 <?php
@@ -881,7 +977,7 @@ class Couponx_Frontend
                     $new_tab = isset($an_settings['new_tab']) ? $an_settings['new_tab'] : 0;
                     $target  = 1 === (int) $new_tab ? 'blank' : '';
                     ?>
-                    <div class="form-wrap clear">
+                    <div class="form-wrap cx-clear">
                         <a href="#"  url="<?php echo esc_attr($btn_link); ?>" class="button btn btn-blue coupon-button <?php echo esc_attr($cls).' '.esc_attr($target); ?>" >
                     <?php echo esc_attr($an_settings['cpy_btn']); ?>
                         </a>
@@ -889,9 +985,9 @@ class Couponx_Frontend
                     <?php
                 }
                 ?>
-                <p class="coupon-description">
-                    <?php echo esc_attr($an_settings['desc']); ?>
-                </p>
+                <div class="coupon-description">
+                    <?php echo wp_kses($an_settings['desc'], $allowedTags); ?>
+                </div>
             </div>
         </div>
             <?php

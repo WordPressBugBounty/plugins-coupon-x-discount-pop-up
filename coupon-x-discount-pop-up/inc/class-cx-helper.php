@@ -1150,7 +1150,14 @@ class Cx_Helper
             $str = 'display: none';
         }
 
-        $font        = explode('-', $settings['font']);
+        $font = [];
+        $showIcon = isset($settings['show_icon']) ? $settings['show_icon'] : 1;
+        $popupFont = isset($popupSettings['font']) ? $popupSettings['font'] : 'Google_Fonts-Poppins';
+        if($showIcon == 1) {
+            $font = explode('-', $settings['font']);
+        } else {
+            $font = explode('-', $popupFont);
+        }
         $font_type   = str_replace('_', ' ', $font[0]);
         $font_family = str_replace('_', ' ', $font[1]);
         $css         = '
@@ -1226,7 +1233,17 @@ class Cx_Helper
     {
         $widgetcounter = $widget_id;
 
-        $font        = explode('-', $settings['tab']['font']);
+        $showIcon = isset($settings['tab']['show_icon']) ? $settings['tab']['show_icon'] : 1;
+        $popupFont = isset($settings['popup']['font']) ? $settings['popup']['font'] : 'Google_Fonts-Poppins';
+        if($showIcon == 1){
+            $font = explode('-', $settings['tab']['font']);
+            $bottomSpacing = $settings['tab']['bottom_spacing'];
+            $sideSpacing = $settings['tab']['side_spacing'];
+        } else {
+            $font = explode('-', $popupFont);
+            $bottomSpacing = $settings['popup']['bottom_spacing'];
+            $sideSpacing = $settings['popup']['side_spacing'];
+        }
         $font_type   = str_replace('_', ' ', $font[0]);
         $font_family = str_replace('_', ' ', $font[1]);
 
@@ -1277,14 +1294,14 @@ class Cx_Helper
 			{ font-family: '.esc_attr($font_family).' !important}
 			#tab-box-front-'.esc_attr($widgetcounter).'.couponapp-position-custom.couponapp-position-left {
 
-				bottom: '.esc_attr($settings['tab']['bottom_spacing']).'px;
-				left: '.esc_attr($settings['tab']['side_spacing']).'px;
+				bottom: '.esc_attr($bottomSpacing).'px;
+				left: '.esc_attr($sideSpacing).'px;
 				font-family'.esc_attr($font_family).'
 			}
 
 			#tab-box-front-'.esc_attr($widgetcounter).'.couponapp-position-custom.couponapp-position-right {
-				bottom: '.esc_attr($settings['tab']['bottom_spacing']).'px;
-				right: '.esc_attr($settings['tab']['side_spacing']).'px;}
+				bottom: '.esc_attr($bottomSpacing).'px;
+				right: '.esc_attr($sideSpacing).'px;}
 
 			#tab-box-front-'.esc_attr($widgetcounter).' .tab-text { 
 				color: '.esc_attr($settings['tab']['action_color']).';
@@ -1319,7 +1336,6 @@ class Cx_Helper
 
 			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-email-content {
 			 background-color: '.esc_attr($settings['main']['bgcolor']).';}
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-email-content h4{ color: '.esc_attr($settings['main']['headline_color']).';}
 
 			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-email-content .coupon-code-email-text input{ 
 			 color: '.esc_attr($settings['main']['text_color']).';
@@ -1342,8 +1358,6 @@ class Cx_Helper
 			 color: '.esc_attr($settings['main']['btn_text_color']).';
 			 background-color: '.esc_attr($settings['main']['btn_color']).';}
 
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-email-content .coupon-description{ 
-			 color: '.esc_attr($settings['main']['desc_color']).';}
 			@media screen and (min-width: 769px) {
 				#tab-box-front-'.esc_attr($widgetcounter).'.tab-box.tab-front-box.couponapp-desktop{ 
 				display: block;
@@ -1368,10 +1382,6 @@ class Cx_Helper
             	color : '.esc_attr($settings['main']['error_color']).';
             	font-size: 12px
             }
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-couponcode-content h4{ 
-				color: '.esc_attr($settings['coupon']['headline_color']).';}
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-couponcode-content .coupon-description{
-				color: '.esc_attr($settings['coupon']['desc_color']).';}
 		';
         if ((isset($settings['popup']['style']) && $settings['popup']['style'] === 'style-2') && 1 === (int) @$settings['coupon']['enable_styles']) {
             $css .= '#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-couponcode-content { 
@@ -1379,9 +1389,6 @@ class Cx_Helper
 				#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content .coupon-code-text{ 
 					color: '.esc_attr($settings['main']['text_color']).';
 					background-color: '.esc_attr($settings['main']['email_color']).';}
-				#tab-box-front-'.esc_attr($widgetcounter).'  .tab-box-content.tab-box-couponcode-content h4{ 
-						color: '.esc_attr($settings['main']['headline_color']).';
-				}
 				
 				#tab-box-front-'.esc_attr($widgetcounter).'.tab-box-content.couponapp-email-code-option .form-wrap, 
 				#tab-box-front-'.esc_attr($widgetcounter).'.tab-box.couponapp-style-1 .tab-box-couponcode-content .form-wrap, 
@@ -1398,9 +1405,6 @@ class Cx_Helper
         } else {
             $css .= '#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content.tab-box-couponcode-content { 
 				background-color: '.esc_attr($settings['coupon']['bg_color']).';}
-				#tab-box-front-'.esc_attr($widgetcounter).'  .tab-box-content.tab-box-couponcode-content h4{ 
-					color: '.esc_attr($settings['coupon']['headline_color']).';
-			}
 	
 				#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-content .coupon-code-text{ color: '.esc_attr($settings['coupon']['text_color']).';
 					background-color: '.esc_attr($settings['coupon']['coupon_color']).';}
@@ -1420,15 +1424,7 @@ class Cx_Helper
         }//end if
 
         if ('style-5' === $settings['popup']['style'] && 1 === (int) @$settings['announcement']['enable_styles']) {
-            $css .= '#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an h4{ 
-				color: '.esc_attr($settings['main']['headline_color']).' !important;
-				
-			}
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an p{ 
-				color: '.esc_attr($settings['main']['desc_color']).' !important;
-				
-			}
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an{ 
+            $css .= '#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an{ 
 				background-color: '.esc_attr($settings['main']['bgcolor']).' !important;
 				
 			}
@@ -1438,15 +1434,7 @@ class Cx_Helper
 				
 			}';
         } else {
-            $css .= '#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an h4{ 
-				color: '.esc_attr($settings['announcement']['headline_color']).' !important;
-				
-			}
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an p{ 
-				color: '.esc_attr($settings['announcement']['desc_color']).' !important;
-				
-			}
-			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an{ 
+            $css .= '#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-an{ 
 				background-color: '.esc_attr($settings['announcement']['bg_color']).' !important;
 				
 			}
@@ -1476,6 +1464,25 @@ class Cx_Helper
         $css           = '.close-design-popup {
 			color: '.esc_attr($coupon_settings['clsbtn_color']).'
 		}';
+
+        $showIcon = isset($options['tab']['show_icon']) ? $options['tab']['show_icon'] : 1;
+        $popupFont = isset($options['popup']['font']) ? $options['popup']['font'] : 'Google_Fonts-Poppins';
+        if($showIcon == 1) {
+            $font = explode('-', $options['tab']['font']);
+        } else {
+            $font = explode('-', $popupFont);
+        }
+        $font_family = str_replace('_', ' ', $font[1]);
+        if ('System stack' === $font_family) {
+            $font_family = '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+        } else {
+            $font_url = 'https://fonts.googleapis.com/css?family=' . $font_family . ':400,500,600,700';
+            wp_enqueue_style('google-preview-font', $font_url);
+        }
+        $css .= '.tab-preview .preview-box,
+            .popup-preview .preview-box{ font-family:' . esc_attr($font_family) . '; }
+            .popup-preview .preview-box button{ font-family:' . esc_attr($font_family) . ' !important; }';
+
         $enable_styles = isset($options['coupon']['enable_styles']) ? $options['coupon']['enable_styles'] : 0;
         if ('style-2' === $options['popup']['style'] && 1 === (int) $enable_styles) {
             $css .= '.couponapp-email-code-option { 
@@ -1486,7 +1493,7 @@ class Cx_Helper
 				
 				.couponapp-email-code-option .form-wrap
 				{
-					border-color:'.esc_attr($options['main']['email_brdcolor']).';
+					border-color:'.esc_attr($options['main']['email_brdcolor']).' !important;
 					background-color: '.esc_attr($options['main']['email_color']).' !important;
 				}
 				.coupon-tab-close svg{
@@ -1494,13 +1501,7 @@ class Cx_Helper
 				}
 				.couponapp-email-code-option #coupon-buttonn{ 
 					color: '.esc_attr($options['main']['btn_text_color']).'  !important;
-					background-color: '.esc_attr($options['main']['btn_color']).'  !important;}
-				.couponapp-email-code-option .coupon-description {
-					color: '.esc_attr($options['main']['desc_color']).';
-				}
-				.couponapp-email-code-option h4 {
-					color: '.esc_attr($options['main']['headline_color']).';
-				}';
+					background-color: '.esc_attr($options['main']['btn_color']).'  !important;}';
         } else {
             $css .= '.couponapp-email-code-option{ 
 				background-color: '.esc_attr($options['coupon']['bg_color']).';}
@@ -1508,17 +1509,11 @@ class Cx_Helper
 					background-color: '.esc_attr($options['coupon']['coupon_color']).';}
 				
 				.couponapp-email-code-option .form-wrap{
-					border-color:'.esc_attr($options['coupon']['coupon_brdcolor']).';
-					background-color: '.esc_attr($options['coupon']['coupon_color']).'
-				}
-				.couponapp-email-code-option h4 {
-					color: '.esc_attr($options['coupon']['headline_color']).';
+					border-color:'.esc_attr($options['coupon']['coupon_brdcolor']).' !important;
+					background-color: '.esc_attr($options['coupon']['coupon_color']).' !important;
 				}
 				.coupon-tab-close svg{
 					fill:'.esc_attr($options['coupon']['clsbtn_color']).'
-				}
-				.couponapp-email-code-option .coupon-description {
-					color: '.esc_attr($options['coupon']['desc_color']).';
 				}
 				.couponapp-email-code-option #coupon-buttonn{ 
 					color: '.esc_attr($options['coupon']['txt_color']).' !important;
@@ -1526,17 +1521,8 @@ class Cx_Helper
         }//end if
 
         if ('style-5' === $options['popup']['style'] && 1 === (int) @$options['announcement']['enable_styles']) {
-            $css .= '.couponapp-no-coupon-option h4{ 
-				color: '.esc_attr($options['main']['headline_color']).';
-				
-			}
-			.couponapp-no-coupon-option p{ 
-				color: '.esc_attr($options['main']['desc_color']).';
-				
-			}
-			.couponapp-no-coupon-option{ 
+            $css .= '.couponapp-no-coupon-option{ 
 				background-color: '.esc_attr($options['main']['bgcolor']).';
-				
 			}
 			.couponapp-no-coupon-option #announcement-button{ 
 				background-color: '.esc_attr($options['main']['btn_color']).' !important;
@@ -1544,15 +1530,7 @@ class Cx_Helper
 				
 			}';
         } else {
-            $css .= '.couponapp-no-coupon-option h4{ 
-				color: '.esc_attr($options['announcement']['headline_color']).';
-				
-			}
-			.couponapp-no-coupon-option p{ 
-				color: '.esc_attr($options['announcement']['desc_color']).';
-				
-			}
-			.couponapp-no-coupon-option { 
+            $css .= '.couponapp-no-coupon-option { 
 				background-color: '.esc_attr($options['announcement']['bg_color']).';
 				
 			}
@@ -1745,5 +1723,20 @@ class Cx_Helper
 
     }//end coupon_traffic_source()
 
+    public static function color_picker_template($label = "", $id = "", $class = "", $name = "", $value = "") {
+        ob_start();
+        ?>
+
+        <label class="custom-color-box">
+            <div class="custom-color-info">
+                <span class="field-color"><?php echo esc_attr($label); ?></span>
+                <span class="custom-color-val"><?php echo esc_attr($value); ?></span>
+            </div>
+            <input type='text' id='<?php echo esc_attr($id); ?>' class='<?php echo esc_attr($class); ?>' name='<?php echo esc_attr($name); ?>' value='<?php echo esc_attr($value); ?>' />
+        </label>
+
+        <?php
+        return ob_get_clean();
+    }
 
 }//end class

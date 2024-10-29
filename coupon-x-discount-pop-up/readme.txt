@@ -2,7 +2,7 @@
 Contributors: galdub, tomeraharon, premio
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
-Tested up to: 6.6
+Tested up to: 6.7
 Stable tag: 1.3.4
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3

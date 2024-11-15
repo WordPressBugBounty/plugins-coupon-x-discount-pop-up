@@ -96,8 +96,7 @@ jQuery('document').ready(function($) {
 						type: 'post',
 						dataType: 'json',
 				    	success: function( response ) {
-				    		console.log( response );
-				    		
+
 				    		ids = leads.split(',');
 				    		$.each(ids, function( index, id ) {
 				    			$('.chk_lead[value="'+id+'"').closest('tr').hide();
@@ -118,7 +117,6 @@ jQuery('document').ready(function($) {
 		]
 	});
 	$('body').on('click', '.ui-widget-overlay', function() {
-		console.log('called')
 		delete_lead_dialog.dialog( "close" );
 	})
 	$('.close_flash_popup').click(function() {

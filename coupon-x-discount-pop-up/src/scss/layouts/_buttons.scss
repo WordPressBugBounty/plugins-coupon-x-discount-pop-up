@@ -1,0 +1,70 @@
+.footer-buttons, .responsive-nav-btns {
+
+  .back-button, .next-button {
+    @apply border border-solid border-cx-primary text-cx-primary text-base rounded-md py-2 px-4 items-center space-x-2 transition duration-200 ease-in sm:hover:bg-cx-primary sm:hover:text-white sm:hover:shadow-lg sm:hover:shadow-cx-primary/50;
+
+    &.cht-disable {
+      pointer-events: none;
+      filter: grayscale(1);
+      opacity: .5;
+    }
+
+    @media screen and (max-width: 1200px) {
+      @apply px-2;
+      span {
+        display: none;
+      }
+      svg {
+        margin: 0 !important;
+      }
+    }
+  }
+
+  .save-button-container {
+    @apply bg-cx-primary flex items-center text-white rounded-md shadow-lg text-base shadow-cx-primary/50 overflow-hidden
+  }
+
+  .save-button {
+    @apply px-3 py-2 transition duration-200 ease-in;
+    &:hover {
+      @apply bg-cx-primary-100;
+    }
+  }
+
+  .arrow-btn {
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+
+    &:hover, &.active {
+      @apply bg-cx-primary-100;
+    }
+
+    @apply px-3 py-2 transition duration-200 ease-in;
+  }
+
+  .save-dashboard-button {
+    background: #FFFFFF;
+    border: 1px solid #EAEFF2;
+    box-shadow: 0px 11.5px 19.5px -4.875px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-family: Poppins, sans-serif, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    padding: 10px 22px;
+    color: #49687E;
+    cursor: pointer;
+    transition: all .2s;
+    width: 187px;
+    text-align: left;
+    margin-left: -5px;
+
+    &:hover {
+      color: #4b51ca;
+    }
+  }
+}
+
+.responsive-nav-btns {
+  @apply fixed left-0 bottom-0 w-full bg-white z-10 flex sm:hidden items-center justify-center gap-4 p-4;
+}

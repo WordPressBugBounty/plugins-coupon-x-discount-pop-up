@@ -46,11 +46,11 @@ class Cx_Widget_Coupon
         ?>
         <div id="couponapp-wp-coupon-types" class="couponapp-conversation-data coupon-choose-dialogbox">
             <div class='cx-tab'>
-                <div class="wp-coupon-types-wrap">
+                <div class="wp-coupon-types-wrap p-5 flex gap-4">
                     <?php
                     if (0 === $wc_status) {
                         ?>
-                        <div class="coupon-code-option4  select-no-coupon-code coupon-type <?php echo esc_attr(4 === $type ? 'active-type' : ''); ?>">
+                        <div class="coupon-code-option4 rounded-md select-no-coupon-code coupon-type <?php echo esc_attr(4 === $type ? 'active-type' : ''); ?>">
                             <div class="coupon-code-option-titlebox">
                                 <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000" style='width:60%; float:left'> <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"/> </svg></span>
                                 <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x'); ?></h4>
@@ -64,7 +64,7 @@ class Cx_Widget_Coupon
                         <?php
                     }
                     ?>
-                    <div class="custom-coupon-code coupon-type <?php echo esc_attr(3 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
+                    <div class="custom-coupon-code rounded-md coupon-type <?php echo esc_attr(3 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon1.svg'); ?>"></span>
                             <h4><?php esc_html_e('Create a new Woocommerce discount with Coupon X', 'coupon-x'); ?></h4>
@@ -91,7 +91,7 @@ class Cx_Widget_Coupon
                         }
                         ?>
                     </div>
-                    <div class="coupon-code-option2 select-wp-exisitng-coupon coupon-type <?php echo esc_attr(1 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
+                    <div class="coupon-code-option2 rounded-md select-wp-exisitng-coupon coupon-type <?php echo esc_attr(1 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon2.svg'); ?>"></span>
                             <h4><?php esc_html_e('Use a pre-existing Woocommerce discount coupon', 'coupon-x'); ?></h4>
@@ -119,7 +119,7 @@ class Cx_Widget_Coupon
                         }
                         ?>
                     </div>
-                    <div class="coupon-code-option3  select-wp-generate-unique-coupon coupon-type <?php echo esc_attr(2 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
+                    <div class="coupon-code-option3 rounded-md select-wp-generate-unique-coupon coupon-type <?php echo esc_attr(2 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon3.svg'); ?>"></span>
                             <h4><?php esc_html_e('Generate unique Woocommerce coupons for each new visitor', 'coupon-x'); ?></h4>
@@ -149,7 +149,7 @@ class Cx_Widget_Coupon
                     <?php
                     if (1 === $wc_status) {
                         ?>
-                        <div class="coupon-code-option4  select-no-coupon-code coupon-type <?php echo esc_attr(4 === $type ? 'active-type' : ''); ?>">
+                        <div class="coupon-code-option4 rounded-md select-no-coupon-code coupon-type <?php echo esc_attr(4 === $type ? 'active-type' : ''); ?>">
                             <div class="coupon-code-option-titlebox">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000" style='width:60%; float:left'> <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"/> </svg>
@@ -194,12 +194,15 @@ class Cx_Widget_Coupon
                     <p>
                         <?php esc_html_e('Please select one of your wp discount codes (you can create a new discount code in your Discounts page)', 'coupon-x'); ?>
                     </p>
-                    <div id="search-wp-coupon-codes-data">
-                        <span class="search-svg">
-                            <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true"><path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm9.707 4.293l-4.82-4.82A5.968 5.968 0 0 0 14 8 6 6 0 0 0 2 8a6 6 0 0 0 6 6 5.968 5.968 0 0 0 3.473-1.113l4.82 4.82a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414z"></path></svg>
+                    <div id="search-wp-coupon-codes-data" class="flex items-center mt-2.5 !rounded">
+                        <span class="search-svg pl-2.5">
+                            <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false"
+                                 aria-hidden="true">
+                                <path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm9.707 4.293l-4.82-4.82A5.968 5.968 0 0 0 14 8 6 6 0 0 0 2 8a6 6 0 0 0 6 6 5.968 5.968 0 0 0 3.473-1.113l4.82 4.82a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414z"></path>
+                            </svg>
                         </span>
-                        <input type="text" id="search-wp-coupon-codes-text" name="search-wp-coupon-codes-text"
-                               placeholder="<?php esc_attr_e('Search existing coupon code', 'coupon-x'); ?>"
+                        <input type="text" class=" flex-1 !rounded" id="search-wp-coupon-codes-text" name="search-wp-coupon-codes-text"
+                               placeholder="<?php esc_html_e('Search existing coupon code', 'coupon-x'); ?>"
                                autocomplete="off"/>
                     </div>
                     <div class="coupon-details-table">

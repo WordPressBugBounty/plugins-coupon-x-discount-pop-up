@@ -1,0 +1,12 @@
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+@import './scss/utils/mixins';
+
+@import './scss/base/tailwind';
+
+@import
+  './scss/layouts/header',
+  './scss/layouts/content',
+  './scss/layouts/buttons';

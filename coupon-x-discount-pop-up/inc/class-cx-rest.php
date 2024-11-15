@@ -419,6 +419,7 @@ class Cx_Rest
         $fields = filter_input(INPUT_POST, "cx_settings", FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $nonce = filter_input(INPUT_POST, 'cx_nonce');
         $files = filter_input(INPUT_POST, 'file', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $redirect_on_dashboard = filter_input(INPUT_POST, 'redirect_on_dashboard');
 
         $response = [
             'status'    => 0,
@@ -528,6 +529,7 @@ class Cx_Rest
                 'status'    => 200,
                 'response'  => 'success',
                 'widget_id' => $widget_id,
+                'dashboard_url' => $redirect_on_dashboard?admin_url('admin.php?page=couponx'):''
             ];
         }
         echo json_encode($response);

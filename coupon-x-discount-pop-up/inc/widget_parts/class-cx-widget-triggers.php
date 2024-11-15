@@ -50,130 +50,130 @@ class Cx_Widget_Triggers
         <div class='triggers-tab'>
             <div class='trigger-settings'>                
                 <div class='cx-tab'>
-                    <h3><?php esc_html_e('Triggers & Targeting', 'coupon-x'); ?></h3>
-                    <div class='row mx-height-110'>
-                        <div class='row-elements full'>
-                            <label> 
-                                <?php esc_html_e('Devices', 'coupon-x'); ?> 
-                            </label>
-                            <ul class='devices-list'>
-                                <li>
-                                    <label>
-                                        <input type='checkbox' class='chk-desktop' name='cx_settings[trigger][display_desktop]' value='1' 
-                                        <?php echo  checked(1, $settings['display_desktop'], false); ?> > 
-                                        <?php esc_html_e('Desktop', 'coupon-x'); ?>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type='checkbox' class='chk-mobile' name='cx_settings[trigger][display_mobile]' value='1' 
-                                        <?php echo checked(1, $settings['display_mobile'], false); ?>> 
-                                        <?php esc_html_e('Mobile', 'coupon-x'); ?>
-                                    </label>
-                                </li>
-                            </ul>
+                    <div class="section-title font-primary text-cht-gray-150 text-2xl px-8 py-5"><?php esc_html_e('Triggers & Targeting', 'coupon-x'); ?></div>
+                    <div class="row-ul px-8 py-5 pb-0">
+                        <div class='row mx-height-110'>
+                            <div class='row-elements full'>
+                                <label>
+                                    <?php esc_html_e('Devices', 'coupon-x'); ?>
+                                </label>
+                                <ul class='devices-list'>
+                                    <li>
+                                        <label>
+                                            <input type='checkbox' class='chk-desktop' name='cx_settings[trigger][display_desktop]' value='1'
+                                            <?php echo  checked(1, $settings['display_desktop'], false); ?> >
+                                            <?php esc_html_e('Desktop', 'coupon-x'); ?>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type='checkbox' class='chk-mobile' name='cx_settings[trigger][display_mobile]' value='1'
+                                            <?php echo checked(1, $settings['display_mobile'], false); ?>>
+                                            <?php esc_html_e('Mobile', 'coupon-x'); ?>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class='row'>
-                        <div class='row-elements full'>
-                            <label> 
-                                <?php esc_html_e('When to open the pop up?', 'coupon-x'); ?> 
-                            </label>
-                            <select name='cx_settings[trigger][when]' class='input-element'>                               
-                                <?php
-                                $when         = $settings['when'];
-                                $when_trigger = [
-                                    'hover' => esc_html__('Open the pop up on hover', 'coupon-x'),
-                                    'click' => esc_html__('Open the pop up on click', 'coupon-x'),
-                                    'open'  => esc_html__('Open the pop up on load', 'coupon-x'),
-
-                                ];
-                                foreach ($when_trigger as $key => $value) {
-                                    ?>
-                                    <option value='<?php echo esc_attr($key); ?>' <?php echo selected($when, $key, false); ?>>
-                                    <?php echo esc_attr($value); ?> 
-                                    </option>
+                        <div class='row'>
+                            <div class='row-elements full'>
+                                <label>
+                                    <?php esc_html_e('When to open the pop up?', 'coupon-x'); ?>
+                                </label>
+                                <select name='cx_settings[trigger][when]' class='input-element'>
                                     <?php
-                                }
-                                ?>
-                            </select>
+                                    $when         = $settings['when'];
+                                    $when_trigger = [
+                                        'hover' => esc_html__('Open the pop up on hover', 'coupon-x'),
+                                        'click' => esc_html__('Open the pop up on click', 'coupon-x'),
+                                        'open'  => esc_html__('Open the pop up on load', 'coupon-x'),
+
+                                    ];
+                                    foreach ($when_trigger as $key => $value) {
+                                        ?>
+                                        <option value='<?php echo esc_attr($key); ?>' <?php echo selected($when, $key, false); ?>>
+                                        <?php echo esc_attr($value); ?>
+                                        </option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class='row'>
-                        <div class='row-elements full'>
-                            <label> 
-                                <?php esc_html_e('Trigger ', 'coupon-x'); ?> <span><?php esc_html_e(' (Decide when & how the pop up will trigger)', 'coupon-x'); ?> </span> 
+                        <div class='row'>
+                            <label class="!mb-0">
+                                <?php esc_html_e('Trigger ', 'coupon-x'); ?> <span><?php esc_html_e(' (Decide when & how the pop up will trigger)', 'coupon-x'); ?> </span>
                             </label>
                         </div>
-                    </div>
-                    <div class='row gray-bg first'>
-                        <div class='row-elements full'>
-                            <label>
-                                <span class="icon label-tooltip" title="<?php esc_html_e('The popup will trigger after a brief period of time', 'coupon-x'); ?>">
-                                    <span class="dashicons dashicons-editor-help"></span>
+                        <div class='row gray-bg first'>
+                            <div class='row-elements full'>
+                                <label>
+                                    <span class="icon label-tooltip" title="<?php esc_html_e('The popup will trigger after a brief period of time', 'coupon-x'); ?>">
+                                        <span class="dashicons dashicons-editor-help"></span>
+                                    </span>
+                                    <input type='checkbox' name='cx_settings[trigger][enable_time_delay]' value='1'
+                                    <?php echo checked(1, $settings['enable_time_delay'], false); ?> class='time-delay'>
+                                    <?php esc_html_e('Time delay', 'coupon-x'); ?>
+                                </label>
+                                <label>
+                                    <span><?php esc_html_e('Display after ', 'coupon-x'); ?></span>
+                                    <input type='number'  name='cx_settings[trigger][delay_time]' class='input-element delay-time' value='<?php echo esc_attr($settings['delay_time']); ?>' min='0' <?php echo esc_attr(1 !== (int) $settings['enable_time_delay'] ? 'disabled' : ''); ?>/>
+                                    <span><?php esc_html_e(' seconds on the page', 'coupon-x'); ?></span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class='row gray-bg '>
+                            <div class='row-elements full'>
+                                <label>
+                                    <span class="icon label-tooltip" title="<?php esc_html_e('The pop up will trigger after a user scrolls a certain percentage of the website', 'coupon-x'); ?>">
+                                        <span class="dashicons dashicons-editor-help"></span>
+                                    </span>
+                                    <input type='checkbox' name='cx_settings[trigger][enable_page_scroll]' value='1'
+                                    <?php echo checked(1, $settings['enable_page_scroll'], false); ?> class='page-scroll'>
+                                    <?php esc_html_e('Page scroll', 'coupon-x'); ?>
+                                </label>
+                                <label>
+                                    <span><?php esc_html_e('Display after ', 'coupon-x'); ?></span>
+                                    <input type='number'  name='cx_settings[trigger][scroll_percent]' class='input-element scroll-page' value='<?php echo esc_attr($settings['scroll_percent']); ?>' min='0' max='100' <?php echo esc_attr('1' !== $settings['enable_page_scroll'] ? 'disabled' : ''); ?>/>
+                                    <span><?php esc_html_e(' % on the page', 'coupon-x'); ?></span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class='row gray-bg last'>
+                            <div class='row-elements full'>
+                                <label>
+                                    <span class="icon label-tooltip" title="<?php esc_html_e('The coupon will automatically trigger and shown when a user is about to leave. ', 'coupon-x'); ?><a href='https://premio.io/help/coupon-x/how-to-add-exit-intent-to-your-widget/' target='_blank'><?php esc_html_e('Read more', 'coupon-x'); ?></a>">
+                                        <span class="dashicons dashicons-editor-help"></span>
+                                    </span>
+                                    <input type='checkbox'  name='cx_settings[trigger][exit_intent]'  value='1' <?php echo checked(1, $settings['exit_intent'], false); ?> class='exit-intent'/>
+                                    <?php esc_html_e('Exit Intent', 'coupon-x'); ?>
+                                </label>
+                                <span>
+                                    <?php esc_html_e('The coupon pop-up will be shown automatically when visitors are about to leave the store', 'coupon-x'); ?>
                                 </span>
-                                <input type='checkbox' name='cx_settings[trigger][enable_time_delay]' value='1' 
-                                <?php echo checked(1, $settings['enable_time_delay'], false); ?> class='time-delay'> 
-                                <?php esc_html_e('Time delay', 'coupon-x'); ?>
-                            </label>
-                            <label>
-                                <span><?php esc_html_e('Display after ', 'coupon-x'); ?></span>
-                                <input type='number'  name='cx_settings[trigger][delay_time]' class='input-element delay-time' value='<?php echo esc_attr($settings['delay_time']); ?>' min='0' <?php echo esc_attr(1 !== (int) $settings['enable_time_delay'] ? 'disabled' : ''); ?>/>
-                                <span><?php esc_html_e(' seconds on the page', 'coupon-x'); ?></span>
-                            </label>
-                        </div>
-                    </div>
-                    <hr />
-                    <div class='row gray-bg '>
-                        <div class='row-elements full'>
-                            <label>
-                                <span class="icon label-tooltip" title="<?php esc_html_e('The pop up will trigger after a user scrolls a certain percentage of the website', 'coupon-x'); ?>">
-                                    <span class="dashicons dashicons-editor-help"></span>
-                                </span>
-                                <input type='checkbox' name='cx_settings[trigger][enable_page_scroll]' value='1' 
-                                <?php echo checked(1, $settings['enable_page_scroll'], false); ?> class='page-scroll'> 
-                                <?php esc_html_e('Page scroll', 'coupon-x'); ?>
-                            </label>
-                            <label>
-                                <span><?php esc_html_e('Display after ', 'coupon-x'); ?></span>
-                                <input type='number'  name='cx_settings[trigger][scroll_percent]' class='input-element scroll-page' value='<?php echo esc_attr($settings['scroll_percent']); ?>' min='0' max='100' <?php echo esc_attr('1' !== $settings['enable_page_scroll'] ? 'disabled' : ''); ?>/>
-                                <span><?php esc_html_e(' % on the page', 'coupon-x'); ?></span>
-                            </label>
-                        </div>
-                    </div>
-                    <hr />
-                    <div class='row gray-bg last'>
-                        <div class='row-elements full'>                        
-                            <label>
-                                <span class="icon label-tooltip" title="<?php esc_html_e('The coupon will automatically trigger and shown when a user is about to leave. ', 'coupon-x'); ?><a href='https://premio.io/help/coupon-x/how-to-add-exit-intent-to-your-widget/' target='_blank'><?php esc_html_e('Read more', 'coupon-x'); ?></a>">
-                                    <span class="dashicons dashicons-editor-help"></span>
-                                </span>
-                                <input type='checkbox'  name='cx_settings[trigger][exit_intent]'  value='1' <?php echo checked(1, $settings['exit_intent'], false); ?> class='exit-intent'/>
-                                <?php esc_html_e('Exit Intent', 'coupon-x'); ?>
-                            </label>
-                            <span>
-                                <?php esc_html_e('The coupon pop-up will be shown automatically when visitors are about to leave the store', 'coupon-x'); ?>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class='cx-tab-rule'>                    
-        <?php
-        $this->render_cart_rule($settings, $products, $collections);
-        $this->render_order_rule($settings, $collections, $products);
-        $this->render_date_scheduling_rule($settings);
-        $this->render_day_hour_scheduling_rule($settings);
-        $this->render_page_rule($settings);
-        $this->render_traffic_source_rule($settings);
-        $this->render_os_rule($settings);
-        ?>
+                <div class='cx-tab-rule'>
+                    <?php
+                    $this->render_cart_rule($settings, $products, $collections);
+                    $this->render_order_rule($settings, $collections, $products);
+                    $this->render_date_scheduling_rule($settings);
+                    $this->render_day_hour_scheduling_rule($settings);
+                    $this->render_page_rule($settings);
+                    $this->render_traffic_source_rule($settings);
+                    $this->render_os_rule($settings);
+                    ?>
                     <div class='rule-row'>
                         <div class='rule-row-elements full country-rule'>
                             <label>
                                 <span class="icon label-tooltip" title="<?php esc_html_e('Target your widget to specific countries. You can create different widgets for different countries', 'coupon-x'); ?>">
                                     <span class="dashicons dashicons-editor-help"></span>
-                                </span> 
-                                <?php esc_html_e('Country targeting (When Off: Show for all countries)', 'coupon-x'); ?> 
+                                </span>
+                                <?php esc_html_e('Country targeting (When Off: Show for all countries)', 'coupon-x'); ?>
                             </label>
                             <select class='input-element country-dropdown' name='' multiple>
                                 <option value='' selected><?php esc_html_e('All countries', 'coupon-x'); ?></option>
@@ -183,7 +183,7 @@ class Cx_Widget_Triggers
                             </a>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
         <?php

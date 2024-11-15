@@ -149,19 +149,20 @@ jQuery(document).ready(function($) {
 	    });
 	$('.accordion-btn').click(function(e) {
 		e.preventDefault();
-		if( ! $(".advanced-panel").hasClass('down')) {
-			$(".advanced-panel").slideDown("slow")
-				.addClass('down');
-		}
-		else {
-			$(".advanced-panel").slideUp("slow")
-				.removeClass('down');
-		}
-		
+		$(".advanced-panel").slideToggle({
+			duration: 'slow',
+			easing: 'linear',
+			start: function() {
+				$('.advanced-panel').removeClass('open');
+			},
+			complete: function() {
+				$('.advanced-panel').addClass('open');
+			}
+		});
 	})
 	//Close first widget popup
 	$('.close-chaty-maxvisitor-popup').click(function() {
-		$('.first-widget-popup').addClass('hide');
+		$('.first-widget-popup').remove();
 		$('.popup-overlayout-cls').css('display', 'none');
 	})
 
@@ -600,7 +601,6 @@ jQuery(document).ready(function($) {
 				
 			}
 			else if( $('.active-type').hasClass('select-wp-exisitng-coupon') ) {
-				console.log($('.ex-coupon:checked').length)
 				if( $('.ex-coupon:checked').length == 0 ) {
 					error =1;
 					tabs.tabs( "option", "active", 1 );
@@ -628,7 +628,6 @@ jQuery(document).ready(function($) {
 			}
 
 			if(error == 0) {
-				console.log(href)
 				tabs.tabs( "option", "active", 2 );
 			}
 		}
@@ -809,7 +808,7 @@ jQuery(document).ready(function($) {
 	    	}
 	    });
 	})
-	
+
 	function validate_coupon_form() {
 		error = 0;
 		if( !$('.discount-code-wrap').hasClass('hide') && $('#discount-code').val() == '' ) {
@@ -828,29 +827,29 @@ jQuery(document).ready(function($) {
 			$('.discount_value_error').addClass('hide');
 		}
 
-		if( $('.applies_to:checked').val() == 'collections' && 
+		if( $('.applies_to:checked').val() == 'collections' &&
 			$('.cart_collections').next('.select2')
-			.find('ul.select2-selection__rendered').find('li').length < 1 ) {
+				.find('ul.select2-selection__rendered').find('li').length < 1 ) {
 			error = 1;
 			$('.applies_to_collections_error').removeClass('hide');
-			
+
 		}
 		else {
 			$('.applies_to_collections_error').addClass('hide');
 		}
 
-		if( $('.applies_to:checked').val() == 'products' && 
+		if( $('.applies_to:checked').val() == 'products' &&
 			$('.cart_products').next('.select2')
-			.find('ul.select2-selection__rendered').find('li').length < 1 ) {
+				.find('ul.select2-selection__rendered').find('li').length < 1 ) {
 			error = 1;
 			$('.applies_to_products_error').removeClass('hide');
-			
+
 		}
 		else {
 			$('.applies_to_products_error').addClass('hide');
 		}
-		
-		if( $('.min-req  option:selected').val() == 'subtotal' && 
+
+		if( $('.min-req  option:selected').val() == 'subtotal' &&
 			$('.discount-min-req').val() == '' ) {
 			error = 1;
 			$('.min_val_error').removeClass('hide');
@@ -858,9 +857,23 @@ jQuery(document).ready(function($) {
 		else {
 			$('.min_val_error').addClass('hide');
 		}
+
+		if($(".coupon-code-option2").hasClass('active-type') && !$(".ex-coupon:checked").length) {
+			$('.ex-error').removeClass('hide');
+			error = 1;
+		} else {
+			$('.ex-error').addClass('hide');
+		}
 		return error;
 	}
-	
+
+	$(".save-button").click(function(){
+		$("#redirect_on_dashboard").val(0)
+	});
+
+	$(".save-dashboard-button").click(function(e){
+		$("#redirect_on_dashboard").val(1)
+	});
 
 	//Move to previous tab.
 	$('.prev-step').click(function( e ) {
@@ -955,13 +968,17 @@ jQuery(document).ready(function($) {
 	    		else {
 	    			$('.widget-id').val(response.widget_id);
 		    		$('#loader').hide();
-		    		if( $('.first-widget-popup').length > 0 ) {
+					if( response.dashboard_url != '' ) {
+						location.href = response.dashboard_url;
+						if($('.first-widget-popup').length) {
+							location.href = response.dashboard_url+"&show_first_modal=1";
+						} else {
+							location.href = response.dashboard_url;
+						}
+					}
+					else if( $('.first-widget-popup').length > 0 ) {
 						$('.first-widget-popup').removeClass('hide')
 						$('.popup-overlayout-cls').css('display', 'block');
-					}
-					else if( dashboard_url != '' ) {
-						location.href = dashboard_url;
-
 					}
 					else {
 						$('#wp_flash_message').removeClass('hide');
@@ -974,7 +991,7 @@ jQuery(document).ready(function($) {
 	}
 
 	//Save widget data
-	$('.save').click(function( e ) {
+	$('#cx_widget').submit(function( e ) {
 		e.preventDefault();
 		var result = { };
 		dash_url = '';
@@ -984,16 +1001,19 @@ jQuery(document).ready(function($) {
 		view = !$('.chk-desktop').is(":checked") 
 				&& !$('.chk-mobile').is(":checked");
 		error = 0;
-		if( $('input.coupon-type').val() == 2 || $('input.coupon-type').val() == 3) {
+		if( $('input.coupon-type').val() == 2 || $('input.coupon-type').val() == 1 || $('input.coupon-type').val() == 3) {
 			error = validate_coupon_form();
+		}
+
+		if($("#cx-btn-choose-coupon").hasClass('active') && error) {
+			return;
 		}
 
 		if( $('input.coupon-type').val() == '' ) {
 			validation_popup.dialog( "open" );
 			current_dialog = validation_popup;
 		} 
-		else if( $('#popup_type').val() == '' ) {
-		
+		else if( $('#popup_type').val() == '' || $('#cx-pop-up-design .popup-wrapper').hasClass('hide')) {
 			layout_validation.dialog("open")
 			current_dialog = layout_validation;	
 			
@@ -1124,7 +1144,6 @@ jQuery(document).ready(function($) {
 		$('.tab-box').addClass(new_class)
 		$('.custom-icon-bg').remove();
 		clr = $('#action_bgcolor').val();
-		console.log(clr)
 		if(pos == 'left') {
 			$('body').append('<style class="custom-icon-bg">.tab-text:after {border-right-color:'+clr+' !important;border-left-color:transparent !important}</style>' );
 		}
@@ -1155,7 +1174,6 @@ jQuery(document).ready(function($) {
 		$('.tab-box').addClass(new_class)
 		$('.custom-icon-bg').remove();
 		clr = $('#action_bgcolor').val();
-		console.log(clr)
 		if(pos == 'left') {
 			$('body').append('<style class="custom-icon-bg">.tab-text:after {border-right-color:'+clr+' !important;border-left-color:transparent !important}</style>' );
 		}
@@ -1927,7 +1945,7 @@ jQuery(document).ready(function($) {
 			$('#input-field-radio-style-4').trigger('click');
 
 		}
-
+		$("#cx-btn-pop-up-design").trigger("click")
 	});
 
     // $('#search-wp-coupon-codes-text').change( function() {
@@ -2014,7 +2032,6 @@ jQuery(document).ready(function($) {
 						type: 'post',
 						dataType: 'json',
 				    	success: function( response ) {
-				    		console.log( response );
 				    		$('#loader').hide();
 				    		$('tr[data-widget="'+widget_id+'"').hide();
 				    		$('#wp_flash_message').removeClass('hide');
@@ -2063,11 +2080,11 @@ jQuery(document).ready(function($) {
 	$('.keep-editing').click(function() {
 		keep_editing = 1;
 		validation_popup.dialog( "close" );
-		$('a[tab="#triggers_targetting"]').trigger('click')
+		$('#cx-btn-pop-up-design').trigger('click')
 	})
 	$('.select-coupon-btn').click(function() {
 		validation_popup.dialog( "close" );
-		$('a[tab="#choose_coupon"]').trigger('click')
+		$("#cx-btn-choose-coupon").trigger("click");
 	})
 
 	$('.close_flash_popup').click(function() {
@@ -2209,8 +2226,7 @@ jQuery(document).ready(function($) {
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-text').css( 'background-color', clr );
 			$('.custom-icon-bg').remove();
-			console.log($('.custom-pos:checked').val())
-			if($('.custom-pos:checked').val() == 'left' || 
+			if($('.custom-pos:checked').val() == 'left' ||
 				($('.custom-pos:checked').val() == 'custom' && $('.custom_position:checked').val() == 'left')) {
 				$('body').append('<style class="custom-icon-bg">.tab-text:after {border-right-color:'+clr+' !important;border-left-color:transparent !important}</style>' );
 			}
@@ -2225,7 +2241,6 @@ jQuery(document).ready(function($) {
 			clr =  color.toHexString();
 			$('.preview-box').find('.tab-text').css( 'background-color', clr );
 			$('.custom-icon-bg').remove();
-			console.log($('.custom-pos:checked').val())
 			if($('.custom-pos:checked').val() == 'left') {
 				$('body').append('<style class="custom-icon-bg">.tab-text:after {border-right-color:'+clr+' !important;border-left-color:transparent !important}</style>' );
 			}
@@ -2768,11 +2783,12 @@ jQuery(document).ready(function($) {
 	});
 
 	$('body').on('click', '.ui-widget-overlay', function() {
-		console.log('called')
 		current_dialog.dialog( "close" );
 	})
 	$('body').on('click', '.popup-overlayout-cls', function() {
-		$('.first-widget-popup').addClass('hide');
+		if($(".first-widget-popup").length && !$(".first-widget-popup").hasClass('hide')) {
+			$('.first-widget-popup').remove();
+		}
 		$('.popup-overlayout-cls').css('display', 'none');
 		$('.countdown-timer-popup').addClass('hide');
 		$(".couponx-send-mail-updrade").addClass("hide");
@@ -2891,8 +2907,8 @@ jQuery(document).ready(function($) {
 	});
 
 	$('.select-layout').click(function () {
-		layout_validation.dialog("close");		
-		$('a[tab="#popup_design"]').trigger('click')
+		layout_validation.dialog("close");
+		$('#cx-btn-pop-up-design').trigger('click')
 	})
 
 	$('.popup-type:first-child').mouseover(function(){
@@ -2973,7 +2989,6 @@ jQuery(document).ready(function($) {
 			}
 		}
 		else {			
-			console.log('here')
 			$('.an-clr').removeClass('hide')
 			if( $('.enable-btn').is(':checked')) {
 				$('.btn-div').removeClass('hide');			
@@ -3027,7 +3042,6 @@ jQuery(document).ready(function($) {
 			
 			$('.couponapp-email-code-option').css('background-color', $('#main_bgcolor').val());
 			$('.couponapp-email-code-option h4').css('color', $('#main_hcolor').val());
-			console.log($('#main_desc_color').val())
 			$('.couponapp-email-code-option .coupon-description').css('color', $('#main_desc_color').val() );
 			text_color = $('#main_btn_color').val();
 			clr = $('#main_btn_bgcolor').val();
@@ -3148,6 +3162,7 @@ jQuery(document).ready(function($) {
 		}
 		$('.btn-selected-style').removeClass('hide')
 		$('.popup-wrapper').removeClass('hide')
+		$("#cx-pop-up-design").removeClass('has-no-popup');
 		$('.mobile-preview-btn').removeClass('hide')
 		$('.popup-preview').removeClass('hide')
 		$(this).find('.btn-select-layout').addClass('hide');

@@ -1,0 +1,29 @@
+.social-channel-tabs {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+body.wp-admin, .wp-admin #wpcontent, body.wp-admin #wpwrap {
+  @apply bg-cx-gray-100;
+}
+.advanced-panel {
+  .sp-replacer {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.open {
+    .sp-replacer {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.main-popup-couponx-bg {
+  img {
+    display: inline-block;
+    margin: 0 auto;
+  }
+}

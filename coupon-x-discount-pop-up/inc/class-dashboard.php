@@ -282,6 +282,10 @@ class Dashboard
      */
     public function include_admin_scripts($hook)
     {
+        if($hook == 'coupon-x_page_add_couponx' || $hook == 'admin_page_add_couponx') {
+            wp_enqueue_script('cx-app-script', COUPON_X_URL . 'assets/admin/js/app.js', ['jquery'], COUPON_X_VERSION);
+            wp_enqueue_style('cx-app-css', COUPON_X_URL . 'assets/admin/css/app.css', '', COUPON_X_VERSION);
+        }
 
         if ('admin_page_add_couponx' === $hook
             || 'toplevel_page_couponx' === $hook
@@ -445,10 +449,10 @@ class Dashboard
                     <th></th>
                 </thead>
                 <tbody>
-        <?php
-        if (is_array($leads) && count($leads)) {
-            foreach ($leads as $lead) {
-                ?>
+                    <?php
+                    if (is_array($leads) && count($leads)) {
+                        foreach ($leads as $lead) {
+                            ?>
                             <tr>
                                 <td> <input type='checkbox' class='chk_lead' value='<?php echo esc_attr($lead->id); ?>' /> </td>
                                 <td class="text-left"> <?php echo esc_attr($lead->name); ?> </td>
@@ -467,10 +471,10 @@ class Dashboard
                                     </a>
                                 </td>
                             </tr>
-                <?php
-            }//end foreach
-        }//end if
-        ?>
+                            <?php
+                        }//end foreach
+                    }//end if
+                    ?>
                 </tbody>
             </table>
         </div>

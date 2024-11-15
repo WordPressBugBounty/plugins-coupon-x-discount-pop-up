@@ -50,10 +50,10 @@ class Cx_Widget_Popup
         $coupon_type = $popup_settings['coupon_type'];
 
         ?>
-        <div class='cx-tab cx-popup'>
-            <div class='popup-settings'>
-                <h3><?php esc_html_e('Pop Up Design', 'coupon-x'); ?></h3>
-                <div class='row-ul'>
+        <div class='cx-tab flex cx-popup'>
+            <div class="border-r flex-1 border-gray-150/40">
+                <div class="section-title font-primary text-cht-gray-150 text-2xl border-b border-gray-150/40 px-8 py-5"><?php esc_html_e('Pop Up Design', 'coupon-x'); ?></div>
+                <div class='row-ul px-8 py-5'>
                     <div class=' full'>
                         <label> 
                             <?php esc_html_e('Select your pop up\'s layout:', 'coupon-x'); ?>
@@ -101,7 +101,7 @@ class Cx_Widget_Popup
                     </div>
                 </div>
                 <?php $showIcon = isset($settings['tab']['show_icon']) ? $settings['tab']['show_icon'] : 1; ?>
-                <div class="full show-icon-popup-setting <?php echo ($showIcon == 1) ? 'hide' : ''; ?>">
+                <div class="full show-icon-popup-setting px-8 py-5 <?php echo ($showIcon == 1) ? 'hide' : ''; ?>">
                     <div class="slide-in-position">
                         <?php
                         $position = isset($popup_settings['slide_in_position']) ? $popup_settings['slide_in_position'] : 'right';
@@ -209,7 +209,7 @@ class Cx_Widget_Popup
                         </select>
                     </div>
                 </div>
-                <div class='popup-wrapper <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>'>
+                <div class='popup-wrapper px-8 py-5 <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>'>
                 <div class='row hide'>
                     <div class='row-elements full'>
                         <label> 
@@ -294,162 +294,167 @@ class Cx_Widget_Popup
                     </select>
                 </div>
             </div>
-            <div class='row custom-link <?php echo ( 'style-3' !== $style || 1 === (int) $coupon_settings['link_type'] ) ? 'hide' : ''; ?>'>
-                <div class='row-elements full'>
-                    <label> 
-                        <?php esc_html_e('Link', 'coupon-x'); ?>
-                    </label>
-                    <input type='text' name='cx_settings[coupon][custom_link]' placeholder="<?php esc_attr_e('https://www.anypage.com/you-want', 'coupon-x'); ?>" class='input-element' value='<?php echo esc_attr($coupon_settings['custom_link']); ?>'>
-                </div>
-            </div>
-            <div class='row style-3 <?php echo ( 'style-3' === $style && 1 === (int) $coupon_settings['link_type'] ) ? '' : 'hide'; ?>'>
-                <div class='row-elements full'>
-                    <label>
-                        <?php
-                         $new_tab = isset($coupon_settings['new_tab']) ? $coupon_settings['new_tab'] : 0;
-                        ?>
-                        <input type='checkbox' name='cx_settings[coupon][new_tab]' value='1' <?php echo checked($new_tab, 1, false); ?>> 
-                        <?php esc_html_e('Open New Tab', 'coupon-x'); ?>
-                    </label>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='row-elements full'>
-                    <div class="couponapp-countdown" style="position: relative;display: inline-block;">
-                        <span class="icon label-tooltip coupon-tab-design" title="<?php esc_html_e('Add a countdown timer element to your Coupon X pop up to increase conversion rate. You add a timer to a specific time and date, or just add count from the moment that the pop up appears.', 'coupon-x'); ?> <img src='https://couponx.premio.io/assets/images/timer-gif.gif' style='width:100%; margin-top:10px'>">
-                            <span class="dashicons dashicons-editor-help"></span>
-                        </span> 
-                        <div class="upgrade-timer">    
-                                <span class='txt'> Add a Countdown Timer</span>
-                                
-                            </a>
-                        </div>                        
-                    </div>                
-                </div>
-            </div>
-            <div class='row'>
-                <div class='row-elements full'>
-                    <div class='screen-tab' >
-                        <input type='hidden' value='<?php echo esc_attr($popup_settings['coupon_type']); ?>' name='cx_settings[popup][coupon_type]' class='coupon-type'/>
-                        <ul class='coupon-tabs screen-tabs <?php echo esc_attr('style-2' !== $style ? 'hide' : ''); ?> '>
-                            <li>
-                                <a href="#main_screen" class="coupon-tab main-screen">
-                                    <?php esc_html_e('Main Screen', 'coupon-x'); ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#coupon_screen" class="coupon-tab coupon-screen">
-                                    <?php esc_html_e('Coupon Screen', 'coupon-x'); ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#announcement_screen" class="coupon-tab announcement-screen">
-                                    <?php esc_html_e('Announcement Screen', 'coupon-x'); ?>
-                                </a>
-                            </li>
-                        </ul>
-                        <div id='main_screen' class='<?php echo esc_attr('style-2' !== $style ? 'hide' : ''); ?> '>
-                            <?php $this->render_main_screen_settings($settings); ?>
-                        </div>
-                        <div id='coupon_screen'>
-                            <?php $this->render_coupon_screen_settings($settings); ?>
-                        </div>
-                        <div id='announcement_screen'>
-                            <?php $this->render_announcement_screen_settings($settings); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="accordion-btn"><?php esc_html_e('Advanced Settings', 'coupon-x'); ?></button>
-            <div class = 'advanced-panel'>
-                <div class='row'>
+                <div class='row custom-link <?php echo ( 'style-3' !== $style || 1 === (int) $coupon_settings['link_type'] ) ? 'hide' : ''; ?>'>
                     <div class='row-elements full'>
-                        <label> 
-                            <?php esc_html_e('After Copy Message', 'coupon-x'); ?>
-                        </label>
-                        <input type='text' name='cx_settings[coupon][cpy_msg]' value="<?php echo esc_attr($coupon_settings['cpy_msg']); ?>" class='input-element '>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class='row-elements full color-row error-msg-color-row'>
                         <label>
-                            <span class="icon label-tooltip" title="<?php esc_html_e('Set an error message that your visitors get when they try to add the same email more than one time', 'coupon-x'); ?>">
-                                <span class="dashicons dashicons-editor-help"></span>
-                            </span>
-                            <?php esc_html_e('Set an error message', 'coupon-x'); ?>
+                            <?php esc_html_e('Link', 'coupon-x'); ?>
                         </label>
-                        <textarea name='cx_settings[main][error]'><?php echo esc_attr($main_settings['error']); ?></textarea>
-                        <input type='text' id='error_color' class='jsspan tab-clr' name='cx_settings[main][error_color]' value='<?php echo esc_attr($main_settings['error_color']); ?>'/>
+                        <input type='text' name='cx_settings[coupon][custom_link]' placeholder="<?php esc_attr_e('https://www.anypage.com/you-want', 'coupon-x'); ?>" class='input-element' value='<?php echo esc_attr($coupon_settings['custom_link']); ?>'>
+                    </div>
+                </div>
+                <div class='row style-3 <?php echo ( 'style-3' === $style && 1 === (int) $coupon_settings['link_type'] ) ? '' : 'hide'; ?>'>
+                    <div class='row-elements full'>
+                        <label>
+                            <?php
+                             $new_tab = isset($coupon_settings['new_tab']) ? $coupon_settings['new_tab'] : 0;
+                            ?>
+                            <input type='checkbox' name='cx_settings[coupon][new_tab]' value='1' <?php echo checked($new_tab, 1, false); ?>>
+                            <?php esc_html_e('Open New Tab', 'coupon-x'); ?>
+                        </label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='row-elements full'>
-                        <label> 
-                            <?php esc_html_e('Custom CSS', 'coupon-x'); ?>
-                            <div class="html-tooltip side">                                                            
-                                <span class='icon label-tooltip' title ="<?php esc_html_e('Write custom CSS to customize your widget.', 'coupon-x'); ?><a href='https://premio.io/help/coupon-x/how-to-customize-your-coupon-x-widget-using-css/' target='_blank'><?php esc_html_e('Learn more', 'coupon-x'); ?></a>">
-                                    <span class="dashicons dashicons-editor-help">
-                                    </span>    
-                                </span>
-                            </div>
-                        </label>
-                        <textarea name='cx_settings[popup][custom_css]' class='input-element custom-css' rows="10" placeholder="#tab-box-front-0 .tab-box-content.tab-box-couponcode-content{border-style: dotted;}"><?php echo esc_attr($popup_settings['custom_css']); ?></textarea>
-                    </div>
-                </div>
-                <div class='row '>
-                    <div class='row-elements full display-flex'>
-                        <label >
-                            <span class="icon label-tooltip coupon-tab-design top" title="<?php esc_html_e('After the user have clicked on the copy button or submitted their emails, you can have the widget automatically closed after a few seconds', 'coupon-x'); ?>">
+                        <div class="couponapp-countdown flex items-center" >
+                            <span class="icon label-tooltip coupon-tab-design" title="<?php esc_html_e('Add a countdown timer element to your Coupon X pop up to increase conversion rate. You add a timer to a specific time and date, or just add count from the moment that the pop up appears.', 'coupon-x'); ?> <img src='https://couponx.premio.io/assets/images/timer-gif.gif' style='width:100%; margin-top:10px'>">
                                 <span class="dashicons dashicons-editor-help"></span>
                             </span>
-                            <?php esc_html_e('Close automatically after conversion', 'coupon-x'); ?>
-                        </label>
-                        <div>
-                            <?php
-                            $auto_close = isset($popup_settings['auto_close']) ? $popup_settings['auto_close'] : 0;
-                            ?>
-                            <label class='couponapp-switch'>
-                                <input type='checkbox' name='cx_settings[popup][auto_close]' class='auto-close' value='1' <?php echo checked($auto_close, 1, false); ?>>
-                                <span class="cx-slider round">
-                                    <span class="on"><?php esc_html_e('On', 'coupon-x'); ?></span>
-                                    <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                            <div class="upgrade-timer">
+                                    <span class='txt'> Add a Countdown Timer</span>
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='row-elements full'>
+                        <div class='screen-tab' >
+                            <input type='hidden' value='<?php echo esc_attr($popup_settings['coupon_type']); ?>' name='cx_settings[popup][coupon_type]' class='coupon-type'/>
+                            <ul class='coupon-tabs screen-tabs <?php echo esc_attr('style-2' !== $style ? 'hide' : ''); ?> '>
+                                <li>
+                                    <a href="#main_screen" class="coupon-tab main-screen">
+                                        <?php esc_html_e('Main Screen', 'coupon-x'); ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#coupon_screen" class="coupon-tab coupon-screen">
+                                        <?php esc_html_e('Coupon Screen', 'coupon-x'); ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#announcement_screen" class="coupon-tab announcement-screen">
+                                        <?php esc_html_e('Announcement Screen', 'coupon-x'); ?>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id='main_screen' class='<?php echo esc_attr('style-2' !== $style ? 'hide' : ''); ?> '>
+                                <?php $this->render_main_screen_settings($settings); ?>
+                            </div>
+                            <div id='coupon_screen'>
+                                <?php $this->render_coupon_screen_settings($settings); ?>
+                            </div>
+                            <div id='announcement_screen'>
+                                <?php $this->render_announcement_screen_settings($settings); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="accordion-btn"><?php esc_html_e('Advanced Settings', 'coupon-x'); ?></button>
+                <div class = 'advanced-panel'>
+                    <div class='row'>
+                        <div class='row-elements full'>
+                            <label>
+                                <?php esc_html_e('After Copy Message', 'coupon-x'); ?>
+                            </label>
+                            <input type='text' name='cx_settings[coupon][cpy_msg]' value="<?php echo esc_attr($coupon_settings['cpy_msg']); ?>" class='input-element '>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='row-elements full color-row error-msg-color-row'>
+                            <label>
+                                <span class="icon label-tooltip" title="<?php esc_html_e('Set an error message that your visitors get when they try to add the same email more than one time', 'coupon-x'); ?>">
+                                    <span class="dashicons dashicons-editor-help"></span>
                                 </span>
+                                <?php esc_html_e('Set an error message', 'coupon-x'); ?>
+                            </label>
+                            <textarea name='cx_settings[main][error]'><?php echo esc_attr($main_settings['error']); ?></textarea>
+                            <input type='text' id='error_color' class='jsspan tab-clr' name='cx_settings[main][error_color]' value='<?php echo esc_attr($main_settings['error_color']); ?>'/>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='row-elements full'>
+                            <label>
+                                <?php esc_html_e('Custom CSS', 'coupon-x'); ?>
+                                <div class="html-tooltip side">
+                                    <span class='icon label-tooltip' title ="<?php esc_html_e('Write custom CSS to customize your widget.', 'coupon-x'); ?><a href='https://premio.io/help/coupon-x/how-to-customize-your-coupon-x-widget-using-css/' target='_blank'><?php esc_html_e('Learn more', 'coupon-x'); ?></a>">
+                                        <span class="dashicons dashicons-editor-help">
+                                        </span>
+                                    </span>
+                                </div>
+                            </label>
+                            <textarea name='cx_settings[popup][custom_css]' class='input-element custom-css' rows="10" placeholder="#tab-box-front-0 .tab-box-content.tab-box-couponcode-content{border-style: dotted;}"><?php echo esc_attr($popup_settings['custom_css']); ?></textarea>
+                        </div>
+                    </div>
+                    <div class='row '>
+                        <div class='row-elements full display-flex'>
+                            <label >
+                                <span class="icon label-tooltip coupon-tab-design top" title="<?php esc_html_e('After the user have clicked on the copy button or submitted their emails, you can have the widget automatically closed after a few seconds', 'coupon-x'); ?>">
+                                    <span class="dashicons dashicons-editor-help"></span>
+                                </span>
+                                <?php esc_html_e('Close automatically after conversion', 'coupon-x'); ?>
+                            </label>
+                            <div>
+                                <?php
+                                $auto_close = isset($popup_settings['auto_close']) ? $popup_settings['auto_close'] : 0;
+                                ?>
+                                <label class='couponapp-switch'>
+                                    <input type='checkbox' name='cx_settings[popup][auto_close]' class='auto-close' value='1' <?php echo checked($auto_close, 1, false); ?>>
+                                    <span class="cx-slider round">
+                                        <span class="on"><?php esc_html_e('On', 'coupon-x'); ?></span>
+                                        <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row auto-close-text <?php echo 1 !== (int) $auto_close ? 'hide' : ''; ?>' >
+                        <div class='row-elements full'>
+                            <label>
+                                <?php esc_html_e('Close after:', 'coupon-x'); ?>
+                                <input type='number' name='cx_settings[popup][auto_time]' value='<?php echo esc_attr($popup_settings['auto_time']); ?>' class='close-time input-element' min='0'>
+                                <?php esc_html_e('seconds', 'coupon-x'); ?>
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class='row auto-close-text <?php echo 1 !== (int) $auto_close ? 'hide' : ''; ?>' >
-                    <div class='row-elements full'>
-                        <label>
-                            <?php esc_html_e('Close after:', 'coupon-x'); ?>
-                            <input type='number' name='cx_settings[popup][auto_time]' value='<?php echo esc_attr($popup_settings['auto_time']); ?>' class='close-time input-element' min='0'> 
-                            <?php esc_html_e('seconds', 'coupon-x'); ?>
-                        </label>
+            </div>
+            </div>
+            <div class='popup-preview flex-[450px]'>
+                <div class='preview-containter top-[120px]'>
+                    <div class="position-sticky px-8 py-8">
+                        <div class="preview-box w-full border rounded">
+                            <div class='preview-box w-full <?php echo 'Floating Bar' === @$popup_settings['type'] ? 'preview-box-floating-bar' : ''; ?>'>
+                                <a href="#" class="popup-preview-close hide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="10px" height="10px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2.19 2.19" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path class="fil0" d="M1.84 0.06c0.08,-0.08 0.21,-0.08 0.29,0 0.08,0.08 0.08,0.21 0,0.29l-0.75 0.74 0.75 0.75c0.08,0.08 0.08,0.21 0,0.29 -0.08,0.08 -0.21,0.08 -0.29,0l-0.75 -0.75 -0.74 0.75c-0.08,0.08 -0.21,0.08 -0.29,0 -0.08,-0.08 -0.08,-0.21 0,-0.29l0.74 -0.75 -0.74 -0.74c-0.08,-0.08 -0.08,-0.21 0,-0.29 0.08,-0.08 0.21,-0.08 0.29,0l0.74 0.74 0.75 -0.74z" />
+                                        </svg>
+                                </a>
+                                <?php $this->render_popup_preview($settings); ?>
+                            </div>
+                            <div class="clear clearfix"></div>
+                            <div class='float-msg <?php echo 'Floating Bar' === @$popup_settings['type'] ? '' : 'hide'; ?>'>The preview is scaled down, please check the website 😃</div>
+                            <div class="clear clearfix"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-            </div>
-            <div class="mobile-preview-btn <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>">
-                <a class="btn-popup-previewbtn" href="#">
-                    <?php esc_html_e('Preview', 'coupon-x'); ?>
-                </a>
-            </div>
-            <div class='popup-preview <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>'>
-                <div class='preview-containter'>
-                    <label class='preview-lbl'>
-                        <?php esc_html_e('Preview', 'coupon-x'); ?>
-                    </label>
-                    <div class='preview-box'>
-                        <a href="#" class="popup-preview-close hide">
-                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="10px" height="10px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2.19 2.19" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <path class="fil0" d="M1.84 0.06c0.08,-0.08 0.21,-0.08 0.29,0 0.08,0.08 0.08,0.21 0,0.29l-0.75 0.74 0.75 0.75c0.08,0.08 0.08,0.21 0,0.29 -0.08,0.08 -0.21,0.08 -0.29,0l-0.75 -0.75 -0.74 0.75c-0.08,0.08 -0.21,0.08 -0.29,0 -0.08,-0.08 -0.08,-0.21 0,-0.29l0.74 -0.75 -0.74 -0.74c-0.08,-0.08 -0.08,-0.21 0,-0.29 0.08,-0.08 0.21,-0.08 0.29,0l0.74 0.74 0.75 -0.74z" />
-                            </svg>
-                        </a>
-                        <?php $this->render_popup_preview($settings); ?>
-                    </div>
-                </div>
-            </div>
+
+        <div class="mobile-preview-btn <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>">
+            <a class="btn-popup-previewbtn" href="#">
+                <?php esc_html_e('Preview', 'coupon-x'); ?>
+            </a>
         </div>
         <?php
 
@@ -1031,7 +1036,7 @@ class Cx_Widget_Popup
                     </label>
                 </div>
             </div>
-            <div class="row popup-bg-image-position popup-bg-element-type <?php echo ($addElements == 1) ? "" : "hide" ?>">
+            <div class="row popup-bg-image-position popup-bg-element-type flex gap-5 <?php echo ($addElements == 1) ? "" : "hide" ?>">
                 <div class="image-position element-position">
                     <label for="<?php echo $type ?>_confetti_elements">
                         <img src="<?php echo COUPON_X_URL."assets/img/confetti_preview.svg" ?>">
@@ -1550,7 +1555,7 @@ class Cx_Widget_Popup
 <div class="popup-overlayout-cls" style='display: none;' ></div>
 <div class="main-popup-couponx-bg couponx-two-step-coupon cx-send-coupon-popup hide" id="couponx-two-step-coupon" style="">
     <div class="couponx-send-mail-upgrade-left couponx-timer-upgrade-slid">
-        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/maxlimitpopup.svg") ?>">
+        <img class="inline-block w-32 h-auto" src="<?php echo esc_url(COUPON_X_URL."assets/img/maxlimitpopup.svg") ?>">
         <h4><?php esc_html_e("Upgrade to Pro 🎉", "coupon-x") ?></h4>
         <p><?php esc_html_e("Enjoy awesome features like 2-step coupon generation, beautiful timer templates, sending leads to email, email integrations and more.", "coupon-x") ?></p>
         <div class="couponx-send-mail-updrade-btn">

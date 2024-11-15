@@ -296,10 +296,6 @@ button:-moz-focusring,
 }
 
 /*Create Coupon*/
-.create-widget {
-    background-color: #fff;
-    padding-bottom: 30px;
-}
 
 .coupon-tabs {
     background-color: #fff !important;
@@ -431,23 +427,15 @@ ul.widget-tabs li a, ul.coupon-code-email-option-tabs li a {
 }
 
 .cx-tab {
-    margin: 15px;
-    background: #fff;
     display: flex;
 }
 .tab-settings, .popup-settings {
     flex: 1;
-    padding-right: 20px;
-}
-.tab-preview, .popup-preview {
-    position: relative;
-    flex: 0 0 600px;
 }
 
 .row-elements {
     max-width: 440px;
     margin-bottom: 30px;
-
 }
 
 .row-elements.full {
@@ -858,14 +846,11 @@ textarea ~ .sp-replacer {
 }
 
 .preview-box {
-    background-color: #fff;
     min-height: 350px;
-    box-shadow: 0px 6px 30px rgb(152 152 152 / 25%);
     border-radius: 4px;
     position: relative;
-    /*width: 90%;*/
-    /*float: right;*/
     margin: 0 0 0 auto;
+    background-color: #fff;
 }
 
 .preview-containter {
@@ -1047,7 +1032,10 @@ textarea ~ .sp-replacer {
 .coupon-widget-style label:hover {
     border-color: #605DEC;
 }
-
+.coupon-widget-style svg {
+    display: inline-block;
+    fill: #AEAEAE;
+}
 .required-lbl {
     vertical-align: baseline;
 }
@@ -1105,7 +1093,6 @@ textarea ~ .sp-replacer {
     background: #fff !important;
     color: #605DEC !important;
     border: 1px solid #605DEC !important;
-    width: 200px !important;
     text-align: center;
 }
 
@@ -2395,18 +2382,14 @@ div.ui-dialog {
 }
 
 #search-wp-coupon-codes-data {
+    width: 100%;
     max-width: 100%;
     border-radius: 8px;
     border: 1px solid #676060;
-    font-size: 1.1em;
-    line-height: 38px;
-    width: 99%;
 }
 
 #search-wp-coupon-codes-text {
     width: 100%;
-    max-width: 90%;
-    border-width: 0px;
     border: none;
 }
 
@@ -2466,11 +2449,6 @@ a.backto-couponcode-type svg {
     margin: 25px
 }
 
-.existing-coupon-form {
-    width: 95%;
-    margin: 0 auto;
-
-}
 
 .existing-coupon-form p {
     font-family: 'Poppins';
@@ -2633,14 +2611,21 @@ a.backto-couponcode-type svg {
 .preview-box {
     width: 450px
 }
-
+.popup-preview .preview-box {
+    width: 100%;
+}
+.mobile-preview .preview-box {
+    width: 450px;
+    margin: 0 auto;
+    position: relative;
+}
 .couponapp-code-option, .couponapp-email-option, .couponapp-link-option, .couponapp-no-coupon-option {
     min-width: 300px !important;
-    width: 300px;
+    width: 100%;
 }
 
 .couponapp-code-option.has-image, .couponapp-email-option.has-image, .couponapp-link-option.has-image, .couponapp-no-coupon-option.has-image {
-    width: 380px;
+    width: 100%;
 }
 
 .preview-box .tab-box:not(.couponx-floating-bar) .couponapp-code-option,
@@ -2661,18 +2646,18 @@ a.backto-couponcode-type svg {
 }
 
 /*Coupon type*/
-
+.wp-coupon-types-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .coupon-type {
     border: 1px solid #cbd5de;
     padding: 0 11px !important;
-    width: 25%;
+    flex: 1;
     top: 0px;
-    margin: 0px 1%;
-    position: relative;
     vertical-align: top;
-    font-family: "Poppins";;
-
+    position: relative;
 }
 
 .coupon-code-option-titlebox {
@@ -2702,11 +2687,6 @@ a.backto-couponcode-type svg {
 .coupon-choose-dialogbox svg {
     width: 35px;
     float: right;
-}
-
-.wp-coupon-types-wrap {
-    display: flex;
-    padding: 1rem 0;
 }
 
 .couponapp-widget-dialog:not(#couponapp-widget-delete-confirm):not(#lead-delete-confirm) {
@@ -3044,6 +3024,7 @@ a.backto-couponcode-type svg {
 
 .coupon-code-option-titlebox h4 {
     margin-top: 0px;
+    font-weight: 600;
 }
 
 .cx-widget-listing {
@@ -3878,13 +3859,6 @@ div.page-rule {
     vertical-align: baseline;
 }
 
-.existing-coupon-form {
-    width: 99%;
-    margin: 0 auto;
-    max-height: 400px;
-    overflow-y: scroll;
-}
-
 .cx-wc-missing {
     background-color: #fff;
     opacity: 0.8;
@@ -4020,6 +3994,7 @@ div.day-rule {
     width: 75%;
     z-index: 99999;
     border-radius: 15px;
+    display: flex;
 }
 
 .couponx-coundown-timer-updrade .couponx-timer-upgrade-left {
@@ -4068,7 +4043,7 @@ div.day-rule {
 }
 
 .couponx-coundown-timer-updrade .couponx-timer-upgrade-right {
-    padding-left: 35px;
+    padding-left: 92px;
     width: 50%;
 }
 
@@ -4098,18 +4073,22 @@ div.day-rule {
     position: absolute;
     top: 50%;
     width: auto;
-    padding: 16px;
-    margin-top: -27px;
+    padding: 4px 8px;
+    margin-top: -16px;
     color: #C9C5F8;
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
+    border-radius: 4px;
     user-select: none;
 }
 
 .couponx-coundown-timer-updrade .prev {
-    left: -35%;
+    left: -30px;
+}
+
+.couponx-coundown-timer-updrade .right {
+    right: -30px;
 }
 
 .dot, .dot_couponcode {
@@ -4464,9 +4443,8 @@ div.day-rule {
 .element-position {
     flex: 0 0 140px !important;
 }
-.element-position img {
-    width: 80% !important;
-    height: auto !important;
+.element-position label {
+    cursor: pointer !important;
 }
 .mb-40 {
     margin-bottom: 40px;
@@ -4558,9 +4536,6 @@ div.day-rule {
 }
 .coupon-tabs.screen-tabs {
     z-index: 1;
-}
-.cx-tab-rule .rule-row {
-    margin: 15px;
 }
 .preview-box .tab-box:not(.couponx-floating-bar) .couponapp-no-coupon-option.has-image, .preview-box .tab-box:not(.couponx-floating-bar) .couponapp-no-coupon-option {
     min-height: auto !important;
@@ -4724,4 +4699,14 @@ td.mce-grid-cell:has( > div[title="Custom color"]) {
 }
 .show-icon-info.active {
     display: flex;
+}
+.ui-dialog .ui-dialog-content {
+    width: 100% !important;
+}
+
+.preview-box .tab-box {
+    width: calc(100% - 40px);
+}
+.preview-box .tab-box .tab-box-content {
+    margin: 0;
 }

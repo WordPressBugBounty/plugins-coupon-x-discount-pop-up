@@ -113,11 +113,11 @@
             thisOption = $(this).find("option:selected").attr("data-option");
             if(thisOption == "1_year") {
                 thisPrice = thisPrice+"<span>/year</span>";
-                per_month = "Less than <b>$" + thisperMonth + "</b>/mo · <b>Billed Annually</b>";
+                per_month = "Less than <b>$" + thisperMonth + "</b>/mo · <b>Billed Yearly</b>";
                 priceText = "Renewals for <b>25% off</b>";
             } else if(thisOption == "2_year") {
                 thisPrice = thisPrice+"<span>/2 years</span>";
-                per_month = "Less than <b>$" + thisperMonth + "</b>/mo · <b>Billed Annually</b>";
+                per_month = "Less than <b>$" + thisperMonth + "</b>/mo · <b>Billed Yearly after 2 Years</b>";
                 priceText = "Renewals for <b>25% off</b>";
             } else {
                 thisPrice = thisPrice+"<span>/lifetime</span>";

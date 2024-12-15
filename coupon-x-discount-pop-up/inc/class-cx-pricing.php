@@ -275,7 +275,7 @@ $features = [
                             <div class="plan-col plan-detail plan-info" data-plan="1_website">
                                 <span class="plan-name">Basic</span>
                                 <span class="plan-price"><span>$<?php echo esc_attr($plans['1_website']['1_year']['price']) ?></span>/year</span>
-                                <span class="plan-type">Billed Annually</span>
+                                <span class="plan-type">Billed Yearly</span>
                                 <span class="plan-monthly">Less than $<?php echo esc_attr($plans['1_website']['1_year']['month']) ?>/mo</span>
                                 <span class="update-support">Updates & Support for</span>
                                 <div class="plan-selector">
@@ -291,7 +291,7 @@ $features = [
                             <div class="plan-col plan-detail plus-plans plan-info" data-plan="5_websites">
                                 <span class="plan-name">Plus</span>
                                 <span class="plan-price"><span>$<?php echo esc_attr($plans['5_websites']['1_year']['price']) ?></span>/year</span>
-                                <span class="plan-type">Billed Annually</span>
+                                <span class="plan-type">Billed Yearly</span>
                                 <span class="plan-monthly">Less than $<?php echo esc_attr($plans['5_websites']['1_year']['month']) ?>/mo</span>
                                 <span class="update-support">Updates & Support for</span>
                                 <div class="plan-selector">
@@ -308,7 +308,7 @@ $features = [
                                 <span class="best-value">🎉 Best Value</span>
                                 <span class="plan-name">Agency</span>
                                 <span class="plan-price"><span>$<?php echo esc_attr($plans['50_websites']['1_year']['price']) ?></span>/year</span>
-                                <span class="plan-type">Billed Annually</span>
+                                <span class="plan-type">Billed Yearly</span>
                                 <span class="plan-monthly">Less than $<?php echo esc_attr($plans['50_websites']['1_year']['month']) ?>/mo</span>
                                 <span class="update-support">Updates & Support for</span>
                                 <div class="plan-selector">
@@ -383,7 +383,7 @@ $features = [
                         <div class="plan-head mobile-head-plan plan-info" data-plan="1_website">
                             <span class="plan-name">Basic</span>
                             <span class="plan-price"><span>$<?php echo esc_attr($plans['1_website']['1_year']['price']) ?></span>/year</span>
-                            <span class="plan-type">Billed Annually</span>
+                            <span class="plan-type">Billed Yearly</span>
                             <span class="plan-monthly">Less than $<?php echo esc_attr($plans['1_website']['1_year']['month']) ?>/mo</span>
                             <span class="update-support">Updates & Support for</span>
                             <div class="plan-selector">
@@ -437,7 +437,7 @@ $features = [
                             <span class="best-value">🎉 Best Value</span>
                             <span class="plan-name">Plus</span>
                             <span class="plan-price"><span>$<?php echo esc_attr($plans['5_websites']['1_year']['price']) ?></span>/year</span>
-                            <span class="plan-type">Billed Annually</span>
+                            <span class="plan-type">Billed Yearly</span>
                             <span class="plan-monthly">Less than $<?php echo esc_attr($plans['5_websites']['1_year']['month']) ?>/mo</span>
                             <span class="update-support">Updates & Support for</span>
                             <div class="plan-selector">
@@ -490,7 +490,7 @@ $features = [
                         <div class="plan-head mobile-head-plan plan-info multiple-plan-info" data-plan="50_websites">
                             <span class="plan-name">Agency</span>
                             <span class="plan-price"><span>$<?php echo esc_attr($plans['50_websites']['1_year']['price']) ?></span>/year</span>
-                            <span class="plan-type">Billed Annually</span>
+                            <span class="plan-type">Billed Yearly</span>
                             <span class="plan-monthly">Less than $<?php echo esc_attr($plans['50_websites']['1_year']['month']) ?>/mo</span>
                             <span class="update-support">Updates & Support for</span>
                             <div class="plan-selector">
@@ -735,11 +735,11 @@ $features = [
                         var planPrice = "<span>$"+selectedPlan['price']+"</span>/lifetime";
                         if(selectedId == "2_years") {
                             planMonthly = "Less than $"+selectedPlan['month']+"/mo";
-                            planType = "Billed Annually";
+                            planType = "Billed Yearly after 2 Years";
                             planPrice = "<span>$"+selectedPlan['price']+"</span>/2 years";
                         } else if(selectedId == "1_year") {
                             planMonthly = "Less than $"+selectedPlan['month']+"/mo";
-                            planType = "Billed Annually";
+                            planType = "Billed Yearly";
                             planPrice = "<span>$"+selectedPlan['price']+"</span>/year"
                         }
                         $(this).closest(".plan-info").find(".plan-monthly").html(planMonthly);

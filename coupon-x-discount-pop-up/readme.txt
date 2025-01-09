@@ -3,7 +3,7 @@ Contributors: galdub, tomeraharon, premio
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
 Tested up to: 6.7
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -29,7 +29,7 @@ Using Coupon X you can create announcement emails, collect emails, <strong>gener
 Want to use our robust Pro version? Check out <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X Pro plans"><strong>Coupon X Pro Plans</strong></a>.
 
 = 💪 How does Coupon X Work? =
-When you install the plugin, you’ll be able to customize your beautiful discount pop up and decide if you want to create a unique coupon code for each visitor or use the same coupon code for all of your visitors. You can also create notification pop ups.
+When you install the plugin, you’ll be able to customize your beautiful discount pop up or announcement pop up and decide if you want to create a unique coupon code for each visitor or use the same coupon code for all of your visitors. You can also create notification pop ups.
 
 * Generate a unique discount code for each visitor - if you select the <strong>unique discount code for each visitor option</strong>, then each of your website's visitors will get a unique discount code pop up with a unique WooCommerce coupon code. You don’t need to create the discount code yourself, Coupon X will take care of everything in the background 🚀
 * Use the same discount code for all visitors - if you select the existing discount code option, then all your visitors will get the same code
@@ -168,6 +168,9 @@ Yes! You can even decide what widgets will show up on each device (desktop/mobil
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.3.6 =
+JavaScript bug fixed
 
 = 1.3.5 =
 Improved the pop up creation flow

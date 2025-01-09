@@ -28,12 +28,13 @@ class Cx_Rest
      */
     public function __construct()
     {
-        add_action('rest_api_init', [ $this, 'cx_endpoints' ]);
         add_action('wp_ajax_update_popup_status', [$this, 'update_popup_status']);
         add_action('wp_ajax_create_cx_widget', [$this, 'save_widget_data']);
         add_action('wp_ajax_update_status', [$this, 'update_status']);
         add_action('wp_ajax_delete_widget', [$this, 'delete_widget']);
         add_action('wp_ajax_delete_leads', [$this, 'delete_leads']);
+
+        /* FE Actions does not require permission */
         add_action('wp_ajax_update_widget_stats', [$this, 'update_widget_stats']);
         add_action('wp_ajax_nopriv_update_widget_stats', [$this, 'update_widget_stats']);
         add_action('wp_ajax_capture_email', [$this, 'capture_email']);
@@ -42,174 +43,6 @@ class Cx_Rest
         add_action('wp_ajax_nopriv_generate_coupon', [$this, 'generate_coupon']);
 
     }//end __construct()
-
-
-    /**
-     * Register rest api endpoints
-     */
-    public function cx_endpoints()
-    {
-
-        // Update widget status enable/disable.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/update_status',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'update_status',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Delete widget.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/delete_widget',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'delete_widget',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Add new widget.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/create_widget',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'save_widget_data',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Track widget statistics.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/update_widget_stats',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'update_widget_stats',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Create new coupon.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/generate_coupon',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'generate_coupon',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Capture email and save it in leads table.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/capture_email',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'capture_email',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Track status of welcome popup.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/update_popup_status',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'update_popup_status',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-        // Delete email.
-//        register_rest_route(
-//            'couponx/v1',
-//            '/delete_leads',
-//            [
-//                'methods'             => 'POST',
-//                'callback'            => [
-//                    $this,
-//                    'delete_leads',
-//                ],
-//                'permission_callback' => [
-//                    $this,
-//                    'get_user_permissions',
-//                ],
-//                'args'                => [],
-//            ]
-//        );
-
-    }//end cx_endpoints()
-
-
-    /**
-     * Check user permission before API call. We are always returning true, because WP handles authentication through nonce.
-     *
-     * @param WP_REST_Request $request object.
-     *
-     * @return boolean true
-     */
-    public function get_user_permissions(WP_REST_Request $request)
-    {
-        return true;
-
-    }//end get_user_permissions()
-
 
     /**
      * Update Welcome popup status
@@ -225,6 +58,11 @@ class Cx_Rest
             'response' => 'Invalid request',
         ];
         $nonce = filter_input(INPUT_POST, 'nonce');
+
+        if(!current_user_can('manage_options')) {
+            echo json_encode($response);
+            exit;
+        }
 
         if(!empty($nonce) && !empty($nonce) && wp_verify_nonce($nonce, 'wp_rest')) {
             add_option('cx_wc_popup', false, '', 'no');
@@ -252,6 +90,11 @@ class Cx_Rest
             'status' => 0,
             'response' => 'Invalid request'
         ];
+
+        if(!current_user_can('manage_options')) {
+            echo json_encode($response);
+            exit;
+        }
 
         $status = filter_input(INPUT_POST, 'status');
         $id  = filter_input(INPUT_POST, 'id');
@@ -290,15 +133,20 @@ class Cx_Rest
      */
     public function delete_widget()
     {
-        $id = filter_input(INPUT_POST, 'id');
-        $id = isset($id) ? sanitize_text_field($id) : '';
-
-        $nonce = filter_input(INPUT_POST, 'nonce');
-
         $response = [
             'status'   => 0,
             'response' => 'Invalid request',
         ];
+
+        if(!current_user_can('manage_options')) {
+            echo json_encode($response);
+            exit;
+        }
+
+        $id = filter_input(INPUT_POST, 'id');
+        $id = isset($id) ? sanitize_text_field($id) : '';
+
+        $nonce = filter_input(INPUT_POST, 'nonce');
 
         if(isset($nonce) && !empty($nonce) && wp_verify_nonce($nonce, 'wp_rest')) {
             if ('' !== $id) {
@@ -416,15 +264,20 @@ class Cx_Rest
     public function save_widget_data()
     {
 
-        $fields = filter_input(INPUT_POST, "cx_settings", FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $nonce = filter_input(INPUT_POST, 'cx_nonce');
-        $files = filter_input(INPUT_POST, 'file', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $redirect_on_dashboard = filter_input(INPUT_POST, 'redirect_on_dashboard');
-
         $response = [
             'status'    => 0,
             'response'  => 'Invalid request',
         ];
+
+        if(!current_user_can('manage_options')) {
+            echo json_encode($response);
+            exit;
+        }
+
+        $fields = filter_input(INPUT_POST, "cx_settings", FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $nonce = filter_input(INPUT_POST, 'cx_nonce');
+        $files = filter_input(INPUT_POST, 'file', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $redirect_on_dashboard = filter_input(INPUT_POST, 'redirect_on_dashboard');
 
         global $wpdb;
 
@@ -471,7 +324,7 @@ class Cx_Rest
                 $post = [
                     'ID' => $widget_id,
                     'post_title' => $title,
-                    'post_content' => serialize($fields),
+                    'post_content' => json_encode($fields),
                 ];
                 $res = wp_update_post($post);
 
@@ -498,7 +351,7 @@ class Cx_Rest
                     'post_title' => $title,
                     'post_type' => 'cx_widget',
                     'post_status' => 'publish',
-                    'post_content' => serialize($fields),
+                    'post_content' => json_encode($fields),
                 ];
 
                 $widget_id = wp_insert_post($post);
@@ -645,9 +498,12 @@ class Cx_Rest
             'response' => 'Invalid request'
         ];
 
-        if(isset($nonce) && !empty($nonce) && wp_verify_nonce($nonce, 'wp_rest')) {
-            $widget_id = filter_input(INPUT_POST, 'id');
-            $widget_id = isset($widget_id) ? sanitize_text_field($widget_id) : '';
+        $widget_id = sanitize_text_field(filter_input(INPUT_POST, 'id'));
+        $widget_token = sanitize_text_field(filter_input(INPUT_POST, 'widget_token'));
+
+        $is_valid_request = (!empty($nonce) && wp_verify_nonce($nonce, 'wp_cx_nonce')) && (!empty($widget_token) && wp_verify_nonce($widget_token, 'widget_token_'.$widget_id));
+
+        if($is_valid_request) {
 
             $meta_key = filter_input(INPUT_POST, 'key');
             $meta_key = isset($meta_key) ? sanitize_text_field($meta_key) : '';
@@ -704,10 +560,13 @@ class Cx_Rest
         $nonce = filter_input(INPUT_POST, 'nonce');
 
         $content     = get_the_content(null, false, $widget_id);
-        $settings    = unserialize($content);
+        $settings    = json_decode($content, true);
         $widget_type = (int) $settings['popup']['coupon_type'];
 
-        if(isset($nonce) && !empty($nonce) && wp_verify_nonce($nonce, 'wp_rest')) {
+        $widget_token = sanitize_text_field(filter_input(INPUT_POST, 'widget_token'));
+        $is_valid_request = (!empty($nonce) && wp_verify_nonce($nonce, 'wp_cx_nonce')) && (!empty($widget_token) && wp_verify_nonce($widget_token, 'widget_token_'.$widget_id));
+
+        if($is_valid_request) {
             if (4 === $widget_type) {
                 $response = [
                     'status' => 200,
@@ -879,15 +738,18 @@ class Cx_Rest
         $lead_table  = $wpdb->prefix.'cx_leads';
         $email = sanitize_email(filter_input(INPUT_POST, 'email'));
         $widget_id = sanitize_text_field(filter_input(INPUT_POST, 'widget_id'));
+        $widget_token = sanitize_text_field(filter_input(INPUT_POST, 'widget_token'));
         $coupon_code = sanitize_text_field(filter_input(INPUT_POST, 'coupon_code'));
         $is_consent = sanitize_text_field(filter_input(INPUT_POST, 'is_consent'));
         $customer_name = sanitize_text_field(filter_input(INPUT_POST, 'customer_name'));
         $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce'));
 
         $content  = get_the_content(null, false, $widget_id);
-        $settings = unserialize($content);
+        $settings = json_decode($content, true);
 
-        if(isset($nonce) && !empty($nonce) && wp_verify_nonce($nonce, 'wp_rest')) {
+        $is_valid_request = (!empty($nonce) && wp_verify_nonce($nonce, 'wp_cx_nonce')) && (!empty($widget_token) && wp_verify_nonce($widget_token, 'widget_token_'.$widget_id));
+
+        if($is_valid_request) {
 
             if ('' !== $email) {
                 // Update Coupon Code Get
@@ -1002,7 +864,7 @@ class Cx_Rest
             }//end if
         }
 
-        $error_message = \esch_html__('Something went wrong. Please contact site administrator', 'coupon-x');
+        $error_message = esc_html__('Something went wrong. Please contact site administrator', 'coupon-x');
 
         $response = [
             'status'      => 401,
@@ -1048,6 +910,11 @@ class Cx_Rest
             'status'   => 0,
             'response' => 'Invalid request',
         ];
+
+        if(!current_user_can('manage_options')) {
+            echo json_encode($response);
+            exit;
+        }
 
         $leadIds = filter_input(INPUT_POST, 'id', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $leadIds =  isset($leadIds) ? (array) $leadIds : [];

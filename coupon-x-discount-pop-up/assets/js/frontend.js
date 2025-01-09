@@ -42,7 +42,8 @@ jQuery(document).ready(function($) {
 	    		'nonce' : cx_data.nonce,
 	    		'id'     : widget_id,
 	    		'key'    : key,
-				action: 'update_widget_stats'
+				action: 'update_widget_stats',
+				'widget_token': $('#widget_token_' + widget_id).val()
 	    	},
 			type: 'post',
 			dataType: 'json',
@@ -74,6 +75,7 @@ jQuery(document).ready(function($) {
 		    		'id' : widget_id,
 		    		'coupon_code' : coupon_code,
 		    		'nonce' : cx_data.nonce,
+					'widget_token': $('#widget_token_' + widget_id).val(),
 					action: 'generate_coupon'
 		    	},
 				type: 'post',
@@ -667,6 +669,7 @@ jQuery(document).ready(function($) {
 
 	$(document).on( "click", ".coupon-email-button" , function(e) {			
 		let widget_id = $(this).data( 'widget-id' );
+		let widget_token = $(this).data( 'widget-token' );
 		let coupon_widget_id = 'tab-box-front-'+ widget_id
 		let container = $( '#tab-box-front-' +widget_id );
 		let email		= container.find('.tab-box-email-content input[name="couponapp-email"]').val();
@@ -706,6 +709,7 @@ jQuery(document).ready(function($) {
 					data : {
 						'nonce': cx_data.nonce,
 						'email': email,
+						'widget_token': widget_token,
 						'customer_name': customer_name,
 						'widget_id' : widget_id,
 						'coupon_code' : ( coupon_code != '' ) ? coupon_code : '',

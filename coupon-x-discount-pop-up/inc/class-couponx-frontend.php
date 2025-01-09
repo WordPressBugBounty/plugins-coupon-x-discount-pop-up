@@ -62,7 +62,7 @@ class Couponx_Frontend
         if (is_array($widgets) && count($widgets)) {
             foreach ($widgets as $widget) {
                 $widget_id       = $widget->ID;
-                $widget_settings = unserialize($widget->post_content);
+                $widget_settings = json_decode($widget->post_content, true);
                 $showIcon = isset($widget_settings['tab']['show_icon']) ? $widget_settings['tab']['show_icon'] : 1;
                 $popupFont = isset($widget_settings['popup']['font']) ? $widget_settings['popup']['font'] : "Google_Fonts-Poppins";
                 if($showIcon == 1) {
@@ -103,7 +103,7 @@ class Couponx_Frontend
             'cx_data',
             [
                 'site_url' => site_url(),
-                'nonce'    => wp_create_nonce('wp_rest'),
+                'nonce'    => wp_create_nonce('wp_cx_nonce'),
                 'url' => admin_url('admin-ajax.php')
             ]
         );
@@ -137,7 +137,7 @@ class Couponx_Frontend
         if (is_array($widgets) && count($widgets)) {
             foreach ($widgets as $widget) {
                 $widget_id       = $widget->ID;
-                $widget_settings = unserialize($widget->post_content);
+                $widget_settings = json_decode($widget->post_content, true);
 
                 $this->render_discount_tab($widget_settings, $widget_id);
             }
@@ -424,14 +424,14 @@ class Couponx_Frontend
             $auto_close = str_replace("'", '', $widget_settings['popup']['auto_time']);
         }
         ?>
-        <div id="tab-box-front-<?php echo esc_attr($widgetcounter); ?>" class="tab-box tab-front-box tab-box-front-<?php echo esc_attr($widgetcounter); ?> <?php echo esc_attr($couponapp_classes); ?> hide" <?php echo esc_attr($widget_close_after); ?> data-isexit = '<?php echo esc_attr($exit_intent); ?>' data-delay='<?php echo esc_attr($delay); ?>' data-scroll='<?php echo esc_attr($scroll); ?>' data-widgetid = '<?php echo esc_attr($widget_id); ?>' data-version='<?php echo esc_attr($version); ?>' data-style='<?php echo esc_attr($widget_settings['popup']['style']); ?>' <?php echo esc_attr('' !== $auto_close ? 'data-close-widget='.$auto_close : ''); ?> data-type= '<?php echo esc_attr($coupon_type); ?>'>
-
+        <div id="tab-box-front-<?php echo esc_attr($widgetcounter); ?>" class="tab-box tab-front-box tab-box-front-<?php echo esc_attr($widgetcounter); ?> <?php echo esc_attr($couponapp_classes); ?> hide" <?php echo esc_attr($widget_close_after); ?> data-isexit = '<?php echo esc_attr($exit_intent); ?>' data-delay='<?php echo esc_attr($delay); ?>' data-scroll='<?php echo esc_attr($scroll); ?>' data-widgetid = '<?php echo esc_attr($widget_id); ?>' data-widget-token = '<?php echo wp_create_nonce("widget_token_".$widget_id); ?>' data-version='<?php echo esc_attr($version); ?>' data-style='<?php echo esc_attr($widget_settings['popup']['style']); ?>' <?php echo esc_attr('' !== $auto_close ? 'data-close-widget='.$auto_close : ''); ?> data-type= '<?php echo esc_attr($coupon_type); ?>'>
+        <input type="hidden" id="widget_token_<?php echo esc_attr($widget_id); ?>" value="<?php echo wp_create_nonce("widget_token_".$widget_id); ?>" />
         <?php
         $this->render_coupon_form($widget_settings, $widget_id, $coupon_code_text);
         ?>
 
             <div class="tab-box-wrap hide">
-                <input type='hidden' class='cx-code' data-widget-id = '<?php echo esc_attr($widget_id); ?>' data-coupon-id = '' value='<?php echo esc_attr($coupon_code_text); ?>' data-valid='<?php echo esc_attr($days_between); ?>'/>
+                <input type='hidden' class='cx-code' data-widget-token='<?php echo wp_create_nonce("widget_token_".$widget_id); ?>' data-widget-id = '<?php echo esc_attr($widget_id); ?>' data-coupon-id = '' value='<?php echo esc_attr($coupon_code_text); ?>' data-valid='<?php echo esc_attr($days_between); ?>'/>
                 <div class="tab-text" style="color:<?php echo esc_attr($settings['action_color']); ?>;" >
         <?php echo esc_attr($settings['call_action']); ?>
                 </div>
@@ -609,7 +609,7 @@ class Couponx_Frontend
                         <span class='code'><?php echo esc_attr($coupon_code_text); ?></span>
                     </span>
                     </div>
-                    <button class="button btn btn-blue coupon-button copy-to-clipboard" data-clipboard-action="copy"  data-clipboard-target="#copy-couponapp-code-<?php echo esc_attr($widgetcounter); ?>" data-widget-id="<?php echo esc_attr($widget_id); ?>" data-widget-count="<?php echo esc_attr($widgetcounter); ?>">
+                    <button class="button btn btn-blue coupon-button copy-to-clipboard" data-clipboard-action="copy"  data-clipboard-target="#copy-couponapp-code-<?php echo esc_attr($widgetcounter); ?>" data-widget-token='<?php echo wp_create_nonce("widget_token_".$widget_id); ?>' data-widget-id="<?php echo esc_attr($widget_id); ?>" data-widget-count="<?php echo esc_attr($widgetcounter); ?>">
                         <?php echo esc_attr($coupon_settings['cpy_btn']); ?>
                     </button>
                     <svg class="vector <?php echo esc_attr('style-3' === $popup_settings['style'] ? 'hide' : ''); ?> " id='vector-nonfloat-bar' width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -708,9 +708,9 @@ class Couponx_Frontend
                     <div class="form-wrap cx-clear cx-form-wrap">
                         <p class="coupon-code-email-text">
                             <input type="hidden" name="hide_coup_code" class='hide_coup_code' value="<?php echo esc_attr($coupon_code_text); ?>">
-                            <input type="email" name="couponapp-email" value="" placeholder=" <?php echo esc_attr($email_settings['email']); ?>" data-widget-id="<?php echo esc_attr($widget_id); ?>" required pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}"/>
+                            <input type="email" name="couponapp-email" value="" placeholder=" <?php echo esc_attr($email_settings['email']); ?>" data-widget-token='<?php echo wp_create_nonce("widget_token_".$widget_id); ?>' data-widget-id="<?php echo esc_attr($widget_id); ?>" required />
                         </p>
-                        <button type="submit" class="button btn btn-blue coupon-button coupon-email-button" data-widget-id="<?php echo esc_attr($widgetcounter); ?>" data-consent="<?php echo esc_attr($consent); ?>" data-consent-id="email-content-<?php echo esc_attr($widgetcounter); ?>" data-email-msgcolor="<?php echo esc_attr($email_settings['error_color']); ?>" data-coupon-code = "<?php echo esc_attr($coupon_code_text); ?>">
+                        <button type="submit" class="button btn btn-blue coupon-button coupon-email-button" data-widget-token='<?php echo wp_create_nonce("widget_token_".$widget_id); ?>' data-widget-id="<?php echo esc_attr($widgetcounter); ?>" data-consent="<?php echo esc_attr($consent); ?>" data-consent-id="email-content-<?php echo esc_attr($widgetcounter); ?>" data-email-msgcolor="<?php echo esc_attr($email_settings['error_color']); ?>" data-coupon-code = "<?php echo esc_attr($coupon_code_text); ?>">
                             <?php echo esc_attr($email_settings['btn_text']); ?>
                         </button>
                     </div>
@@ -833,7 +833,7 @@ class Couponx_Frontend
                     ?>
                 </h4>
                 <div class="form-wrap cx-clear">
-                    <a href="<?php echo esc_attr($couponcode_link); ?>" class="button btn btn-blue coupon-button coupon-code-link"  <?php echo esc_attr($target); ?> data-widget-id="<?php echo esc_attr($widget_id); ?>" data-type="<?php echo esc_attr($settings['coupon']['link_type']); ?>" data-url = '<?php echo esc_url($link); ?>' >
+                    <a href="<?php echo esc_attr($couponcode_link); ?>" class="button btn btn-blue coupon-button coupon-code-link"  <?php echo esc_attr($target); ?> data-widget-token='<?php echo wp_create_nonce("widget_token_".$widget_id); ?>' data-widget-id="<?php echo esc_attr($widget_id); ?>" data-type="<?php echo esc_attr($settings['coupon']['link_type']); ?>" data-url = '<?php echo esc_url($link); ?>' >
                         <?php echo esc_attr($coupon_settings['cpy_btn']); ?>
                     </a>
                 </div>

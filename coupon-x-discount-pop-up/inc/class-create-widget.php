@@ -181,7 +181,7 @@ class Create_Widget
 
             $content = get_post_field('post_content', $post_id);
 
-            $post_content = unserialize($content);
+            $post_content = json_decode($content, true);
 
             if ('' === $opt) {
                 $settings = wp_parse_args($post_content, $default);

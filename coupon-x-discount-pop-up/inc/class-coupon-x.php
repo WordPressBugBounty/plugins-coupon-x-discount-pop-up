@@ -25,6 +25,7 @@ class Coupon_X
      */
     public function __construct()
     {
+        add_action('init', [ $this, 'convert_serialize_content_to_json' ]);
         add_action('admin_init', [ $this, 'redirect_user_to_settings_page' ]);
         add_action('admin_init', [ $this, 'change_menu_text' ]);
         add_action('plugins_loaded', [ $this, 'load_domain_files' ]);
@@ -32,6 +33,40 @@ class Coupon_X
         $this->files_loader();
 
     }//end __construct()
+
+
+    public function convert_serialize_content_to_json()
+    {
+        if(get_option('cx_convert_serialize_to_json', false) === false) {
+            add_option('cx_convert_serialize_to_json', true);
+            $widgets = get_posts(
+                [
+                    'numberposts' => -1,
+                    'post_type' => 'cx_widget',
+                    'meta_query' => [
+                        [
+                            'key' => 'status',
+                            'value' => 1,
+                            'compare' => '=',
+                        ],
+                    ],
+                ]
+            );
+
+            if (is_array($widgets) && count($widgets)) {
+                foreach ($widgets as $widget) {
+                    $widget_id = $widget->ID;
+                    $widget_settings = unserialize($widget->post_content);
+
+                    $post = [
+                        'ID' => $widget_id,
+                        'post_content' => json_encode($widget_settings),
+                    ];
+                    wp_update_post($post);
+                }
+            }
+        }
+    }
 
     /**
      * Render first widget popup html.

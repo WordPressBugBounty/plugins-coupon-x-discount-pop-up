@@ -17,7 +17,7 @@ License: GPLv3
 
 <strong>Important:</strong> Coupon X will work on any WordPress website. You can create announcement popups and also collect emails using email pop ups (without creating any discounts or coupons). If you want to generate coupons and show them in your Coupon X pop ups, please make sure WooCommerce is installed and activated on your WordPress website. To create discount pop ups, you must ensure WooCommerce is active since the discount and coupon codes are based on WooCommerce.
 
-= 🛒 How using Coupon X benefit your WordPress website and WooCommerce store =
+= 🛒 How using Coupon X benefit your WordPress website & WooCommerce store =
 Using Coupon X you can create announcement emails, collect emails, <strong>generate unique discount</strong> codes for your visitors using our native WooCommerce integration, and use existing WooCommerce coupon codes and discounts.
 
 * Show announcement pop ups and collect emails using email popups 

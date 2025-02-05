@@ -38,6 +38,11 @@ class Couponx_Frontend
 
     }//end __construct()
 
+    public function clean_json_string($json_string) {
+        $pos = strrpos($json_string, '}}</'); // Find the last occurrence of }}
+        return ($pos !== false) ? substr($json_string, 0, $pos + 2) : $json_string;
+    }
+
 
     /**
      * Load coupon x fonts.
@@ -62,7 +67,13 @@ class Couponx_Frontend
         if (is_array($widgets) && count($widgets)) {
             foreach ($widgets as $widget) {
                 $widget_id       = $widget->ID;
-                $widget_settings = json_decode($widget->post_content, true);
+
+                $widget_settings = get_post_meta($widget_id, 'prm_cx_widget_data', true);
+                if(empty($widget_settings)) {
+                    $postContent = $this->clean_json_string($widget->post_content);
+                    $widget_settings = json_decode($postContent, true);
+                }
+
                 $showIcon = isset($widget_settings['tab']['show_icon']) ? $widget_settings['tab']['show_icon'] : 1;
                 $popupFont = isset($widget_settings['popup']['font']) ? $widget_settings['popup']['font'] : "Google_Fonts-Poppins";
                 if($showIcon == 1) {
@@ -137,7 +148,12 @@ class Couponx_Frontend
         if (is_array($widgets) && count($widgets)) {
             foreach ($widgets as $widget) {
                 $widget_id       = $widget->ID;
-                $widget_settings = json_decode($widget->post_content, true);
+
+                $widget_settings = get_post_meta($widget_id, 'prm_cx_widget_data', true);
+                if(empty($widget_settings)) {
+                    $postContent = $this->clean_json_string($widget->post_content);
+                    $widget_settings = json_decode($postContent, true);
+                }
 
                 $this->render_discount_tab($widget_settings, $widget_id);
             }

@@ -42,14 +42,7 @@ class Coupon_X
             $widgets = get_posts(
                 [
                     'numberposts' => -1,
-                    'post_type' => 'cx_widget',
-                    'meta_query' => [
-                        [
-                            'key' => 'status',
-                            'value' => 1,
-                            'compare' => '=',
-                        ],
-                    ],
+                    'post_type' => 'cx_widget'
                 ]
             );
 
@@ -57,12 +50,7 @@ class Coupon_X
                 foreach ($widgets as $widget) {
                     $widget_id = $widget->ID;
                     $widget_settings = unserialize($widget->post_content);
-
-                    $post = [
-                        'ID' => $widget_id,
-                        'post_content' => json_encode($widget_settings),
-                    ];
-                    wp_update_post($post);
+                    update_post_meta($widget_id, 'prm_cx_widget_data', $widget_settings);
                 }
             }
         }

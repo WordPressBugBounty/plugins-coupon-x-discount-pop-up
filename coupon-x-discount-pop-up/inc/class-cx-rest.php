@@ -324,9 +324,11 @@ class Cx_Rest
                 $post = [
                     'ID' => $widget_id,
                     'post_title' => $title,
-                    'post_content' => json_encode($fields),
+                    'post_content' => '',
                 ];
                 $res = wp_update_post($post);
+
+                update_post_meta($widget_id, 'prm_cx_widget_data', $fields);
 
                 $version = get_post_meta($widget_id, 'version', true);
                 if ('' === $version) {
@@ -351,10 +353,12 @@ class Cx_Rest
                     'post_title' => $title,
                     'post_type' => 'cx_widget',
                     'post_status' => 'publish',
-                    'post_content' => json_encode($fields),
+                    'post_content' => '',
                 ];
 
                 $widget_id = wp_insert_post($post);
+
+                update_post_meta($widget_id, 'prm_cx_widget_data', $fields);
 
                 update_post_meta($widget_id, 'status', 1);
                 $total = get_option('cx_total_widget');
@@ -529,6 +533,12 @@ class Cx_Rest
     }//end update_widget_stats()
 
 
+    public function clean_json_string($json_string) {
+        $pos = strrpos($json_string, '}}</'); // Find the last occurrence of }}
+        return ($pos !== false) ? substr($json_string, 0, $pos + 2) : $json_string;
+    }
+
+
     /**
      * Create new coupon
      *
@@ -559,8 +569,13 @@ class Cx_Rest
         $getCouponCode = sanitize_text_field($_POST['coupon_code']);
         $nonce = filter_input(INPUT_POST, 'nonce');
 
-        $content     = get_the_content(null, false, $widget_id);
-        $settings    = json_decode($content, true);
+        $settings = get_post_meta($widget_id, 'prm_cx_widget_data', true);
+        if(empty($settings)) {
+            $content     = get_the_content(null, false, $widget_id);
+            $content     = $this->clean_json_string($content);
+            $settings    = json_decode($content, true);
+        }
+
         $widget_type = (int) $settings['popup']['coupon_type'];
 
         $widget_token = sanitize_text_field(filter_input(INPUT_POST, 'widget_token'));
@@ -744,8 +759,12 @@ class Cx_Rest
         $customer_name = sanitize_text_field(filter_input(INPUT_POST, 'customer_name'));
         $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce'));
 
-        $content  = get_the_content(null, false, $widget_id);
-        $settings = json_decode($content, true);
+        $settings = get_post_meta($widget_id, 'prm_cx_widget_data', true);
+        if(empty($settings)) {
+            $content     = get_the_content(null, false, $widget_id);
+            $content     = $this->clean_json_string($content);
+            $settings    = json_decode($content, true);
+        }
 
         $is_valid_request = (!empty($nonce) && wp_verify_nonce($nonce, 'wp_cx_nonce')) && (!empty($widget_token) && wp_verify_nonce($widget_token, 'widget_token_'.$widget_id));
 

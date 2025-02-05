@@ -179,9 +179,13 @@ class Create_Widget
         if (isset($_GET['id'])) {
             $post_id = filter_input(INPUT_GET, 'id');
 
-            $content = get_post_field('post_content', $post_id);
+            $post_content = get_post_meta($post_id, 'prm_cx_widget_data', true);
 
-            $post_content = json_decode($content, true);
+            if(empty($post_content)) {
+                $content = get_post_field('post_content', $post_id);
+                $content = $this->clean_json_string($content);
+                $post_content = json_decode($content, true);
+            }
 
             if ('' === $opt) {
                 $settings = wp_parse_args($post_content, $default);
@@ -200,6 +204,11 @@ class Create_Widget
         }//end if
 
     }//end get_settings()
+
+    public function clean_json_string($json_string) {
+        $pos = strrpos($json_string, '}}</'); // Find the last occurrence of }}
+        return ($pos !== false) ? substr($json_string, 0, $pos + 2) : $json_string;
+    }
 
 
     /**

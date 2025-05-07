@@ -486,7 +486,7 @@ class Cx_review_box
                 </div>
 
                 <div class="please-rate-us">
-                    <div class="rate-us-title"><?php esc_html_e("Please rate us:"); ?></div>
+                    <div class="rate-us-title"><?php esc_html_e("Please rate us:", 'coupon-x'); ?></div>
                     <div class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__default__rating"></div>
                 </div>
             </div> <!--end .premio-review-box__default-->

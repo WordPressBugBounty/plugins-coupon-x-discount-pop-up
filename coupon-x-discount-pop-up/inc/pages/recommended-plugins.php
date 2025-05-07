@@ -106,9 +106,9 @@ if ( $data && ! is_wp_error( $data ) ) {
 ?>
 <div class="wrap mystickyelement-wrap recommended-plugins">
     <h2>
-        <?php _e('Try out our recommended plugins', 'mystickyelements'); ?>
+        <?php _e('Try out our recommended plugins', 'coupon-x'); ?>
         <div class="mystickyelement-contact-form-leads-btn">
-            <a href="#" class="create-rule recommeded-plugins-hide"><?php _e('Hide From Menu', 'mystickyelements');?></a>
+            <a href="#" class="create-rule recommeded-plugins-hide"><?php _e('Hide From Menu', 'coupon-x');?></a>
         </div>
     </h2>
 </div>
@@ -156,7 +156,7 @@ if ( $data && ! is_wp_error( $data ) ) {
                 $author = wp_kses($plugin['author'], $pluginsAllowedTags);
                 if (! empty($author)) {
                     // translators: %s: Plugin author.
-                    $author = ' <cite>'.sprintf(esc_html__( 'By %s', "chaty"), $author).'</cite>';
+                    $author = ' <cite>'.sprintf(esc_html__( 'By %s', 'coupon-x'), $author).'</cite>';
                 }
 
                 $requires_php = isset($plugin['requires_php']) ? $plugin['requires_php'] : null;
@@ -180,14 +180,14 @@ if ( $data && ! is_wp_error( $data ) ) {
                                         esc_attr($plugin['slug']),
                                         esc_url($status['url']),
                                         // translators: %s: Plugin name and version.
-                                        esc_attr(sprintf(esc_html__('Install %s now', 'folders'), $name)),
+                                        esc_attr(sprintf(esc_html__('Install %s now', 'coupon-x'), $name)),
                                         esc_attr($name),
-                                        esc_html__( 'Install Now', "chaty")
+                                        esc_html__( 'Install Now', 'coupon-x')
                                     );
                                 } else {
                                     $action_links[] = sprintf(
                                         '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                        esc_html__('Cannot Install', 'folders')
+                                        esc_html__('Cannot Install', 'coupon-x')
                                     );
                                 }
                             }
@@ -202,14 +202,14 @@ if ( $data && ! is_wp_error( $data ) ) {
                                         esc_attr($plugin['slug']),
                                         esc_url($status['url']),
                                         // translators: %s: Plugin name and version.
-                                        esc_attr(sprintf(esc_html__('Update %s now', 'folders'), $name)),
+                                        esc_attr(sprintf(esc_html__('Update %s now', 'coupon-x'), $name)),
                                         esc_attr($name),
-                                        esc_html__( 'Update Now', "chaty")
+                                        esc_html__( 'Update Now', 'coupon-x')
                                     );
                                 } else {
                                     $action_links[] = sprintf(
                                         '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                        esc_html__('Cannot Update', 'folders')
+                                        esc_html__('Cannot Update', 'coupon-x')
                                     );
                                 }
                             }
@@ -220,12 +220,12 @@ if ( $data && ! is_wp_error( $data ) ) {
                             if (is_plugin_active($status['file'])) {
                                 $action_links[] = sprintf(
                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                    esc_html__('Active', 'folders')
+                                    esc_html__('Active', 'coupon-x')
                                 );
                             } else if (current_user_can('activate_plugin', $status['file'])) {
-                                $button_text = esc_html__( 'Activate', "chaty");
+                                $button_text = esc_html__( 'Activate', 'coupon-x');
                                 // translators: %s: Plugin name.
-                                $button_label = esc_html__('Activate %s', 'folders');
+                                $button_label = esc_html__('Activate %s', 'coupon-x');
                                 $activate_url = add_query_arg(
                                     [
                                         '_wpnonce' => wp_create_nonce('activate-plugin_'.$status['file']),
@@ -236,9 +236,9 @@ if ( $data && ! is_wp_error( $data ) ) {
                                 );
 
                                 if (is_network_admin()) {
-                                    $button_text = esc_html__( 'Network Activate', "chaty");
+                                    $button_text = esc_html__( 'Network Activate', 'coupon-x');
                                     // translators: %s: Plugin name.
-                                    $button_label = esc_html__('Network Activate %s', 'folders');
+                                    $button_label = esc_html__('Network Activate %s', 'coupon-x');
                                     $activate_url = add_query_arg([ 'networkwide' => 1 ], $activate_url);
                                 }
 
@@ -251,7 +251,7 @@ if ( $data && ! is_wp_error( $data ) ) {
                             } else {
                                 $action_links[] = sprintf(
                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                    esc_html__('Installed', 'folders')
+                                    esc_html__('Installed', 'coupon-x')
                                 );
                             }//end if
                             break;
@@ -266,9 +266,9 @@ if ( $data && ! is_wp_error( $data ) ) {
                     '<a href="%s" class="thickbox open-plugin-details-modal" aria-label="%s" data-title="%s">%s</a>',
                     esc_url($details_link),
                     // translators: %s: Plugin name and version.
-                    esc_attr(sprintf(esc_html__( 'More information about %s', "chaty"), $name)),
+                    esc_attr(sprintf(esc_html__( 'More information about %s', 'coupon-x'), $name)),
                     esc_attr($name),
-                    esc_html__( 'More Details', "chaty")
+                    esc_html__( 'More Details', 'coupon-x')
                 );
 
                 if (! empty($plugin['icons']['svg'])) {
@@ -298,11 +298,11 @@ if ( $data && ! is_wp_error( $data ) ) {
                     if (! $compatible_php || ! $compatible_wp) {
                         echo '<div class="notice inline notice-error notice-alt"><p>';
                         if (! $compatible_php && ! $compatible_wp) {
-                            esc_html_e('This plugin doesn&#8217;t work with your versions of WordPress and PHP.');
+                            esc_html_e('This plugin doesn&#8217;t work with your versions of WordPress and PHP.', 'coupon-x');
                             if (current_user_can('update_core') && current_user_can('update_php')) {
                                 printf(
                                 // translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page.
-                                    ' '.esc_html__( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.', "chaty"),
+                                    ' '.esc_html__( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.', 'coupon-x'),
                                     esc_url(self_admin_url('update-core.php')),
                                     esc_url(wp_get_update_php_url())
                                 );
@@ -310,32 +310,32 @@ if ( $data && ! is_wp_error( $data ) ) {
                             } else if (current_user_can('update_core')) {
                                 printf(
                                 // translators: %s: URL to WordPress Updates screen.
-                                    ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', "chaty"),
+                                    ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', 'coupon-x'),
                                     esc_url(self_admin_url('update-core.php'))
                                 );
                             } else if (current_user_can('update_php')) {
                                 printf(
                                 // translators: %s: URL to Update PHP page.
-                                    ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', "chaty"),
+                                    ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', 'coupon-x'),
                                     esc_url(wp_get_update_php_url())
                                 );
                                 wp_update_php_annotation('</p><p><em>', '</em>');
                             }//end if
                         } else if (! $compatible_wp) {
-                            esc_html_e('This plugin doesn&#8217;t work with your version of WordPress.', "chaty");
+                            esc_html_e('This plugin doesn&#8217;t work with your version of WordPress.', 'coupon-x');
                             if (current_user_can('update_core')) {
                                 printf(
                                 // translators: %s: URL to WordPress Updates screen.
-                                    ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', "chaty"),
+                                    ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', 'coupon-x'),
                                     esc_url(self_admin_url('update-core.php'))
                                 );
                             }
                         } else if (! $compatible_php) {
-                            esc_html_e('This plugin doesn&#8217;t work with your version of PHP.');
+                            esc_html_e('This plugin doesn&#8217;t work with your version of PHP.', 'coupon-x');
                             if (current_user_can('update_php')) {
                                 printf(
                                 // translators: %s: URL to Update PHP page.
-                                    ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', "chaty"),
+                                    ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', 'coupon-x'),
                                     esc_url(wp_get_update_php_url())
                                 );
                                 wp_update_php_annotation('</p><p><em>', '</em>');
@@ -380,10 +380,10 @@ if ( $data && ! is_wp_error( $data ) ) {
                             <span class="num-ratings" aria-hidden="true">(<?php echo esc_attr(number_format_i18n($plugin['num_ratings'])); ?>)</span>
                         </div>
                         <div class="column-updated">
-                            <strong><?php esc_html_e('Last Updated:', "chaty"); ?></strong>
+                            <strong><?php esc_html_e('Last Updated:', 'coupon-x'); ?></strong>
                             <?php
                             // translators: %s: Human-readable time difference.
-                            printf(esc_html__( '%s ago', "chaty"), esc_attr(human_time_diff($last_updated_timestamp)));
+                            printf(esc_html__( '%s ago', 'coupon-x'), esc_attr(human_time_diff($last_updated_timestamp)));
                             ?>
                         </div>
                         <div class="column-downloaded">
@@ -392,23 +392,23 @@ if ( $data && ! is_wp_error( $data ) ) {
                                 $active_installs_millions = floor(($plugin['active_installs'] / 1000000));
                                 $active_installs_text     = sprintf(
                                 // translators: %s: Number of millions.
-                                    _nx('%s+ Million', '%s+ Million', $active_installs_millions, 'Active plugin installations'),
+                                    _nx('%s+ Million', '%s+ Million', $active_installs_millions, 'Active plugin installations', 'coupon-x'),
                                     number_format_i18n($active_installs_millions)
                                 );
                             } else if (0 == $plugin['active_installs']) {
-                                $active_installs_text = esc_html__('Less Than 10', 'folders');
+                                $active_installs_text = esc_html__('Less Than 10', 'coupon-x');
                             } else {
                                 $active_installs_text = number_format_i18n($plugin['active_installs']).'+';
                             }
 
                             // translators: %s: Number of installations.
-                            printf(esc_html__( '%s Active Installations', "chaty"), esc_attr($active_installs_text));
+                            printf(esc_html__( '%s Active Installations', 'coupon-x'), esc_attr($active_installs_text));
                             ?>
                         </div>
                         <div class="column-compatibility">
                             <?php
                             if (! $tested_wp) {
-                                echo '<span class="compatibility-untested">'.esc_html__( 'Untested with your version of WordPress', "chaty").'</span>';
+                                echo '<span class="compatibility-untested">'.esc_html__( 'Untested with your version of WordPress', 'coupon-x').'</span>';
                             } else if (! $compatible_wp) {
                                 echo '<span class="compatibility-incompatible">'.wp_kses( '<strong>Incompatible</strong> with your version of WordPress', $pluginsAllowedTags).'</span>';
                             } else {
@@ -423,8 +423,8 @@ if ( $data && ! is_wp_error( $data ) ) {
             ?>
         </div>
     </div>
-    <div id="hide-recommeded-plugins" style="display:none;" title="<?php esc_html_e('Are you sure?', 'folders');?>">
-        <p><?php esc_html_e("If you hide the recommended plugins page from your menu, it won't appear there again. Are you sure you'd like to do it?", 'folders');?></p>
+    <div id="hide-recommeded-plugins" style="display:none;" title="<?php esc_html_e('Are you sure?', 'coupon-x');?>">
+        <p><?php esc_html_e("If you hide the recommended plugins page from your menu, it won't appear there again. Are you sure you'd like to do it?", 'coupon-x');?></p>
     </div>
 
 </div>

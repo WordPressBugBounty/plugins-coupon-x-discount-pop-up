@@ -1,9 +1,9 @@
-﻿=== Coupon X: Discount Pop Up, Promo Code Pop Ups, Announcement Pop Up, WooCommerce Popups ===
-Contributors: galdub, tomeraharon, premio
+=== Coupon X: Discount Pop Up, Promo Code Pop Ups, Announcement Pop Up, WooCommerce Popups ===
+Contributors: premio, galdub, tomeraharon
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
-Tested up to: 6.7
-Stable tag: 1.3.7
+Tested up to: 6.8
+Stable tag: 1.3.8
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -26,7 +26,7 @@ Using Coupon X you can create announcement emails, collect emails, <strong>gener
 * Launch a coupon code pop up when a visitor clicks on your popup teaser on the corner of your website
 * Reduce cart abandonment by using exit intent trigger on your coupon code popup
 
-Want to use our robust Pro version? Check out <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X Pro plans"><strong>Coupon X Pro Plans</strong></a>.
+Want to try our robust Pro version? Check out <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X Pro plans"><strong>Coupon X Pro Plans</strong></a>.
 
 = 💪 How does Coupon X Work? =
 When you install the plugin, you’ll be able to customize your beautiful discount pop up or announcement pop up and decide if you want to create a unique coupon code for each visitor or use the same coupon code for all of your visitors. You can also create notification pop ups.
@@ -37,7 +37,7 @@ When you install the plugin, you’ll be able to customize your beautiful discou
 * You can enable two step flow for your coupon code pop ups - show the coupon only when the visitor claims it
 
 = 🔥 What do you get in the Pro plan? =
-Unlock the <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X pro plans"><strong>Pro features</strong></a> for only $49 per year
+Unlock the <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X pro plans"><strong>Pro features</strong></a> for only $59 per year
 You will get all the features of the free plan, plus:
 
 1. Unlimited discount pop ups - create unlimited discount pop ups and target them based on cart data, order history, page targeting, and country targeting.
@@ -168,6 +168,9 @@ Yes! You can even decide what widgets will show up on each device (desktop/mobil
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.3.8 =
+Improved flow
 
 = 1.3.7 =
 Coupon widget creation flow bug fixed

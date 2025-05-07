@@ -32,8 +32,7 @@ class Dashboard
         add_action('admin_enqueue_scripts', [ $this, 'include_admin_scripts' ]);
         add_action('admin_footer', [ $this, 'coupon_x_deactivate_modal' ]);
         add_action('wp_ajax_coupon_x_plugin_deactivate', [ $this, 'coupon_x_plugin_deactivate' ]);
-        add_action('wp_ajax_cx_admin_send_message_to_owner', [ $this, 'cx_admin_send_message_to_owner' ]);
-        add_action('wp_ajax_coupon_x_update_signup_status', [ $this, 'coupon_x_update_signup_status' ]);
+        add_action('wp_ajax_cx_admin_send_message_to_owner', [ $this, 'cx_admin_send_message_to_owner' ]); 
         add_filter('plugin_action_links_'.COUPON_X_PLUGIN_BASE, [ $this, 'upgrade_action_links' ]);
         add_action('admin_head', [$this, 'admin_head']);
         add_action('wp_ajax_search_woo_product', [$this, 'search_woo_product']);
@@ -105,7 +104,7 @@ class Dashboard
             );
         } else {
             add_submenu_page(
-                '',
+                ' ',
                 __('Create New Widget', 'coupon-x'),
                 __('Create New Widget', 'coupon-x'),
                 'manage_options',
@@ -175,7 +174,7 @@ class Dashboard
         );
 
         add_submenu_page(
-            '',
+            ' ',
             __('Coupon X Pro Features', 'coupon-x'),
             __('Coupon X Pro Features', 'coupon-x'),
             'manage_options',
@@ -223,7 +222,7 @@ class Dashboard
         ];
         $args   = [
             'labels'             => $labels,
-            'description'        => _x('CX Widget', 'coupon-x'),
+            'description'        => __('CX Widget', 'coupon-x'),
             'public'             => true,
             'publicly_queryable' => true,
             'show_ui'            => true,
@@ -247,15 +246,16 @@ class Dashboard
      * Otherwise display Widget List.
      */
     public function display_couponx_settings_widget()
-    {
-        if (get_option('cx_signup_popup') === false) {
-            include_once 'class-cx-signup.php';
-            new Cx_SignUp();
+    {    
+        $is_shown = \Cx_SIGNUP_CLASS::check_modal_status();
+        if($is_shown) {
+            /* Signup Form When first time activate plugin */				
+            include_once COUPON_X_PATH . '/inc/pages/email-signup.php';
+            
         } else {
             include_once 'class-cx-widget-list.php';
             new Cx_Widget_List();
-        }
-
+        } 
     }//end display_couponx_settings_widget()
 
 
@@ -263,10 +263,12 @@ class Dashboard
      * Include required files.
      */
     public function add_coupon_settings()
-    {
-        if (get_option('cx_signup_popup') === false) {
-            include_once 'class-cx-signup.php';
-            new Cx_SignUp();
+    { 
+        $is_shown = \Cx_SIGNUP_CLASS::check_modal_status();
+        if($is_shown) {
+            /* Signup Form When first time activate plugin */				
+            include_once COUPON_X_PATH . '/inc/pages/email-signup.php';
+            
         } else {
             include_once 'class-cx-helper.php';
             include_once 'class-create-widget.php';
@@ -282,6 +284,7 @@ class Dashboard
      */
     public function include_admin_scripts($hook)
     {
+        $min = defined('COUPON_X_FREE_DEV_MODE') && COUPON_X_FREE_DEV_MODE ? '' : '.min';
         if($hook == 'coupon-x_page_add_couponx' || $hook == 'admin_page_add_couponx') {
             wp_enqueue_script('cx-app-script', COUPON_X_URL . 'assets/admin/js/app.js', ['jquery'], COUPON_X_VERSION);
             wp_enqueue_style('cx-app-css', COUPON_X_URL . 'assets/admin/css/app.css', '', COUPON_X_VERSION);
@@ -298,7 +301,7 @@ class Dashboard
             wp_enqueue_style('spectrum-css', COUPON_X_URL.'assets/css/spectrum.min.css', '', COUPON_X_VERSION);
             wp_enqueue_style('select2-css', COUPON_X_URL.'assets/css/select2.min.css', '', COUPON_X_VERSION);
 
-            wp_enqueue_style('cx-settings-style', COUPON_X_URL.'assets/css/settings.min.css', '', COUPON_X_VERSION);
+            wp_enqueue_style('cx-settings-style', COUPON_X_URL.'assets/css/settings'.esc_attr($min).'.css', '', COUPON_X_VERSION);
             wp_enqueue_style('wp-color-picker');
             wp_enqueue_script('jquery-ui-core');
             wp_enqueue_script('jquery-ui-tabs');
@@ -307,11 +310,11 @@ class Dashboard
             wp_enqueue_script('jquery-ui-datepicker');
             wp_enqueue_script('jquery-ui-slider');
             wp_enqueue_script('js-timpepicker', COUPON_X_URL.'assets/js/timepicker.min.js', '', COUPON_X_VERSION);
-            wp_enqueue_script('jscolorpicker', COUPON_X_URL.'assets/js/spectrum.js', '', COUPON_X_VERSION);
+            wp_enqueue_script('jscolorpicker', COUPON_X_URL.'assets/js/spectrum'.esc_attr($min).'.js', '', COUPON_X_VERSION);
             wp_enqueue_script('select2-js', COUPON_X_URL.'assets/js/select2.min.js', '', COUPON_X_VERSION);
 
-            wp_enqueue_script('cx-settings-script', COUPON_X_URL.'assets/js/settings.min.js', [ 'jquery', 'jquery-ui-tabs', 'jquery-ui-dialog', 'jscolorpicker', 'wp-i18n', 'js-timpepicker', 'jquery-ui-tooltip', 'jquery-ui-slider' ], COUPON_X_VERSION);
-            wp_enqueue_script('cx-mailcheck-script', COUPON_X_URL.'assets/js/mailcheck.js', [ 'jquery' ], time());
+            wp_enqueue_script('cx-settings-script', COUPON_X_URL.'assets/js/settings'.esc_attr($min).'.js', [ 'jquery', 'jquery-ui-tabs', 'jquery-ui-dialog', 'jscolorpicker', 'wp-i18n', 'js-timpepicker', 'jquery-ui-tooltip', 'jquery-ui-slider' ], COUPON_X_VERSION);
+            wp_enqueue_script('cx-mailcheck-script', COUPON_X_URL.'assets/js/mailcheck'.esc_attr($min).'.js', [ 'jquery' ], time());
 
             wp_localize_script(
                 'cx-settings-script',
@@ -332,8 +335,8 @@ class Dashboard
             wp_enqueue_script('cx-datatable-js', COUPON_X_URL.'assets/js/datatable.min.js', '', COUPON_X_VERSION);
             wp_enqueue_script('cx-datatable-btn', COUPON_X_URL.'assets/js/dataTables.buttons.min.js', '', COUPON_X_VERSION);
 
-            wp_enqueue_script('cx-listing-js', COUPON_X_URL.'assets/js/listing.min.js', [ 'jquery', 'cx-datatable-js', 'wp-i18n' ], COUPON_X_VERSION);
-            wp_enqueue_style('cx-listing-css', COUPON_X_URL.'assets/css/settings.min.css', '', COUPON_X_VERSION);
+            wp_enqueue_script('cx-listing-js', COUPON_X_URL.'assets/js/listing'.esc_attr($min).'.js', [ 'jquery', 'cx-datatable-js', 'wp-i18n' ], COUPON_X_VERSION);
+            wp_enqueue_style('cx-listing-css', COUPON_X_URL.'assets/css/settings'.esc_attr($min).'.css', '', COUPON_X_VERSION);
             wp_localize_script(
                 'cx-listing-js',
                 'cx_data',
@@ -345,8 +348,8 @@ class Dashboard
 
             wp_set_script_translations('cx-listing-js', 'coupon-x');
         } else if ('plugins.php' === $hook) {
-            wp_enqueue_style('deactivation-css', COUPON_X_URL.'assets/css/deactivation-popup.min.css', '', COUPON_X_VERSION);
-            wp_enqueue_script('deactivation-js', COUPON_X_URL.'assets/js/deactivation-popup.min.js', [ 'jquery', 'wp-i18n' ], COUPON_X_VERSION);
+            wp_enqueue_style('deactivation-css', COUPON_X_URL.'assets/css/deactivation-popup'.esc_attr($min).'.css', '', COUPON_X_VERSION);
+            wp_enqueue_script('deactivation-js', COUPON_X_URL.'assets/js/deactivation-popup'.esc_attr($min).'.js', [ 'jquery', 'wp-i18n' ], COUPON_X_VERSION);
 
             wp_localize_script(
                 'deactivation-js',
@@ -358,10 +361,7 @@ class Dashboard
             );
             wp_set_script_translations('cx-listing-js', 'coupon-x');
         } else if ('coupon-x_page_couponx_pricing_tbl' === $hook) {
-//            wp_enqueue_style('select2-css', COUPON_X_URL.'assets/css/select2.min.css', '', COUPON_X_VERSION);
-            wp_enqueue_style('pricing-css', COUPON_X_URL.'assets/css/pricing-tbl.css', '', COUPON_X_VERSION);
-//            wp_enqueue_script('select2-js', COUPON_X_URL.'assets/js/select2.min.js', '', COUPON_X_VERSION);
-//            wp_enqueue_script('pricing-js', COUPON_X_URL.'assets/js/pricing.js', [ 'jquery' ], COUPON_X_VERSION);
+            wp_enqueue_style('pricing-css', COUPON_X_URL.'assets/css/pricing-tbl'.esc_attr($min).'.css', '', COUPON_X_VERSION);
             wp_enqueue_script('slick-js', COUPON_X_URL.'assets/js/slick.min.js', [ 'jquery' ], COUPON_X_VERSION);
             $queryArgs = [
                 'family' => 'Poppins:wght@400;500;600;700&display=swap',
@@ -370,10 +370,11 @@ class Dashboard
             wp_enqueue_style('google-poppins-fonts', add_query_arg($queryArgs, "//fonts.googleapis.com/css2"), [], null);
         } else if ('admin_page_couponx_pro_features' === $hook) {
             wp_enqueue_style('popin-font', 'https://fonts.googleapis.com/css?family=Poppins%3A100%2C200%2C300%2C400%2C500%2C600%2C700&#038;ver=5.2.4');
-            wp_enqueue_style('pro-css', COUPON_X_URL.'assets/css/features.css', '', COUPON_X_VERSION);
+            wp_enqueue_style('pro-css', COUPON_X_URL.'assets/css/features'.esc_attr($min).'.css', '', COUPON_X_VERSION);
+            wp_enqueue_script('features', COUPON_X_URL.'assets/js/features'.esc_attr($min).'.js', [ 'jquery' ], COUPON_X_VERSION);
         } else if ('coupon-x_page_cx_integrations' === $hook) {
             wp_enqueue_style('popin-font', 'https://fonts.googleapis.com/css?family=Poppins%3A100%2C200%2C300%2C400%2C500%2C600%2C700&#038;ver=5.2.4');
-            wp_enqueue_style('integration-css', COUPON_X_URL.'assets/css/integration.css', '', COUPON_X_VERSION);
+            wp_enqueue_style('integration-css', COUPON_X_URL.'assets/css/integration'.esc_attr($min).'.css', '', COUPON_X_VERSION);
         }//end if
 
     }//end include_admin_scripts()
@@ -429,7 +430,7 @@ class Dashboard
      * Display list of captured emails.
      */
     public function display_coupon_leads()
-    {
+    { 
         global $wpdb;
         $leads_tbl = $wpdb->prefix.'cx_leads';
      //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -773,36 +774,7 @@ class Dashboard
     }//end cx_admin_send_message_to_owner()
 
 
-    /**
-     * Coupon X email sign up
-     */
-    public function coupon_x_update_signup_status()
-    {
-        $nonce = filter_input(INPUT_POST, 'nonce');
-        if (! empty($nonce) && wp_verify_nonce($nonce, 'cx_signup_status')) {
-            $status = filter_input(INPUT_POST, 'status');
-            $email  = filter_input(INPUT_POST, 'email');
-            update_option('cx_signup_popup', true);
-            if (1 === (int) $status) {
-                $url       = 'https://premioapps.com/premio/signup/email.php';
-                $apiParams = [
-                    'plugin' => 'coupon',
-                    'email'  => $email,
-                ];
-
-                // Signup Email for Chaty
-                $apiResponse = wp_safe_remote_post($url, ['body' => $apiParams, 'timeout' => 15, 'sslverify' => true]);
-
-                if (is_wp_error($apiResponse)) {
-                    wp_safe_remote_post($url, ['body' => $apiParams, 'timeout' => 15, 'sslverify' => false]);
-                }
-
-                $response['status'] = 1;
-            }
-        }//end if
-
-    }//end coupon_x_update_signup_status()
-
+ 
 
     /**
      * Coupon X pricing table

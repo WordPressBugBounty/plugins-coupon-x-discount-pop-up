@@ -46,7 +46,7 @@ class Cx_Widget_List
             ?>
         <div class='cx-widget-listing'>
             <a class='new-widget' href='<?php echo esc_attr($new_widget_url); ?>'>
-            <?php esc_html_e('Create New Widget', 'cx'); ?>
+            <?php esc_html_e('Create New Widget', 'coupon-x'); ?>
             </a>            
             <table class='widget-listing'>
                 <input type='hidden' name='cx_nonce' value = '<?php echo wp_create_nonce('wp_rest'); ?>' />

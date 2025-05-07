@@ -240,29 +240,29 @@ class Create_Widget
                             <li class="m-0">
                                 <a href="javascript:;" class="chaty-tab <?php echo ($step == 0) ? "active" : "completed" ?>" data-tab-id="cx-icon-design" id="cx-btn-icon-design" data-tab="first" data-tab-index="">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", "chaty") ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", "chaty") ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x') ?></span>
                                 </a>
                             </li>
                             <li class="my-0">
                                 <a href="javascript:;" class="chaty-tab <?php echo ($step == 1) ? "active" : (($step == 2) ? "completed" : "") ?>" data-tab-id="cx-choose-coupon" id="cx-btn-choose-coupon" data-tab-index="" data-tab="middle" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", "chaty") ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", "chaty") ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x') ?></span>
                                 </a>
                             </li>
                             <li class="m-0">
                                 <a href="javascript:;" class="chaty-tab <?php echo ($step == 2) ? "active" : "" ?>" data-tab-id="cx-pop-up-design" id="cx-btn-pop-up-design" data-tab-index="middle" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up Design", "chaty") ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up", "chaty") ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up Design", 'coupon-x') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up", 'coupon-x') ?></span>
                                 </a>
                             </li>
                             <li class="m-0">
                                 <a href="javascript:;" class="chaty-tab <?php echo ($step == 3) ? "active" : "" ?>" data-tab-id="cx-triggers-targeting" id="cx-btn-triggers-targeting" data-tab="last" data-tab-index="" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", "chaty") ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", "chaty") ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x') ?></span>
                                 </a>
                               </li>
                         </ul>
@@ -282,14 +282,14 @@ class Create_Widget
                     <footer class="footer-buttons relative space-x-2 step-<?php echo esc_attr($step) ?>">
                         <div class="flex items-center justify-center gap-3">
                             <div class="flex items-center gap-2 next-prev-buttons">
-                                <button type="button" class="flex back-button" id="back-button" aria-label="<?php esc_html_e("Back", "chaty") ?>">
+                                <button type="button" class="flex back-button" id="back-button" aria-label="<?php esc_html_e("Back", 'coupon-x') ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M15.8333 10H4.16668" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M10 15.8333L4.16668 9.99996L10 4.16663" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span>Back</span>
                                 </button>
-                                <button type="button" class="flex next-button" id="next-button" aria-label="<?php esc_html_e("Next", "chaty") ?>">
+                                <button type="button" class="flex next-button" id="next-button" aria-label="<?php esc_html_e("Next", 'coupon-x') ?>">
                                     <span>Next</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M4.16677 10H15.8334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -304,8 +304,8 @@ class Create_Widget
                                         <path d="M14.1666 17.5V10.8334H5.83331V17.5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M5.83331 2.5V6.66667H12.5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    <span><?php esc_html_e("Save Widget", "chaty") ?></span>
-                                    <span class="mobile-text"><?php esc_html_e("Save", "chaty") ?></span>
+                                    <span><?php esc_html_e("Save Widget", 'coupon-x') ?></span>
+                                    <span class="mobile-text"><?php esc_html_e("Save", 'coupon-x') ?></span>
                                 </button>
                                 <button type="button" class="arrow-btn !px-1.5 h-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -316,7 +316,7 @@ class Create_Widget
                         </div>
                         <input type="hidden" name="current_step" value="<?php echo esc_attr($step) ?>" id="current_step">
                         <input type="hidden" name="redirect_on_dashboard" value="0" id="redirect_on_dashboard">
-                        <input type="submit" class="save-dashboard-button hidden" id="save-dashboard-button" name="save_and_view_dashboard" value="<?php esc_html_e('Save & Close', 'chaty'); ?>" />
+                        <input type="submit" class="save-dashboard-button hidden" id="save-dashboard-button" name="save_and_view_dashboard" value="<?php esc_html_e('Save & Close', 'coupon-x'); ?>" />
                     </footer>
                 </div>
                 <div id="cx-widget-tab" class="max-w-[1280px] mx-auto">

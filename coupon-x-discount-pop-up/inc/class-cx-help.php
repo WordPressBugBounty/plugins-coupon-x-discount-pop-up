@@ -51,7 +51,7 @@ class Cx_Help
                         <textarea type="text" name="textarea_text" id="textarea_text" placeholder="<?php esc_html_e('How can I help you?', 'coupon-x'); ?>"></textarea>
                     </div>
                     <div class="form-button">
-                        <button type="submit" class="cx-help-button" ><?php esc_html_e('Chat'); ?></button>
+                        <button type="submit" class="cx-help-button" ><?php esc_html_e('Chat', 'coupon-x'); ?></button>
                         <input type="hidden" name="action" value="cx_admin_send_message_to_owner"  >
                         <input type="hidden" id="nonce" name="nonce" value="<?php echo esc_attr(wp_create_nonce('cx_send_message_to_owner')); ?>">
                     </div>

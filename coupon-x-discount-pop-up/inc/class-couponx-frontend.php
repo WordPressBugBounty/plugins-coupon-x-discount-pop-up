@@ -107,8 +107,9 @@ class Couponx_Frontend
      */
     public function include_coupon_scripts()
     {
-        wp_enqueue_style('cx-style', COUPON_X_URL.'assets/css/frontend.min.css', '', COUPON_X_VERSION);
-        wp_enqueue_script('cx-script', COUPON_X_URL.'assets/js/frontend.min.js', [ 'jquery' ], COUPON_X_VERSION);
+        $min = defined('COUPON_X_FREE_DEV_MODE') && COUPON_X_FREE_DEV_MODE ? '' : '.min';
+        wp_enqueue_style('cx-style', COUPON_X_URL.'assets/css/frontend'.esc_attr($min).'.css', '', COUPON_X_VERSION);
+        wp_enqueue_script('cx-script', COUPON_X_URL.'assets/js/frontend'.esc_attr($min).'.js', [ 'jquery' ], COUPON_X_VERSION);
         wp_localize_script(
             'cx-script',
             'cx_data',

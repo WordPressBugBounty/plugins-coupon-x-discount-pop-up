@@ -89,7 +89,7 @@ class Cx_SIGNUP_CLASS {
      * @return bool Returns true if the modal should be displayed; otherwise, false.
      */
     public static function check_modal_status() {
-        if(get_option(self::$update_message_option) == -1) {
+        if(get_option(self::$update_message_option) == -1 || get_option(self::$update_message_option) == 1) {
             return false;
         }
 

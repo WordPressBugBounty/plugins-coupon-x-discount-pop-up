@@ -19,53 +19,80 @@ if (! defined('ABSPATH')) {
 class Cx_Help
 {
 
+    // Allowed pages for showing the help menu
+    private static $allowed_pages = ['couponx', 'add_couponx', 'couponx_pro_features', 'leads_list', 'cx_integrations', 'couponx_pricing_tbl']; 
+    
+    // constructor
+    public function __construct() {    
+     
+        $page = $_GET['page'] ?? ''; 
+        // Check if we're on one of those pages
+        if (in_array($page, self::$allowed_pages, true)) {
+            // register enqueue  css 
+            add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts')); 
+            // add need help in footer
+            add_action('admin_footer', array($this, 'admin_footer_need_help_content'));
+        } 
+  
+	}//end __construct()
 
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
+    // load help settings
+    public function load_help_settings(){
+        define('WCP_CX_FOOTER_HELP_DATA', array(
+            'help_icon' => esc_url(COUPON_X_URL."assets/img/help/help-icon.svg"),
+            'close_icon' => esc_url(COUPON_X_URL."assets/img/help/close.svg"), 
+            'premio_site_info' => esc_url('https://premio.io/'),
+            'help_center_link' => esc_url('https://premio.io/help/coupon-x/?utm_source=pluginspage'),
+            'footer_menu' => array( 
+                'support' => array(
+                    'title' => esc_html("Get Support", "coupon-x"),
+                    'link' =>  esc_url("https://wordpress.org/support/plugin/coupon-x-discount-pop-up/"),
+                    'status' => true,
+                ),
+                'upgrade_to_pro' => array(
+                    'title' => esc_html("Upgrade to Pro", "coupon-x"),
+                    'link' =>  esc_url(admin_url("admin.php?page=couponx_pricing_tbl")),
+                    'status' => true,
+                ),
+                'recommended_plugins' => array(
+                    'title' => esc_html("Recommended Plugins", "coupon-x"),
+                    'link' =>  esc_url(admin_url("admin.php?page=cx-recommended-plugins")),
+                    'status' => get_option("hide_couponx_plugins") ? false : true,
+                ),  
+            ),
+            'support_widget' => array(
+                'upgrade_to_pro' => array(
+                    'title' => esc_html("Upgrade to Pro", "coupon-x"),
+                    'link' =>  esc_url(admin_url("admin.php?page=couponx_pricing_tbl")),
+                    'icon' => esc_url(COUPON_X_URL."assets/img/help/pro.svg"),
+                ),
+                'get_support' => array(
+                    'title' => esc_html("Get Support", "coupon-x"),
+                    'link' =>   esc_url("https://wordpress.org/support/plugin/coupon-x-discount-pop-up/"),
+                    'icon' => esc_url(COUPON_X_URL."assets/img/help/help-circle.svg"),
+                ),
+                'contact' => array(
+                    'title' => esc_html("Contact Us", "coupon-x"),
+                    'link' =>  false,
+                    'icon' => esc_url(COUPON_X_URL."assets/img/help/headphones.svg"),
+                ),
+            ),
+        ));  
+    }
 
-        $this->render_help_widget();
+    // enqueue scripts
+    public function admin_enqueue_scripts(){ 
+        // enqueue css
+        wp_enqueue_style('coupon-x-help-css', COUPON_X_URL . 'assets/css/help.css', array(), COUPON_X_VERSION);   
 
-    }//end __construct()
+    } 
 
+    // Need Help Footer Content
+    public function admin_footer_need_help_content(){ 
+        $this->load_help_settings(); 
 
-    /**
-     * Render chat widget code.
-     */
-    public function render_help_widget()
-    {
-        ?>
-        <div class="cx-help-form">
-            <form action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post" id="cx-help-form">
-                <div class="cx-help-header">
-                    <b>Gal Dubinski</b> Co-Founder at Premio
-                </div>
-                <div class="cx-help-content">
-                    <p><?php esc_html_e('Hello! Are you experiencing any problems with Coupon X? Please let me know :)', 'coupon-x'); ?></p>
-                    <div class="cx-form-field">
-                        <input type="text" name="user_email" id="user_email" placeholder="<?php esc_html_e('Email', 'coupon-x'); ?>">
-                    </div>
-                    <div class="cx-form-field">
-                        <textarea type="text" name="textarea_text" id="textarea_text" placeholder="<?php esc_html_e('How can I help you?', 'coupon-x'); ?>"></textarea>
-                    </div>
-                    <div class="form-button">
-                        <button type="submit" class="cx-help-button" ><?php esc_html_e('Chat', 'coupon-x'); ?></button>
-                        <input type="hidden" name="action" value="cx_admin_send_message_to_owner"  >
-                        <input type="hidden" id="nonce" name="nonce" value="<?php echo esc_attr(wp_create_nonce('cx_send_message_to_owner')); ?>">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="cx-help-btn">
-            <a class="cx-help-tooltip" href="javascript:;"><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/owner.png'); ?>" alt="<?php esc_html_e('Need help?', 'coupon-x'); ?>"  /></a>
-            <span class="tooltiptext"><?php esc_html_e('Need help?', 'coupon-x'); ?></span>
-        </div>
-        <?php
-
-    }//end render_help_widget()
-
+        include_once COUPON_X_PATH.'/inc/pages/help.php';
+    } 
 
 }//end class
-
+new Cx_Help();

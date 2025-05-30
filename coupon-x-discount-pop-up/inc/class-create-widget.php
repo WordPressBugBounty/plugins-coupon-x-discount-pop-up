@@ -393,9 +393,7 @@ class Create_Widget
             </form>
         </div>
         <div class='mobile-preview-bg'></div>
-        <?php
-        include_once 'class-cx-help.php';
-        new Cx_Help();
+        <?php 
     }
 
 

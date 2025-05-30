@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coupon X Discount Pop Up 1.3.9\n"
+"Project-Id-Version: Coupon X Discount Pop Up 1.4.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/couponx-free-uncompressed\n"
-"POT-Creation-Date: 2025-05-09 11:26:52+00:00\n"
+"POT-Creation-Date: 2025-05-30 09:06:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,9 +59,9 @@ msgstr ""
 msgid "Enter your email and unlock amazing deals!"
 msgstr ""
 
-#: inc/class-create-widget.php:94 inc/class-cx-help.php:48
-#: inc/class-cx-widget-list.php:120 inc/class-dashboard.php:446
-#: inc/class-dashboard.php:675
+#: inc/class-create-widget.php:94 inc/class-cx-widget-list.php:120
+#: inc/class-dashboard.php:446 inc/class-dashboard.php:675
+#: inc/pages/help.php:58
 msgid "Email"
 msgstr ""
 
@@ -202,30 +202,30 @@ msgstr ""
 msgid " to edit it."
 msgstr ""
 
-#: inc/class-create-widget.php:409
+#: inc/class-create-widget.php:407
 #: inc/widget_parts/class-cx-widget-popup.php:1559
 msgid "Upgrade to Pro 🎉"
 msgstr ""
 
-#: inc/class-create-widget.php:410
+#: inc/class-create-widget.php:408
 msgid ""
 "Enjoy awesome features like beautiful timer templates, sending leads to "
 "email, emails integrations and more"
 msgstr ""
 
-#: inc/class-create-widget.php:413
+#: inc/class-create-widget.php:411
 #: inc/widget_parts/class-cx-widget-popup.php:1536
 #: inc/widget_parts/class-cx-widget-popup.php:1563
 msgid "Upgrade Now"
 msgstr ""
 
-#: inc/class-create-widget.php:416
+#: inc/class-create-widget.php:414
 #: inc/widget_parts/class-cx-widget-popup.php:1540
 #: inc/widget_parts/class-cx-widget-popup.php:1567
 msgid "Cancel anytime. No strings attached"
 msgstr ""
 
-#: inc/class-create-widget.php:417
+#: inc/class-create-widget.php:415
 #: inc/widget_parts/class-cx-widget-popup.php:1541
 #: inc/widget_parts/class-cx-widget-popup.php:1568
 msgid "30 days refund"
@@ -263,25 +263,6 @@ msgstr ""
 
 #: inc/class-cx-deactivation-form.php:66
 msgid "Cancel"
-msgstr ""
-
-#: inc/class-cx-help.php:46
-msgid ""
-"Hello! Are you experiencing any problems with Coupon X? Please let me know "
-":)"
-msgstr ""
-
-#: inc/class-cx-help.php:51
-msgid "How can I help you?"
-msgstr ""
-
-#: inc/class-cx-help.php:54
-msgid "Chat"
-msgstr ""
-
-#: inc/class-cx-help.php:62 inc/class-cx-help.php:63
-#: inc/class-dashboard.php:799
-msgid "Need help?"
 msgstr ""
 
 #: inc/class-cx-pricing.php:41
@@ -870,6 +851,10 @@ msgstr ""
 msgid "Please enter your message"
 msgstr ""
 
+#: inc/class-dashboard.php:799 inc/pages/help.php:25
+msgid "Need help?"
+msgstr ""
+
 #: inc/class-dashboard.php:800
 msgid "Upgrade"
 msgstr ""
@@ -932,6 +917,64 @@ msgstr ""
 
 #: inc/pages/email-signup.php:429
 msgid "Unsubscribe Anytime"
+msgstr ""
+
+#: inc/pages/help.php:20
+msgid "Powered by "
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Premio"
+msgstr ""
+
+#: inc/pages/help.php:26
+msgid "Close"
+msgstr ""
+
+#: inc/pages/help.php:31
+msgid "Support"
+msgstr ""
+
+#: inc/pages/help.php:52
+msgid "Co-Founder at Premio"
+msgstr ""
+
+#: inc/pages/help.php:55
+msgid ""
+"Hello! Are you experiencing any problems with coupon-x? Please let me know "
+":)"
+msgstr ""
+
+#: inc/pages/help.php:62
+msgid "How can I help you?"
+msgstr ""
+
+#: inc/pages/help.php:65 inc/pages/help.php:119
+msgid "Chat"
+msgstr ""
+
+#: inc/pages/help.php:71
+msgid "Or"
+msgstr ""
+
+#: inc/pages/help.php:72
+msgid "Visit our Help Center >>"
+msgstr ""
+
+#: inc/pages/help.php:108
+msgid "Sending Request..."
+msgstr ""
+
+#: inc/pages/help.php:125
+msgid "Done!"
+msgstr ""
+
+#: inc/pages/help.php:132
+msgid "Your message is sent successfully."
+msgstr ""
+
+#: inc/pages/help.php:138
+msgid "There is some problem in sending request. Please send us mail on %1$s"
 msgstr ""
 
 #: inc/pages/recommended-plugins.php:109
@@ -2253,10 +2296,6 @@ msgstr ""
 msgid ""
 "Use Coupon X to surprise visitors with engaging discount codes to boost "
 "your WooCommerce store's sales"
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Premio"
 msgstr ""
 
 #. Author URI of the plugin/theme

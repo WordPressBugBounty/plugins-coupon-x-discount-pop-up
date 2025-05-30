@@ -768,7 +768,7 @@ class Dashboard
             $response['errors'] = $error_array;
         }//end if
 
-        echo json_encode($response);
+        wp_send_json($response);
         wp_die();
 
     }//end cx_admin_send_message_to_owner()
@@ -796,7 +796,7 @@ class Dashboard
     {
         $url = admin_url('admin.php?page=couponx_pricing_tbl');
 
-        $links['need_help'] = '<a target="_blank" href="https://premio.io/help/?utm_source=pluginspage" >'.__('Need help?', 'coupon-x').'</a>';
+        $links['need_help'] = '<a target="_blank" href="https://wordpress.org/support/plugin/coupon-x-discount-pop-up/" >'.__('Need help?', 'coupon-x').'</a>';
         $links['go_pro']    = '<a  href="'.esc_url($url).'" style="color: #FF5983; font-weight: bold; display: inline-block; border: solid 1px #FF5983; border-radius: 4px; padding: 0 5px;" href="" class="chaty-plugins-gopro">'.esc_attr__('Upgrade', 'coupon-x').'</a>';
         return $links;
 

@@ -168,11 +168,8 @@ $data = WCP_CX_FOOTER_HELP_DATA;
             e.stopPropagation();
         });
         jQuery("body").click(function(){
-            if(jQuery(".premio-help-form").hasClass("active")) { 
-                jQuery(".premio-help-button").addClass('show'); 
+            if(jQuery(".premio-help-form").hasClass("active")) {                 
                 jQuery(".premio-help-button").removeClass('hide'); 
-                
-                jQuery(".premio-help-close-btn").addClass('hide');  
                 jQuery(".premio-help-close-btn").removeClass('show'); 
             }
             

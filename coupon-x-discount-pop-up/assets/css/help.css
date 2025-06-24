@@ -211,8 +211,8 @@ html[dir=rtl] .premio-help-form {
 .premio-help-close-btn {
     background-color: #656BE8;
     display: inline-block;
-    height: 64px;
-    width: 64px;
+    height: 55px;
+    width: 55px;
     padding: 11px;
     border-radius: 50%;
     transition: 0.4s;

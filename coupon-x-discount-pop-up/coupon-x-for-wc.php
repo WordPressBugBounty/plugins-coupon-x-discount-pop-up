@@ -4,7 +4,7 @@
     Description: Use Coupon X to surprise visitors with engaging discount codes to boost your WooCommerce store's sales
     Author: Premio
     Author URI: https://premio.io/downloads/coupon-x-discount-pop-up/
-    Version: 1.4.0
+    Version: 1.4.1
     Text Domain: coupon-x
     Domain Path: /languages
     License: GPLv3
@@ -26,7 +26,7 @@ define('COUPON_X_URL', plugin_dir_url(COUPON_X_FILE));
 define('COUPON_X_BUILD_URL', COUPON_X_FILE.'build/');
 define('COUPON_X_PLUGIN_BASE', plugin_basename(COUPON_X_FILE));
 define('COUPON_X_FREE_DEV_MODE', false);
-define('COUPON_X_VERSION', '1.4.0');
+define('COUPON_X_VERSION', '1.4.1');
 
 require_once 'inc/class-coupon-x.php';
 require_once 'inc/class-cx-rest.php';

@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coupon X Discount Pop Up 1.4.1\n"
+"Project-Id-Version: Coupon X Discount Pop Up 1.4.2\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/couponx-free-uncompressed\n"
-"POT-Creation-Date: 2025-06-24 05:08:48+00:00\n"
+"POT-Creation-Date: 2025-07-29 06:19:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -477,7 +477,7 @@ msgid "Country targeting"
 msgstr ""
 
 #: inc/class-cx-pricing.php:183
-#: inc/widget_parts/class-cx-widget-triggers.php:173
+#: inc/widget_parts/class-cx-widget-triggers.php:171
 msgid ""
 "Target your widget to specific countries. You can create different widgets "
 "for different countries"
@@ -488,7 +488,7 @@ msgid "Set widget visibility days & hours"
 msgstr ""
 
 #: inc/class-cx-pricing.php:187
-#: inc/widget_parts/class-cx-widget-triggers.php:521
+#: inc/widget_parts/class-cx-widget-triggers.php:519
 msgid ""
 "Display the widget on specific days and hours based on your opening days "
 "and hours"
@@ -694,10 +694,10 @@ msgstr ""
 #: inc/widget_parts/class-cx-widget-popup.php:1451
 #: inc/widget_parts/class-cx-widget-tab.php:60
 #: inc/widget_parts/class-cx-widget-tab.php:348
-#: inc/widget_parts/class-cx-widget-triggers.php:599
-#: inc/widget_parts/class-cx-widget-triggers.php:614
-#: inc/widget_parts/class-cx-widget-triggers.php:629
-#: inc/widget_parts/class-cx-widget-triggers.php:644
+#: inc/widget_parts/class-cx-widget-triggers.php:597
+#: inc/widget_parts/class-cx-widget-triggers.php:612
+#: inc/widget_parts/class-cx-widget-triggers.php:627
+#: inc/widget_parts/class-cx-widget-triggers.php:642
 msgid "On"
 msgstr ""
 
@@ -710,10 +710,10 @@ msgstr ""
 #: inc/widget_parts/class-cx-widget-popup.php:1452
 #: inc/widget_parts/class-cx-widget-tab.php:61
 #: inc/widget_parts/class-cx-widget-tab.php:349
-#: inc/widget_parts/class-cx-widget-triggers.php:600
-#: inc/widget_parts/class-cx-widget-triggers.php:615
-#: inc/widget_parts/class-cx-widget-triggers.php:630
-#: inc/widget_parts/class-cx-widget-triggers.php:645
+#: inc/widget_parts/class-cx-widget-triggers.php:598
+#: inc/widget_parts/class-cx-widget-triggers.php:613
+#: inc/widget_parts/class-cx-widget-triggers.php:628
+#: inc/widget_parts/class-cx-widget-triggers.php:643
 msgid "Off"
 msgstr ""
 
@@ -1290,7 +1290,7 @@ msgid "Specific collections"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-coupon.php:409
-#: inc/widget_parts/class-cx-widget-triggers.php:395
+#: inc/widget_parts/class-cx-widget-triggers.php:393
 msgid "Specific products"
 msgstr ""
 
@@ -1904,12 +1904,12 @@ msgid "Devices"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-triggers.php:65
-#: inc/widget_parts/class-cx-widget-triggers.php:712
+#: inc/widget_parts/class-cx-widget-triggers.php:710
 msgid "Desktop"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-triggers.php:72
-#: inc/widget_parts/class-cx-widget-triggers.php:790
+#: inc/widget_parts/class-cx-widget-triggers.php:788
 msgid "Mobile"
 msgstr ""
 
@@ -1946,7 +1946,7 @@ msgid "Time delay"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-triggers.php:119
-#: inc/widget_parts/class-cx-widget-triggers.php:137
+#: inc/widget_parts/class-cx-widget-triggers.php:136
 msgid "Display after "
 msgstr ""
 
@@ -1954,49 +1954,49 @@ msgstr ""
 msgid " seconds on the page"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:129
+#: inc/widget_parts/class-cx-widget-triggers.php:128
 msgid ""
 "The pop up will trigger after a user scrolls a certain percentage of the "
 "website"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:134
+#: inc/widget_parts/class-cx-widget-triggers.php:133
 msgid "Page scroll"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:139
+#: inc/widget_parts/class-cx-widget-triggers.php:138
 msgid " % on the page"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:147
+#: inc/widget_parts/class-cx-widget-triggers.php:145
 msgid ""
 "The coupon will automatically trigger and shown when a user is about to "
 "leave. "
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:147
+#: inc/widget_parts/class-cx-widget-triggers.php:145
 msgid "Read more"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:151
+#: inc/widget_parts/class-cx-widget-triggers.php:149
 msgid "Exit Intent"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:154
+#: inc/widget_parts/class-cx-widget-triggers.php:152
 msgid ""
 "The coupon pop-up will be shown automatically when visitors are about to "
 "leave the store"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:176
+#: inc/widget_parts/class-cx-widget-triggers.php:174
 msgid "Country targeting (When Off: Show for all countries)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:179
+#: inc/widget_parts/class-cx-widget-triggers.php:177
 msgid "All countries"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:203
+#: inc/widget_parts/class-cx-widget-triggers.php:201
 msgid ""
 "Display the Coupon X widget only for visitors who meet the condition you "
 "set. For example, you can show the Coupon X widget only to visitors that "
@@ -2004,218 +2004,218 @@ msgid ""
 "their cart"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:206
+#: inc/widget_parts/class-cx-widget-triggers.php:204
 msgid "Cart targeting (When Off: Show the widget for any cart value)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:209
-#: inc/widget_parts/class-cx-widget-triggers.php:351
-#: inc/widget_parts/class-cx-widget-triggers.php:375
-#: inc/widget_parts/class-cx-widget-triggers.php:443
-#: inc/widget_parts/class-cx-widget-triggers.php:570
-#: inc/widget_parts/class-cx-widget-triggers.php:675
-#: inc/widget_parts/class-cx-widget-triggers.php:703
+#: inc/widget_parts/class-cx-widget-triggers.php:207
+#: inc/widget_parts/class-cx-widget-triggers.php:349
+#: inc/widget_parts/class-cx-widget-triggers.php:373
+#: inc/widget_parts/class-cx-widget-triggers.php:441
+#: inc/widget_parts/class-cx-widget-triggers.php:568
+#: inc/widget_parts/class-cx-widget-triggers.php:673
+#: inc/widget_parts/class-cx-widget-triggers.php:701
 msgid "Add Rule"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:214
-#: inc/widget_parts/class-cx-widget-triggers.php:380
+#: inc/widget_parts/class-cx-widget-triggers.php:212
+#: inc/widget_parts/class-cx-widget-triggers.php:378
 msgid "Show"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:217
-#: inc/widget_parts/class-cx-widget-triggers.php:383
+#: inc/widget_parts/class-cx-widget-triggers.php:215
+#: inc/widget_parts/class-cx-widget-triggers.php:381
 msgid "Don't Show"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:222
+#: inc/widget_parts/class-cx-widget-triggers.php:220
 msgid "Cart type"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:225
+#: inc/widget_parts/class-cx-widget-triggers.php:223
 msgid "Cart money value"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:228
+#: inc/widget_parts/class-cx-widget-triggers.php:226
 msgid "Number of cart items"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:231
+#: inc/widget_parts/class-cx-widget-triggers.php:229
 msgid "Products in the cart"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:237
+#: inc/widget_parts/class-cx-widget-triggers.php:235
 msgid "Condition"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:240
+#: inc/widget_parts/class-cx-widget-triggers.php:238
 msgid "Over or equal"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:243
+#: inc/widget_parts/class-cx-widget-triggers.php:241
 msgid "Equal"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:246
+#: inc/widget_parts/class-cx-widget-triggers.php:244
 msgid "Under"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:282
+#: inc/widget_parts/class-cx-widget-triggers.php:280
 msgid ""
 "Show or don't show the widget on specific pages. You can use rules like "
 "contains, exact match, starts with, and ends with"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:285
+#: inc/widget_parts/class-cx-widget-triggers.php:283
 msgid "Show on pages (When Off: Show on all pages)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:291
+#: inc/widget_parts/class-cx-widget-triggers.php:289
 msgid "Show On"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:294
+#: inc/widget_parts/class-cx-widget-triggers.php:292
 msgid "Don't Show On"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:298
+#: inc/widget_parts/class-cx-widget-triggers.php:296
 msgid "Select rule"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:300
+#: inc/widget_parts/class-cx-widget-triggers.php:298
 msgid "Homepage"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:303
+#: inc/widget_parts/class-cx-widget-triggers.php:301
 msgid "Links that contain"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:306
+#: inc/widget_parts/class-cx-widget-triggers.php:304
 msgid "A specific link"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:309
+#: inc/widget_parts/class-cx-widget-triggers.php:307
 msgid "Links starting with"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:312
+#: inc/widget_parts/class-cx-widget-triggers.php:310
 msgid "Links ending with"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:315
+#: inc/widget_parts/class-cx-widget-triggers.php:313
 msgid "WordPress Pages"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:318
+#: inc/widget_parts/class-cx-widget-triggers.php:316
 msgid "WordPress Posts"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:321
+#: inc/widget_parts/class-cx-widget-triggers.php:319
 msgid "WordPress Categories"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:324
+#: inc/widget_parts/class-cx-widget-triggers.php:322
 msgid "WordPress Tags"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:328
+#: inc/widget_parts/class-cx-widget-triggers.php:326
 msgid "Woocommerce products"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:331
+#: inc/widget_parts/class-cx-widget-triggers.php:329
 msgid "Woocommerce products on sale"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:369
+#: inc/widget_parts/class-cx-widget-triggers.php:367
 msgid "The order history targeting feature is based on orders from the past 60 days"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:372
+#: inc/widget_parts/class-cx-widget-triggers.php:370
 msgid ""
 "Order history targeting (When Off: Show the widget no matter what was "
 "ordered in the past)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:387
+#: inc/widget_parts/class-cx-widget-triggers.php:385
 msgid "Based on the following purchase history"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:389
+#: inc/widget_parts/class-cx-widget-triggers.php:387
 msgid "Any product"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:392
+#: inc/widget_parts/class-cx-widget-triggers.php:390
 msgid "Products from a specific collection"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:398
+#: inc/widget_parts/class-cx-widget-triggers.php:396
 msgid "New users (users who haven't made a purchase yet)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:401
+#: inc/widget_parts/class-cx-widget-triggers.php:399
 msgid "Number of products ordered"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:404
+#: inc/widget_parts/class-cx-widget-triggers.php:402
 msgid "Money value"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:437
+#: inc/widget_parts/class-cx-widget-triggers.php:435
 msgid ""
 "Schedule the specific time and date when your Coupon X widget appears. Use "
 "this feature to offer time-limited coupons, or to start a promotion from a "
 "specific date."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:440
+#: inc/widget_parts/class-cx-widget-triggers.php:438
 msgid "Date scheduling (When Off: Show the widget immediately)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:449
+#: inc/widget_parts/class-cx-widget-triggers.php:447
 msgid "Start Date"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:453
+#: inc/widget_parts/class-cx-widget-triggers.php:451
 msgid "Start Time"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:460
-#: inc/widget_parts/class-cx-widget-triggers.php:553
+#: inc/widget_parts/class-cx-widget-triggers.php:458
+#: inc/widget_parts/class-cx-widget-triggers.php:551
 msgid "Timezone"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:468
+#: inc/widget_parts/class-cx-widget-triggers.php:466
 msgid "End Date"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:472
+#: inc/widget_parts/class-cx-widget-triggers.php:470
 msgid "End Time"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:524
+#: inc/widget_parts/class-cx-widget-triggers.php:522
 msgid "Days and hours (When Off: Show the widget all the time)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:588
+#: inc/widget_parts/class-cx-widget-triggers.php:586
 msgid ""
 "Show the widget only to visitors who come from specific traffic sources "
 "including direct traffic, social networks, search engines, Google Ads, or "
 "any other traffic source"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:591
+#: inc/widget_parts/class-cx-widget-triggers.php:589
 msgid "Traffic source (When Off: Show for any traffic source)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:604
+#: inc/widget_parts/class-cx-widget-triggers.php:602
 msgid "Show the widget to visitors who arrived to your website from direct traffic"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:607
+#: inc/widget_parts/class-cx-widget-triggers.php:605
 msgid "Direct visit"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:619
+#: inc/widget_parts/class-cx-widget-triggers.php:617
 msgid ""
 "Show the widget to visitors who arrived to your website from social "
 "networks including: Facebook, Twitter, Pinterest, Instagram, Google+, "
@@ -2223,68 +2223,68 @@ msgid ""
 "more"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:622
+#: inc/widget_parts/class-cx-widget-triggers.php:620
 msgid "Social networks"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:634
-#: inc/widget_parts/class-cx-widget-triggers.php:649
+#: inc/widget_parts/class-cx-widget-triggers.php:632
+#: inc/widget_parts/class-cx-widget-triggers.php:647
 msgid ""
 "Show the widget to visitors who arrived from search engines including: "
 "Google, Bing, Yahoo!, Yandex, AOL, Ask, WOW,  WebCrawler, Baidu and more"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:637
+#: inc/widget_parts/class-cx-widget-triggers.php:635
 msgid "Search engines"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:652
+#: inc/widget_parts/class-cx-widget-triggers.php:650
 msgid "Google Ads"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:656
+#: inc/widget_parts/class-cx-widget-triggers.php:654
 msgid "Specific URL"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:678
+#: inc/widget_parts/class-cx-widget-triggers.php:676
 msgid "Remove Rule"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:697
+#: inc/widget_parts/class-cx-widget-triggers.php:695
 msgid ""
 "Show the widget only to visitors who come from specific operating system "
 "and browser"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:700
+#: inc/widget_parts/class-cx-widget-triggers.php:698
 msgid "OS and Browsers (When OFF: display on all operating systems and browsers)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:709
+#: inc/widget_parts/class-cx-widget-triggers.php:707
 msgid ""
 "Show the widget to desktop visitors who are using specific operating "
 "systems and browsers"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:717
+#: inc/widget_parts/class-cx-widget-triggers.php:715
 msgid "All Desktop Operating Systems"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:742
+#: inc/widget_parts/class-cx-widget-triggers.php:740
 msgid "All Desktop Browsers"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:787
+#: inc/widget_parts/class-cx-widget-triggers.php:785
 msgid ""
 "Show the widget to mobile visitors who are using specific operating systems "
 "and browsers"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:795
+#: inc/widget_parts/class-cx-widget-triggers.php:793
 msgid "All Mobile Operating Systems"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-triggers.php:825
+#: inc/widget_parts/class-cx-widget-triggers.php:823
 msgid "All Mobile Browsers"
 msgstr ""
 

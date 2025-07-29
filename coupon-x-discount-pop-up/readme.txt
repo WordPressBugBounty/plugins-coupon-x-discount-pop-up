@@ -3,7 +3,7 @@ Contributors: premio, galdub, tomeraharon
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
 Tested up to: 6.8
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -168,6 +168,9 @@ Yes! You can even decide what widgets will show up on each device (desktop/mobil
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.4.2 =
+Improved cookie plugin compatibility
 
 = 1.4.1 =
 Widget creation flow bugs fixed

@@ -105,7 +105,7 @@ class Cx_Widget_Triggers
                                 <?php esc_html_e('Trigger ', 'coupon-x'); ?> <span><?php esc_html_e(' (Decide when & how the pop up will trigger)', 'coupon-x'); ?> </span>
                             </label>
                         </div>
-                        <div class='row gray-bg first'>
+                        <div class='row gray-bg first border-b border-gray-300'>
                             <div class='row-elements full'>
                                 <label>
                                     <span class="icon label-tooltip" title="<?php esc_html_e('The popup will trigger after a brief period of time', 'coupon-x'); ?>">
@@ -121,9 +121,8 @@ class Cx_Widget_Triggers
                                     <span><?php esc_html_e(' seconds on the page', 'coupon-x'); ?></span>
                                 </label>
                             </div>
-                        </div>
-                        <hr />
-                        <div class='row gray-bg '>
+                        </div> 
+                        <div class='row gray-bg border-b border-gray-300'>
                             <div class='row-elements full'>
                                 <label>
                                     <span class="icon label-tooltip" title="<?php esc_html_e('The pop up will trigger after a user scrolls a certain percentage of the website', 'coupon-x'); ?>">
@@ -139,8 +138,7 @@ class Cx_Widget_Triggers
                                     <span><?php esc_html_e(' % on the page', 'coupon-x'); ?></span>
                                 </label>
                             </div>
-                        </div>
-                        <hr />
+                        </div> 
                         <div class='row gray-bg last'>
                             <div class='row-elements full'>
                                 <label>

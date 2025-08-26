@@ -247,7 +247,7 @@ class Cx_Widget_Triggers
                         <input type='number' class='input-element cart-val hide' 
                             name='' value='' min='0' />
                         <div class="day-buttons">
-                            <a class="remove-cart-targeting" href="javascript:;">
+                            <a class="remove-cart-targeting" href="#">
                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>
@@ -335,7 +335,7 @@ class Cx_Widget_Triggers
                         </span>
                         <input type='text' class='input-element page-rule-val ' name='' value='' readonly>
                         <div class="day-buttons">
-                            <a class="remove-page-targeting" href="javascript:;">
+                            <a class="remove-page-targeting" href="#">
                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>
@@ -403,7 +403,7 @@ class Cx_Widget_Triggers
                             </option>
                         </select>                        
                         <div class="day-buttons">
-                            <a class="remove-order-targeting" href="javascript:;">
+                            <a class="remove-order-targeting" href="#">
                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>
@@ -471,7 +471,7 @@ class Cx_Widget_Triggers
                                 <input   type='text'  class='display_end_time input-element'/>
                             </div>
                             <div class="day-buttons" style='margin-top:5%'>
-                                <a class="remove-date-targeting" href="javascript:;">
+                                <a class="remove-date-targeting" href="#">
                                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                         <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>
@@ -554,7 +554,7 @@ class Cx_Widget_Triggers
                             </select>
                         </div>
                         <div class="day-buttons">
-                            <a class="remove-day-targeting" href="javascript:;">
+                            <a class="remove-day-targeting" href="#">
                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                     <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>
@@ -771,7 +771,7 @@ class Cx_Widget_Triggers
                                 </select>
                             </div>
                             <div class="day-buttons">
-                                <a class="remove-os-targeting" href="javascript:;">
+                                <a class="remove-os-targeting" href="#">
                                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(2.26764 0.0615997) rotate(45)" fill="white"></rect>
                                         <rect width="15.6301" height="2.24494" rx="1.12247" transform="translate(13.3198 1.649) rotate(135)" fill="white"></rect>

@@ -1544,7 +1544,7 @@ class Cx_Widget_Popup
         <img src="<?php echo esc_url(COUPON_X_URL."assets/img/mail_editor.jpg") ?>">
     </div>
     <div class="couponx-send-mail-close-button">
-        <a href="javascript:void(0)" class="close-send-mail-popup">
+        <a href="#" class="close-send-mail-popup">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 5L5 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"></path>
                 <path d="M5 5L15 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -1571,7 +1571,7 @@ class Cx_Widget_Popup
         <img src="<?php echo esc_url(COUPON_X_URL."assets/img/2-step-coupon-generation.png") ?>">
     </div>
     <div class="couponx-send-mail-close-button">
-        <a href="javascript:void(0)" class="close-two-step-coupon-popup">
+        <a href="#" class="close-two-step-coupon-popup">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 5L5 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"></path>
                 <path d="M5 5L15 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"></path>

@@ -22,8 +22,8 @@ $data = WCP_CX_FOOTER_HELP_DATA;
     </div>
     <div class="premio-help-button-wrap">
     <!-- Free/Pro Only URL Change -->
-        <a class="premio-help-button" href="javascript:;"><img src="<?php echo esc_url($data['help_icon']) ?>" alt="<?php esc_html_e("Need help?", 'coupon-x'); ?>"  /></a>
-        <a class="premio-help-close-btn" href="javascript:;"><img src="<?php echo esc_url($data['close_icon']) ?>" alt="<?php esc_html_e("Close", 'coupon-x'); ?>"  /></a>
+        <a class="premio-help-button" href="#"><img src="<?php echo esc_url($data['help_icon']) ?>" alt="<?php esc_html_e("Need help?", 'coupon-x'); ?>"  /></a>
+        <a class="premio-help-close-btn" href="#"><img src="<?php echo esc_url($data['close_icon']) ?>" alt="<?php esc_html_e("Close", 'coupon-x'); ?>"  /></a>
         
         <?php 
             $option = get_option("hide_coupon-x_cta");
@@ -32,7 +32,7 @@ $data = WCP_CX_FOOTER_HELP_DATA;
         <?php  } ?> 
         <div class="premio-help-absulate-content">
             <?php foreach($data['support_widget'] as $key => $value): 
-                $link = $value['link'] == false ? 'javascript:;' : esc_url($value['link']);
+                $link = $value['link'] == false ? '#' : esc_url($value['link']);
                 $class = $key == 'contact' ? 'contact-us-btn' : 'premio-click-to-close';
                 $target = $key == 'contact' ? '' : '_blank';
                 $pro_class = $key == 'upgrade_to_pro' ? ' pro' : '';

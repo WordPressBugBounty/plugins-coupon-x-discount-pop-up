@@ -401,21 +401,21 @@ $features = [
                         'name'      => "Mama Mitchell's",
                         'image'     => '',
                         'image_mobile' => '',
-                        'profile'   => 'javascript:;',
+                        'profile'   => '#',
                         'comment'   => "I was needing a quick pop-up for a limited time offer I was promoting on my website. I couldn't have found an easier, quick, self explanatory app than Premio! The customer service is stellar even on Valentine's morning when I was needing help! When it came time for me to remove/delete my limited time promo on the website, the Premio team was SO helpful!! I absolutely will be using more pop-up widgets in the future with this app. As a small business owner, Premio is just what I was needing for my website."
                     ],
                     [
                         'name'      => 'Rejuva Fresh',
                         'image'     => '',
                         'image_mobile' => '',
-                        'profile'   => 'javascript:;',
+                        'profile'   => '#',
                         'comment'   => "It's a very useful application that certainly does what it claims. I already got success with people copying a coupon and using that coupon for a purchase. I have only positive things to say so far. It's easy to set up and customize. Results are really eye catching and allows visitors to know there is a discount offer without an annoying type of pop up. It looks professional and attractive. Allows for super easy copy of discount code. That's why I like it so far. And, oh yes, the customer support was helpful to do the additional customization I requested."
                     ],
                     [
                         'name'      => 'Aithre Air',
                         'image'     => '',
                         'image_mobile' => '',
-                        'profile'   => 'javascript:;',
+                        'profile'   => '#',
                         'comment'   => "We are setting up a store with for sale items and rentals. We are using discount codes to promote accessory sales and to allow payment of rental deposits. The discount codes are very flexible which is helpful. In addition, the targeting mechanism is powerful, allowing us to target specific products on specific pages. Finally, we had a request to add targeting specific to our needs. This modification was done quickly. This app is great. We are happy with the flexibility it gives us using discount codes in our store."
                     ],
                 ];

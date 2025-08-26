@@ -199,6 +199,7 @@ html[dir=rtl] .premio-help-form {
     position: fixed;
     bottom: 25px;
     right: 25px;
+    text-align: right;
 }
 
 .premio-help-button-wrap img {
@@ -211,8 +212,8 @@ html[dir=rtl] .premio-help-form {
 .premio-help-close-btn {
     background-color: #656BE8;
     display: inline-block;
-    height: 55px;
-    width: 55px;
+    height: 64px;
+    width: 64px;
     padding: 11px;
     border-radius: 50%;
     transition: 0.4s;

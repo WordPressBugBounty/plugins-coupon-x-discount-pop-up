@@ -238,28 +238,28 @@ class Create_Widget
                     <div class="header-items flex-1">
                         <ul class="chaty-app-tabs flex items-start justify-between">
                             <li class="m-0">
-                                <a href="javascript:;" class="chaty-tab <?php echo ($step == 0) ? "active" : "completed" ?>" data-tab-id="cx-icon-design" id="cx-btn-icon-design" data-tab="first" data-tab-index="">
+                                <a href="#" class="chaty-tab <?php echo ($step == 0) ? "active" : "completed" ?>" data-tab-id="cx-icon-design" id="cx-btn-icon-design" data-tab="first" data-tab-index="">
                                     <span class="chaty-tabs-heading"></span>
                                     <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x') ?></span>
                                     <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x') ?></span>
                                 </a>
                             </li>
                             <li class="my-0">
-                                <a href="javascript:;" class="chaty-tab <?php echo ($step == 1) ? "active" : (($step == 2) ? "completed" : "") ?>" data-tab-id="cx-choose-coupon" id="cx-btn-choose-coupon" data-tab-index="" data-tab="middle" data-forced-save="yes">
+                                <a href="#" class="chaty-tab <?php echo ($step == 1) ? "active" : (($step == 2) ? "completed" : "") ?>" data-tab-id="cx-choose-coupon" id="cx-btn-choose-coupon" data-tab-index="" data-tab="middle" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
                                     <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x') ?></span>
                                     <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x') ?></span>
                                 </a>
                             </li>
                             <li class="m-0">
-                                <a href="javascript:;" class="chaty-tab <?php echo ($step == 2) ? "active" : "" ?>" data-tab-id="cx-pop-up-design" id="cx-btn-pop-up-design" data-tab-index="middle" data-forced-save="yes">
+                                <a href="#" class="chaty-tab <?php echo ($step == 2) ? "active" : "" ?>" data-tab-id="cx-pop-up-design" id="cx-btn-pop-up-design" data-tab-index="middle" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
                                     <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up Design", 'coupon-x') ?></span>
                                     <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up", 'coupon-x') ?></span>
                                 </a>
                             </li>
                             <li class="m-0">
-                                <a href="javascript:;" class="chaty-tab <?php echo ($step == 3) ? "active" : "" ?>" data-tab-id="cx-triggers-targeting" id="cx-btn-triggers-targeting" data-tab="last" data-tab-index="" data-forced-save="yes">
+                                <a href="#" class="chaty-tab <?php echo ($step == 3) ? "active" : "" ?>" data-tab-id="cx-triggers-targeting" id="cx-btn-triggers-targeting" data-tab="last" data-tab-index="" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
                                     <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x') ?></span>
                                     <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x') ?></span>
@@ -453,7 +453,7 @@ class Create_Widget
                     
             </div>
             <div class="couponx-timer-updrade-close-button">
-                <a href="javascript:void(0)" class="close-timer-popup">
+                <a href="#" class="close-timer-popup">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 5L5 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M5 5L15 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"></path>

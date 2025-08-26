@@ -82,7 +82,7 @@ class Coupon_X
                             <a style="padding: 15px 32px;" href="<?php echo esc_url(admin_url('admin.php?page=couponx')); ?>" class="btn-black btn-back-dashboard"><?php esc_html_e('Back to Dashboard', 'coupon-x'); ?></a>
                         </div>
                         <div class="welcome-modul-close-btn maxvisitor-model">
-                            <a href="javascript:void(0)" class="close-chaty-maxvisitor-popup">
+                            <a href="#" class="close-chaty-maxvisitor-popup">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 5L5 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M5 5L15 15" stroke="#4A4A4A" stroke-width="2.08" stroke-linecap="round" stroke-linejoin="round"/>

@@ -114,7 +114,7 @@ class Cx_Rest
                 $response = [
                     'status' => 201,
                     'response' => 'error',
-                    'error' => esc_html__('Request could not be completed due to missing parameters', 'coupon-x'),
+                    'error' => esc_html__('Request could not be completed due to missing parameters', 'coupon-x-discount-pop-up'),
                 ];
             }
         }
@@ -152,7 +152,8 @@ class Cx_Rest
             if ('' !== $id) {
                 wp_delete_post($id);
                 global $wpdb;
-                $widgets = $wpdb->get_var("SELECT count(ID) FROM $wpdb->posts WHERE post_type='cx_widget'");
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                $widgets = $wpdb->get_var($wpdb->prepare("SELECT count(ID) FROM {$wpdb->posts} WHERE post_type=%s", 'cx_widget'));
                 if (0 === $widgets) {
                     update_option('cx_total_widget', 1);
                 }
@@ -166,7 +167,7 @@ class Cx_Rest
                 $response = [
                     'status' => 201,
                     'response' => 'error',
-                    'error' => esc_html__('Request could not be completed due to missing parameters', 'coupon-x'),
+                    'error' => esc_html__('Request could not be completed due to missing parameters', 'coupon-x-discount-pop-up'),
                 ];
             }//end if
         }
@@ -339,7 +340,8 @@ class Cx_Rest
 
                 update_post_meta($widget_id, 'version', $version);
             } else {
-                $count = $wpdb->get_var("SELECT count(ID) FROM $wpdb->posts WHERE post_type='cx_widget'");
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                $count = $wpdb->get_var($wpdb->prepare("SELECT count(ID) FROM {$wpdb->posts} WHERE post_type=%s", 'cx_widget'));
                 if ($count > 0) {
                     $response = [
                         'status' => 0,
@@ -602,9 +604,10 @@ class Cx_Rest
                 $random = substr(time(), 2) . rand(10, 99);
 
                 $coupon_code = null !== $getCouponCode ? $getCouponCode : 'COUPONX' . $random;
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $coupon_id = $wpdb->get_var(
                     $wpdb->prepare(
-                        "SELECT ID FROM $wpdb->posts WHERE post_title= %s AND post_type = 'shop_coupon' AND post_status='publish'",
+                        "SELECT ID FROM {$wpdb->posts} WHERE post_title= %s AND post_type = 'shop_coupon' AND post_status='publish'",
                         $coupon_code
                     )
                 );
@@ -618,9 +621,10 @@ class Cx_Rest
                 ];
             } else {
                 $coupon_code = $settings['unique_coupon']['discount_code'];
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $coupon_id = $wpdb->get_var(
                     $wpdb->prepare(
-                        "SELECT ID FROM $wpdb->posts WHERE post_title= %s AND post_type = 'shop_coupon' AND post_status='publish'",
+                        "SELECT ID FROM {$wpdb->posts} WHERE post_title= %s AND post_type = 'shop_coupon' AND post_status='publish'",
                         $coupon_code
                     )
                 );
@@ -772,10 +776,10 @@ class Cx_Rest
 
             if ('' !== $email) {
                 // Update Coupon Code Get
-                $email_subject = \esc_html__('Coupon X New Lead', 'coupon-x');
+                $email_subject = \esc_html__('Coupon X New Lead', 'coupon-x-discount-pop-up');
                 $consent_required = (isset($settings['main']['consent_required'])) ? $settings['main']['consent_required'] : '';
                 $consent_checkbox = isset($settings['main']['consent']) ? $settings['main']['consent'] : '';
-                $error_message_text = (isset($settings['main']['error'])) ? $settings['main']['error'] : \esc_html__(" You've already used this email address, please try another email address", 'coupon-x');
+                $error_message_text = (isset($settings['main']['error'])) ? $settings['main']['error'] : \esc_html__(" You've already used this email address, please try another email address", 'coupon-x-discount-pop-up');
 
                 if ('' === $consent_checkbox && false === $is_consent) {
                     $is_consent = true;
@@ -810,7 +814,7 @@ class Cx_Rest
                     }
 
                     if ($usage_left < 1) {
-                        $errors = ('' === $error_message_text) ? \esc_html__('The coupon has reached its maximum number of usage.', 'coupon-x') : $error_message_text;
+                        $errors = ('' === $error_message_text) ? \esc_html__('The coupon has reached its maximum number of usage.', 'coupon-x-discount-pop-up') : $error_message_text;
 
                         $response = [
                             'status' => 401,
@@ -821,15 +825,16 @@ class Cx_Rest
                     }
                 }//end if
 
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
                 $customer_id = $wpdb->get_var(
-                //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-                    $wpdb->prepare("SELECT id FROM $lead_table WHERE email = %s", $email)
+                    $wpdb->prepare("SELECT id FROM `{$lead_table}` WHERE email = %s", $email)
                 );
 
                 // If email does not exist then insert record into table.
                 if (null === $customer_id) {
                     $d = gmdate('Y-m-d');
                     $ip = $this->get_the_user_ip();
+                    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
                     $customer_id = $wpdb->insert(
                         $lead_table,
                         [
@@ -883,7 +888,7 @@ class Cx_Rest
             }//end if
         }
 
-        $error_message = esc_html__('Something went wrong. Please contact site administrator', 'coupon-x');
+        $error_message = esc_html__('Something went wrong. Please contact site administrator', 'coupon-x-discount-pop-up');
 
         $response = [
             'status'      => 401,
@@ -944,10 +949,9 @@ class Cx_Rest
             if ('' !== $leadIds) {
                 global $wpdb;
                 $leads_tbl = $wpdb->prefix . 'cx_leads';
-                //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 foreach ($leadIds as $id) {
-                    $query = "DELETE FROM {$leads_tbl} WHERE id = %d";
-                    $query = $wpdb->prepare($query, $id);
+                    $query = $wpdb->prepare("DELETE FROM `{$leads_tbl}` WHERE id = %d", $id);
+                    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
                     $wpdb->query($query);
                 }
 
@@ -959,7 +963,7 @@ class Cx_Rest
                 $response = [
                     'status' => 201,
                     'response' => 'error',
-                    'error' => esc_html__('Request could not be completed due to missing parameters', 'coupon-x'),
+                    'error' => esc_html__('Request could not be completed due to missing parameters', 'coupon-x-discount-pop-up'),
                 ];
             }//end if
         }

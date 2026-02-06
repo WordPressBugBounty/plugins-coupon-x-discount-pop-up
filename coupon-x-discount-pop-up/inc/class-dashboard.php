@@ -19,6 +19,13 @@ if (! defined('ABSPATH')) {
 class Dashboard
 {
 
+    /**
+     * Cached value for collect leads active status.
+     *
+     * @var bool|null
+     */
+    private $collect_leads_active_cache = null;
+
 
     /**
      * Constructor.
@@ -36,6 +43,7 @@ class Dashboard
         add_filter('plugin_action_links_'.COUPON_X_PLUGIN_BASE, [ $this, 'upgrade_action_links' ]);
         add_action('admin_head', [$this, 'admin_head']);
         add_action('wp_ajax_search_woo_product', [$this, 'search_woo_product']);
+        add_action( 'admin_init', [ $this, 'check_for_redirection' ]);
 
     }//end __construct()
 
@@ -66,21 +74,22 @@ class Dashboard
     public function register_cx_settings_menu()
     {
         global $wpdb;
-        $count = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE post_type='cx_widget'");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_type = %s", 'cx_widget' ) );        $collect_leads_active = $this->is_collect_leads_active(); 
         // Widget listing menu.
         add_menu_page(
-            __('Coupon X', 'coupon-x'),
-            __('Coupon X', 'coupon-x'),
+            __('Coupon X', 'coupon-x-discount-pop-up'),
+            __('Coupon X', 'coupon-x-discount-pop-up'),
             'manage_options',
             'couponx',
             '',
             $this->get_icon()
         );
-
+ 
         add_submenu_page(
             'couponx',
-            __('Dashboard', 'coupon-x'),
-            __('Dashboard', 'coupon-x'),
+            __('Dashboard', 'coupon-x-discount-pop-up'),
+            __('Dashboard', 'coupon-x-discount-pop-up'),
             'manage_options',
             'couponx',
             [
@@ -93,8 +102,8 @@ class Dashboard
             // Create new widget menu.
             add_submenu_page(
                 'couponx',
-                __('Create New Widget', 'coupon-x'),
-                __('Create New Widget', 'coupon-x'),
+                __('Create New Widget', 'coupon-x-discount-pop-up'),
+                __('Create New Widget', 'coupon-x-discount-pop-up'),
                 'manage_options',
                 'add_couponx',
                 [
@@ -104,9 +113,9 @@ class Dashboard
             );
         } else {
             add_submenu_page(
-                ' ',
-                __('Create New Widget', 'coupon-x'),
-                __('Create New Widget', 'coupon-x'),
+                'couponx',
+                __('Create New Widget', 'coupon-x-discount-pop-up'),
+                __('Create New Widget', 'coupon-x-discount-pop-up'),
                 'manage_options',
                 'add_couponx',
                 [
@@ -114,10 +123,11 @@ class Dashboard
                     'add_coupon_settings',
                 ]
             );
+           
             add_submenu_page(
                 'couponx',
-                __('Create New Widget', 'coupon-x'),
-                __('Create New Widget', 'coupon-x'),
+                __('Create New Widget', 'coupon-x-discount-pop-up'),
+                __('Create New Widget', 'coupon-x-discount-pop-up'),
                 'manage_options',
                 admin_url('admin.php?page=couponx_pro_features')
             );
@@ -126,8 +136,8 @@ class Dashboard
         // Create new leads menu.
         add_submenu_page(
             'couponx',
-            __('Leads', 'coupon-x'),
-            __('Leads', 'coupon-x'),
+            __('Leads', 'coupon-x-discount-pop-up'),
+            __('Leads', 'coupon-x-discount-pop-up'),
             'manage_options',
             'leads_list',
             [
@@ -135,23 +145,26 @@ class Dashboard
                 'display_coupon_leads',
             ]
         );
-        add_submenu_page(
-            'couponx',
-            __('Integrations', 'coupon-x'),
-            __('Integrations', 'coupon-x'),
-            'manage_options',
-            'cx_integrations',
-            [
-                $this,
-                'email_client_integration',
-            ]
-        );
+        if ($collect_leads_active) {
+            add_submenu_page(
+                'couponx',
+                __('Integrations', 'coupon-x-discount-pop-up'),
+                __('Integrations', 'coupon-x-discount-pop-up'),
+                'manage_options',
+                'cx_integrations',
+                [
+                    $this,
+                    'email_client_integration',
+                ]
+            );
+    
+        }
 
         if(get_option('hide_couponx_plugins') != 1) {
             add_submenu_page(
                 'couponx',
-                __('Recommended Plugins', 'coupon-x'),
-                __('Recommended Plugins', 'coupon-x'),
+                __('Recommended Plugins', 'coupon-x-discount-pop-up'),
+                __('Recommended Plugins', 'coupon-x-discount-pop-up'),
                 'manage_options',
                 'cx-recommended-plugins',
                 [
@@ -163,8 +176,8 @@ class Dashboard
 
         add_submenu_page(
             'couponx',
-            __('Upgrade to Pro ⭐️', 'coupon-x'),
-            __('Upgrade to Pro ⭐️', 'coupon-x'),
+            __('Upgrade to Pro ⭐️', 'coupon-x-discount-pop-up'),
+            __('Upgrade to Pro ⭐️', 'coupon-x-discount-pop-up'),
             'manage_options',
             'couponx_pricing_tbl',
             [
@@ -175,8 +188,8 @@ class Dashboard
 
         add_submenu_page(
             ' ',
-            __('Coupon X Pro Features', 'coupon-x'),
-            __('Coupon X Pro Features', 'coupon-x'),
+            __('Coupon X Pro Features', 'coupon-x-discount-pop-up'),
+            __('Coupon X Pro Features', 'coupon-x-discount-pop-up'),
             'manage_options',
             'couponx_pro_features',
             [
@@ -186,6 +199,113 @@ class Dashboard
         );
 
     }//end register_cx_settings_menu()
+
+
+    /**
+     * Check for redirection
+     *
+     * @return void
+     */
+    public function check_for_redirection(){
+        $page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+        if($page == 'leads_list'){
+            $total_leads = $this->total_cx_widgets_leads(); // Total number of cx widgets leads
+            $collect_leads_active = $this->is_collect_leads_active(); // True if collect leads is active, false otherwise
+            if($total_leads == 0 && !$collect_leads_active){
+                wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=couponx' ) ) );
+                exit;
+            }
+        } elseif ( $page === 'add_couponx' ) {
+            $id    = isset($_GET['id']) ? sanitize_text_field($_GET['id']) : '';
+            $count = $this->total_cx_widgets_count();
+
+            if ( $count > 0 && '' === $id ) {
+                wp_safe_redirect( admin_url( 'admin.php?page=couponx' ) );
+                exit;
+            }
+        }
+    } //end check_for_redirection()
+
+    /**
+     * Total number of cx widgets
+     *
+     * @return int Total number of cx widgets
+     */
+    public function total_cx_widgets_count(){
+        global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_type = %s", 'cx_widget' ) );
+        return absint( $count );
+    }//end total_cx_widgets_count()
+
+
+    
+    /**
+     * Total number of cx widgets leads
+     *
+     * @return int Total number of cx widgets leads
+     */
+    public function total_cx_widgets_leads() {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'cx_leads';
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+        $total_leads = $wpdb->get_var( "SELECT COUNT(*) FROM `{$table_name}`" );
+        return absint( $total_leads );
+    }//end total_cx_widgets_leads()
+
+
+    /**
+     * Check if collect leads is active
+     *
+     * @return bool True if collect leads is active, false otherwise
+     */
+    public function is_collect_leads_active() {
+        if (null !== $this->collect_leads_active_cache) {
+            return $this->collect_leads_active_cache;
+        }
+
+        // check is widget contact least is enabled based on this cx plugins structure
+        global $wpdb;
+        
+        // Get all published cx_widget posts
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $widgets = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status = %s",
+                'cx_widget',
+                'publish'
+            )
+        );
+        
+        if (empty($widgets)) {
+            $this->collect_leads_active_cache = false;
+            return $this->collect_leads_active_cache;
+        }
+        
+        // Check each widget to see if it has lead collection enabled
+        foreach ($widgets as $widget) {
+            $widget_data = get_post_meta($widget->ID, 'prm_cx_widget_data', true);
+            
+            // Check if widget data exists and has popup style settings
+            if (!empty($widget_data) && isset($widget_data['popup']['style'])) {
+                $style = $widget_data['popup']['style'];
+                
+                // style-2: Collect email first, then show the coupon
+                // style-5: Collect email first, then show the announcement
+                if (in_array($style, ['style-2', 'style-5'])) {
+                    // Check if widget is active (not disabled)
+                    $status = get_post_meta($widget->ID, 'status', true);
+                    if ($status !== '0') {
+                        $this->collect_leads_active_cache = true;
+                        return $this->collect_leads_active_cache;
+                    }
+                }
+            }
+        }
+        
+        $this->collect_leads_active_cache = false;
+        return $this->collect_leads_active_cache;
+    } 
 
 
     /**
@@ -206,23 +326,23 @@ class Dashboard
     {
 
         $labels = [
-            'name'               => _x('CX Widget', 'Post type general name', 'coupon-x'),
-            'singular_name'      => _x('CX Widget', 'Post type singular name', 'coupon-x'),
-            'menu_name'          => _x('CX Widgets', 'Admin Menu text', 'coupon-x'),
-            'name_admin_bar'     => _x('CX Widgets', 'Add New on Toolbar', 'coupon-x'),
-            'add_new'            => __('Add New', 'coupon-x'),
-            'add_new_item'       => __('Add New CX Widget', 'coupon-x'),
-            'new_item'           => __('New CX Widget', 'coupon-x'),
-            'edit_item'          => __('Edit CX Widget', 'coupon-x'),
-            'view_item'          => __('View CX Widget', 'coupon-x'),
-            'all_items'          => __('All CX Widgets', 'coupon-x'),
-            'search_items'       => __('Search CX Widgets', 'coupon-x'),
-            'not_found'          => __('No coupon found.', 'coupon-x'),
-            'not_found_in_trash' => __('No coupon found in Trash.', 'coupon-x'),
+            'name'               => _x('CX Widget', 'Post type general name', 'coupon-x-discount-pop-up'),
+            'singular_name'      => _x('CX Widget', 'Post type singular name', 'coupon-x-discount-pop-up'),
+            'menu_name'          => _x('CX Widgets', 'Admin Menu text', 'coupon-x-discount-pop-up'),
+            'name_admin_bar'     => _x('CX Widgets', 'Add New on Toolbar', 'coupon-x-discount-pop-up'),
+            'add_new'            => __('Add New', 'coupon-x-discount-pop-up'),
+            'add_new_item'       => __('Add New CX Widget', 'coupon-x-discount-pop-up'),
+            'new_item'           => __('New CX Widget', 'coupon-x-discount-pop-up'),
+            'edit_item'          => __('Edit CX Widget', 'coupon-x-discount-pop-up'),
+            'view_item'          => __('View CX Widget', 'coupon-x-discount-pop-up'),
+            'all_items'          => __('All CX Widgets', 'coupon-x-discount-pop-up'),
+            'search_items'       => __('Search CX Widgets', 'coupon-x-discount-pop-up'),
+            'not_found'          => __('No coupon found.', 'coupon-x-discount-pop-up'),
+            'not_found_in_trash' => __('No coupon found in Trash.', 'coupon-x-discount-pop-up'),
         ];
         $args   = [
             'labels'             => $labels,
-            'description'        => __('CX Widget', 'coupon-x'),
+            'description'        => __('CX Widget', 'coupon-x-discount-pop-up'),
             'public'             => true,
             'publicly_queryable' => true,
             'show_ui'            => true,
@@ -325,7 +445,7 @@ class Dashboard
                     'cx_nonce' => wp_create_nonce('wp_rest')
                 ]
             );
-            wp_set_script_translations('cx-settings-script', 'coupon-x');
+            wp_set_script_translations('cx-settings-script', 'coupon-x-discount-pop-up');
         } else if ('coupon-x_page_leads_list' === $hook) {
             wp_enqueue_style('popin-font', 'https://fonts.googleapis.com/css?family=Poppins%3A100%2C200%2C300%2C400%2C500%2C600%2C700&#038;ver=5.2.4');
             wp_enqueue_script('jquery-ui-core');
@@ -346,8 +466,8 @@ class Dashboard
                 ]
             );
 
-            wp_set_script_translations('cx-listing-js', 'coupon-x');
-        } else if ('plugins.php' === $hook) {
+            wp_set_script_translations('cx-listing-js', 'coupon-x-discount-pop-up');
+        }else if ('plugins.php' === $hook) {
             wp_enqueue_style('deactivation-css', COUPON_X_URL.'assets/css/deactivation-popup'.esc_attr($min).'.css', '', COUPON_X_VERSION);
             wp_enqueue_script('deactivation-js', COUPON_X_URL.'assets/js/deactivation-popup'.esc_attr($min).'.js', [ 'jquery', 'wp-i18n' ], COUPON_X_VERSION);
 
@@ -359,7 +479,7 @@ class Dashboard
                     'nonce' => wp_create_nonce('cx_deactivate_nonce'),
                 ]
             );
-            wp_set_script_translations('cx-listing-js', 'coupon-x');
+            wp_set_script_translations('cx-listing-js', 'coupon-x-discount-pop-up');
         } else if ('coupon-x_page_couponx_pricing_tbl' === $hook) {
             wp_enqueue_style('pricing-css', COUPON_X_URL.'assets/css/pricing-tbl'.esc_attr($min).'.css', '', COUPON_X_VERSION);
             wp_enqueue_script('slick-js', COUPON_X_URL.'assets/js/slick.min.js', [ 'jquery' ], COUPON_X_VERSION);
@@ -380,6 +500,23 @@ class Dashboard
     }//end include_admin_scripts()
 
     function admin_head() {
+        global $submenu;
+        $parent_slug = 'couponx';
+        $elements_widgets = $this->total_cx_widgets_count(); // Total number of cx widgets
+        $total_leads = $this->total_cx_widgets_leads(); // Total number of cx widgets leads
+        $collect_leads_active = $this->is_collect_leads_active(); // True if collect leads is active, false otherwise
+ 
+        if (isset($submenu[$parent_slug])) {
+            foreach ($submenu[$parent_slug] as &$item) {
+                if (isset($item[2]) && $item[2] === 'leads_list') {
+                    $item[4] = 'cx-admin-menu-leads'; // add your class here
+                }
+                if (isset($item[0]) && $item[0] === 'Create New Widget' && $elements_widgets > 0) {
+                    $item[4] = 'cx-admin-menu-upgrade'; // add your class here
+                }
+            }
+        } 
+  
         ?>
         <style>
             #adminmenu .toplevel_page_couponx > ul > li:last-child {
@@ -421,6 +558,22 @@ class Dashboard
                 width: 100%;
                 height: 100%;
             }
+            #toplevel_page_couponx ul.wp-submenu .cx-admin-menu-upgrade {
+                display: none !important;
+            }
+
+            <?php
+            if( $elements_widgets === 0  ){
+                echo '#toplevel_page_couponx ul.wp-submenu .wp-first-item {
+                    display: none !important;
+                }';
+            }
+                if( $total_leads === 0 && !$collect_leads_active) {
+                    echo '#toplevel_page_couponx ul.wp-submenu .cx-admin-menu-leads {
+                        display: none !important;
+                    }';
+                }
+            ?>
         </style>
         <?php
     }
@@ -433,20 +586,20 @@ class Dashboard
     { 
         global $wpdb;
         $leads_tbl = $wpdb->prefix.'cx_leads';
-     //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-        $leads = $wpdb->get_results("SELECT * FROM $leads_tbl ORDER BY id DESC");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+        $leads = $wpdb->get_results("SELECT * FROM `{$leads_tbl}` ORDER BY id DESC");
         ?>
 
         <div class='listing'>
-            <input type='hidden' name='cx_nonce' value = '<?php echo wp_create_nonce('wp_rest'); ?>' />
+            <input type='hidden' name='cx_nonce' value = '<?php echo esc_attr(wp_create_nonce('wp_rest')); ?>' />
             <table class='leads-listing display nowrap'>
                 <thead>
                     <th> <input type='checkbox' class='select-all' /> </th>
-                    <th class="text-left"><?php esc_html_e('Name', 'coupon-x'); ?></th>
-                    <th class="text-left"><?php esc_html_e('Email', 'coupon-x'); ?></th>
-                    <th><?php esc_html_e('Widget Name', 'coupon-x'); ?></th>
-                    <th><?php esc_html_e('Date', 'coupon-x'); ?></th>
-                    <th><?php esc_html_e('Ip Address', 'coupon-x'); ?></th>
+                    <th class="text-left"><?php esc_html_e('Name', 'coupon-x-discount-pop-up'); ?></th>
+                    <th class="text-left"><?php esc_html_e('Email', 'coupon-x-discount-pop-up'); ?></th>
+                    <th><?php esc_html_e('Widget Name', 'coupon-x-discount-pop-up'); ?></th>
+                    <th><?php esc_html_e('Date', 'coupon-x-discount-pop-up'); ?></th>
+                    <th><?php esc_html_e('Ip Address', 'coupon-x-discount-pop-up'); ?></th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -479,7 +632,7 @@ class Dashboard
                 </tbody>
             </table>
         </div>
-        <div id="lead-delete-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Delete Lead?', 'coupon-x'); ?>" style='display: none;'>
+        <div id="lead-delete-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Delete Lead?', 'coupon-x-discount-pop-up'); ?>" style='display: none;'>
             <p class='desc'>
             </p>
             <input type="hidden" id="dashboard_lead_id" value="" />
@@ -488,7 +641,7 @@ class Dashboard
             <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" style="width:150px;height:150px;"><path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></path></svg>
         </div>
         <div id="wp_flash_message" class="hide">
-        <?php echo __('Record(s) deleted successfully', 'coupon-x'); ?>
+        <?php echo esc_html__('Record(s) deleted successfully', 'coupon-x-discount-pop-up'); ?>
             <span>
                 <a href="#" class="close_flash_popup">&#x2715;</a>
             </span>
@@ -535,16 +688,16 @@ class Dashboard
             $error_counter++;
             $response['message'] = 'Please provide reason';
         } else if (empty($nonce)) {
-            $response['message'] = esc_html__('Your request is not valid', 'coupon-x');
+            $response['message'] = esc_html__('Your request is not valid', 'coupon-x-discount-pop-up');
             $error_counter++;
             $response['valid'] = 0;
         } else if (! current_user_can('manage_options')) {
-            $response['message'] = esc_html__('Your request is not valid', 'coupon-x');
+            $response['message'] = esc_html__('Your request is not valid', 'coupon-x-discount-pop-up');
             $error_counter++;
             $response['valid'] = 0;
         } else {
             if (! wp_verify_nonce($nonce, 'cx_deactivate_nonce')) {
-                $response['message'] = esc_html__('Your request is not valid', 'coupon-x');
+                $response['message'] = esc_html__('Your request is not valid', 'coupon-x-discount-pop-up');
                 $error_counter++;
                 $response['valid'] = 0;
             }
@@ -655,7 +808,7 @@ class Dashboard
         $response['errors']  = [];
         $response['message'] = '';
         $error_array         = [];
-        $error_message       = esc_attr__('%s is required', 'coupon-x');
+        $error_message       = esc_attr__('%s is required', 'coupon-x-discount-pop-up');
 
         $textarea_text = filter_input(INPUT_POST, 'textarea_text');
         $user_email    = filter_input(INPUT_POST, 'user_email');
@@ -664,15 +817,15 @@ class Dashboard
         if (empty($textarea_text)) {
             $error         = [
                 'key'     => 'textarea_text',
-                'message' => esc_attr__('Please enter your message', 'coupon-x'),
+                'message' => esc_html__('Please enter your message', 'coupon-x-discount-pop-up'),
             ];
             $error_array[] = $error;
         }
 
         if (empty($user_email)) {
             $error         = [
-                'key'     => 'user_email',
-                'message' => sprintf($error_message, esc_attr__('Email', 'coupon-x')),
+                'key'     => 'user_email', 
+                'message' => esc_html__('Email is required', 'coupon-x-discount-pop-up'),
             ];
             $error_array[] = $error;
         } else if (! filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
@@ -796,8 +949,8 @@ class Dashboard
     {
         $url = admin_url('admin.php?page=couponx_pricing_tbl');
 
-        $links['need_help'] = '<a target="_blank" href="https://wordpress.org/support/plugin/coupon-x-discount-pop-up/" >'.__('Need help?', 'coupon-x').'</a>';
-        $links['go_pro']    = '<a  href="'.esc_url($url).'" style="color: #FF5983; font-weight: bold; display: inline-block; border: solid 1px #FF5983; border-radius: 4px; padding: 0 5px;" href="" class="chaty-plugins-gopro">'.esc_attr__('Upgrade', 'coupon-x').'</a>';
+        $links['need_help'] = '<a target="_blank" href="https://wordpress.org/support/plugin/coupon-x-discount-pop-up/" >'.__('Need help?', 'coupon-x-discount-pop-up').'</a>';
+        $links['go_pro']    = '<a  href="'.esc_url($url).'" style="color: #FF5983; font-weight: bold; display: inline-block; border: solid 1px #FF5983; border-radius: 4px; padding: 0 5px;" href="" class="chaty-plugins-gopro">'.esc_attr__('Upgrade', 'coupon-x-discount-pop-up').'</a>';
         return $links;
 
     }//end upgrade_action_links()
@@ -897,7 +1050,7 @@ class Dashboard
                     <div class="clear clearfix"></div>
                 </div>                
             </div>
-            <div id="disconnect-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Are you sure about that?', 'coupon-x'); ?>" style='display: none;'>
+            <div id="disconnect-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Are you sure about that?', 'coupon-x-discount-pop-up'); ?>" style='display: none;'>
                 <p class='desc'>
                 Turning off the feature will <span class='red-text'>stop syncing</span> from submitted emails to <span class='client'></span>. You will not receive new contacts on <span class='client'></span>.
                 </p>
@@ -917,13 +1070,19 @@ class Dashboard
         if(isset($search) && isset($searchType)) {
             if(!empty($search)) {
                 if($searchType == "product") {
-                    $query = "SELECT ID, post_title 
-                        FROM ".$wpdb->posts."
-                        WHERE post_status = 'publish' 
-                            AND post_type = '".esc_attr($searchType)."'
-                            AND post_title like '%".esc_sql($search)."%'
-                            LIMIT 0,10";
-                    $results = $wpdb->get_results($query);
+                    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                    $results = $wpdb->get_results(
+                        $wpdb->prepare(
+                            "SELECT ID, post_title 
+                            FROM {$wpdb->posts}
+                            WHERE post_status = 'publish' 
+                                AND post_type = %s
+                                AND post_title LIKE %s
+                            LIMIT 0,10",
+                            $searchType,
+                            '%' . $wpdb->esc_like($search) . '%'
+                        )
+                    );
                     if(!empty($results)) {
                         foreach ($results as $result) {
                             $item = [

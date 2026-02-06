@@ -19,12 +19,12 @@
 class Cx_SIGNUP_CLASS {
 
     /**
-     * Option name used to store the update message for the "coupon-x" feature.
+     * Option name used to store the update message for the "coupon-x-discount-pop-up" feature.
      */
     private static $update_message_option = 'cx_signup_popup';
 
     /**
-     * Option name used to store the date for the next signup related to the "coupon-x" feature.
+     * Option name used to store the date for the next signup related to the "coupon-x-discount-pop-up" feature.
      */
     private static $next_signup_date = 'cx_next_signup_date';
 
@@ -57,11 +57,11 @@ class Cx_SIGNUP_CLASS {
         }
 
         define('CX_UPDATE_POPUP_CONTENT', array(
-            'plugin_name'           => esc_html__('Coupon X', 'coupon-x'),
-            'trust_user'            => esc_html__('Join the list thousands of users trust', 'coupon-x'),
-            'website_owners'        => esc_html__('Thousands', 'coupon-x'),
-            'rating'                => esc_html__('4.9/5 Rating', 'coupon-x'),
-            'review'                => esc_html__('Based on User Reviews', 'coupon-x'),
+            'plugin_name'           => esc_html__('Coupon X', 'coupon-x-discount-pop-up'),
+            'trust_user'            => esc_html__('Join the list thousands of users trust', 'coupon-x-discount-pop-up'),
+            'website_owners'        => esc_html__('Thousands', 'coupon-x-discount-pop-up'),
+            'rating'                => esc_html__('4.9/5 Rating', 'coupon-x-discount-pop-up'),
+            'review'                => esc_html__('Based on User Reviews', 'coupon-x-discount-pop-up'),
             'trust_user_img'        => COUPON_X_URL . "assets/img/signup/user-trust.svg",
             'plugin_logo'           => COUPON_X_URL . "assets/img/signup/cx-logo.png",
             'font_url'              => COUPON_X_URL . "assets/css/Lato-Regular.woff",
@@ -97,7 +97,8 @@ class Cx_SIGNUP_CLASS {
        
         if (!str_contains($referer, 'couponx')) {
             global $wpdb;
-            $widget_count = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE post_type='cx_widget'");
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $widget_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_type=%s", 'cx_widget'));
            
             if($widget_count > 0){
                 add_option(self::$show_modal_name, 1);

@@ -50,7 +50,7 @@ class Create_Widget
         $default = [
             'tab'           => [
                 'show_icon'        => 1,
-                'widget_title'    => esc_html__('My widget #', 'coupon-x').$number,
+                'widget_title'    => esc_html__('My widget #', 'coupon-x-discount-pop-up').$number,
                 'tab_color'       => '#FFC600',
                 'icon_color'      => '#605DEC',
                 'tab_icon'        => 'tab-icon-1',
@@ -61,7 +61,7 @@ class Create_Widget
                 'bottom_spacing'  => 100,
                 'side_spacing'    => 50,
                 'tab_size'        => 50,
-                'call_action'     => esc_html__('Get 10% off now!', 'coupon-x'),
+                'call_action'     => esc_html__('Get 10% off now!', 'coupon-x-discount-pop-up'),
                 'action_color'    => '#FFFFFF',
                 'action_bgcolor'  => '#605DEC',
                 'show_cta'        => 2,
@@ -89,22 +89,22 @@ class Create_Widget
             ],
             'main'          => [
                 'bgcolor'          => '#ffffff',
-                'headline'         => esc_html__('Enter your email and unlock amazing deals!', 'coupon-x'),
+                'headline'         => esc_html__('Enter your email and unlock amazing deals!', 'coupon-x-discount-pop-up'),
                 'headline_color'   => '#000000',
-                'email'            => esc_html__('Email', 'coupon-x'),
+                'email'            => esc_html__('Email', 'coupon-x-discount-pop-up'),
                 'email_color'      => '#FFFFFF',
                 'text_color'       => '#000000',
                 'email_brdcolor'   => '#635EFF',
-                'btn_text'         => esc_html__('Send', 'coupon-x'),
+                'btn_text'         => esc_html__('Send', 'coupon-x-discount-pop-up'),
                 'btn_color'        => '#605DEC',
                 'btn_text_color'   => '#FFFFFF',
-                'desc'             => esc_html__('Get ready to unwrap the gift of savings!', 'coupon-x'),
+                'desc'             => esc_html__('Get ready to unwrap the gift of savings!', 'coupon-x-discount-pop-up'),
                 'desc_color'       => '#000000',
                 'consent'          => 0,
-                'consent_text'     => esc_html__('I agree to join the mailing list', 'coupon-x'),
+                'consent_text'     => esc_html__('I agree to join the mailing list', 'coupon-x-discount-pop-up'),
                 'consent_required' => 0,
                 'customer_email'   => 1,
-                'error'            => esc_html__('You have already used this email address, please try another email address', 'coupon-x'),
+                'error'            => esc_html__('You have already used this email address, please try another email address', 'coupon-x-discount-pop-up'),
                 'error_color'      => '#FFFFFF',
                 'send_coupon'      => 0,
             ],
@@ -113,18 +113,18 @@ class Create_Widget
                 'custom_link'     => '',
                 'new_tab'         => 0,
                 'bg_color'        => '#ffffff',
-                'headline'        => esc_html__('Unlock exclusive deals awaiting you', 'coupon-x'),
+                'headline'        => esc_html__('Unlock exclusive deals awaiting you', 'coupon-x-discount-pop-up'),
                 'headline_color'  => '#000000',
                 'error_color'     => '#000000',
                 'coupon_color'    => '#FFFFFF',
                 'text_color'      => '#929292',
                 'coupon_brdcolor' => '#635EFF',
                 'clsbtn_color'    => '#000000',
-                'cpy_btn'         => esc_html__('Copy Code', 'coupon-x'),
-                'cpy_msg'         => esc_html__('Coupon is copied to clipboard', 'coupon-x'),
+                'cpy_btn'         => esc_html__('Copy Code', 'coupon-x-discount-pop-up'),
+                'cpy_msg'         => esc_html__('Coupon is copied to clipboard', 'coupon-x-discount-pop-up'),
                 'btn_color'       => '#605DEC',
                 'txt_color'       => '#FFFFFF',
-                'desc'            => esc_html__('Your exclusive code is ready! Copy it now!', 'coupon-x'),
+                'desc'            => esc_html__('Your exclusive code is ready! Copy it now!', 'coupon-x-discount-pop-up'),
                 'desc_color'      => '#000000',
                 'couponcode_type' => '',
                 'enable_styles'   => 1,
@@ -159,12 +159,12 @@ class Create_Widget
             ],
             'ex_coupon'     => ['coupon' => ''],
             'announcement'  => [
-                'headline'       => esc_html__('Check out our latest collection', 'coupon-x'),
+                'headline'       => esc_html__('Check out our latest collection', 'coupon-x-discount-pop-up'),
                 'headline_color' => '#000000',
-                'desc'           => esc_html__('New fall collection is now on sale', 'coupon-x'),
+                'desc'           => esc_html__('New fall collection is now on sale', 'coupon-x-discount-pop-up'),
                 'desc_color'     => '#000000',
                 'enable_btn'     => '0',
-                'cpy_btn'        => esc_html__('CLAIM NOW', 'coupon-x'),
+                'cpy_btn'        => esc_html__('CLAIM NOW', 'coupon-x-discount-pop-up'),
                 'btn_action'     => 1,
                 'redirect_url'   => 'https://example.com',
                 'bg_color'       => '#ffffff',
@@ -216,53 +216,56 @@ class Create_Widget
      */
     public function create_widget()
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $id = isset($_GET['id']) ? filter_input(INPUT_GET, 'id') : '';
         global $wpdb;
-        $count = $wpdb->get_var("SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_type='cx_widget'");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_type=%s", 'cx_widget'));
         $slug  = '';
         if ($count > 0 && '' === $id) {
-            exit(wp_redirect(admin_url('admin.php?page=couponx')));
+            wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=couponx' ) ) );
+            exit;
         }
         $step = 0;
         ?>
         <div class='wrap create-widget'>
             <form method="post" action="" id='cx_widget'>
                 <input type='hidden' class='widget-id' name='cx_settings[tab][cx_widget_id]' value='<?php echo esc_attr($id); ?>'/>
-                <input type='hidden' name='cx_nonce' value='<?php echo wp_create_nonce('wp_rest'); ?>'/>
+                <input type='hidden' name='cx_nonce' value='<?php echo esc_attr(wp_create_nonce('wp_rest')); ?>'/>
                 <div class="chaty-header-space"></div>
                 <div class="chaty-header chaty-logo z-50 flex gap-3 items-center justify-between bg-white p-1.5 fixed top-0 left-0 w-full" id="chaty-header-tab-label">
-                    <a class="text-cx-black hover:text-cx-primary-100" href="<?php echo admin_url('admin.php?page=couponx') ?>">
+                    <a class="text-cx-black hover:text-cx-primary-100" href="<?php echo esc_url(admin_url('admin.php?page=couponx')); ?>">
                         <span class="dashicons dashicons-arrow-left-alt"></span>
-                        <span class="lg:inline hidden">Dashboard</span>
+                        <span class="lg:inline hidden"><?php esc_html_e("Dashboard", 'coupon-x-discount-pop-up'); ?></span>
                     </a>
                     <div class="header-items flex-1">
                         <ul class="chaty-app-tabs flex items-start justify-between">
                             <li class="m-0">
                                 <a href="#" class="chaty-tab <?php echo ($step == 0) ? "active" : "completed" ?>" data-tab-id="cx-icon-design" id="cx-btn-icon-design" data-tab="first" data-tab-index="">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x') ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x') ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x-discount-pop-up') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("1. Icon Design", 'coupon-x-discount-pop-up') ?></span>
                                 </a>
                             </li>
                             <li class="my-0">
                                 <a href="#" class="chaty-tab <?php echo ($step == 1) ? "active" : (($step == 2) ? "completed" : "") ?>" data-tab-id="cx-choose-coupon" id="cx-btn-choose-coupon" data-tab-index="" data-tab="middle" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x') ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x') ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x-discount-pop-up') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("2. Choose Coupon", 'coupon-x-discount-pop-up') ?></span>
                                 </a>
                             </li>
                             <li class="m-0">
                                 <a href="#" class="chaty-tab <?php echo ($step == 2) ? "active" : "" ?>" data-tab-id="cx-pop-up-design" id="cx-btn-pop-up-design" data-tab-index="middle" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up Design", 'coupon-x') ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up", 'coupon-x') ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up Design", 'coupon-x-discount-pop-up') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("3. Pop up", 'coupon-x-discount-pop-up') ?></span>
                                 </a>
                             </li>
                             <li class="m-0">
                                 <a href="#" class="chaty-tab <?php echo ($step == 3) ? "active" : "" ?>" data-tab-id="cx-triggers-targeting" id="cx-btn-triggers-targeting" data-tab="last" data-tab-index="" data-forced-save="yes">
                                     <span class="chaty-tabs-heading"></span>
-                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x') ?></span>
-                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x') ?></span>
+                                    <span class="lg:inline hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x-discount-pop-up') ?></span>
+                                    <span class="inline lg:hidden chaty-tabs-subheading"><?php esc_html_e("4. Triggers & Targeting", 'coupon-x-discount-pop-up') ?></span>
                                 </a>
                               </li>
                         </ul>
@@ -282,14 +285,14 @@ class Create_Widget
                     <footer class="footer-buttons relative space-x-2 step-<?php echo esc_attr($step) ?>">
                         <div class="flex items-center justify-center gap-3">
                             <div class="flex items-center gap-2 next-prev-buttons">
-                                <button type="button" class="flex back-button" id="back-button" aria-label="<?php esc_html_e("Back", 'coupon-x') ?>">
+                                <button type="button" class="flex back-button" id="back-button" aria-label="<?php esc_html_e("Back", 'coupon-x-discount-pop-up') ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M15.8333 10H4.16668" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M10 15.8333L4.16668 9.99996L10 4.16663" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <span>Back</span>
                                 </button>
-                                <button type="button" class="flex next-button" id="next-button" aria-label="<?php esc_html_e("Next", 'coupon-x') ?>">
+                                <button type="button" class="flex next-button" id="next-button" aria-label="<?php esc_html_e("Next", 'coupon-x-discount-pop-up') ?>">
                                     <span>Next</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M4.16677 10H15.8334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -304,8 +307,8 @@ class Create_Widget
                                         <path d="M14.1666 17.5V10.8334H5.83331V17.5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M5.83331 2.5V6.66667H12.5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    <span><?php esc_html_e("Save Widget", 'coupon-x') ?></span>
-                                    <span class="mobile-text"><?php esc_html_e("Save", 'coupon-x') ?></span>
+                                    <span><?php esc_html_e("Save Widget", 'coupon-x-discount-pop-up') ?></span>
+                                    <span class="mobile-text"><?php esc_html_e("Save", 'coupon-x-discount-pop-up') ?></span>
                                 </button>
                                 <button type="button" class="arrow-btn !px-1.5 h-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -316,7 +319,7 @@ class Create_Widget
                         </div>
                         <input type="hidden" name="current_step" value="<?php echo esc_attr($step) ?>" id="current_step">
                         <input type="hidden" name="redirect_on_dashboard" value="0" id="redirect_on_dashboard">
-                        <input type="submit" class="save-dashboard-button hidden" id="save-dashboard-button" name="save_and_view_dashboard" value="<?php esc_html_e('Save & Close', 'coupon-x'); ?>" />
+                        <input type="submit" class="save-dashboard-button hidden" id="save-dashboard-button" name="save_and_view_dashboard" value="<?php esc_html_e('Save & Close', 'coupon-x-discount-pop-up'); ?>" />
                     </footer>
                 </div>
                 <div id="cx-widget-tab" class="max-w-[1280px] mx-auto">
@@ -347,22 +350,22 @@ class Create_Widget
                         </div>
                     </div>
                 </div>
-                <div class='validation-popup' title="<?php esc_html_e('Select a coupon', 'coupon-x'); ?>"
+                <div class='validation-popup' title="<?php esc_html_e('Select a coupon', 'coupon-x-discount-pop-up'); ?>"
                      style="display:none;">
-                    <p> <?php esc_html_e('Please select a coupon code before moving to the next step', 'coupon-x'); ?></p>
+                    <p> <?php esc_html_e('Please select a coupon code before moving to the next step', 'coupon-x-discount-pop-up'); ?></p>
                     <div class='actions'>
-                        <input type='button' class='select-coupon-btn' value='<?php esc_html_e('Select coupon', 'coupon-x'); ?>'/>
+                        <input type='button' class='select-coupon-btn' value='<?php esc_html_e('Select coupon', 'coupon-x-discount-pop-up'); ?>'/>
                     </div>
                 </div>
-                <div class='layout-validation' title="<?php esc_html_e('Select a layout', 'coupon-x'); ?>"
+                <div class='layout-validation' title="<?php esc_html_e('Select a layout', 'coupon-x-discount-pop-up'); ?>"
                      style="display:none;">
-                    <p> <?php esc_html_e('Please select a popup layout before moving to the next step', 'coupon-x'); ?></p>
+                    <p> <?php esc_html_e('Please select a popup layout before moving to the next step', 'coupon-x-discount-pop-up'); ?></p>
                     <div class='actions'>
                         <input type='button' class='select-layout'
-                               value='<?php esc_html_e('Select layout', 'coupon-x'); ?>'/>
+                               value='<?php esc_html_e('Select layout', 'coupon-x-discount-pop-up'); ?>'/>
                     </div>
                 </div>
-                <div class='validation-trigger' title="<?php esc_html_e('No trigger was selected', 'coupon-x'); ?>"
+                <div class='validation-trigger' title="<?php esc_html_e('No trigger was selected', 'coupon-x-discount-pop-up'); ?>"
                      style="display:none;">
                     <p class='trigger-error'></p>
                 </div>
@@ -379,13 +382,13 @@ class Create_Widget
                 </div>
                 <?php $dashboard_link = admin_url('admin.php?page=couponx'); ?>
                 <div id="wp_flash_message" class="hide">
-                    <?php echo __('Settings saved (visit your  ', 'coupon-x') . '<a id="go-dashboard" href="' . $dashboard_link . '">' . __('Dashboard', 'coupon-x') . '</a>' . __(' for stats)', 'coupon-x'); ?>
+                    <?php echo esc_html__('Settings saved (visit your  ', 'coupon-x-discount-pop-up') . '<a id="go-dashboard" href="' . esc_url($dashboard_link) . '">' . esc_html__('Dashboard', 'coupon-x-discount-pop-up') . '</a>' . esc_html__(' for stats)', 'coupon-x-discount-pop-up'); ?>
                     <span>
                         <a href="#" class="close_flash_popup">&#x2715;</a>
                     </span>
                 </div>
                 <div id="wp_error_flash_message" class="hide">
-                    <?php echo __("You've already created a Coupon X widget. Please ", 'coupon-x') . '<a id="go-dashboard" href="' . $dashboard_link . '">' . __('go to the dashboard', 'coupon-x') . '</a>' . __(' to edit it.', 'coupon-x'); ?>
+                    <?php echo esc_html__("You've already created a Coupon X widget. Please ", 'coupon-x-discount-pop-up') . '<a id="go-dashboard" href="' . esc_url($dashboard_link) . '">' . esc_html__('go to the dashboard', 'coupon-x-discount-pop-up') . '</a>' . esc_html__(' to edit it.', 'coupon-x-discount-pop-up'); ?>
                     <span>
                         <a href="#" class="close_flash_popup">&#x2715;</a>
                     </span>
@@ -404,15 +407,15 @@ class Create_Widget
         <div class="main-popup-couponx-bg couponx-coundown-timer-updrade countdown-timer-popup hide" id="couponcode-screen-countdown-upgrade" style="">
             <div class="couponx-timer-upgrade-left couponx-timer-upgrade-slid">
                 <img src="<?php echo esc_url(COUPON_X_URL."assets/img/maxlimitpopup.svg") ?>">
-                <h4><?php esc_html_e("Upgrade to Pro 🎉", "coupon-x") ?></h4>
-                <p><?php esc_html_e("Enjoy awesome features like beautiful timer templates, sending leads to email, emails integrations and more", "coupon-x") ?></p>
+                <h4><?php esc_html_e("Upgrade to Pro 🎉", "coupon-x-discount-pop-up") ?></h4>
+                <p><?php esc_html_e("Enjoy awesome features like beautiful timer templates, sending leads to email, emails integrations and more", "coupon-x-discount-pop-up") ?></p>
                 <div class="couponx-coundown-timer-updrade-btn">
                     <a  href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>"  class=" btn-black">
-                        <?php esc_html_e("Upgrade Now", "coupon-x") ?>
+                        <?php esc_html_e("Upgrade Now", "coupon-x-discount-pop-up") ?>
                     </a>
                 </div>
-                <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("Cancel anytime. No strings attached", "coupon-x") ?></span><br>
-                <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("30 days refund", "coupon-x") ?></span>
+                <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("Cancel anytime. No strings attached", "coupon-x-discount-pop-up") ?></span><br>
+                <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("30 days refund", "coupon-x-discount-pop-up") ?></span>
             </div>
             <div class="couponx-timer-upgrade-right couponx-timer-upgrade-slid">
                 <div class="slideshow-container"> 
@@ -462,7 +465,7 @@ class Create_Widget
             </div>
         </div>
         
-        <div class="popup-overlayout-cls" style='display: none;' ></div> 
+        <!-- <div class="popup-overlayout-cls" style='display: none;' ></div>  -->
         <?php
 
     }//end render_countdown_timer_popup()

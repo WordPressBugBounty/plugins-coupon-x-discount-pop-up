@@ -52,11 +52,11 @@ class Cx_Widget_Popup
         ?>
         <div class='cx-tab flex cx-popup'>
             <div class="border-r flex-1 border-gray-150/40">
-                <div class="section-title font-primary text-cht-gray-150 text-2xl border-b border-gray-150/40 px-8 py-5"><?php esc_html_e('Pop Up Design', 'coupon-x'); ?></div>
+                <div class="section-title font-primary text-cht-gray-150 text-2xl border-b border-gray-150/40 px-8 py-5"><?php esc_html_e('Pop Up Design', 'coupon-x-discount-pop-up'); ?></div>
                 <div class='row-ul px-8 py-5'>
                     <div class=' full'>
                         <label> 
-                            <?php esc_html_e('Select your pop up\'s layout:', 'coupon-x'); ?>
+                            <?php esc_html_e('Select your pop up\'s layout:', 'coupon-x-discount-pop-up'); ?>
                         </label>
                         <ul class='layout-list'>
                             <li class='popup-type slide-in-popup'>
@@ -65,7 +65,7 @@ class Cx_Widget_Popup
                                 <button disabled class="btn-selected-style <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>">Selected </button>
                                     <img src="<?php echo esc_url(COUPON_X_URL.'assets/img/300x198.png'); ?>" />
                                     <span class="popup-style-lable">
-                                        <?php esc_html_e('Slide-in Pop up', 'coupon-x'); ?> 
+                                        <?php esc_html_e('Slide-in Pop up', 'coupon-x-discount-pop-up'); ?> 
                                     </span>                                    
                                 </label>
                             </li>
@@ -79,7 +79,7 @@ class Cx_Widget_Popup
                                     </span>    
                                     <img src="<?php echo esc_url(COUPON_X_URL.'assets/img/300x198.png'); ?>" />
                                     <span class="popup-style-lable">
-                                        <?php esc_html_e('Lightbox Pop Up', 'coupon-x'); ?> 
+                                        <?php esc_html_e('Lightbox Pop Up', 'coupon-x-discount-pop-up'); ?> 
                                     </span>                                    
                                 </label>
                             </li>
@@ -93,7 +93,7 @@ class Cx_Widget_Popup
                                     </span>    
                                     <img src="<?php echo esc_url(COUPON_X_URL.'assets/img/300x198.png'); ?>" />
                                     <span class="popup-style-lable">
-                                        <?php esc_html_e('Floating Bar', 'coupon-x'); ?> 
+                                        <?php esc_html_e('Floating Bar', 'coupon-x-discount-pop-up'); ?> 
                                     </span>                                    
                                 </label>
                             </li>
@@ -109,15 +109,15 @@ class Cx_Widget_Popup
                         <div class='row mx-height-110'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Position', 'coupon-x'); ?>
+                                    <?php esc_html_e('Position', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <div>
                                     <ul class='custom-list'>
                                         <?php
                                         $positions = [
-                                            'left'    => esc_html__('Left', 'coupon-x'),
-                                            'right'   => esc_html__('Right', 'coupon-x'),
-                                            'custom'  => esc_html__('Custom', 'coupon-x'),
+                                            'left'    => esc_html__('Left', 'coupon-x-discount-pop-up'),
+                                            'right'   => esc_html__('Right', 'coupon-x-discount-pop-up'),
+                                            'custom'  => esc_html__('Custom', 'coupon-x-discount-pop-up'),
                                         ];
                                         $pos = $position;
                                         foreach ($positions as $key => $value) { ?>
@@ -137,15 +137,15 @@ class Cx_Widget_Popup
                         <div class='row popup-custom-position first <?php echo esc_attr('custom' !== $position ? 'hide' : ''); ?>'>
                             <div class='row-elements'>
                                 <label>
-                                    <?php esc_html_e('Slide Selection', 'coupon-x'); ?>
+                                    <?php esc_html_e('Slide Selection', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <div>
                                     <ul class='custom-list'>
                                         <?php
                                         $custom_pos = isset($popup_settings['custom_position']) ? $popup_settings['custom_position'] : 'right';
                                         $custom_positions = [
-                                            'left'   => esc_html__('Left', 'coupon-x'),
-                                            'right'  => esc_html__('Right', 'coupon-x'),
+                                            'left'   => esc_html__('Left', 'coupon-x-discount-pop-up'),
+                                            'right'  => esc_html__('Right', 'coupon-x-discount-pop-up'),
                                         ];
 
                                         foreach ($custom_positions as $key => $value) {
@@ -168,14 +168,14 @@ class Cx_Widget_Popup
                             <div class='row-elements half'>
                                 <?php $bottomSpacing = isset($popup_settings['bottom_spacing']) ? $popup_settings['bottom_spacing'] : 100; ?>
                                 <label>
-                                    <?php esc_html_e('Bottom Spacing (px)', 'coupon-x'); ?>
+                                    <?php esc_html_e('Bottom Spacing (px)', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='number' name='cx_settings[popup][bottom_spacing]' value='<?php echo esc_attr($bottomSpacing); ?>' class='input-element num bottom-spacing'>
                             </div>
                             <div class='row-elements half'>
                                 <?php $sideSpacing = isset($popup_settings['side_spacing']) ? $popup_settings['side_spacing'] : 50; ?>
                                 <label>
-                                    <?php esc_html_e('Side Spacing (px)', 'coupon-x'); ?>
+                                    <?php esc_html_e('Side Spacing (px)', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='number' name='cx_settings[popup][side_spacing]' value='<?php echo esc_attr($sideSpacing); ?>' class='input-element num side-spacing'>
                             </div>
@@ -183,7 +183,7 @@ class Cx_Widget_Popup
                     </div>
                     <div class='row-elements popup-font-family full'>
                         <label>
-                            <?php esc_html_e('Font Family', 'coupon-x'); ?>
+                            <?php esc_html_e('Font Family', 'coupon-x-discount-pop-up'); ?>
                         </label>
                         <select name='cx_settings[popup][font]' class='popup-fonts-input input-element'>
                             <?php
@@ -213,7 +213,7 @@ class Cx_Widget_Popup
                 <div class='row hide'>
                     <div class='row-elements full'>
                         <label> 
-                            <?php esc_html_e('Select your pop up\'s layout:', 'coupon-x'); ?>
+                            <?php esc_html_e('Select your pop up\'s layout:', 'coupon-x-discount-pop-up'); ?>
                         </label>
                         <ul>
                             <li class='popup-type'>
@@ -228,7 +228,7 @@ class Cx_Widget_Popup
                 <div class='row'>
                     <div class='row-elements full'>
                         <label> 
-                            <?php esc_html_e('When visitors click on the tab, show them:', 'coupon-x'); ?>
+                            <?php esc_html_e('When visitors click on the tab, show them:', 'coupon-x-discount-pop-up'); ?>
                         </label>                        
                         <ul class='coupon-widget-style'>
                             <li class='cp <?php echo esc_attr('4' === $coupon_type ? 'hide' : ''); ?>'>
@@ -236,7 +236,7 @@ class Cx_Widget_Popup
                                     <input type="radio" name="cx_settings[popup][style]" value="style-1" id = "input-field-radio-style-1" class="input-field-radio" <?php echo checked($style, 'style-1', false); ?>>
                                     <?php echo wp_kses($icons['coupon_cpy'], Cx_Helper::get_svg_ruleset()); ?>
                                     <span>
-                                        <?php esc_html_e('Show a coupon code with a Copy button', 'coupon-x'); ?>
+                                        <?php esc_html_e('Show a coupon code with a Copy button', 'coupon-x-discount-pop-up'); ?>
                                     </span>
                                 </label>
                             </li>
@@ -245,7 +245,7 @@ class Cx_Widget_Popup
                                     <input type="radio" name="cx_settings[popup][style]" value="style-2" id = "input-field-radio-style-2" class="input-field-radio" <?php echo checked($style, 'style-2', false); ?>>
                                     <?php echo wp_kses($icons['email'], Cx_Helper::get_svg_ruleset()); ?>
                                     <span>
-                                        <?php esc_html_e('Collect email first, then show the coupon', 'coupon-x'); ?>
+                                        <?php esc_html_e('Collect email first, then show the coupon', 'coupon-x-discount-pop-up'); ?>
                                     </span>
                                 </label>
                             </li>
@@ -254,7 +254,7 @@ class Cx_Widget_Popup
                                     <input type="radio" name="cx_settings[popup][style]" value="style-3" id = "input-field-radio-style-3" class="input-field-radio" <?php echo checked($style, 'style-3', false); ?>>
                                     <?php echo wp_kses($icons['link'], Cx_Helper::get_svg_ruleset()); ?>
                                     <span>
-                                        <?php esc_html_e('Link to any page, or use a shareable discount link', 'coupon-x'); ?>
+                                        <?php esc_html_e('Link to any page, or use a shareable discount link', 'coupon-x-discount-pop-up'); ?>
                                     </span>
                                 </label>
                             </li>
@@ -263,7 +263,7 @@ class Cx_Widget_Popup
                                     <input type="radio" name="cx_settings[popup][style]" value="style-4" id = "input-field-radio-style-4" class="input-field-radio" <?php echo checked($style, 'style-4', false); ?>>
                                     <?php echo wp_kses($icons['coupon_cpy'], Cx_Helper::get_svg_ruleset()); ?>
                                     <span>
-                                        <?php esc_html_e('Show announcement screen right away', 'coupon-x'); ?>
+                                        <?php esc_html_e('Show announcement screen right away', 'coupon-x-discount-pop-up'); ?>
                                     </span>
                                 </label>
                             </li>
@@ -272,7 +272,7 @@ class Cx_Widget_Popup
                                     <input type="radio" name="cx_settings[popup][style]" value="style-5" id = "input-field-radio-style-5" class="input-field-radio" <?php echo checked($style, 'style-5', false); ?>>
                                     <?php echo wp_kses($icons['email'], Cx_Helper::get_svg_ruleset()); ?>
                                     <span>
-                                        <?php esc_html_e('Collect email first, then show the announcement', 'coupon-x'); ?>
+                                        <?php esc_html_e('Collect email first, then show the announcement', 'coupon-x-discount-pop-up'); ?>
                                     </span>
                                 </label>
                             </li>
@@ -282,14 +282,14 @@ class Cx_Widget_Popup
                 <div class='row style-3 <?php echo esc_attr('style-3' !== $style ? 'hide' : ''); ?>'>
                 <div class='row-elements full style-3'>
                     <label> 
-                        <?php esc_html_e('Link type', 'coupon-x'); ?>
+                        <?php esc_html_e('Link type', 'coupon-x-discount-pop-up'); ?>
                     </label>
                     <select class='input-element link-type' name='cx_settings[coupon][link_type]'>
                         <option value='1' <?php echo selected($coupon_settings['link_type'], 1, false); ?>>
-                            <?php esc_html_e('Shareable discount link', 'coupon-x'); ?>
+                            <?php esc_html_e('Shareable discount link', 'coupon-x-discount-pop-up'); ?>
                         </option>
                         <option value='2' <?php echo selected($coupon_settings['link_type'], 2, false); ?>>
-                            <?php esc_html_e('Custom link', 'coupon-x'); ?>
+                            <?php esc_html_e('Custom link', 'coupon-x-discount-pop-up'); ?>
                         </option>
                     </select>
                 </div>
@@ -297,9 +297,9 @@ class Cx_Widget_Popup
                 <div class='row custom-link <?php echo ( 'style-3' !== $style || 1 === (int) $coupon_settings['link_type'] ) ? 'hide' : ''; ?>'>
                     <div class='row-elements full'>
                         <label>
-                            <?php esc_html_e('Link', 'coupon-x'); ?>
+                            <?php esc_html_e('Link', 'coupon-x-discount-pop-up'); ?>
                         </label>
-                        <input type='text' name='cx_settings[coupon][custom_link]' placeholder="<?php esc_attr_e('https://www.anypage.com/you-want', 'coupon-x'); ?>" class='input-element' value='<?php echo esc_attr($coupon_settings['custom_link']); ?>'>
+                        <input type='text' name='cx_settings[coupon][custom_link]' placeholder="<?php esc_attr_e('https://www.anypage.com/you-want', 'coupon-x-discount-pop-up'); ?>" class='input-element' value='<?php echo esc_attr($coupon_settings['custom_link']); ?>'>
                     </div>
                 </div>
                 <div class='row style-3 <?php echo ( 'style-3' === $style && 1 === (int) $coupon_settings['link_type'] ) ? '' : 'hide'; ?>'>
@@ -309,14 +309,14 @@ class Cx_Widget_Popup
                              $new_tab = isset($coupon_settings['new_tab']) ? $coupon_settings['new_tab'] : 0;
                             ?>
                             <input type='checkbox' name='cx_settings[coupon][new_tab]' value='1' <?php echo checked($new_tab, 1, false); ?>>
-                            <?php esc_html_e('Open New Tab', 'coupon-x'); ?>
+                            <?php esc_html_e('Open New Tab', 'coupon-x-discount-pop-up'); ?>
                         </label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='row-elements full'>
                         <div class="couponapp-countdown flex items-center" >
-                            <span class="icon label-tooltip coupon-tab-design" title="<?php esc_html_e('Add a countdown timer element to your Coupon X pop up to increase conversion rate. You add a timer to a specific time and date, or just add count from the moment that the pop up appears.', 'coupon-x'); ?> <img src='https://couponx.premio.io/assets/images/timer-gif.gif' style='width:100%; margin-top:10px'>">
+                            <span class="icon label-tooltip coupon-tab-design" title="<?php esc_html_e('Add a countdown timer element to your Coupon X pop up to increase conversion rate. You add a timer to a specific time and date, or just add count from the moment that the pop up appears.', 'coupon-x-discount-pop-up'); ?> <img src='https://couponx.premio.io/assets/images/timer-gif.gif' style='width:100%; margin-top:10px'>">
                                 <span class="dashicons dashicons-editor-help"></span>
                             </span>
                             <div class="upgrade-timer">
@@ -334,17 +334,17 @@ class Cx_Widget_Popup
                             <ul class='coupon-tabs screen-tabs <?php echo esc_attr('style-2' !== $style ? 'hide' : ''); ?> '>
                                 <li>
                                     <a href="#main_screen" class="coupon-tab main-screen">
-                                        <?php esc_html_e('Main Screen', 'coupon-x'); ?>
+                                        <?php esc_html_e('Main Screen', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#coupon_screen" class="coupon-tab coupon-screen">
-                                        <?php esc_html_e('Coupon Screen', 'coupon-x'); ?>
+                                        <?php esc_html_e('Coupon Screen', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#announcement_screen" class="coupon-tab announcement-screen">
-                                        <?php esc_html_e('Announcement Screen', 'coupon-x'); ?>
+                                        <?php esc_html_e('Announcement Screen', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </li>
                             </ul>
@@ -360,12 +360,12 @@ class Cx_Widget_Popup
                         </div>
                     </div>
                 </div>
-                <button class="accordion-btn"><?php esc_html_e('Advanced Settings', 'coupon-x'); ?></button>
+                <button class="accordion-btn"><?php esc_html_e('Advanced Settings', 'coupon-x-discount-pop-up'); ?></button>
                 <div class = 'advanced-panel'>
                     <div class='row'>
                         <div class='row-elements full'>
                             <label>
-                                <?php esc_html_e('After Copy Message', 'coupon-x'); ?>
+                                <?php esc_html_e('After Copy Message', 'coupon-x-discount-pop-up'); ?>
                             </label>
                             <input type='text' name='cx_settings[coupon][cpy_msg]' value="<?php echo esc_attr($coupon_settings['cpy_msg']); ?>" class='input-element '>
                         </div>
@@ -373,10 +373,10 @@ class Cx_Widget_Popup
                     <div class='row'>
                         <div class='row-elements full color-row error-msg-color-row'>
                             <label>
-                                <span class="icon label-tooltip" title="<?php esc_html_e('Set an error message that your visitors get when they try to add the same email more than one time', 'coupon-x'); ?>">
+                                <span class="icon label-tooltip" title="<?php esc_html_e('Set an error message that your visitors get when they try to add the same email more than one time', 'coupon-x-discount-pop-up'); ?>">
                                     <span class="dashicons dashicons-editor-help"></span>
                                 </span>
-                                <?php esc_html_e('Set an error message', 'coupon-x'); ?>
+                                <?php esc_html_e('Set an error message', 'coupon-x-discount-pop-up'); ?>
                             </label>
                             <textarea name='cx_settings[main][error]'><?php echo esc_attr($main_settings['error']); ?></textarea>
                             <input type='text' id='error_color' class='jsspan tab-clr' name='cx_settings[main][error_color]' value='<?php echo esc_attr($main_settings['error_color']); ?>'/>
@@ -385,9 +385,9 @@ class Cx_Widget_Popup
                     <div class='row'>
                         <div class='row-elements full'>
                             <label>
-                                <?php esc_html_e('Custom CSS', 'coupon-x'); ?>
+                                <?php esc_html_e('Custom CSS', 'coupon-x-discount-pop-up'); ?>
                                 <div class="html-tooltip side">
-                                    <span class='icon label-tooltip' title ="<?php esc_html_e('Write custom CSS to customize your widget.', 'coupon-x'); ?><a href='https://premio.io/help/coupon-x/how-to-customize-your-coupon-x-widget-using-css/' target='_blank'><?php esc_html_e('Learn more', 'coupon-x'); ?></a>">
+                                    <span class='icon label-tooltip' title ="<?php esc_html_e('Write custom CSS to customize your widget.', 'coupon-x-discount-pop-up'); ?><a href='https://premio.io/help/coupon-x/how-to-customize-your-coupon-x-widget-using-css/' target='_blank'><?php esc_html_e('Learn more', 'coupon-x-discount-pop-up'); ?></a>">
                                         <span class="dashicons dashicons-editor-help">
                                         </span>
                                     </span>
@@ -399,10 +399,10 @@ class Cx_Widget_Popup
                     <div class='row '>
                         <div class='row-elements full display-flex'>
                             <label >
-                                <span class="icon label-tooltip coupon-tab-design top" title="<?php esc_html_e('After the user have clicked on the copy button or submitted their emails, you can have the widget automatically closed after a few seconds', 'coupon-x'); ?>">
+                                <span class="icon label-tooltip coupon-tab-design top" title="<?php esc_html_e('After the user have clicked on the copy button or submitted their emails, you can have the widget automatically closed after a few seconds', 'coupon-x-discount-pop-up'); ?>">
                                     <span class="dashicons dashicons-editor-help"></span>
                                 </span>
-                                <?php esc_html_e('Close automatically after conversion', 'coupon-x'); ?>
+                                <?php esc_html_e('Close automatically after conversion', 'coupon-x-discount-pop-up'); ?>
                             </label>
                             <div>
                                 <?php
@@ -411,8 +411,8 @@ class Cx_Widget_Popup
                                 <label class='couponapp-switch'>
                                     <input type='checkbox' name='cx_settings[popup][auto_close]' class='auto-close' value='1' <?php echo checked($auto_close, 1, false); ?>>
                                     <span class="cx-slider round">
-                                        <span class="on"><?php esc_html_e('On', 'coupon-x'); ?></span>
-                                        <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                                        <span class="on"><?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                                        <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                                     </span>
                                 </label>
                             </div>
@@ -421,9 +421,9 @@ class Cx_Widget_Popup
                     <div class='row auto-close-text <?php echo 1 !== (int) $auto_close ? 'hide' : ''; ?>' >
                         <div class='row-elements full'>
                             <label>
-                                <?php esc_html_e('Close after:', 'coupon-x'); ?>
+                                <?php esc_html_e('Close after:', 'coupon-x-discount-pop-up'); ?>
                                 <input type='number' name='cx_settings[popup][auto_time]' value='<?php echo esc_attr($popup_settings['auto_time']); ?>' class='close-time input-element' min='0'>
-                                <?php esc_html_e('seconds', 'coupon-x'); ?>
+                                <?php esc_html_e('seconds', 'coupon-x-discount-pop-up'); ?>
                             </label>
                         </div>
                     </div>
@@ -453,7 +453,7 @@ class Cx_Widget_Popup
 
         <div class="mobile-preview-btn <?php echo ( isset($_GET['id']) && '' !== $_GET['id'] ) ? '' : 'hide'; ?>">
             <a class="btn-popup-previewbtn" href="#">
-                <?php esc_html_e('Preview', 'coupon-x'); ?>
+                <?php esc_html_e('Preview', 'coupon-x-discount-pop-up'); ?>
             </a>
         </div>
         <?php
@@ -475,7 +475,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full color-row'>
                 <label> 
-                    <?php esc_html_e('Headline', 'coupon-x'); ?>
+                    <?php esc_html_e('Headline', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <?php
                 $args = array(
@@ -506,7 +506,7 @@ class Cx_Widget_Popup
                 <label>
                     <input type="hidden" name="cx_settings[main][collect_name]" value="0">
                     <input type='checkbox' name='cx_settings[main][collect_name]' value='1' <?php echo checked($collectName, 1); ?> class='collect-name'>
-                    <?php esc_html_e('Collect customer name', 'coupon-x'); ?>
+                    <?php esc_html_e('Collect customer name', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
@@ -516,7 +516,7 @@ class Cx_Widget_Popup
         <div class='row name-placeholder <?php echo ($collectName == 1) ? "" : "hide" ?>'>
             <div class='row-elements full'>
                 <label>
-                    <?php esc_html_e('Name placeholder', 'coupon-x'); ?>
+                    <?php esc_html_e('Name placeholder', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[main][name]' placeholder="Name" class='input-element customer-name' value='<?php echo esc_attr($name); ?>'>
             </div>
@@ -529,7 +529,7 @@ class Cx_Widget_Popup
                 <label>
                     <input type="hidden" name="cx_settings[main][required_name]" value="0">
                     <input type='checkbox' name='cx_settings[main][required_name]' value='1' <?php echo checked($required_name, 1); ?> class='required-name'>
-                    <?php esc_html_e('Required', 'coupon-x'); ?>
+                    <?php esc_html_e('Required', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
@@ -539,7 +539,7 @@ class Cx_Widget_Popup
         <div class='row validation-text <?php echo ($required_name == 1 && $collectName == 1) ? "" : "hide" ?>'>
             <div class='row-elements full'>
                 <label>
-                    <?php esc_html_e('Validation text', 'coupon-x'); ?>
+                    <?php esc_html_e('Validation text', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[main][validation_text]' placeholder="Name" class='input-element' value='<?php echo esc_attr($validationText); ?>'>
             </div>
@@ -547,7 +547,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full'>
                 <label> 
-                    <?php esc_html_e('Email placeholder', 'coupon-x'); ?>
+                    <?php esc_html_e('Email placeholder', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[main][email]' placeholder="Email" class='input-element main-email' value='<?php echo esc_attr($settings['email']); ?>'>            
             </div>
@@ -555,7 +555,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full'>
                 <label> 
-                    <?php esc_html_e('Text Inside Button', 'coupon-x'); ?>
+                    <?php esc_html_e('Text Inside Button', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[main][btn_text]' value="<?php echo esc_attr($settings['btn_text']); ?>" class='input-element main-btn-text'>
             </div>
@@ -563,7 +563,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full color-row'>
                 <label> 
-                    <?php esc_html_e('Description', 'coupon-x'); ?>
+                    <?php esc_html_e('Description', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <?php
                 $args = array(
@@ -593,7 +593,7 @@ class Cx_Widget_Popup
                     $consent = isset($settings['consent']) ? $settings['consent'] : 0;
                     ?>
                     <input type='checkbox' name='cx_settings[main][consent]' value='1' <?php echo checked($consent, 1, false); ?> class='consent'>
-                    <?php esc_html_e('Consent checkbox', 'coupon-x'); ?>
+                    <?php esc_html_e('Consent checkbox', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
@@ -608,7 +608,7 @@ class Cx_Widget_Popup
         ?>
         ' >
             <div class="row-elements full">
-<!--                <input type="text" name="cx_settings[main][consent_text]" value="--><?php //echo esc_attr($settings['consent_text']); ?><!--" class="input-element" placeholder="--><?php //echo esc_html__('Enter your consent text', 'coupon-x'); ?><!--" />-->
+<!--                <input type="text" name="cx_settings[main][consent_text]" value="--><?php //echo esc_attr($settings['consent_text']); ?><!--" class="input-element" placeholder="--><?php //echo esc_html__('Enter your consent text', 'coupon-x-discount-pop-up'); ?><!--" />-->
                 <?php
                 $args = array(
                     'textarea_name' => 'cx_settings[main][consent_text]',
@@ -626,21 +626,26 @@ class Cx_Widget_Popup
                 wp_editor( $settings['consent_text'], 'consent_text', $args );
                 ?>
                 <label class='required-lbl'><input type="checkbox" name="cx_settings[main][consent_required]" value="1" <?php echo ( 1 === (int) $consent_required ) ? 'checked' : ''; ?>  />
-                    <?php echo esc_html__('Required', 'coupon-x'); ?>
+                    <?php echo esc_html__('Required', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
         <?php
         $type = "main";
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
         echo $this->render_bg_image_preview($settings, $type) ?>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Background color', 'main_bgcolor', 'jsspan tab-clr', 'cx_settings[main][bgcolor]', $settings['bgcolor']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                    echo Cx_Helper::color_picker_template('Background color', 'main_bgcolor', 'jsspan tab-clr', 'cx_settings[main][bgcolor]', $settings['bgcolor']); 
+                ?>
             </div>
             <div class='row-elements half'>
             </div>
         </div>
         <?php
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
         echo $this->render_bg_elements_preview($settings, $type);
         ?>
         <?php
@@ -656,24 +661,39 @@ class Cx_Widget_Popup
         ?>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template($fieldColor, 'main_email_bgcolor', 'jsspan tab-clr', 'cx_settings[main][email_color]', $settings['email_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template($fieldColor, 'main_email_bgcolor', 'jsspan tab-clr', 'cx_settings[main][email_color]', $settings['email_color']);
+                ?>
             </div>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template($textColor, 'main_email_color', 'jsspan tab-clr', 'cx_settings[main][text_color]', $settings['text_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template($textColor, 'main_email_color', 'jsspan tab-clr', 'cx_settings[main][text_color]', $settings['text_color']); 
+                ?>
             </div>
         </div>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template($borderColor, 'main_email_brdcolor', 'jsspan tab-clr', 'cx_settings[main][email_brdcolor]', $settings['email_brdcolor']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template($borderColor, 'main_email_brdcolor', 'jsspan tab-clr', 'cx_settings[main][email_brdcolor]', $settings['email_brdcolor']); 
+                ?>
             </div>
             <div class='row-elements half'></div>
         </div>
         <div class='row'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Button Color', 'main_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[main][btn_color]', $settings['btn_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Button Color', 'main_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[main][btn_color]', $settings['btn_color']); 
+                ?>
             </div>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Button Text Color', 'main_btn_color', 'jsspan tab-clr', 'cx_settings[main][btn_text_color]', $settings['btn_text_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Button Text Color', 'main_btn_color', 'jsspan tab-clr', 'cx_settings[main][btn_text_color]', $settings['btn_text_color']); 
+                ?>
             </div>
         </div>
         <div class='row'>
@@ -683,12 +703,12 @@ class Cx_Widget_Popup
                     $leads_url = admin_url().'admin.php?page=leads_list';
                     ?>
                     <strong>
-                        <?php esc_attr_e('Your leads will be saved to', 'coupon-x'); ?>
+                        <?php esc_attr_e('Your leads will be saved to', 'coupon-x-discount-pop-up'); ?>
                         <a href='<?php echo esc_url($leads_url); ?>' class='leads-url' target='_blank'>
-                        <?php esc_attr_e('this site', 'coupon-x'); ?>
+                        <?php esc_attr_e('this site', 'coupon-x-discount-pop-up'); ?>
                         </a>
                     </strong>
-                    <span class="icon label-tooltip coupon-tab-design usage-limits" title="<?php echo esc_html__('Your leads will be saved in your local database, you will be able to find them ', 'coupon-x'); ?> <a href='<?php echo esc_attr($leads_url); ?>'><?php echo esc_html__('here', 'coupon-x'); ?>">
+                    <span class="icon label-tooltip coupon-tab-design usage-limits" title="<?php echo esc_html__('Your leads will be saved in your local database, you will be able to find them ', 'coupon-x-discount-pop-up'); ?> <a href='<?php echo esc_attr($leads_url); ?>'><?php echo esc_html__('here', 'coupon-x-discount-pop-up'); ?>">
                         <span class="dashicons dashicons-editor-help"></span>
                     </span>
                 </label>
@@ -698,7 +718,7 @@ class Cx_Widget_Popup
             <div class='row-elements full p-relative send-mail-popup send-coupon-clint-hide <?php echo (@$popup_settings['style'] == 'style-2') ? '' : 'hide'; ?>'>
                 <label>
                     <input type='checkbox' name='' value='1'  disabled>
-                    <?php esc_html_e('Send coupon to client', 'coupon-x'); ?>
+                    <?php esc_html_e('Send coupon to client', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <span class='client-upgrade-pro right-aligned'">
                     <span class="dashicons dashicons-lock"></span>
@@ -710,7 +730,7 @@ class Cx_Widget_Popup
             <div class='row-elements full  email-client'>
                 <label  url ="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
                     <input type='checkbox' name='' disabled>
-                    <?php esc_html_e('Sends leads to Mailchimp', 'coupon-x'); ?>
+                    <?php esc_html_e('Sends leads to Mailchimp', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <span class='upgrade-pro right-aligned' url ="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
                     <span class="dashicons dashicons-lock"></span>
@@ -722,7 +742,7 @@ class Cx_Widget_Popup
             <div class='row-elements full email-client'>                
                 <label  url ="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
                     <input type='checkbox' name='' disabled>
-                    <?php esc_html_e('Sends leads to Klaviyo', 'coupon-x'); ?>
+                    <?php esc_html_e('Sends leads to Klaviyo', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <span class='upgrade-pro right-aligned' url ="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
                     <span class="dashicons dashicons-lock"></span>
@@ -755,12 +775,12 @@ class Cx_Widget_Popup
                 <label class="couponapp-switch">
                     <input type="checkbox" name="cx_settings[coupon][enable_styles]" value="1" <?php echo checked($enable_styles, 1, false); ?> class='cpn-cpy-style' />
                     <span class="cx-slider round">
-                        <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
-                        <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                        <span class="on"> <?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                        <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                     </span>
                 </label>
                 <label style='display: inline;vertical-align: top;margin-left: 10px;font-size: 13px;'> 
-                    <?php esc_html_e('Use the same styles like the email collection screen ', 'coupon-x'); ?>
+                    <?php esc_html_e('Use the same styles like the email collection screen ', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
@@ -773,17 +793,17 @@ class Cx_Widget_Popup
         <div class='row show-coupon-style-1 <?php echo ('style-1' !== $style && 'style-2' !== $style) ? 'hide' : ''; ?>'>
             <div class='row-elements full style-1'>
                 <label>
-                    <?php esc_html_e('How to show the coupon?', 'coupon-x'); ?>
+                    <?php esc_html_e('How to show the coupon?', 'coupon-x-discount-pop-up'); ?>
                     <span class="icon label-tooltip coupon-tab-design" title="<?php echo esc_attr($tooltipTitle); ?>">
                             <span class="dashicons dashicons-editor-help"></span>
                     </span>
                 </label>
                 <select class='input-element show-coupon-type' name='cx_settings[coupon][show_coupon_type]'>
                     <option value='1' selected>
-                        <?php esc_html_e('Display the coupon rightaway', 'coupon-x'); ?>
+                        <?php esc_html_e('Display the coupon rightaway', 'coupon-x-discount-pop-up'); ?>
                     </option>
                     <option value='2'>
-                        <?php esc_html_e('Show the coupon when users claims it (Pro)', 'coupon-x'); ?>
+                        <?php esc_html_e('Show the coupon when users claims it (Pro)', 'coupon-x-discount-pop-up'); ?>
                     </option>
                 </select>
             </div>
@@ -791,7 +811,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full color-row'>
                 <label> 
-                    <?php esc_html_e('Headline', 'coupon-x'); ?>
+                    <?php esc_html_e('Headline', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <?php
                 $args = array(
@@ -817,7 +837,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full'>
                 <label> 
-                    <?php esc_html_e('Text Inside Button', 'coupon-x'); ?>
+                    <?php esc_html_e('Text Inside Button', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[coupon][cpy_btn]' value="<?php echo esc_attr($settings['cpy_btn']); ?>" class='input-element cpy-btn'>
             </div>
@@ -825,7 +845,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full color-row'>
                 <label> 
-                    <?php esc_html_e('Description', 'coupon-x'); ?>
+                    <?php esc_html_e('Description', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <?php
                 $args = array(
@@ -850,39 +870,62 @@ class Cx_Widget_Popup
         </div>
         <?php
         $type = "coupon";
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
         echo $this->render_bg_image_preview($settings, $type) ?>
         <div class='row cp-clr'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Background Color', 'coupon_bgcolor', 'jsspan tab-clr', 'cx_settings[coupon][bg_color]', $settings['bg_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Background Color', 'coupon_bgcolor', 'jsspan tab-clr', 'cx_settings[coupon][bg_color]', $settings['bg_color']); 
+                ?>
             </div>
             <div class='row-elements half'>
             </div>
         </div>
         <?php
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
         echo $this->render_bg_elements_preview($settings, $type);
         ?>
         <div class='row cp-clr'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Coupon Color', 'coupon_pbgcolor', 'jsspan tab-clr', 'cx_settings[coupon][coupon_color]', $settings['coupon_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Coupon Color', 'coupon_pbgcolor', 'jsspan tab-clr', 'cx_settings[coupon][coupon_color]', $settings['coupon_color']); 
+                ?>
             </div>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Text Color(Coupon)', 'coupon_color', 'jsspan tab-clr', 'cx_settings[coupon][text_color]', $settings['text_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Text Color(Coupon)', 'coupon_color', 'jsspan tab-clr', 'cx_settings[coupon][text_color]', $settings['text_color']); 
+                ?>
             </div>
         </div>
         <div class='row cp-clr'>
             <div class='row-elements half extra color-row'>
-                <?php echo Cx_Helper::color_picker_template('Coupon Field Border Color', 'coupon_brdcolor', 'jsspan tab-clr', 'cx_settings[coupon][coupon_brdcolor]', $settings['coupon_brdcolor']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Coupon Field Border Color', 'coupon_brdcolor', 'jsspan tab-clr', 'cx_settings[coupon][coupon_brdcolor]', $settings['coupon_brdcolor']); 
+                ?>
             </div>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Close Button Color', 'cls_btn_color', 'jsspan tab-clr', 'cx_settings[coupon][clsbtn_color]', $settings['clsbtn_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Close Button Color', 'cls_btn_color', 'jsspan tab-clr', 'cx_settings[coupon][clsbtn_color]', $settings['clsbtn_color']); 
+                ?>
             </div>
         </div>
         <div class='row cp-clr mx-height-50'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Button Color', 'cpy_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[coupon][btn_color]', $settings['btn_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Button Color', 'cpy_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[coupon][btn_color]', $settings['btn_color']); 
+                ?>
             </div>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Text Color', 'cpy_btn_color', 'jsspan tab-clr', 'cx_settings[coupon][txt_color]', $settings['txt_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Text Color', 'cpy_btn_color', 'jsspan tab-clr', 'cx_settings[coupon][txt_color]', $settings['txt_color']); 
+                ?>
             </div>
         </div>
         <?php
@@ -894,23 +937,23 @@ class Cx_Widget_Popup
         $addImage = isset($settings['add_image']) && !empty($settings['add_image']) ? $settings['add_image'] : 0;
         $imgPosiotion = isset($settings['img_position']) && !empty($settings['img_position']) ? $settings['img_position'] : "left";
         ?>
-        <div class="content-bg-img-preview <?php echo $type ?>">
+        <div class="content-bg-img-preview <?php echo esc_attr($type); ?>">
             <div class="row">
                 <div class="row-elements full display-flex add-img-section">
                     <label class="display-label">
-                        <?php esc_html_e('Add an image', 'coupon-x'); ?>
+                        <?php esc_html_e('Add an image', 'coupon-x-discount-pop-up'); ?>
                         <span class="img-tooltip">
                             <span class="dashicons dashicons-editor-help"></span>
                             <span class="tooltiptext">
-                                <?php esc_html_e('Enhance popups with images. Customize layouts and position images wherever you want', 'coupon-x'); ?>
-                                <div class="coupon-tooltip-image" data-img="<?php echo COUPON_X_URL . 'assets/img/cx-wp-images-tooltip.gif' ?>">
+                                <?php esc_html_e('Enhance popups with images. Customize layouts and position images wherever you want', 'coupon-x-discount-pop-up'); ?>
+                                <div class="coupon-tooltip-image" data-img="<?php echo esc_url(COUPON_X_URL . 'assets/img/cx-wp-images-tooltip.gif'); ?>">
                                 </div>
                             </span>
                         </span>
                     </label>
                     <label class="couponapp-switch">
-                        <input type="hidden" name="cx_settings[<?php echo $type ?>][add_image]" value="0">
-                        <input type="checkbox" name="cx_settings[<?php echo $type ?>][add_image]" class="add-bg-image" value="1" <?php checked($addImage,1) ?>>
+                        <input type="hidden" name="cx_settings[<?php echo esc_attr($type) ?>][add_image]" value="0">
+                        <input type="checkbox" name="cx_settings[<?php echo esc_attr($type) ?>][add_image]" class="add-bg-image" value="1" <?php checked($addImage,1) ?>>
                         <span class="cx-slider round">
                             <span class="on"> On</span>
                             <span class="off">Off</span>
@@ -920,72 +963,72 @@ class Cx_Widget_Popup
             </div>
             <div class="row popup-bg-image-position <?php echo ($addImage=="1")?"":"hide" ?>">
                 <div class="image-position">
-                    <label for="<?php echo $type ?>_img_left_position">
-                        <img src="<?php echo COUPON_X_URL."assets/img/left.svg" ?>">
+                    <label for="<?php echo  esc_attr($type) ?>_img_left_position">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/left.svg"); ?>">
                     </label>
-                    <label for="<?php echo $type ?>_img_left_position" class="d-i-block">
-                        <input type="radio" class="img-position" name="cx_settings[<?php echo $type ?>][img_position]" value="left" id="<?php echo $type ?>_img_left_position" <?php checked($imgPosiotion, "left") ?>>
+                    <label for="<?php echo  esc_attr($type) ?>_img_left_position" class="d-i-block">
+                        <input type="radio" class="img-position" name="cx_settings[<?php echo  esc_attr($type) ?>][img_position]" value="left" id="<?php echo  esc_attr($type) ?>_img_left_position" <?php checked($imgPosiotion, "left") ?>>
                         <div>
-                            <?php esc_html_e("Left", "coupon-x") ?>
+                            <?php esc_html_e("Left", "coupon-x-discount-pop-up") ?>
                             <span class="img-tooltip">
                                 <span class="dashicons dashicons-editor-help"></span>
                                 <span class="tooltiptext">
-                                    <?php esc_html_e('Show an image on the left side of the pop up', 'coupon-x'); ?>
-                                    <div class="coupon-tooltip-image" data-img="<?php echo COUPON_X_URL . 'assets/img/cx_image_left.png' ?>"></div>
+                                    <?php esc_html_e('Show an image on the left side of the pop up', 'coupon-x-discount-pop-up'); ?>
+                                    <div class="coupon-tooltip-image" data-img="<?php echo esc_url(COUPON_X_URL . 'assets/img/cx_image_left.png'); ?>"></div>
                                 </span>
                             </span>
                         </div>
                     </label>
                 </div>
                 <div class="image-position">
-                    <label for="<?php echo $type ?>_img_right_position">
-                        <img src="<?php echo COUPON_X_URL."assets/img/Right.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_img_right_position">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/Right.svg"); ?>">
                     </label>
-                    <label for="<?php echo $type ?>_img_right_position" class="d-i-block">
-                        <input type="radio" class="img-position" name="cx_settings[<?php echo $type ?>][img_position]" value="right" id="<?php echo $type ?>_img_right_position" <?php checked($imgPosiotion, "right") ?>>
+                    <label for="<?php echo esc_attr($type) ?>_img_right_position" class="d-i-block">
+                        <input type="radio" class="img-position" name="cx_settings[<?php echo esc_attr($type) ?>][img_position]" value="right" id="<?php echo esc_attr($type) ?>_img_right_position" <?php checked($imgPosiotion, "right") ?>>
                         <div>
-                            <?php esc_html_e("Right", "coupon-x") ?>
+                            <?php esc_html_e("Right", "coupon-x-discount-pop-up") ?>
                             <span class="img-tooltip">
                                 <span class="dashicons dashicons-editor-help"></span>
                                 <span class="tooltiptext">
-                                    <?php esc_html_e('Show an image on the right side of the pop up', 'coupon-x'); ?>
-                                    <div class="coupon-tooltip-image" data-img="<?php echo COUPON_X_URL . 'assets/img/cx_image_right.png' ?>"></div>
+                                    <?php esc_html_e('Show an image on the right side of the pop up', 'coupon-x-discount-pop-up'); ?>
+                                    <div class="coupon-tooltip-image" data-img="<?php echo esc_url(COUPON_X_URL . 'assets/img/cx_image_right.png') ?>"></div>
                                 </span>
                             </span>
                         </div>
                     </label>
                 </div>
                 <div class="image-position">
-                    <label for="<?php echo $type ?>_img_top_position">
-                        <img src="<?php echo COUPON_X_URL."assets/img/Top.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_img_top_position">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/Top.svg"); ?>">
                     </label>
-                    <label for="<?php echo $type ?>_img_top_position" class="d-i-block">
-                        <input type="radio" class="img-position" name="cx_settings[<?php echo $type ?>][img_position]" value="top" id="<?php echo $type ?>_img_top_position" <?php checked($imgPosiotion, "top") ?>>
+                    <label for="<?php echo esc_attr($type) ?>_img_top_position" class="d-i-block">
+                        <input type="radio" class="img-position" name="cx_settings[<?php echo esc_attr($type) ?>][img_position]" value="top" id="<?php echo esc_attr($type) ?>_img_top_position" <?php checked($imgPosiotion, "top") ?>>
                         <div>
-                            <?php esc_html_e("Top", "coupon-x") ?>
+                            <?php esc_html_e("Top", "coupon-x-discount-pop-up") ?>
                             <span class="img-tooltip">
                                 <span class="dashicons dashicons-editor-help"></span>
                                 <span class="tooltiptext">
-                                    <?php esc_html_e('Show an image on the top side of the pop up', 'coupon-x'); ?>
-                                    <div class="coupon-tooltip-image" data-img="<?php echo COUPON_X_URL . 'assets/img/cx_image_top.png' ?>"></div>
+                                    <?php esc_html_e('Show an image on the top side of the pop up', 'coupon-x-discount-pop-up'); ?>
+                                    <div class="coupon-tooltip-image" data-img="<?php echo esc_url(COUPON_X_URL . 'assets/img/cx_image_top.png'); ?>"></div>
                                 </span>
                             </span>
                         </div>
                     </label>
                 </div>
                 <div class="image-position">
-                    <label for="<?php echo $type ?>_img_cover_position">
-                        <img src="<?php echo COUPON_X_URL."assets/img/Cover.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_img_cover_position">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/Cover.svg"); ?>">
                     </label>
-                    <label for="<?php echo $type ?>_img_cover_position" class="d-i-block">
-                        <input type="radio" class="img-position" name="cx_settings[<?php echo $type ?>][img_position]" value="cover" id="<?php echo $type ?>_img_cover_position" <?php checked($imgPosiotion, "cover") ?>>
+                    <label for="<?php echo esc_attr($type) ?>_img_cover_position" class="d-i-block">
+                        <input type="radio" class="img-position" name="cx_settings[<?php echo esc_attr($type) ?>][img_position]" value="cover" id="<?php echo esc_attr($type) ?>_img_cover_position" <?php checked($imgPosiotion, "cover") ?>>
                         <div>
-                            <?php esc_html_e("Cover", "coupon-x") ?>
+                            <?php esc_html_e("Cover", "coupon-x-discount-pop-up") ?>
                             <span class="img-tooltip">
                                 <span class="dashicons dashicons-editor-help"></span>
                                 <span class="tooltiptext">
-                                    <?php esc_html_e('Show the image as the main background (covers the whole background) of the popup', 'coupon-x'); ?>
-                                    <div class="coupon-tooltip-image" data-img="<?php echo COUPON_X_URL . 'assets/img/cx_image_cover.png' ?>"></div>
+                                    <?php esc_html_e('Show the image as the main background (covers the whole background) of the popup', 'coupon-x-discount-pop-up'); ?>
+                                    <div class="coupon-tooltip-image" data-img="<?php echo esc_url(COUPON_X_URL . 'assets/img/cx_image_cover.png') ?>"></div>
                                 </span>
                             </span>
                         </div>
@@ -999,10 +1042,10 @@ class Cx_Widget_Popup
                 <div class="row-elements full">
                     <button type="button" class="upload-popup-bg-image"><span class="dashicons dashicons-upload"></span>Upload</button>
                     <span class="recommended-text">Recommended: <span class="img_width">100px</span> width x <span class="img_height">120px</span> height</span>
-                    <input type="hidden" name="cx_settings[<?php echo $type ?>][image_url]" class="custom_bg_image" value="<?php echo $imageUrl ?>">
+                    <input type="hidden" name="cx_settings[<?php echo esc_attr($type)?>][image_url]" class="custom_bg_image" value="<?php echo esc_url($imageUrl) ?>">
                 </div>
             </div>
-            <input type="hidden" class="image-popup-type" value="<?php echo $type ?>">
+            <input type="hidden" class="image-popup-type" value="<?php echo esc_attr($type) ?>">
         </div>
 
     <?php }
@@ -1012,23 +1055,23 @@ class Cx_Widget_Popup
         $addElements = isset($settings['add_elements']) ? $settings['add_elements'] : 1;
         $elementType = isset($settings['element_type']) && !empty($settings['element_type']) ? $settings['element_type'] : 'confetti';
         ?>
-        <div class="content-bg-elements-preview <?php echo $type ?>" data-type="<?php echo esc_attr($type) ?>">
+        <div class="content-bg-elements-preview <?php echo esc_attr($type) ?>" data-type="<?php echo esc_attr($type) ?>">
             <div class="row">
                 <div class="row-elements full display-flex add-img-section">
                     <label class="display-label flex-200">
-                        <?php esc_html_e('Background Elements', 'coupon-x'); ?>
+                        <?php esc_html_e('Background Elements', 'coupon-x-discount-pop-up'); ?>
                         <span class="img-tooltip">
                                 <span class="dashicons dashicons-editor-help"></span>
                                 <span class="tooltiptext">
-                                    <?php esc_html_e("Add beautiful elements to your widget's background.", 'coupon-x'); ?>
-                                    <div class="coupon-tooltip-image" data-img="<?php echo COUPON_X_URL . 'assets/img/bg_elements_popup.png' ?>"></div>
+                                    <?php esc_html_e("Add beautiful elements to your widget's background.", 'coupon-x-discount-pop-up'); ?>
+                                    <div class="coupon-tooltip-image" data-img="<?php echo esc_url(COUPON_X_URL . 'assets/img/bg_elements_popup.png') ?>"></div>
                                 </span>
 
                         </span>
                     </label>
                     <label class="couponapp-switch">
-                        <input type="hidden" name="cx_settings[<?php echo $type ?>][add_elements]" value="0">
-                        <input type="checkbox" name="cx_settings[<?php echo $type ?>][add_elements]" class="add-bg-elements" value="1" <?php checked($addElements, 1) ?>>
+                        <input type="hidden" name="cx_settings[<?php echo esc_attr($type) ?>][add_elements]" value="0">
+                        <input type="checkbox" name="cx_settings[<?php echo esc_attr($type) ?>][add_elements]" class="add-bg-elements" value="1" <?php checked($addElements, 1) ?>>
                         <span class="cx-slider round">
                                 <span class="on"> On</span>
                                 <span class="off">Off</span>
@@ -1038,57 +1081,57 @@ class Cx_Widget_Popup
             </div>
             <div class="row popup-bg-image-position popup-bg-element-type flex gap-5 <?php echo ($addElements == 1) ? "" : "hide" ?>">
                 <div class="image-position element-position">
-                    <label for="<?php echo $type ?>_confetti_elements">
-                        <img src="<?php echo COUPON_X_URL."assets/img/confetti_preview.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_confetti_elements">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/confetti_preview.svg"); ?>">
                     </label>
-                    <label for="<?php echo $type ?>_confetti_elements" class="d-i-block">
-                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo $type ?>][element_type]" value="confetti" id="<?php echo $type ?>_confetti_elements" <?php checked($elementType, 'confetti') ?>>
+                    <label for="<?php echo esc_attr($type) ?>_confetti_elements" class="d-i-block">
+                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo esc_attr($type) ?>][element_type]" value="confetti" id="<?php echo esc_attr($type) ?>_confetti_elements" <?php checked($elementType, 'confetti') ?>>
                         <div>
-                            <?php esc_html_e("Confetti", "coupon-x") ?>
+                            <?php esc_html_e("Confetti", "coupon-x-discount-pop-up") ?>
                         </div>
                     </label>
                 </div>
                 <div class="image-position element-position">
-                    <label for="<?php echo $type ?>_nature_elements">
-                        <img src="<?php echo COUPON_X_URL."assets/img/nature_preview.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_nature_elements">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/nature_preview.svg") ?>">
                     </label>
-                    <label for="<?php echo $type ?>_nature_elements" class="d-i-block">
-                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo $type ?>][element_type]" value="nature" id="<?php echo $type ?>_nature_elements" <?php checked($elementType, 'nature') ?>>
+                    <label for="<?php echo esc_attr($type) ?>_nature_elements" class="d-i-block">
+                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo esc_attr($type) ?>][element_type]" value="nature" id="<?php echo esc_attr($type) ?>_nature_elements" <?php checked($elementType, 'nature') ?>>
                         <div>
-                            <?php esc_html_e("Nature", "coupon-x") ?>
+                            <?php esc_html_e("Nature", "coupon-x-discount-pop-up") ?>
                         </div>
                     </label>
                 </div>
                 <div class="image-position element-position">
-                    <label for="<?php echo $type ?>_discount_elements">
-                        <img src="<?php echo COUPON_X_URL."assets/img/discount_preview.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_discount_elements">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/discount_preview.svg") ?>">
                     </label>
-                    <label for="<?php echo $type ?>_discount_elements" class="d-i-block">
-                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo $type ?>][element_type]" value="discount" id="<?php echo $type ?>_discount_elements" <?php checked($elementType, 'discount') ?>>
+                    <label for="<?php echo esc_attr($type) ?>_discount_elements" class="d-i-block">
+                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo esc_attr($type) ?>][element_type]" value="discount" id="<?php echo esc_attr($type) ?>_discount_elements" <?php checked($elementType, 'discount') ?>>
                         <div>
-                            <?php esc_html_e("Discount", "coupon-x") ?>
+                            <?php esc_html_e("Discount", "coupon-x-discount-pop-up") ?>
                         </div>
                     </label>
                 </div>
                 <div class="image-position element-position">
-                    <label for="<?php echo $type ?>_bell_elements">
-                        <img src="<?php echo COUPON_X_URL."assets/img/notification_bell_preview.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_bell_elements">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/notification_bell_preview.svg") ?>">
                     </label>
-                    <label for="<?php echo $type ?>_bell_elements" class="d-i-block">
-                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo $type ?>][element_type]" value="bell" id="<?php echo $type ?>_bell_elements" <?php checked($elementType, 'bell') ?>>
+                    <label for="<?php echo esc_attr($type) ?>_bell_elements" class="d-i-block">
+                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo esc_attr($type) ?>][element_type]" value="bell" id="<?php echo esc_attr($type) ?>_bell_elements" <?php checked($elementType, 'bell') ?>>
                         <div>
-                            <?php esc_html_e("Notification Bell", "coupon-x") ?>
+                            <?php esc_html_e("Notification Bell", "coupon-x-discount-pop-up") ?>
                         </div>
                     </label>
                 </div>
                 <div class="image-position element-position">
-                    <label for="<?php echo $type ?>_gifts_elements">
-                        <img src="<?php echo COUPON_X_URL."assets/img/gifts_preview.svg" ?>">
+                    <label for="<?php echo esc_attr($type) ?>_gifts_elements">
+                        <img src="<?php echo esc_url(COUPON_X_URL."assets/img/gifts_preview.svg") ?>">
                     </label>
-                    <label for="<?php echo $type ?>_gifts_elements" class="d-i-block">
-                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo $type ?>][element_type]" value="gifts" id="<?php echo $type ?>_gifts_elements" <?php checked($elementType, 'gifts') ?>>
+                    <label for="<?php echo esc_attr($type) ?>_gifts_elements" class="d-i-block">
+                        <input type="radio" class="align-center bg-elements" name="cx_settings[<?php echo esc_attr($type) ?>][element_type]" value="gifts" id="<?php echo esc_attr($type) ?>_gifts_elements" <?php checked($elementType, 'gifts') ?>>
                         <div>
-                            <?php esc_html_e("Gifts", "coupon-x") ?>
+                            <?php esc_html_e("Gifts", "coupon-x-discount-pop-up") ?>
                         </div>
                     </label>
                 </div>
@@ -1145,7 +1188,7 @@ class Cx_Widget_Popup
         $couponcode_type  = ( isset($popup_settings['coupon_type']) ) ? (int) $popup_settings['coupon_type'] : '';
 
         if (2 === $couponcode_type) {
-            $coupon_code_text = esc_html__('Unique Code', 'coupon-x');
+            $coupon_code_text = esc_html__('Unique Code', 'coupon-x-discount-pop-up');
         } else if (1 === $couponcode_type) {
             $coupon_code_text = get_the_title($options['ex_coupon']['coupon']);
         } else {
@@ -1197,7 +1240,7 @@ class Cx_Widget_Popup
         ?>
         <style>
             <?php if(!empty($imageUrl) && $imgPosition == "cover") { ?>
-            .tab-box-content.type-main.has-image.cover .content-preview {background-image: url("<?php echo $imageUrl ?>")}
+            .tab-box-content.type-main.has-image.cover .content-preview {background-image: url("<?php echo esc_url($imageUrl) ?>")}
             <?php } ?>
         </style>
 
@@ -1205,10 +1248,10 @@ class Cx_Widget_Popup
         <div class="tab-box <?php echo esc_attr($couponapp_classes); ?> ">
         <span style="color: <?php echo esc_attr($coupon_settings['clsbtn_color']); ?>;" class="dashicons dashicons-no-alt close-design-popup"></span>
         <!-- close color -->
-        <div class="tab-box-content type-main couponapp-email-option <?php echo ($isElements == 1) ? "element-".$elementType : "" ?> <?php echo $imageClass ?> <?php echo $imgPosition ?> <?php echo in_array($style, [ 'style-1', 'style-3', 'style-4' ], true) ? 'hide' : ''; ?>" style="background-color:<?php echo esc_attr($settings['bgcolor']); ?>;" data-elements="<?php echo esc_attr($elementType) ?>">
+        <div class="tab-box-content type-main couponapp-email-option <?php echo ($isElements == 1) ? "element-".esc_attr($elementType) : "" ?> <?php echo esc_attr($imageClass) ?> <?php echo esc_attr($imgPosition ) ?> <?php echo in_array($style, [ 'style-1', 'style-3', 'style-4' ], true) ? 'hide' : ''; ?>" style="background-color:<?php echo esc_attr($settings['bgcolor']); ?>;" data-elements="<?php echo esc_attr($elementType) ?>">
             <?php if(!empty($imageUrl)) { ?>
                 <div class="img-preview">
-                    <img src="<?php echo $imageUrl ?>">
+                    <img src="<?php echo esc_url($imageUrl); ?>">
                 </div>
 				<?php } ?>
                 <div class="content-preview">
@@ -1253,13 +1296,13 @@ class Cx_Widget_Popup
             ?>
             <style>
                 <?php if(!empty($imageUrl) && $imgPosition == "cover") { ?>
-                .tab-box-content.type-coupon.has-image.cover .content-preview {background-image: url("<?php echo $imageUrl ?>")}
+                .tab-box-content.type-coupon.has-image.cover .content-preview {background-image: url("<?php echo esc_url($imageUrl) ?>")}
                 <?php } ?>
             </style>
-        <div class="tab-box-content type-coupon couponapp-code-option couponapp-email-code-option <?php echo ($isElements == 1) ? "element-".$elementType : "" ?> <?php echo $imageClass ?> <?php echo $imgPosition ?> <?php echo ( 'style-1' !== $style ) ? 'hide' : ''; ?>" data-elements="<?php echo esc_attr($elementType) ?>">
+        <div class="tab-box-content type-coupon couponapp-code-option couponapp-email-code-option <?php echo ($isElements == 1) ? "element-".esc_attr($elementType) : "" ?> <?php echo esc_attr($imageClass) ?> <?php echo esc_attr($imgPosition) ?> <?php echo ( 'style-1' !== $style ) ? 'hide' : ''; ?>" data-elements="<?php echo esc_attr($elementType) ?>">
             <?php if(!empty($imageUrl)) { ?>
                 <div class="img-preview">
-                    <img src="<?php echo $imageUrl ?>">
+                    <img src="<?php echo esc_url($imageUrl); ?>">
                 </div>
 				<?php } ?>
                 <div class="content-preview">
@@ -1282,10 +1325,10 @@ class Cx_Widget_Popup
                     </div>
                 </div>
         </div>
-        <div class="tab-box-content type-coupon couponapp-link-option <?php echo ($isElements == 1) ? "element-".$elementType : "" ?> <?php echo $imageClass ?> <?php echo $imgPosition ?> <?php echo ('style-3' === $style ? '' : 'hide'); ?>" style="background-color:<?php echo esc_attr($coupon_settings['bg_color']); ?>;" data-elements="<?php echo esc_attr($elementType) ?>">
+        <div class="tab-box-content type-coupon couponapp-link-option <?php echo ($isElements == 1) ? "element-".esc_attr($elementType) : "" ?> <?php echo esc_attr($imageClass) ?> <?php echo esc_attr($imgPosition) ?> <?php echo ('style-3' === $style ? '' : 'hide'); ?>" style="background-color:<?php echo esc_attr($coupon_settings['bg_color']); ?>;" data-elements="<?php echo esc_attr($elementType) ?>">
             <?php if(!empty($imageUrl)) { ?>
                 <div class="img-preview">
-                    <img src="<?php echo $imageUrl ?>">
+                    <img src="<?php echo esc_url($imageUrl); ?>">
                 </div>
             <?php } ?>
             <div class="content-preview">
@@ -1321,13 +1364,13 @@ class Cx_Widget_Popup
             ?>
             <style>
                 <?php if(!empty($imageUrl) && $imgPosition == "cover") { ?>
-                .tab-box-content.type-announcement.has-image.cover .content-preview {background-image: url("<?php echo $imageUrl ?>")}
+                .tab-box-content.type-announcement.has-image.cover .content-preview {background-image: url("<?php echo esc_url($imageUrl) ?>")}
                 <?php } ?>
             </style>
-        <div class="tab-box-content type-announcement couponapp-no-coupon-option <?php echo ($isElements == 1) ? "element-".$elementType : "" ?> <?php echo $imageClass ?> <?php echo $imgPosition ?> <?php echo ( 'style-4' !== $style ) ? 'hide' : ''; ?>" style="background-color:<?php echo esc_attr($ann_settings['bg_color']); ?>;" data-elements="<?php echo esc_attr($elementType) ?>">
+        <div class="tab-box-content type-announcement couponapp-no-coupon-option <?php echo ($isElements == 1) ? "element-".esc_attr($elementType) : "" ?> <?php echo esc_attr($imageClass) ?> <?php echo esc_attr($imgPosition) ?> <?php echo ( 'style-4' !== $style ) ? 'hide' : ''; ?>" style="background-color:<?php echo esc_attr($ann_settings['bg_color']); ?>;" data-elements="<?php echo esc_attr($elementType) ?>">
             <?php if(!empty($imageUrl)) { ?>
                 <div class="img-preview">
-                    <img src="<?php echo $imageUrl ?>">
+                    <img src="<?php echo esc_url($imageUrl); ?>">
                 </div>
             <?php } ?>
             <div class="content-preview">
@@ -1379,19 +1422,19 @@ class Cx_Widget_Popup
                 <label class="couponapp-switch" >
                     <input type="checkbox" name="cx_settings[announcement][enable_styles]" value="1" <?php echo checked($enable_styles, 1, false); ?> class='cpy-style' />
                     <span class="cx-slider round">
-                        <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
-                        <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                        <span class="on"> <?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                        <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                     </span>
                 </label>
                 <label style='display: inline;vertical-align: top;margin-left: 10px;font-size: 13px;'>
-                    <?php esc_html_e('Use the same styles like the email collection screen ', 'coupon-x'); ?>
+                    <?php esc_html_e('Use the same styles like the email collection screen ', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
         <div class='row'>
             <div class='row-elements full color-row'>
                 <label>
-                    <?php esc_html_e('Headline', 'coupon-x'); ?>
+                    <?php esc_html_e('Headline', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <?php
                 $args = array(
@@ -1417,7 +1460,7 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full color-row'>
                 <label>
-                    <?php esc_html_e('Description', 'coupon-x'); ?>
+                    <?php esc_html_e('Description', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <?php
                 $args = array(
@@ -1443,13 +1486,13 @@ class Cx_Widget_Popup
         <div class='row'>
             <div class='row-elements full display-flex'>
                 <label class="display-label">
-                    <?php esc_html_e('Display Button', 'coupon-x'); ?>
+                    <?php esc_html_e('Display Button', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <label class="couponapp-switch" >
                     <input type="checkbox" name="cx_settings[announcement][enable_btn]" value="1" <?php echo checked($enable_btn, 1, false); ?> class='enable-btn' />
                     <span class="cx-slider round">
-                        <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
-                        <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                        <span class="on"> <?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                        <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                     </span>
                 </label>
             </div>
@@ -1457,7 +1500,7 @@ class Cx_Widget_Popup
         <div class='row btn-div <?php echo esc_attr(0 === $enable_btn ? 'hide' : ''); ?>'>
             <div class='row-elements full'>
                 <label>
-                    <?php esc_html_e('Text Inside Button', 'coupon-x'); ?>
+                    <?php esc_html_e('Text Inside Button', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[announcement][cpy_btn]' value="<?php echo esc_attr($settings['cpy_btn']); ?>" class='input-element announcement-btn'>
             </div>
@@ -1465,14 +1508,14 @@ class Cx_Widget_Popup
         <div class='row btn-div  <?php echo esc_attr($enable_btn === 0 ? 'hide' : ''); ?>'>
             <div class='row-elements full'>
                 <label>
-                    <?php esc_html_e('Action On Button Click', 'coupon-x'); ?>
+                    <?php esc_html_e('Action On Button Click', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <select class='input-element btn-action' name='cx_settings[announcement][btn_action]'>
                     <option value='1' <?php echo selected($settings['btn_action'], 1, false); ?>>
-                        <?php esc_html_e('Hide the widget', 'coupon-x'); ?>
+                        <?php esc_html_e('Hide the widget', 'coupon-x-discount-pop-up'); ?>
                     </option>
                     <option value='2' <?php echo selected($settings['btn_action'], 2, false); ?>>
-                        <?php esc_html_e('Redirect the visitor to another URL', 'coupon-x'); ?>
+                        <?php esc_html_e('Redirect the visitor to another URL', 'coupon-x-discount-pop-up'); ?>
                     </option>
                 </select>
             </div>
@@ -1480,7 +1523,7 @@ class Cx_Widget_Popup
         <div class='row announcement-redirect <?php echo ( 1 === $enable_btn && 2 === (int) $settings['btn_action'] ) ? '' : 'hide'; ?>'>
             <div class='row-elements full '>
                 <label>
-                    <?php esc_html_e('Button Redirection Link', 'coupon-x'); ?>
+                    <?php esc_html_e('Button Redirection Link', 'coupon-x-discount-pop-up'); ?>
                 </label>
                 <input type='text' name='cx_settings[announcement][redirect_url]' value="<?php echo esc_attr($settings['redirect_url']); ?>" class='input-element'>
             </div>
@@ -1492,30 +1535,41 @@ class Cx_Widget_Popup
                     $new_tab = isset($settings['new_tab']) ? $settings['new_tab'] : 0;
                     ?>
                     <input type='checkbox' name='cx_settings[announcement][new_tab]' value='1' <?php echo checked($new_tab, 1, false); ?>>
-                    <?php esc_html_e('Open in a New Tab', 'coupon-x'); ?>
+                    <?php esc_html_e('Open in a New Tab', 'coupon-x-discount-pop-up'); ?>
                 </label>
             </div>
         </div>
         <?php
         $type = "announcement";
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped    
         echo $this->render_bg_image_preview($settings, $type);
         ?>
         <div class='row an-clr <?php echo esc_attr(1 === $enable_styles ? 'hide' : ''); ?>'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Background Color', 'announcement_bgcolor', 'jsspan tab-clr', 'cx_settings[announcement][bg_color]', $settings['bg_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Background Color', 'announcement_bgcolor', 'jsspan tab-clr', 'cx_settings[announcement][bg_color]', $settings['bg_color']); 
+                ?>
             </div>
             <div class='row-elements half'>
             </div>
         </div>
         <?php
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
         echo $this->render_bg_elements_preview($settings, $type);
         ?>
         <div class='row btn-div btn-clr <?php echo esc_attr(( 1 === $enable_btn && 2 === (int) $settings['btn_action'] ) ? '' : 'hide'); ?>'>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Button Color', 'announcement_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[announcement][btn_color]', $settings['btn_color']) ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Button Color', 'announcement_btn_bgcolor', 'jsspan tab-clr', 'cx_settings[announcement][btn_color]', $settings['btn_color']); 
+                ?>
             </div>
             <div class='row-elements half color-row'>
-                <?php echo Cx_Helper::color_picker_template('Text Color', 'announcement_btn_color', 'jsspan tab-clr', 'cx_settings[announcement][txt_color]', $settings['txt_color']); ?>
+                <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo Cx_Helper::color_picker_template('Text Color', 'announcement_btn_color', 'jsspan tab-clr', 'cx_settings[announcement][txt_color]', $settings['txt_color']); 
+                ?>
             </div>
         </div>
         <?php
@@ -1529,16 +1583,16 @@ class Cx_Widget_Popup
 <div class="main-popup-couponx-bg couponx-send-mail-updrade cx-send-coupon-popup hide" id="couponx-send-mail-updrade" style="">
     <div class="couponx-send-mail-upgrade-left couponx-timer-upgrade-slid">
         <img src="<?php echo esc_url(COUPON_X_URL."assets/img/maxlimitpopup.svg") ?>">
-        <h4><?php esc_html_e("Send coupons via  email 📩", "coupon-x") ?></h4>
-        <p><?php esc_html_e("Easily send coupons to your customers via email. Customize the content of the email, sending identity, sending time & more when you upgrade to Pro.", "coupon-x") ?></p>
+        <h4><?php esc_html_e("Send coupons via  email 📩", "coupon-x-discount-pop-up") ?></h4>
+        <p><?php esc_html_e("Easily send coupons to your customers via email. Customize the content of the email, sending identity, sending time & more when you upgrade to Pro.", "coupon-x-discount-pop-up") ?></p>
         <div class="couponx-send-mail-updrade-btn">
             <a  href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>"  class=" btn-black">
-                <?php esc_html_e("Upgrade Now", "coupon-x") ?>
+                <?php esc_html_e("Upgrade Now", "coupon-x-discount-pop-up") ?>
                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg>
             </a>
         </div>
-        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("Cancel anytime. No strings attached", "coupon-x") ?></span><br>
-        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("30 days refund", "coupon-x") ?></span>
+        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("Cancel anytime. No strings attached", "coupon-x-discount-pop-up") ?></span><br>
+        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("30 days refund", "coupon-x-discount-pop-up") ?></span>
     </div>
     <div class="couponx-send-mail-upgrade-right couponx-timer-upgrade-slid">
         <img src="<?php echo esc_url(COUPON_X_URL."assets/img/mail_editor.jpg") ?>">
@@ -1556,16 +1610,16 @@ class Cx_Widget_Popup
 <div class="main-popup-couponx-bg couponx-two-step-coupon cx-send-coupon-popup hide" id="couponx-two-step-coupon" style="">
     <div class="couponx-send-mail-upgrade-left couponx-timer-upgrade-slid">
         <img class="inline-block w-32 h-auto" src="<?php echo esc_url(COUPON_X_URL."assets/img/maxlimitpopup.svg") ?>">
-        <h4><?php esc_html_e("Upgrade to Pro 🎉", "coupon-x") ?></h4>
-        <p><?php esc_html_e("Enjoy awesome features like 2-step coupon generation, beautiful timer templates, sending leads to email, email integrations and more.", "coupon-x") ?></p>
+        <h4><?php esc_html_e("Upgrade to Pro 🎉", "coupon-x-discount-pop-up") ?></h4>
+        <p><?php esc_html_e("Enjoy awesome features like 2-step coupon generation, beautiful timer templates, sending leads to email, email integrations and more.", "coupon-x-discount-pop-up") ?></p>
         <div class="couponx-send-mail-updrade-btn">
             <a  href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>"  class=" btn-black">
-                <?php esc_html_e("Upgrade Now", "coupon-x") ?>
+                <?php esc_html_e("Upgrade Now", "coupon-x-discount-pop-up") ?>
                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg>
             </a>
         </div>
-        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("Cancel anytime. No strings attached", "coupon-x") ?></span><br>
-        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("30 days refund", "coupon-x") ?></span>
+        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("Cancel anytime. No strings attached", "coupon-x-discount-pop-up") ?></span><br>
+        <span><span class="dashicons dashicons-saved"></span> <?php esc_html_e("30 days refund", "coupon-x-discount-pop-up") ?></span>
     </div>
     <div class="couponx-send-mail-upgrade-right couponx-timer-upgrade-slid">
         <img src="<?php echo esc_url(COUPON_X_URL."assets/img/2-step-coupon-generation.png") ?>">

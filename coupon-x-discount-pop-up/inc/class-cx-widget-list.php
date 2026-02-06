@@ -46,39 +46,39 @@ class Cx_Widget_List
             ?>
         <div class='cx-widget-listing'>
             <a class='new-widget' href='<?php echo esc_attr($new_widget_url); ?>'>
-            <?php esc_html_e('Create New Widget', 'coupon-x'); ?>
+            <?php esc_html_e('Create New Widget', 'coupon-x-discount-pop-up'); ?>
             </a>            
             <table class='widget-listing'>
-                <input type='hidden' name='cx_nonce' value = '<?php echo wp_create_nonce('wp_rest'); ?>' />
+                <input type='hidden' name='cx_nonce' value = '<?php echo esc_attr(wp_create_nonce('wp_rest')); ?>' />
                 <thead>
-                    <th> <?php esc_html_e('Status', 'coupon-x'); ?> </th>
-                    <th> <?php esc_html_e('Widget Name', 'coupon-x'); ?> </th>
-                    <th> <?php esc_html_e('Widget Type', 'coupon-x'); ?> </th>
+                    <th> <?php esc_html_e('Status', 'coupon-x-discount-pop-up'); ?> </th>
+                    <th> <?php esc_html_e('Widget Name', 'coupon-x-discount-pop-up'); ?> </th>
+                    <th> <?php esc_html_e('Widget Type', 'coupon-x-discount-pop-up'); ?> </th>
                     <th> 
-                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e(' The number of people who viewed your widget', 'coupon-x'); ?>">
+                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e(' The number of people who viewed your widget', 'coupon-x-discount-pop-up'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span>
-                        <?php esc_html_e('Visitors', 'coupon-x'); ?>
+                        <?php esc_html_e('Visitors', 'coupon-x-discount-pop-up'); ?>
                     </th>
                     <th>
-                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of unique times your widget was opened', 'coupon-x'); ?>">
+                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of unique times your widget was opened', 'coupon-x-discount-pop-up'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span> 
-                        <?php esc_html_e('Open Rate', 'coupon-x'); ?>
+                        <?php esc_html_e('Open Rate', 'coupon-x-discount-pop-up'); ?>
                     </th>
                     <th> 
-                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of times people click on the Copy button on your widget', 'coupon-x'); ?>">
+                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of times people click on the Copy button on your widget', 'coupon-x-discount-pop-up'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span>
-            <?php esc_html_e('Conversions', 'coupon-x'); ?> 
+            <?php esc_html_e('Conversions', 'coupon-x-discount-pop-up'); ?> 
                     </th>
                     <th> 
-                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of times the coupon code was copied divided by the number of times the widget has been opened', 'coupon-x'); ?>">
+                        <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of times the coupon code was copied divided by the number of times the widget has been opened', 'coupon-x-discount-pop-up'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span>
-            <?php esc_html_e('% Rate', 'coupon-x'); ?> 
+            <?php esc_html_e('% Rate', 'coupon-x-discount-pop-up'); ?> 
                     </th>
-                    <th> <?php esc_html_e('Actions', 'coupon-x'); ?> </th>
+                    <th> <?php esc_html_e('Actions', 'coupon-x-discount-pop-up'); ?> </th>
                 </thead>
                 <tbody>
             <?php
@@ -106,8 +106,8 @@ class Cx_Widget_List
                                 <label class="couponapp-switch">
                                     <input type="checkbox" name="status" value="1" <?php echo checked($status, 1, false); ?> widget-id = '<?php echo esc_attr($post->ID); ?>' class='widget-status' />
                                     <span class="cx-slider round">
-                                        <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
-                                        <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                                        <span class="on"> <?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                                        <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                                     </span>
                                 </label>
                             </td>
@@ -115,15 +115,15 @@ class Cx_Widget_List
                             <td>
                     <?php
                     if ('style-1' === $widget_type) {
-                        echo esc_html__('Show Coupon', 'coupon-x');
+                        echo esc_html__('Show Coupon', 'coupon-x-discount-pop-up');
                     } else if ('style-2' === $widget_type) {
-                        echo esc_html__('Email', 'coupon-x');
+                        echo esc_html__('Email', 'coupon-x-discount-pop-up');
                     } else if ('style-3' === $widget_type) {
-                        echo esc_html__('External Link', 'coupon-x');
+                        echo esc_html__('External Link', 'coupon-x-discount-pop-up');
                     } else if ('style-4' === $widget_type) {
-                        echo esc_html__('Announcement', 'coupon-x');
+                        echo esc_html__('Announcement', 'coupon-x-discount-pop-up');
                     } else {
-                               echo esc_html__('Announcement Email', 'coupon-x');
+                               echo esc_html__('Announcement Email', 'coupon-x-discount-pop-up');
                     }
                     ?>
                             </td>
@@ -150,9 +150,9 @@ class Cx_Widget_List
                 </tbody>
             </table>
         </div>
-        <div id="couponapp-widget-delete-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Delete Widget?', 'coupon-x'); ?>" style='display: none;'>
+        <div id="couponapp-widget-delete-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Delete Widget?', 'coupon-x-discount-pop-up'); ?>" style='display: none;'>
             <p>
-            <?php esc_attr_e('Are you sure you want to delete this widget?', 'coupon-x'); ?>
+            <?php esc_attr_e('Are you sure you want to delete this widget?', 'coupon-x-discount-pop-up'); ?>
             </p>
             <input type="hidden" id="dashboard_widget_id" value="" />
         </div>
@@ -160,7 +160,7 @@ class Cx_Widget_List
             <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" style="width:150px;height:150px;"><path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></path></svg>
         </div>
         <div id="wp_flash_message" class="hide">
-            <?php echo esc_html__('Widget is deleted successfully', 'coupon-x'); ?>
+            <?php echo esc_html__('Widget is deleted successfully', 'coupon-x-discount-pop-up'); ?>
             <span>
                 <a href="#" class="close_flash_popup">&#x2715;</a>
             </span>
@@ -185,9 +185,9 @@ class Cx_Widget_List
                 <div class="rate-popup-content">
                     <div class="rate-popup-content-wrapper">
                         <img src='<?php echo esc_url(COUPON_X_URL.'/assets/img/welcome.svg'); ?>'>
-                        <h4><?php esc_html_e('Welcome to Coupon X', 'coupon-x'); ?></h4>
+                        <h4><?php esc_html_e('Welcome to Coupon X', 'coupon-x-discount-pop-up'); ?></h4>
                         <p> 
-                            <?php esc_html_e('Create beautiful promo code pop ups and get more sales today!', 'coupon-x'); ?>
+                            <?php esc_html_e('Create beautiful promo code pop ups and get more sales today!', 'coupon-x-discount-pop-up'); ?>
                         </p>
                     </div>
                 </div>
@@ -198,7 +198,7 @@ class Cx_Widget_List
                             <path d="M16 10.6667V21.3334" stroke="#656BE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M10.6667 16H21.3334" stroke="#656BE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <?php esc_html_e('Create New Widget', 'coupon-x'); ?>
+                        <?php esc_html_e('Create New Widget', 'coupon-x-discount-pop-up'); ?>
                     </button>
                 </div>
             </div>

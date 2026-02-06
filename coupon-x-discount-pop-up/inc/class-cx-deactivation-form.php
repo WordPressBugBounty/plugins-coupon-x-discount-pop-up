@@ -43,27 +43,27 @@ class Cx_Deactivation_Form
                 <!-- form start -->
                 <form action="#" method="post" id="cx-deactivate-form">
                     <div class="cx-popup-header">
-                        <h2><?php esc_html_e('Quick feedback about Coupon X', 'coupon-x'); ?> 🙏</h2>
+                        <h2><?php esc_html_e('Quick feedback about Coupon X', 'coupon-x-discount-pop-up'); ?> 🙏</h2>
                     </div>
                     <div class="cx-popup-body">
-                        <h3><?php esc_html_e('Your feedback will help us improve the product, please tell us why did you decide to deactivate Coupon X:)', 'coupon-x'); ?></h3>
+                        <h3><?php esc_html_e('Your feedback will help us improve the product, please tell us why did you decide to deactivate Coupon X:)', 'coupon-x-discount-pop-up'); ?></h3>
                         <div class="form-control">
-                            <input type="email" value="<?php echo get_option('admin_email'); ?>" placeholder="<?php echo esc_html__('Email address', 'coupon-x'); ?>" id="cx-deactivation-email_id">
+                            <input type="email" value="<?php echo esc_attr( get_option( 'admin_email' ) );?>" placeholder="<?php echo esc_html__('Email address', 'coupon-x-discount-pop-up'); ?>" id="cx-deactivation-email_id">
                         </div>
                         <div class="form-control">
                             <label></label>
-                            <textarea placeholder="<?php esc_html_e('I need some help setting up Coupon X 🙂', 'coupon-x'); ?>" id="cx-deactivation-comment">I need some help setting up Coupon X 🙂</textarea>
+                            <textarea placeholder="<?php esc_html_e('I need some help setting up Coupon X 🙂', 'coupon-x-discount-pop-up'); ?>" id="cx-deactivation-comment">I need some help setting up Coupon X 🙂</textarea>
                         </div>
                     </div>
                     <div class="cx-popup-footer">
                         <label class="cx-anonymous">
-                            <input type="checkbox"/><?php esc_html_e('Anonymous feedback', 'coupon-x'); ?>
+                            <input type="checkbox"/><?php esc_html_e('Anonymous feedback', 'coupon-x-discount-pop-up'); ?>
                         </label>
-                        <input type="button" class="button button-secondary button-skip cx-popup-skip-feedback" value="<?php esc_html_e('Skip & Deactivate', 'coupon-x'); ?>">
+                        <input type="button" class="button button-secondary button-skip cx-popup-skip-feedback" value="<?php esc_html_e('Skip & Deactivate', 'coupon-x-discount-pop-up'); ?>">
                         <div class="action-btns">
                             <span class="cx-spinner"><img src="<?php echo esc_url(admin_url('/images/spinner.gif')); ?>" alt=""></span>
-                            <input type="submit" class="button button-secondary button-deactivate cx-popup-allow-deactivate" value="<?php esc_html_e('Submit & Deactivate', 'coupon-x'); ?>" >
-                            <a href="#" class="button button-primary cx-popup-button-close"><?php esc_html_e('Cancel', 'coupon-x'); ?></a>
+                            <input type="submit" class="button button-secondary button-deactivate cx-popup-allow-deactivate" value="<?php esc_html_e('Submit & Deactivate', 'coupon-x-discount-pop-up'); ?>" >
+                            <a href="#" class="button button-primary cx-popup-button-close"><?php esc_html_e('Cancel', 'coupon-x-discount-pop-up'); ?></a>
                         </div>
                     </div>
                 </form>

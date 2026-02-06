@@ -45,34 +45,34 @@ class Cx_Help
             'help_center_link' => esc_url('https://premio.io/help/coupon-x/?utm_source=pluginspage'),
             'footer_menu' => array( 
                 'support' => array(
-                    'title' => esc_html("Get Support", "coupon-x"),
+                    'title' => esc_html("Get Support", "coupon-x-discount-pop-up"),
                     'link' =>  esc_url("https://wordpress.org/support/plugin/coupon-x-discount-pop-up/"),
                     'status' => true,
                 ),
                 'upgrade_to_pro' => array(
-                    'title' => esc_html("Upgrade to Pro", "coupon-x"),
+                    'title' => esc_html("Upgrade to Pro", "coupon-x-discount-pop-up"),
                     'link' =>  esc_url(admin_url("admin.php?page=couponx_pricing_tbl")),
                     'status' => true,
                 ),
                 'recommended_plugins' => array(
-                    'title' => esc_html("Recommended Plugins", "coupon-x"),
+                    'title' => esc_html("Recommended Plugins", "coupon-x-discount-pop-up"),
                     'link' =>  esc_url(admin_url("admin.php?page=cx-recommended-plugins")),
                     'status' => get_option("hide_couponx_plugins") ? false : true,
                 ),  
             ),
             'support_widget' => array(
                 'upgrade_to_pro' => array(
-                    'title' => esc_html("Upgrade to Pro", "coupon-x"),
+                    'title' => esc_html("Upgrade to Pro", "coupon-x-discount-pop-up"),
                     'link' =>  esc_url(admin_url("admin.php?page=couponx_pricing_tbl")),
                     'icon' => esc_url(COUPON_X_URL."assets/img/help/pro.svg"),
                 ),
                 'get_support' => array(
-                    'title' => esc_html("Get Support", "coupon-x"),
+                    'title' => esc_html("Get Support", "coupon-x-discount-pop-up"),
                     'link' =>   esc_url("https://wordpress.org/support/plugin/coupon-x-discount-pop-up/"),
                     'icon' => esc_url(COUPON_X_URL."assets/img/help/help-circle.svg"),
                 ),
                 'contact' => array(
-                    'title' => esc_html("Contact Us", "coupon-x"),
+                    'title' => esc_html("Contact Us", "coupon-x-discount-pop-up"),
                     'link' =>  false,
                     'icon' => esc_url(COUPON_X_URL."assets/img/help/headphones.svg"),
                 ),

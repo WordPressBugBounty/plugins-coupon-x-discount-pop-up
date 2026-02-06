@@ -364,21 +364,21 @@ $popup_data = CX_UPDATE_POPUP_CONTENT; // get Data from update class,
                 <span><?php echo esc_html($popup_data['trust_user']) ?><span>
             </div>
 
-            <h1><?php esc_html_e("We Only Email When It's Worth It", 'coupon-x') ?></h1>
+            <h1><?php esc_html_e("We Only Email When It's Worth It", 'coupon-x-discount-pop-up') ?></h1>
 
             <div class="premio-content-list">
                 <div class="premio-content-list-items"> 
                     <img src="<?php echo esc_url($popup_data['check_circle']);?>" alt="check circle">
-                    <span><?php esc_html_e('Plugin updates and features for improved performance', 'coupon-x') ?> </span>
+                    <span><?php esc_html_e('Plugin updates and features for improved performance', 'coupon-x-discount-pop-up') ?> </span>
                 </div>
                 <div class="premio-content-list-items">
                     <img src="<?php echo esc_url($popup_data['check_circle']);?>" alt="check circle">
-                    <span><?php esc_html_e('Important security updates for site safety', 'coupon-x') ?></span>
+                    <span><?php esc_html_e('Important security updates for site safety', 'coupon-x-discount-pop-up') ?></span>
                      
                 </div>
                 <div class="premio-content-list-items">
                     <img src="<?php echo esc_url($popup_data['check_circle']);?>" alt="check circle">
-                    <span><?php esc_html_e('Limited-time offers for WordPress users seeking growth', 'coupon-x') ?> </span>
+                    <span><?php esc_html_e('Limited-time offers for WordPress users seeking growth', 'coupon-x-discount-pop-up') ?> </span>
                 </div>
             </div>
 
@@ -386,12 +386,12 @@ $popup_data = CX_UPDATE_POPUP_CONTENT; // get Data from update class,
                 <span class="mail-icon">
                     <img src="<?php echo esc_url($popup_data['mail_icon']) ?>" alt="Mail icon">
                 </span>
-                <input type="email" value="<?php echo esc_attr($email) ?>" name="couponx_update_email" id="couponx_update_email" autocomplete="off" placeholder="<?php esc_html_e('Your Email Address', 'coupon-x') ?>" required>  
+                <input type="email" value="<?php echo esc_attr($email) ?>" name="couponx_update_email" id="couponx_update_email" autocomplete="off" placeholder="<?php esc_html_e('Your Email Address', 'coupon-x-discount-pop-up') ?>" required>  
                 
             </div>
             <p id="suggestion"></p>
             <div class="popup-update-btn-wrap">
-                <button href="#" class="update-popup-btn submit-popup yes"> <?php esc_html_e('Count Me In', 'coupon-x')?>
+                <button href="#" class="update-popup-btn submit-popup yes"> <?php esc_html_e('Count Me In', 'coupon-x-discount-pop-up')?>
                     <span class="icon">
                         <img class="arrow-right" src="<?php echo esc_url($popup_data['arrow_right']) ?>" alt="arrow right">
                         <img id="pre-loader" style="display: none;" src="<?php echo esc_url($popup_data['pre_loader']) ?>" alt="pre loader">
@@ -399,7 +399,7 @@ $popup_data = CX_UPDATE_POPUP_CONTENT; // get Data from update class,
                     </span>
                      
                 </button>
-                <button href="#" class="update-popup-btn update-close-popup no"> <?php esc_html_e('Maybe Later', 'coupon-x')?> </button>
+                <button href="#" class="update-popup-btn update-close-popup no"> <?php esc_html_e('Maybe Later', 'coupon-x-discount-pop-up')?> </button>
             </div>
           
        </div>
@@ -413,7 +413,7 @@ $popup_data = CX_UPDATE_POPUP_CONTENT; // get Data from update class,
                 </div>
                 <div class="content">
                     <h4><?php echo esc_html($popup_data['website_owners']) ?></h4>
-                    <span><?php esc_html_e('Website Owners', 'coupon-x') ?></span>
+                    <span><?php esc_html_e('Website Owners', 'coupon-x-discount-pop-up') ?></span>
                 </div>
             </div>
             <!-- Icon Box -->
@@ -425,8 +425,8 @@ $popup_data = CX_UPDATE_POPUP_CONTENT; // get Data from update class,
                     <img src="<?php echo esc_url($popup_data['slash_icon']) ?>" alt="slash icon">
                 </div>
                 <div class="content">
-                    <h4><?php esc_html_e('No Spam Ever', 'coupon-x') ?></h4>
-                    <span><?php esc_html_e('Unsubscribe Anytime', 'coupon-x') ?></span>
+                    <h4><?php esc_html_e('No Spam Ever', 'coupon-x-discount-pop-up') ?></h4>
+                    <span><?php esc_html_e('Unsubscribe Anytime', 'coupon-x-discount-pop-up') ?></span>
                 </div>
             </div>
             <!-- Icon Box -->
@@ -444,7 +444,7 @@ $popup_data = CX_UPDATE_POPUP_CONTENT; // get Data from update class,
             </div>
             <!-- Icon Box -->
        </div>
-       <input type="hidden" id="coupon_x_signup_nonce" value="<?php echo wp_create_nonce("coupon_x_signup_nonce") ?>">
+       <input type="hidden" id="coupon_x_signup_nonce" value="<?php echo esc_attr(wp_create_nonce("coupon_x_signup_nonce")) ?>">
 
     </div>
 </div>

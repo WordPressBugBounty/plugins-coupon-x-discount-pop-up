@@ -17,18 +17,18 @@ $data = WCP_CX_FOOTER_HELP_DATA;
             <?php endforeach; ?> 
         </div>
         <div class="premio-help-content">
-            <p><?php esc_html_e("Powered by ", "coupon-x") ?><a target="_blank" href="<?php echo esc_url($data['premio_site_info']) ?>"><?php esc_html_e("Premio", "coupon-x") ?></a></p>
+            <p><?php esc_html_e("Powered by ", "coupon-x-discount-pop-up") ?><a target="_blank" href="<?php echo esc_url($data['premio_site_info']) ?>"><?php esc_html_e("Premio", "coupon-x-discount-pop-up") ?></a></p>
         </div>
     </div>
     <div class="premio-help-button-wrap">
     <!-- Free/Pro Only URL Change -->
-        <a class="premio-help-button" href="#"><img src="<?php echo esc_url($data['help_icon']) ?>" alt="<?php esc_html_e("Need help?", 'coupon-x'); ?>"  /></a>
-        <a class="premio-help-close-btn" href="#"><img src="<?php echo esc_url($data['close_icon']) ?>" alt="<?php esc_html_e("Close", 'coupon-x'); ?>"  /></a>
+        <a class="premio-help-button" href="#"><img src="<?php echo esc_url($data['help_icon']) ?>" alt="<?php esc_html_e("Need help?", 'coupon-x-discount-pop-up'); ?>"  /></a>
+        <a class="premio-help-close-btn" href="#"><img src="<?php echo esc_url($data['close_icon']) ?>" alt="<?php esc_html_e("Close", 'coupon-x-discount-pop-up'); ?>"  /></a>
         
         <?php 
             $option = get_option("hide_coupon-x_cta");
             if ($option !== "yes") { ?>
-                <span class="tooltiptext"><?php esc_html_e("Support", "coupon-x") ?></span>
+                <span class="tooltiptext"><?php esc_html_e("Support", "coupon-x-discount-pop-up") ?></span>
         <?php  } ?> 
         <div class="premio-help-absulate-content">
             <?php foreach($data['support_widget'] as $key => $value): 
@@ -49,27 +49,27 @@ $data = WCP_CX_FOOTER_HELP_DATA;
     
         <form action="<?php echo esc_url(admin_url('admin-ajax.php')) ?>" method="post" id="premio-help-form">
             <div class="premio-help-header">
-                <b>Gal Dubinski</b>  <?php esc_html_e("Co-Founder at Premio", "coupon-x") ?>
+                <b>Gal Dubinski</b>  <?php esc_html_e("Co-Founder at Premio", "coupon-x-discount-pop-up") ?>
             </div>
             <div class="premio-help-content">
-                <p><?php esc_html_e("Hello! Are you experiencing any problems with coupon-x? Please let me know :)", 'coupon-x'); ?></p>
+                <p><?php esc_html_e("Hello! Are you experiencing any problems with coupon-x? Please let me know :)", 'coupon-x-discount-pop-up'); ?></p>
                    <br>
                 <div class="premio-form-field">
-                    <input type="text" name="user_email" id="user_email" placeholder="<?php esc_html_e("Email", 'coupon-x'); ?>">
+                    <input type="text" name="user_email" id="user_email" placeholder="<?php esc_html_e("Email", 'coupon-x-discount-pop-up'); ?>">
                  
                 </div>
                 <div class="premio-form-field">
-                    <textarea type="text" name="textarea_text" id="textarea_text" placeholder="<?php esc_html_e("How can I help you?", 'coupon-x'); ?>"></textarea>
+                    <textarea type="text" name="textarea_text" id="textarea_text" placeholder="<?php esc_html_e("How can I help you?", 'coupon-x-discount-pop-up'); ?>"></textarea>
                 </div>
                 <div class="form-button">
-                    <button type="submit" class="premio-help-button-submit" ><?php esc_html_e("Chat", 'coupon-x') ?></button>
+                    <button type="submit" class="premio-help-button-submit" ><?php esc_html_e("Chat", 'coupon-x-discount-pop-up') ?></button>
                      <input type="hidden" name="action" value="cx_admin_send_message_to_owner"  >
                     <input type="hidden" id="nonce" name="nonce" value="<?php echo esc_attr(wp_create_nonce('cx_send_message_to_owner')); ?>">
                 </div>
             </div>
             <div class="help-form-footer">
-                <p><?php  esc_html_e("Or", 'coupon-x'); ?></p>
-                <p><a href="<?php  echo esc_url($data['help_center_link']) ?>" target="_blank"><?php  esc_html_e("Visit our Help Center >>", 'coupon-x'); ?></a></p>
+                <p><?php  esc_html_e("Or", 'coupon-x-discount-pop-up'); ?></p>
+                <p><a href="<?php  echo esc_url($data['help_center_link']) ?>" target="_blank"><?php  esc_html_e("Visit our Help Center >>", 'coupon-x-discount-pop-up'); ?></a></p>
             </div>
         </form> 
         <div class="premio-form-response"></div>
@@ -105,7 +105,7 @@ $data = WCP_CX_FOOTER_HELP_DATA;
         });
         jQuery("#premio-help-form").submit(function(){
             jQuery(".premio-help-button-submit").attr("disabled",true);
-            jQuery(".premio-help-button-submit").text("<?php esc_html_e("Sending Request...", "coupon-x") ?>");
+            jQuery(".premio-help-button-submit").text("<?php esc_html_e("Sending Request...", "coupon-x-discount-pop-up") ?>");
             formData = jQuery(this).serialize();
             jQuery.ajax({
                 url: "<?php echo esc_url(admin_url('admin-ajax.php')) ?>",
@@ -116,26 +116,29 @@ $data = WCP_CX_FOOTER_HELP_DATA;
                     jQuery("#premio-help-form").find(".input-error").removeClass("input-error");
                     if(responseArray.error == 1) {
                         jQuery(".premio-help-button-submit").attr("disabled",false);
-                        jQuery(".premio-help-button-submit").text("<?php esc_html_e("Chat", 'coupon-x'); ?>");
+                        jQuery(".premio-help-button-submit").text("<?php esc_html_e("Chat", 'coupon-x-discount-pop-up'); ?>");
                         for(i=0;i<responseArray.errors.length;i++) {
                             jQuery("#"+responseArray.errors[i]['key']).addClass("input-error");
                             jQuery("#"+responseArray.errors[i]['key']).after('<span class="error-message">'+responseArray.errors[i]['message']+'</span>');
                         }
                     } else if(responseArray.status == 1) {
-                        jQuery(".premio-help-button-submit").text("<?php esc_html_e("Done!", 'coupon-x'); ?>");
+                        jQuery(".premio-help-button-submit").text("<?php esc_html_e("Done!", 'coupon-x-discount-pop-up'); ?>");
                         setTimeout(function(){
                             jQuery("#user_email").val("");
                             jQuery("#textarea_text").val("");
                             jQuery("#premio-help-form").hide();
                             jQuery(".premio-help-header").hide();
                             jQuery(".help-form-footer").hide();
-                            jQuery(".premio-form-response").html("<p class='success-p'><?php esc_html_e("Your message is sent successfully.", 'coupon-x'); ?></p>");
+                            jQuery(".premio-form-response").html("<p class='success-p'><?php esc_html_e("Your message is sent successfully.", 'coupon-x-discount-pop-up'); ?></p>");
                         },1000);
                     } else if(responseArray.status == 0) {
                         jQuery("#premio-help-form").hide();
                         jQuery(".premio-help-header").hide();
                         jQuery(".help-form-footer").hide();
-                        jQuery(".premio-form-response").html("<p class='error-p'><?php printf(esc_html__("There is some problem in sending request. Please send us mail on %1\$s", 'coupon-x'), "<a href='mailto:contact@premio.io'>contact@premio.io</a>"); ?></p>");
+                        jQuery(".premio-form-response").html("<p class='error-p'><?php 
+                        // translators: %s: Email address.
+                        printf(esc_html__("There is some problem in sending request. Please send us mail on %1\$s", 'coupon-x-discount-pop-up'), "<a href='mailto:contact@premio.io'>contact@premio.io</a>"); 
+                        ?></p>");
                     }
                 }
             });

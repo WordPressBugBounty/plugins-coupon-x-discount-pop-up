@@ -4,8 +4,8 @@
     Description: Use Coupon X to surprise visitors with engaging discount codes to boost your WooCommerce store's sales
     Author: Premio
     Author URI: https://premio.io/downloads/coupon-x-discount-pop-up/
-    Version: 1.4.3
-    Text Domain: coupon-x
+    Version: 1.4.5
+    Text Domain: coupon-x-discount-pop-up
     Domain Path: /languages
     License: GPLv3
 
@@ -26,7 +26,7 @@ define('COUPON_X_URL', plugin_dir_url(COUPON_X_FILE));
 define('COUPON_X_BUILD_URL', COUPON_X_FILE.'build/');
 define('COUPON_X_PLUGIN_BASE', plugin_basename(COUPON_X_FILE));
 define('COUPON_X_FREE_DEV_MODE', false);
-define('COUPON_X_VERSION', '1.4.3');
+define('COUPON_X_VERSION', '1.4.5');
 
 require_once 'inc/class-coupon-x.php';
 require_once 'inc/class-cx-rest.php';
@@ -50,9 +50,12 @@ function save_redirect_status()
     global $wpdb;
 
     $lead_table = $wpdb->prefix.'cx_leads';
-	//phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-    if ($wpdb->get_var("show tables like '$lead_table'") !== $lead_table) {
-        $sql = 'CREATE TABLE '.$lead_table.' (
+    $charset_collate = $wpdb->get_charset_collate();
+    
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+    if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $lead_table)) !== $lead_table) {
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+        $sql = "CREATE TABLE {$lead_table} (
             id int NOT NULL AUTO_INCREMENT,
             email varchar(255),
             widget_id int,
@@ -60,8 +63,8 @@ function save_redirect_status()
             date varchar(50),
             coupon_code varchar(100),
             ip_address tinytext,
-            Primary Key (id)
-            );';
+            PRIMARY KEY (id)
+            ) {$charset_collate};";
 
         include_once ABSPATH.'wp-admin/includes/upgrade.php';
         dbDelta($sql);
@@ -74,11 +77,16 @@ if (!function_exists('couponx_plugin_check_db_table')) {
     {
         global $wpdb;
         $lead_table = $wpdb->prefix . 'cx_leads';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (isset($_GET['page']) && ($_GET['page'] == "couponx" || $_GET['page'] == "couponx_pro_features" || $_GET['page'] == "leads_list" || $_GET['page'] == "cx_integrations" || $_GET['page'] == "couponx_pricing_tbl")) {
             // version 2.7.3 change added new column
-            $field_check = $wpdb->get_var("SHOW COLUMNS FROM {$lead_table} LIKE 'name'");
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+            $field_check = $wpdb->get_var($wpdb->prepare("SHOW COLUMNS FROM `{$lead_table}` LIKE %s", 'name'));
+ 
             if ('name' != $field_check) {
-                $wpdb->query("ALTER TABLE {$lead_table} ADD name VARCHAR(100) NULL DEFAULT NULL AFTER id");
+                  
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter
+                $wpdb->query("ALTER TABLE `{$lead_table}` ADD `name` VARCHAR(100) NULL DEFAULT NULL AFTER `id`");
             }
         }
 

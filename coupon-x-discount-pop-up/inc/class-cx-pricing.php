@@ -38,116 +38,116 @@ $proURL = "https://go.premio.io/?edd_action=add_to_cart&download_id=140318&edd_o
 
 $options = [
     '1_year' => [
-        'title' => esc_html__('1 Year', 'coupon-x'),
-        'plan_type' => esc_html__('Billed Yearly', 'coupon-x'),
-        'postfix'   => esc_html__('/year', 'coupon-x'),
+        'title' => esc_html__('1 Year', 'coupon-x-discount-pop-up'),
+        'plan_type' => esc_html__('Billed Yearly', 'coupon-x-discount-pop-up'),
+        'postfix'   => esc_html__('/year', 'coupon-x-discount-pop-up'),
         'plans' => [
             [
                 'price'     => 59,
                 'desc'      => '',
-                'month'     => esc_html__('Less than $4.9/mo', 'coupon-x'),
+                'month'     => esc_html__('Less than $4.9/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."52",
-                'websites'  => esc_html__('1 Website', 'coupon-x')
+                'websites'  => esc_html__('1 Website', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 129,
-                'desc'      => esc_html__('Save $166', 'coupon-x'),
-                'month'     => esc_html__('Less than $10.8/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save $166', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $10.8/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."55",
-                'websites'  => esc_html__('5 Websites', 'coupon-x')
+                'websites'  => esc_html__('5 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 209,
-                'desc'      => esc_html__('Save $2,740', 'coupon-x'),
-                'month'     => esc_html__('Less than $17.4/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save $2,740', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $17.4/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."58",
-                'websites'  => esc_html__('50 Websites', 'coupon-x')
+                'websites'  => esc_html__('50 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 419,
-                'desc'      => esc_html__('Save >95%', 'coupon-x'),
-                'month'     => esc_html__('Less than $34.9/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save >95%', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $34.9/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."61",
-                'websites'  => esc_html__('500 Websites', 'coupon-x')
+                'websites'  => esc_html__('500 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 569,
-                'desc'      => esc_html__('Save >95%', 'coupon-x'),
-                'month'     => esc_html__('Less than $47.4/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save >95%', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $47.4/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."64",
-                'websites'  => esc_html__('1000 Websites', 'coupon-x')
+                'websites'  => esc_html__('1000 Websites', 'coupon-x-discount-pop-up')
             ]
         ]
     ],
     '2_years' => [
-        'title' => esc_html__('2 Year', 'coupon-x'),
-        'plan_type' => esc_html__('Billed Yearly after 2 Years', 'coupon-x'),
-        'postfix'   => esc_html__('/2 years', 'coupon-x'),
+        'title' => esc_html__('2 Year', 'coupon-x-discount-pop-up'),
+        'plan_type' => esc_html__('Billed Yearly after 2 Years', 'coupon-x-discount-pop-up'),
+        'postfix'   => esc_html__('/2 years', 'coupon-x-discount-pop-up'),
         'plans' => [
             [
                 'price'     => 89,
-                'desc'      => esc_html__('Save $29', 'coupon-x'),
-                'month'     => esc_html__('Less than $3.7/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save $29', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $3.7/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."53",
-                'websites'  => esc_html__('1 Website', 'coupon-x')
+                'websites'  => esc_html__('1 Website', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 199,
-                'desc'      => esc_html__('Save $391', 'coupon-x'),
-                'month'     => esc_html__('Less than $8.3/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save $391', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $8.3/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."56",
-                'websites'  => esc_html__('5 Websites', 'coupon-x')
+                'websites'  => esc_html__('5 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 329,
-                'desc'      => esc_html__('Save $5,000+', 'coupon-x'),
-                'month'     => esc_html__('Less than $13.7/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save $5,000+', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $13.7/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."59",
-                'websites'  => esc_html__('50 Websites', 'coupon-x')
+                'websites'  => esc_html__('50 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 619,
-                'desc'      => esc_html__('Save >95%', 'coupon-x'),
-                'month'     => esc_html__('Less than $25.8/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save >95%', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $25.8/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."62",
-                'websites'  => esc_html__('500 Websites', 'coupon-x')
+                'websites'  => esc_html__('500 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 869,
-                'desc'      => esc_html__('Save >95%', 'coupon-x'),
-                'month'     => esc_html__('Less than $36.2/mo', 'coupon-x'),
+                'desc'      => esc_html__('Save >95%', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Less than $36.2/mo', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."65",
-                'websites'  => esc_html__('1000 Websites', 'coupon-x')
+                'websites'  => esc_html__('1000 Websites', 'coupon-x-discount-pop-up')
             ]
         ]
     ],
     'lifetime' => [
-        'title' => esc_html__('Lifetime', 'coupon-x'),
-        'plan_type' => esc_html__('For Lifetime', 'coupon-x'),
-        'postfix'   => esc_html__('/lifetime', 'coupon-x'),
+        'title' => esc_html__('Lifetime', 'coupon-x-discount-pop-up'),
+        'plan_type' => esc_html__('For Lifetime', 'coupon-x-discount-pop-up'),
+        'postfix'   => esc_html__('/lifetime', 'coupon-x-discount-pop-up'),
         'plans' => [
             [
                 'price'     => 169,
-                'desc'      => esc_html__('Save $126', 'coupon-x'),
-                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x'),
+                'desc'      => esc_html__('Save $126', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."54",
-                'websites'  => esc_html__('1 Website', 'coupon-x')
+                'websites'  => esc_html__('1 Website', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 329,
-                'desc'      => esc_html__('Save $1,146', 'coupon-x'),
-                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x'),
+                'desc'      => esc_html__('Save $1,146', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."57",
-                'websites'  => esc_html__('5 Websites', 'coupon-x')
+                'websites'  => esc_html__('5 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 569,
-                'desc'      => esc_html__('Save $10,000+', 'coupon-x'),
-                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x'),
+                'desc'      => esc_html__('Save $10,000+', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."60",
-                'websites'  => esc_html__('50 Websites', 'coupon-x')
+                'websites'  => esc_html__('50 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 999,
-                'desc'      => esc_html__('Save >95%', 'coupon-x'),
-                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x'),
+                'desc'      => esc_html__('Save >95%', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."63",
-                'websites'  => esc_html__('500 Websites', 'coupon-x')
+                'websites'  => esc_html__('500 Websites', 'coupon-x-discount-pop-up')
             ],[
                 'price'     => 1399,
-                'desc'      => esc_html__('Save >95%', 'coupon-x'),
-                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x'),
+                'desc'      => esc_html__('Save >95%', 'coupon-x-discount-pop-up'),
+                'month'     => esc_html__('Lifetime License 🚀', 'coupon-x-discount-pop-up'),
                 'link'      => $proURL."66",
-                'websites'  => esc_html__('1000 Websites', 'coupon-x')
+                'websites'  => esc_html__('1000 Websites', 'coupon-x-discount-pop-up')
             ]
         ]
     ]
@@ -155,52 +155,52 @@ $options = [
 
 $features = [
     [
-        'title' => esc_html__("Unlimited widgets", "coupon-x"),
-        'tooltip' => esc_html__("Create as many widgets as you want, separate them for mobile and desktop, as well as target them based on pages, cart, order, country, and other criteria. You can also create widgets that include email, coupon codes, external links, and announcements.","coupon-x")."<img src='".COUPON_X_URL."assets/img/unlimited_widgets_tooltip.png'>"
+        'title' => esc_html__("Unlimited widgets", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Create as many widgets as you want, separate them for mobile and desktop, as well as target them based on pages, cart, order, country, and other criteria. You can also create widgets that include email, coupon codes, external links, and announcements.","coupon-x-discount-pop-up")."<img src='".COUPON_X_URL."assets/img/unlimited_widgets_tooltip.png'>"
     ],
     [
-        'title' => esc_html__("Send coupons via email", "coupon-x"),
-        'tooltip' => esc_html__("You can now easily send coupons to your customers via email and customise the emails to your liking.","coupon-x")
+        'title' => esc_html__("Send coupons via email", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("You can now easily send coupons to your customers via email and customise the emails to your liking.","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Pop Up Templates", "coupon-x"),
-        'tooltip' => esc_html__("Create a lightbox pop up, slide-in popup, or floating bar layouts for your pop ups","coupon-x")."<img src='".COUPON_X_URL."assets/img/popup_template_tooltip.png'>"
+        'title' => esc_html__("Pop Up Templates", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Create a lightbox pop up, slide-in popup, or floating bar layouts for your pop ups","coupon-x-discount-pop-up")."<img src='".COUPON_X_URL."assets/img/popup_template_tooltip.png'>"
     ],
     [
-        'title' => esc_html__("Countdown timer", "coupon-x"),
-        'tooltip' => esc_html__("Add a countdown timer element to your Coupon X pop up to increase conversion rate. You add a timer to a specific time and date, or just add count from the moment that the pop up appears","coupon-x")."<img src='".COUPON_X_URL."assets/img/timer-gif.gif'>"
+        'title' => esc_html__("Countdown timer", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Add a countdown timer element to your Coupon X pop up to increase conversion rate. You add a timer to a specific time and date, or just add count from the moment that the pop up appears","coupon-x-discount-pop-up")."<img src='".COUPON_X_URL."assets/img/timer-gif.gif'>"
     ],
     [
-        'title' => esc_html__("Cart & order history targeting", "coupon-x"),
-        'tooltip' => esc_html__("Show the widget based on the customer's order history or cart history. E.g. if your customer has purchased a certain product or has a certain amount in their cart - you can show or don't show the Coupon X widget","coupon-x")
+        'title' => esc_html__("Cart & order history targeting", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Show the widget based on the customer's order history or cart history. E.g. if your customer has purchased a certain product or has a certain amount in their cart - you can show or don't show the Coupon X widget","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Page targeting", "coupon-x"),
-        'tooltip' => esc_html__("Show/hide the widget on specific pages","coupon-x")
+        'title' => esc_html__("Page targeting", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Show/hide the widget on specific pages","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Country targeting", "coupon-x"),
-        'tooltip' => esc_html__("Target your widget to specific countries. You can create different widgets for different countries","coupon-x")
+        'title' => esc_html__("Country targeting", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Target your widget to specific countries. You can create different widgets for different countries","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Set widget visibility days & hours", "coupon-x"),
-        'tooltip' => esc_html__("Display the widget on specific days and hours based on your opening days and hours","coupon-x")
+        'title' => esc_html__("Set widget visibility days & hours", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Display the widget on specific days and hours based on your opening days and hours","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Set specific date & time", "coupon-x"),
-        'tooltip' => esc_html__("Schedule the specific time and date when your widget appears. Use this feature to offer time-limited coupons, or to start a promotion from a specific date.","coupon-x")
+        'title' => esc_html__("Set specific date & time", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Schedule the specific time and date when your widget appears. Use this feature to offer time-limited coupons, or to start a promotion from a specific date.","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Mailchimp & Klaviyo integrations", "coupon-x"),
-        'tooltip' => esc_html__("Turn on email integration to get leads directly to your Mailchimp or Klaviyo lists when customers submit their emails through the pop-up widget","coupon-x")
+        'title' => esc_html__("Mailchimp & Klaviyo integrations", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Turn on email integration to get leads directly to your Mailchimp or Klaviyo lists when customers submit their emails through the pop-up widget","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("Traffic source targeting", "coupon-x"),
-        'tooltip' => esc_html__("Show the widget only to visitors who come from specific traffic sources, including direct traffic, social networks, search engines, Google Ads, or any other traffic source","coupon-x")
+        'title' => esc_html__("Traffic source targeting", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Show the widget only to visitors who come from specific traffic sources, including direct traffic, social networks, search engines, Google Ads, or any other traffic source","coupon-x-discount-pop-up")
     ],
     [
-        'title' => esc_html__("OS and Browsers", "coupon-x"),
-        'tooltip' => esc_html__("Show the widget only to visitors who come from specific operating systems and browser","coupon-x")
+        'title' => esc_html__("OS and Browsers", "coupon-x-discount-pop-up"),
+        'tooltip' => esc_html__("Show the widget only to visitors who come from specific operating systems and browser","coupon-x-discount-pop-up")
     ],
 ];
 ?>
@@ -265,7 +265,7 @@ $features = [
                                                 </select>
                                             </div>
                                             <div class="plan-button">
-                                                <a class="purchase-link" href="<?php echo esc_attr($option['plans']['0']['link']) ?>" target="_blank"><?php esc_html_e('Buy now', 'coupon-x') ?></a>
+                                                <a class="purchase-link" href="<?php echo esc_attr($option['plans']['0']['link']) ?>" target="_blank"><?php esc_html_e('Buy now', 'coupon-x-discount-pop-up') ?></a>
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +348,7 @@ $features = [
                                             </select>
                                         </div>
                                         <div class="plan-button">
-                                            <a class="purchase-link" href="<?php echo esc_attr($option['plans']['0']['link']) ?>" target="_blank"><?php esc_html_e('Buy now', 'coupon-x') ?></a>
+                                            <a class="purchase-link" href="<?php echo esc_attr($option['plans']['0']['link']) ?>" target="_blank"><?php esc_html_e('Buy now', 'coupon-x-discount-pop-up') ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -360,7 +360,7 @@ $features = [
                                                     <span class="table-text"><?php echo esc_attr($feature['title']); ?></span>
                                                     <span class="table-tooltip">
                                                         <span class="table-tooltip-text">
-                                                            <?php echo str_replace("src=", "data-src=", wp_kses($feature['tooltip'], $allowedTags)); ?>
+                                                            <?php echo wp_kses(str_replace("src=", "data-src=", $feature['tooltip']), $allowedTags); ?>
                                                         </span>
                                                         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"> <g opacity="0.5" clip-path="url(#clip0_1771_2646)"> <path d="M8.00016 14.9544C11.6821 14.9544 14.6668 11.9697 14.6668 8.28776C14.6668 4.60586 11.6821 1.62109 8.00016 1.62109C4.31826 1.62109 1.3335 4.60586 1.3335 8.28776C1.3335 11.9697 4.31826 14.9544 8.00016 14.9544Z" stroke="#747C97" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/> <path d="M8 10.9538V8.28711" stroke="#747C97" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/> <path d="M8 5.62109H8.00667" stroke="#747C97" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/> </g> <defs> <clipPath id="clip0_1771_2646"> <rect width="16" height="16" fill="white" transform="translate(0 0.287109)"/> </clipPath> </defs> </svg>
                                                     </span>
@@ -379,11 +379,11 @@ $features = [
         <div class="money-guaranteed">
             <p>
                 <span class="dashicons dashicons-yes"></span>
-                <?php esc_html_e("30 days money back guaranteed", 'coupon-x'); ?>
+                <?php esc_html_e("30 days money back guaranteed", 'coupon-x-discount-pop-up'); ?>
             </p>
             <p>
                 <span class="dashicons dashicons-yes"></span>
-                <?php esc_html_e("The plugin will always keep working even if you don't renew your license", 'coupon-x'); ?>
+                <?php esc_html_e("The plugin will always keep working even if you don't renew your license", 'coupon-x-discount-pop-up'); ?>
             </p>
             <div class="payments">
                 <img src="<?php echo esc_url(COUPON_X_URL."assets/img/payment.png") ?>" alt="Payment" class="payment-img" />
@@ -454,13 +454,13 @@ $features = [
 </div>
 <div class="premio-customers">
     <div class="price-container">
-        <div class="customer-title"><?php esc_html_e("TRUSTED BY LEADING COMPANIES WORLDWIDE", "coupon-x") ?></div>
-        <img src="<?php echo COUPON_X_URL."assets/img/companies.webp" ?>" alt="premio customers" />
+        <div class="customer-title"><?php esc_html_e("TRUSTED BY LEADING COMPANIES WORLDWIDE", "coupon-x-discount-pop-up") ?></div>
+        <img src="<?php echo esc_url( COUPON_X_URL."assets/img/companies.webp" ) ?>" alt="premio customers" />
     </div>
 </div>
 <div class="premio-faqs">
     <div class="price-container">
-        <div class="faq-title"><?php esc_html_e("Frequently Asked Questions", "coupon-x") ?></div>
+        <div class="faq-title"><?php esc_html_e("Frequently Asked Questions", "coupon-x-discount-pop-up") ?></div>
         <div class="faq-lists">
             <?php
             $faqs = [
@@ -557,8 +557,7 @@ $features = [
             if($('.website-list').length && (typeof pluginPlans) !== "undefined") {
                 $(document).on("change", ".website-list", function(){
                     if(pluginPlans[$(this).data('plan')] && pluginPlans[$(this).data('plan')]['plans'][$(this).val()]) {
-                        let selectedPlan = pluginPlans[$(this).data('plan')]['plans'][$(this).val()];
-                        console.log(selectedPlan);
+                        let selectedPlan = pluginPlans[$(this).data('plan')]['plans'][$(this).val()]; 
                         var planType = selectedPlan['plan_type'];
                         $(this).closest(".plan-info").find(".plan-monthly span").html(selectedPlan['month']);
                         $(this).closest(".plan-info").find(".plan-type").html(planType);

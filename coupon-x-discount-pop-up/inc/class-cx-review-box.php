@@ -468,25 +468,27 @@ class Cx_review_box
             <!-- default layout -->
             <div class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__default">
                 <h2 class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__default__title">
-                    <?php esc_html_e('Your', 'coupon-x') ?> <span><?php esc_html_e('feedback', 'coupon-x') ?></span> <?php esc_html_e('matters, please leave a review', 'coupon-x') ?> 🙏
+                    <?php esc_html_e('Your', 'coupon-x-discount-pop-up') ?> <span><?php esc_html_e('feedback', 'coupon-x-discount-pop-up') ?></span> <?php esc_html_e('matters, please leave a review', 'coupon-x-discount-pop-up') ?> 🙏
                 </h2>
 
                 <button class="<?php echo esc_attr($this->pluginSlug) ?>-review-box-default__dismiss-btn">
                     <span class="dashicons dashicons-no-alt"></span>
                 </button>
 
-                <p><?php printf(esc_html__("Hi there, it seems like %s is bringing you some value, and that's pretty awesome! Can you please show us some love and rate %s on WordPress? It'll only take 2 minutes of your time, and will really help us spread the word", 'coupon-x'), "<b>".esc_attr($this->pluginName)."</b>", esc_attr($this->pluginName));?></p>
+                <p><?php 
+                // translators: %s: Plugin name.
+                printf(esc_html__("Hi there, it seems like %s is bringing you some value, and that's pretty awesome! Can you please show us some love and rate %s on WordPress? It'll only take 2 minutes of your time, and will really help us spread the word", 'coupon-x-discount-pop-up'), "<b>".esc_attr($this->pluginName)."</b>", esc_attr($this->pluginName));?></p>
 
                 <div class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__default__co-founder">
                     <span>
-                        <b><?php esc_html_e('Gal Dubinski', 'coupon-x') ?></b>,
-                        <?php esc_html_e('Co-founder', 'coupon-x') ?>
+                        <b><?php esc_html_e('Gal Dubinski', 'coupon-x-discount-pop-up') ?></b>,
+                        <?php esc_html_e('Co-founder', 'coupon-x-discount-pop-up') ?>
                     </span>
                     <img class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__default__co-founder-img" width="30" height="30" src="<?php echo esc_url(COUPON_X_URL."assets/img/premio-owner.png") ?>" />
                 </div>
 
                 <div class="please-rate-us">
-                    <div class="rate-us-title"><?php esc_html_e("Please rate us:", 'coupon-x'); ?></div>
+                    <div class="rate-us-title"><?php esc_html_e("Please rate us:", 'coupon-x-discount-pop-up'); ?></div>
                     <div class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__default__rating"></div>
                 </div>
             </div> <!--end .premio-review-box__default-->
@@ -500,9 +502,9 @@ class Cx_review_box
                     <img class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__thank-you__image" width="200" src="<?php echo esc_url(COUPON_X_URL."assets/img/thanks.gif") ?>" />
 
                     <div class="<?php echo esc_attr($this->pluginSlug) ?>-premio-review-box__thank-you__message">
-                        <div class="title"><?php esc_html_e("You are awesome ", 'coupon-x')?> &#128591;</div>
-                        <div class="desc"><?php esc_html_e("Thanks for your support, we really appreciate it!", 'coupon-x')?></div>
-                        <div class="footer"><?php esc_html_e("Premio team ", 'coupon-x')?></div>
+                        <div class="title"><?php esc_html_e("You are awesome ", 'coupon-x-discount-pop-up')?> &#128591;</div>
+                        <div class="desc"><?php esc_html_e("Thanks for your support, we really appreciate it!", 'coupon-x-discount-pop-up')?></div>
+                        <div class="footer"><?php esc_html_e("Premio team ", 'coupon-x-discount-pop-up')?></div>
                     </div>
                 </div>
             </div> <!--end .premio-review-box__thank-you-->
@@ -514,13 +516,13 @@ class Cx_review_box
                         <span class="dashicons dashicons-no-alt"></span>
                     </button>
                     <div class="<?php echo esc_attr($this->pluginSlug) ?>-review-box-popup__title">
-                        <?php esc_html_e("Would you like us to remind you about this later?", 'coupon-x')?>
+                        <?php esc_html_e("Would you like us to remind you about this later?", 'coupon-x-discount-pop-up')?>
                     </div>
 
                     <div class="<?php echo esc_attr($this->pluginSlug) ?>-review-box-popup__options">
-                        <a href="#" data-days="3"><?php esc_html_e("Remind me in 3 days ", 'coupon-x')?></a>
-                        <a href="#" data-days="10"><?php esc_html_e("Remind me in 10 days ", 'coupon-x')?></a>
-                        <a href="#" data-days="-1" class="dismiss"><?php esc_html_e("Don't remind me about this ", 'coupon-x')?></a>
+                        <a href="#" data-days="3"><?php esc_html_e("Remind me in 3 days ", 'coupon-x-discount-pop-up')?></a>
+                        <a href="#" data-days="10"><?php esc_html_e("Remind me in 10 days ", 'coupon-x-discount-pop-up')?></a>
+                        <a href="#" data-days="-1" class="dismiss"><?php esc_html_e("Don't remind me about this ", 'coupon-x-discount-pop-up')?></a>
                     </div>
                 </div>
             </div> <!--end .review-box-popup-->
@@ -533,7 +535,7 @@ class Cx_review_box
                     </button>
                     <form class="<?php echo esc_attr($this->pluginSlug) ?>-feedback-popup__form">
                         <textarea name="message" id="message" cols="30" rows="5" placeholder="What's your feedback?"></textarea>
-                        <button id="submit-btn" type="submit"><?php esc_html_e('Submit', 'coupon-x') ?></button>
+                        <button id="submit-btn" type="submit"><?php esc_html_e('Submit', 'coupon-x-discount-pop-up') ?></button>
                     </form>
                 </div>
             </div> <!--end .feedback-popup-->
@@ -679,10 +681,8 @@ class Cx_review_box
                 }
 
                 CxCouponFreeReview.prototype.feedbackToggle = function( action = true ) {
-                    const elements = this.getElements();
-                    console.log(action);
-                    if( action ) {
-                        console.log(elements.$feedbackPopup);
+                    const elements = this.getElements(); 
+                    if( action ) { 
                         elements.$feedbackPopup.fadeIn(200, function(){
                             $(this).addClass('open')
                         });

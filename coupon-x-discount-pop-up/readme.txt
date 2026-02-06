@@ -1,13 +1,13 @@
-=== Coupon X: Discount Pop Up, Promo Code Pop Ups, Announcement Pop Up, WooCommerce Popups ===
+=== Coupon X - Discount Popups & Promo Codes Pop Ups for WooCommerce ===
 Contributors: premio, galdub, tomeraharon
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
-Tested up to: 6.8
-Stable tag: 1.4.3
+Tested up to: 6.9
+Stable tag: 1.4.5
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
-🚀 Boost sales with engaging discount pop ups, coupon widgets, promo code pop up & coupon codes! Generate unique promo codes or use existing codes 🛒
+Boost sales with engaging discount pop ups, coupon widgets, promo code pop up & coupon codes! Generate unique promo codes or use existing codes 🛒
 
 == Description ==
 
@@ -31,10 +31,10 @@ Want to try our robust Pro version? Check out <a href="https://premio.io/downloa
 = 💪 How does Coupon X Work? =
 When you install the plugin, you’ll be able to customize your beautiful discount pop up or announcement pop up and decide if you want to create a unique coupon code for each visitor or use the same coupon code for all of your visitors. You can also create notification pop ups.
 
-* Generate a unique discount code for each visitor - if you select the <strong>unique discount code for each visitor option</strong>, then each of your website's visitors will get a unique discount code pop up with a unique WooCommerce coupon code. You don’t need to create the discount code yourself, Coupon X will take care of everything in the background 🚀
-* Use the same discount code for all visitors - if you select the existing discount code option, then all your visitors will get the same code
+* Generate a unique discount code for each visitor - if you select the <strong>unique discount code for each visitor option</strong>, then each of your website's visitors will get a unique discount code pop up with a unique WooCommerce coupon code. You don’t need to create the discount code yourself, Coupon X will take care of it 🚀
+* Use the same discount code for all visitors - if you select the existing discount code option, then all your visitors will get the same promo code
 * Show a notification pop up and collect emails without showing a WooCommerce discount code
-* You can enable two step flow for your coupon code pop ups - show the coupon only when the visitor claims it
+* You can enable two step flow for your coupon code pop ups - show the coupon only when the visitors claim the coupon
 
 = 🔥 What do you get in the Pro plan? =
 Unlock the <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X pro plans"><strong>Pro features</strong></a> for only $59 per year
@@ -47,7 +47,7 @@ You will get all the features of the free plan, plus:
 5. New! Send coupon codes via email - you can send a coupon code via email to your website’s visitors after they enter their email address
 6. Cart targeting - show your coupon pop ups based on the current cart data. For example, you can show a discount popup just for visitors with specific items in their cart, or based on the cart value
 7. Order history targeting - show discount popups if your customer has purchased a certain product or products, or if their purchase value is above or below a certain amount. You can show your discount pop ups to new customers only, or display coupon pop ups to customers who spent a certain amount or purchased a certain amount of items
-8. Native integrations with Mailchimp and Klaviyo - sync your discount pop ups with Mailchimp and Klaviyo
+8. Native integrations with Mailchimp and Klaviyo - sync your discount pop ups email contacts with Mailchimp and Klaviyo
 9. Page targeting - show your promo code pop ups on specific pages (or don’t show them on specific pages) based on targeting rules like contains/exact/starts with/ends with
 10. Country targeting - show discount codes pop ups for specific countries 
 11. Date & Day Scheduling - schedule your discounts and coupon popups to specific time, date, and day. Use this feature to offer time-limited coupons and discounts, or to start a promotion from a specific date
@@ -85,7 +85,7 @@ Utilize this feature for your discount coupons and you get higher chances of con
 Who doesn’t love discounts, right? Help your visitors make purchasing decisions faster and easier with discount pop ups! To make it more effective, Coupon X also enables you to add a discount countdown timer to your popups to give a sense of urgency to your visitors and let them know the promo offer is there for a limited time only.
 
 = 🖥️ Variety of popups are available =
-Coupon X can help you create a better shopping experience for your customers. Start creating beautiful target discount code pop ups, countdown popups, promo codes, coupon code popups to engage with your audience and increase your conversion rate exponentially!
+Coupon X can help you create a better shopping experience for your customers. Start creating beautiful target discount code pop ups, countdown popups, promo codes, coupon code popups to engage with your audience and increase your conversion rate.
 
 = 🛒 Reduce cart abandonment by setting up an exit intent trigger to your pop up =
 Create an exit intent pop up and reduce cart abandonment. With our very intelligent feature, the exit intent trigger the discount pop up becomes visible when it detects that the visitor is about to leave the frame of your website. it automatically tracks mouse movements, and just when the visitor is about to exit the page or close it, the pop up becomes visible to the visitor. This exit intent smart feature makes your visitors reconsider their decision of abandoning their cart or the website; a great way to capture their attention and show discounts at the right time.
@@ -111,7 +111,7 @@ The Pro version of Coupon X lets you to showcase your coupons and discount codes
 Using Coupon X Pro version, you can collect leads and target them instantly. To make this feature even more effective, you can integrate leads with Mailchimp and Klaviyo. Send them directly to your preferred mailing client and use them however you prefer. 
 
 = 🎯 Powerful user targeting and triggers to personalize user experience =
-With endless possibilities for targeting visitors and a wide range of triggers to choose from, Coupon X can create one of the best-personalized pop ups experiences ever!
+With endless possibilities for targeting visitors and a wide range of triggers to choose from, Coupon X provides personalized pop ups experience.
 
 Trigger your pop ups on scroll, after some time or even when the visitor is about to exit the page. What’s more, use our smart cart targeting feature to target visitors based on their previous purchases or what they have in their cart. Choose to show or not show the pop ups only to users from specific sources such as direct visits, Google ads, search engine results, or social networks. 
 
@@ -120,7 +120,7 @@ Choose to show or not show the discount pop up to visitors from a particular cou
 = 👬 Join the Premio community =
 Have any questions or feature suggestions? We'd love to hear from you. <strong><a href="https://www.facebook.com/groups/premioplugins/" target="_blank" title="Premio Facebook group">Join our Facebook group</a></strong> to share ideas and get updates about new features.
 
-= 🔒 Coupon X is GDPR complaint =
+= 🔒 Coupon X is GDPR compliant =
 We don't store any local data about your visitors on our servers. All the data is saved locally on your website.
 
 == Screenshots ==
@@ -164,10 +164,21 @@ Yes, we fully support RTL sites, including Arabic, Hebrew
 = Does Coupon X work on mobile? =
 Yes! You can even decide what widgets will show up on each device (desktop/mobile)
 
+= Do I have to install WooCommerce for Coupon X pop ups to work? =
+No, Coupon X pop ups work on any website. If you have WooCommerce installed, you can create discount pop ups with our native WooCommerce integration but it's not mandatory.
+
 = How do I activate my pro plan? =
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.4.5 =
+Updated for WordPress 6.9 compatibility.
+General performance improvements.
+UI improvements and small visual fixes.
+
+= 1.4.4 =
+Improved menu flow
 
 = 1.4.3 =
 Playground bug fixed

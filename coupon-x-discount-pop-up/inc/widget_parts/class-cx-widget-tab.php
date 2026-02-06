@@ -47,18 +47,18 @@ class Cx_Widget_Tab
         ?>
         <div class='cx-tab flex bg-white rounded-lg'>
             <div class='tab-settings border-r border-gray-150/40'>
-                <div class="section-title font-primary text-cht-gray-150 text-2xl border-b border-gray-150/40 px-8 py-5"><?php esc_html_e('Icon Design', 'coupon-x'); ?></div>
+                <div class="section-title font-primary text-cht-gray-150 text-2xl border-b border-gray-150/40 px-8 py-5"><?php esc_html_e('Icon Design', 'coupon-x-discount-pop-up'); ?></div>
                 <div class=" px-8 py-5">
                     <div class="row">
                         <div class="row-elements full d-flex">
-                            <label><?php esc_html_e('Show icon', 'coupon-x'); ?></label>
+                            <label><?php esc_html_e('Show icon', 'coupon-x-discount-pop-up'); ?></label>
                             <label class='couponapp-switch'>
                                 <input type="hidden" name="cx_settings[tab][show_icon]" value="0">
                                 <input type='checkbox' name='cx_settings[tab][show_icon]' class='show-icon'
                                        value='1' <?php echo checked(esc_attr($settings['show_icon']), 1, false); ?>>
                                 <span class="cx-slider round">
-                                    <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
-                                    <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                                    <span class="on"> <?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                                    <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                                 </span>
                             </label>
                         </div>
@@ -72,26 +72,32 @@ class Cx_Widget_Tab
                     <div class='row'>
                         <div class='row-elements full'>
                             <label>
-                                <?php esc_html_e('Name Your Widget', 'coupon-x'); ?>
+                                <?php esc_html_e('Name Your Widget', 'coupon-x-discount-pop-up'); ?>
                             </label>
                             <input type='text' name='cx_settings[tab][widget_title]' class='input-element'
-                                   placeholder="<?php echo esc_html__("What's the your widget's name?", 'coupon-x'); ?>"
+                                   placeholder="<?php echo esc_html__("What's the your widget's name?", 'coupon-x-discount-pop-up'); ?>"
                                    value="<?php echo esc_attr($widget_title); ?>">
                         </div>
                     </div>
                     <div class="show-tab-settings <?php echo ($settings['show_icon'] == 1) ? '' : 'hide'; ?>">
                         <div class='row'>
                             <div class='row-elements half color-row'>
-                                <?php echo Cx_Helper::color_picker_template('Icon background color', 'tab_color', 'jsspan tab-clr', 'cx_settings[tab][tab_color]', $settings['tab_color']) ?>
+                                <?php 
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                    echo Cx_Helper::color_picker_template('Icon background color', 'tab_color', 'jsspan tab-clr', 'cx_settings[tab][tab_color]', $settings['tab_color']) 
+                                ?>
                             </div>
                             <div class='row-elements half color-row'>
-                                <?php echo Cx_Helper::color_picker_template('Icon Color', 'icon_color', 'jsspan tab-clr', 'cx_settings[tab][icon_color]', $settings['icon_color']) ?>
+                                <?php 
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                    echo Cx_Helper::color_picker_template('Icon Color', 'icon_color', 'jsspan tab-clr', 'cx_settings[tab][icon_color]', $settings['icon_color']) 
+                                ?>
                             </div>
                         </div>
                         <div class='row'>
                             <div class='row-elements'>
                                 <label>
-                                    <?php esc_html_e('Icon', 'coupon-x'); ?>
+                                    <?php esc_html_e('Icon', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <ul class="cx-tab-icon">
                                     <?php
@@ -132,6 +138,7 @@ class Cx_Widget_Tab
                                                    value="<?php echo esc_attr($settings['tab_custom_icon']); ?>"/>
                                             <span id="tab-custom-icon">
                                               <?php
+                                              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
                                               echo Cx_Helper::custom_tab_icon();
                                               ?>
 
@@ -144,18 +151,18 @@ class Cx_Widget_Tab
                         <div class='row'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Icon background shape', 'coupon-x'); ?>
+                                    <?php esc_html_e('Icon background shape', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <select name='cx_settings[tab][tab_shape]' class='input-element tab-shape'>
                                     <option value=''>
-                                        <?php esc_html_e('--- Select Icon background shape ---', 'coupon-x'); ?>
+                                        <?php esc_html_e('--- Select Icon background shape ---', 'coupon-x-discount-pop-up'); ?>
                                     </option>
                                     <?php
                                     $tab_shapes = [
-                                        'circle' => esc_html__('Circle', 'coupon-x'),
-                                        'square' => esc_html__('Square', 'coupon-x'),
-                                        'leaf' => esc_html__('Leaf', 'coupon-x'),
-                                        'hexagon' => esc_html__('Hexagon', 'coupon-x'),
+                                        'circle' => esc_html__('Circle', 'coupon-x-discount-pop-up'),
+                                        'square' => esc_html__('Square', 'coupon-x-discount-pop-up'),
+                                        'leaf' => esc_html__('Leaf', 'coupon-x-discount-pop-up'),
+                                        'hexagon' => esc_html__('Hexagon', 'coupon-x-discount-pop-up'),
                                     ];
                                     $shape = $settings['tab_shape'];
                                     foreach ($tab_shapes as $key => $value) {
@@ -173,15 +180,15 @@ class Cx_Widget_Tab
                         <div class='row mx-height-110'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Position', 'coupon-x'); ?>
+                                    <?php esc_html_e('Position', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <div>
                                     <ul class='custom-list'>
                                         <?php
                                         $positions = [
-                                            'left' => esc_html__('Left', 'coupon-x'),
-                                            'right' => esc_html__('Right', 'coupon-x'),
-                                            'custom' => esc_html__('Custom', 'coupon-x'),
+                                            'left' => esc_html__('Left', 'coupon-x-discount-pop-up'),
+                                            'right' => esc_html__('Right', 'coupon-x-discount-pop-up'),
+                                            'custom' => esc_html__('Custom', 'coupon-x-discount-pop-up'),
                                         ];
                                         $pos = $settings['position'];
 
@@ -205,15 +212,15 @@ class Cx_Widget_Tab
                         <div class='row custom-position first <?php echo esc_attr('custom' !== $settings['position'] ? 'hide' : ''); ?>'>
                             <div class='row-elements'>
                                 <label>
-                                    <?php esc_html_e('Slide Selection', 'coupon-x'); ?>
+                                    <?php esc_html_e('Slide Selection', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <div>
                                     <ul class='custom-list'>
                                         <?php
                                         $custom_pos = $settings['custom_position'];
                                         $custom_positions = [
-                                            'left' => esc_html__('Left', 'coupon-x'),
-                                            'right' => esc_html__('Right', 'coupon-x'),
+                                            'left' => esc_html__('Left', 'coupon-x-discount-pop-up'),
+                                            'right' => esc_html__('Right', 'coupon-x-discount-pop-up'),
                                         ];
 
                                         foreach ($custom_positions as $key => $value) {
@@ -237,7 +244,7 @@ class Cx_Widget_Tab
                         <div class='row  custom-position last <?php echo esc_attr('custom' !== $settings['position'] ? 'hide' : ''); ?>'>
                             <div class='row-elements half'>
                                 <label>
-                                    <?php esc_html_e('Bottom Spacing (px)', 'coupon-x'); ?>
+                                    <?php esc_html_e('Bottom Spacing (px)', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='number' name='cx_settings[tab][bottom_spacing]'
                                        value='<?php echo esc_attr($settings['bottom_spacing']); ?>'
@@ -245,7 +252,7 @@ class Cx_Widget_Tab
                             </div>
                             <div class='row-elements half'>
                                 <label>
-                                    <?php esc_html_e('Side Spacing (px)', 'coupon-x'); ?>
+                                    <?php esc_html_e('Side Spacing (px)', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='number' name='cx_settings[tab][side_spacing]'
                                        value='<?php echo esc_attr($settings['side_spacing']); ?>'
@@ -255,7 +262,7 @@ class Cx_Widget_Tab
                         <div class='row'>
                             <div class='row-elements'>
                                 <label>
-                                    <?php esc_html_e('Icon background size (px)', 'coupon-x'); ?>
+                                    <?php esc_html_e('Icon background size (px)', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='number' name='cx_settings[tab][tab_size]'
                                        value='<?php echo esc_attr($settings['tab_size']); ?>' min='20'
@@ -265,7 +272,7 @@ class Cx_Widget_Tab
                         <div class='row'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Call to action', 'coupon-x'); ?>
+                                    <?php esc_html_e('Call to action', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='text' name='cx_settings[tab][call_action]'
                                        value='<?php echo esc_attr($settings['call_action']); ?>'
@@ -274,30 +281,36 @@ class Cx_Widget_Tab
                         </div>
                         <div class='row'>
                             <div class='row-elements half color-row'>
-                                <?php echo Cx_Helper::color_picker_template('Call to action color', 'action_color', 'jsspan tab-clr', 'cx_settings[tab][action_color]', $settings['action_color']) ?>
+                                <?php 
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                    echo Cx_Helper::color_picker_template('Call to action color', 'action_color', 'jsspan tab-clr', 'cx_settings[tab][action_color]', $settings['action_color']) 
+                                ?>
                             </div>
                             <div class='row-elements half extra color-row'>
-                                <?php echo Cx_Helper::color_picker_template('Call to action background', 'action_bgcolor', 'jsspan tab-clr', 'cx_settings[tab][action_bgcolor]', $settings['action_bgcolor']) ?>
+                                <?php 
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                    echo Cx_Helper::color_picker_template('Call to action background', 'action_bgcolor', 'jsspan tab-clr', 'cx_settings[tab][action_bgcolor]', $settings['action_bgcolor']) 
+                                ?>
                             </div>
                         </div>
                         <div class='row mx-height-110'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Show CTA', 'coupon-x'); ?>
+                                    <?php esc_html_e('Show CTA', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <ul class='custom-list'>
                                     <li>
                                         <label>
                                             <input type='radio' name='cx_settings[tab][show_cta]'
                                                    value='1' <?php echo checked(esc_attr($settings['show_cta']), 1, false); ?>>
-                                            <?php esc_html_e('Always', 'coupon-x'); ?>
+                                            <?php esc_html_e('Always', 'coupon-x-discount-pop-up'); ?>
                                         </label>
                                     </li>
                                     <li>
                                         <label>
                                             <input type='radio' name='cx_settings[tab][show_cta]'
                                                    value='2' <?php echo checked(esc_attr($settings['show_cta']), 2, false); ?>>
-                                            <?php esc_html_e('Until 1st click/hover', 'coupon-x'); ?>
+                                            <?php esc_html_e('Until 1st click/hover', 'coupon-x-discount-pop-up'); ?>
                                         </label>
                                     </li>
                                 </ul>
@@ -306,24 +319,24 @@ class Cx_Widget_Tab
                         <div class='row mx-height-110'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Show Icon', 'coupon-x'); ?>
+                                    <?php esc_html_e('Show Icon', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <ul class='custom-list'>
                                     <li>
                                         <label>
                                             <input type='radio' name='cx_settings[tab][show_tab]'
                                                    value='1' <?php echo checked(esc_attr($settings['show_tab']), 1, false); ?>>
-                                            <?php esc_html_e('Always', 'coupon-x'); ?>
+                                            <?php esc_html_e('Always', 'coupon-x-discount-pop-up'); ?>
                                         </label>
                                     </li>
                                     <li>
                                         <label>
                                             <input type='radio' name='cx_settings[tab][show_tab]'
                                                    value='2' <?php echo checked(esc_attr($settings['show_tab']), 2, false); ?>>
-                                            <?php esc_html_e('Hide after conversion', 'coupon-x'); ?>
+                                            <?php esc_html_e('Hide after conversion', 'coupon-x-discount-pop-up'); ?>
 
                                             <span class="icon label-tooltip coupon-tab-design"
-                                                  title="<?php esc_html_e('Hide the icon after a user has converted, which means copied the coupon code or submitted their email.', 'coupon-x'); ?>">
+                                                  title="<?php esc_html_e('Hide the icon after a user has converted, which means copied the coupon code or submitted their email.', 'coupon-x-discount-pop-up'); ?>">
                                             <span class="dashicons dashicons-editor-help"></span>
                                         </span>
                                         </label>
@@ -336,17 +349,17 @@ class Cx_Widget_Tab
                             <div class='row-elements full'>
                                 <label>
                                 <span class="icon label-tooltip coupon-tab-design"
-                                      title="<?php esc_html_e("Increase your click-rate by displaying a pending messages icon near your Coupon widget to let your visitors know that you're waiting for them to contact you.", 'coupon-x'); ?>">
+                                      title="<?php esc_html_e("Increase your click-rate by displaying a pending messages icon near your Coupon widget to let your visitors know that you're waiting for them to contact you.", 'coupon-x-discount-pop-up'); ?>">
                                     <span class="dashicons dashicons-editor-help"></span>
                                 </span>
-                                    <?php esc_html_e('Pending messages', 'coupon-x'); ?>
+                                    <?php esc_html_e('Pending messages', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <label class='couponapp-switch'>
                                     <input type='checkbox' name='cx_settings[tab][msg]' class='pmsg'
                                            value='1' <?php echo checked(esc_attr($settings['msg']), 1, false); ?>>
                                     <span class="cx-slider round">
-                                    <span class="on"> <?php esc_html_e('On', 'coupon-x'); ?></span>
-                                    <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                                    <span class="on"> <?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                                    <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                                 </span>
                                 </label>
                             </div>
@@ -354,7 +367,7 @@ class Cx_Widget_Tab
                         <div class='pending-msg <?php echo esc_attr(1 === (int)$settings['msg'] ? '' : 'hide'); ?> '>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Number of messages', 'coupon-x'); ?>
+                                    <?php esc_html_e('Number of messages', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <input type='number' name='cx_settings[tab][no_msg]' min-value='1'
                                        value='<?php echo esc_attr($settings['no_msg']); ?>' min='1'
@@ -362,16 +375,22 @@ class Cx_Widget_Tab
                             </div>
                             <div class="row">
                                 <div class='row-elements half color-row'>
-                                    <?php echo Cx_Helper::color_picker_template('Number color', 'no_color', 'jsspan tab-clr', 'cx_settings[tab][no_color]', $settings['no_color']) ?>
+                                    <?php 
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                        echo Cx_Helper::color_picker_template('Number color', 'no_color', 'jsspan tab-clr', 'cx_settings[tab][no_color]', $settings['no_color']) 
+                                    ?>
                                 </div>
                                 <div class='row-elements half color-row'>
-                                    <?php echo Cx_Helper::color_picker_template('Background color', 'no_bgcolor', 'jsspan tab-clr', 'cx_settings[tab][no_bgcolor]', $settings['no_bgcolor']) ?>
+                                    <?php 
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                        echo Cx_Helper::color_picker_template('Background color', 'no_bgcolor', 'jsspan tab-clr', 'cx_settings[tab][no_bgcolor]', $settings['no_bgcolor']) 
+                                    ?>
                                 </div>
                             </div>
                         </div>
                         <div class='row-elements full'>
                             <label>
-                                <?php esc_html_e('Font Family', 'coupon-x'); ?>
+                                <?php esc_html_e('Font Family', 'coupon-x-discount-pop-up'); ?>
                             </label>
                             <select name='cx_settings[tab][font]' class='fonts-input input-element'>
                                 <?php
@@ -400,21 +419,21 @@ class Cx_Widget_Tab
                         <div class='row'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Attention Effect', 'coupon-x'); ?>
+                                    <?php esc_html_e('Attention Effect', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <select name='cx_settings[tab][effect]' class='input-element animation-effect'>
                                     <option value='none'>
-                                        <?php esc_html_e('None', 'coupon-x'); ?>
+                                        <?php esc_html_e('None', 'coupon-x-discount-pop-up'); ?>
                                     </option>
                                     <?php
                                     $effect = $settings['effect'];
                                     $tab_shapes = [
-                                        'flash' => esc_html__('Flash', 'coupon-x'),
-                                        'shake' => esc_html__('Shake', 'coupon-x'),
-                                        'swing' => esc_html__('Swing', 'coupon-x'),
-                                        'tada' => esc_html__('Tada', 'coupon-x'),
-                                        'heartbeat' => esc_html__('Heartbeat', 'coupon-x'),
-                                        'wobble' => esc_html__('Wobble', 'coupon-x'),
+                                        'flash' => esc_html__('Flash', 'coupon-x-discount-pop-up'),
+                                        'shake' => esc_html__('Shake', 'coupon-x-discount-pop-up'),
+                                        'swing' => esc_html__('Swing', 'coupon-x-discount-pop-up'),
+                                        'tada' => esc_html__('Tada', 'coupon-x-discount-pop-up'),
+                                        'heartbeat' => esc_html__('Heartbeat', 'coupon-x-discount-pop-up'),
+                                        'wobble' => esc_html__('Wobble', 'coupon-x-discount-pop-up'),
                                     ];
                                     foreach ($tab_shapes as $key => $value) {
                                         ?>
@@ -431,16 +450,16 @@ class Cx_Widget_Tab
                         <div class='row show-attention-effect <?php echo ($settings['effect'] == "none") ? 'hide' : '' ?>'>
                             <div class='row-elements full'>
                                 <label>
-                                    <?php esc_html_e('Show Attention Effect', 'coupon-x'); ?>
+                                    <?php esc_html_e('Show Attention Effect', 'coupon-x-discount-pop-up'); ?>
                                 </label>
                                 <ul class='custom-list'>
                                     <li>
                                         <label>
                                             <input type='radio' name='cx_settings[tab][show_attention]'
                                                    value='1' <?php echo checked(esc_attr($showAttention), 1, false); ?>>
-                                            <?php esc_html_e('Always', 'coupon-x'); ?>
+                                            <?php esc_html_e('Always', 'coupon-x-discount-pop-up'); ?>
                                             <span class="icon label-tooltip coupon-tab-design"
-                                                  title="<?php esc_html_e('Display the attention effect at all times, even if the visitor has already clicked on the icon.', 'coupon-x'); ?>">
+                                                  title="<?php esc_html_e('Display the attention effect at all times, even if the visitor has already clicked on the icon.', 'coupon-x-discount-pop-up'); ?>">
                                             <span class="dashicons dashicons-editor-help"></span>
                                         </span>
                                         </label>
@@ -449,7 +468,7 @@ class Cx_Widget_Tab
                                         <label>
                                             <input type='radio' name='cx_settings[tab][show_attention]'
                                                    value='2' <?php echo checked(esc_attr($showAttention), 2, false); ?>>
-                                            <?php esc_html_e('Until 1st click', 'coupon-x'); ?>
+                                            <?php esc_html_e('Until 1st click', 'coupon-x-discount-pop-up'); ?>
                                         </label>
                                     </li>
                                 </ul>
@@ -497,7 +516,7 @@ class Cx_Widget_Tab
             </style>
             <div class="mobile-preview-btn">
                 <a class="btn-previewbtn" href="#">
-                    <?php esc_html_e('Preview', 'coupon-x'); ?>
+                    <?php esc_html_e('Preview', 'coupon-x-discount-pop-up'); ?>
                 </a>
             </div>
             <div class='tab-preview position-sticky top-[120px] px-8 py-8'>
@@ -523,7 +542,7 @@ class Cx_Widget_Tab
                             <?php echo esc_attr($settings['call_action']); ?>
                         </div>
                         <span class="tab-tooltip"
-                              data-title="<?php esc_attr_e('Pop up preview will be displayed in the "Pop Up Design" step', 'coupon-x'); ?>"></span>
+                              data-title="<?php esc_attr_e('Pop up preview will be displayed in the "Pop Up Design" step', 'coupon-x-discount-pop-up'); ?>"></span>
                         <div class="tab-icon">
                         <span class='icon-img'>
                             <?php if ('hexagon' === $settings['tab_shape']) : ?>
@@ -554,7 +573,7 @@ class Cx_Widget_Tab
                     </div>
                 </div>
                         </div>
-                        <div class="show-icon-notice <?php echo ($showIcon == 1) ? "" : "active"; ?>"><?php esc_html_e('The Icon is currently hidden. If you want to display it, enable the "Show icon" option.', 'coupon-x') ?></div>
+                        <div class="show-icon-notice <?php echo ($showIcon == 1) ? "" : "active"; ?>"><?php esc_html_e('The Icon is currently hidden. If you want to display it, enable the "Show icon" option.', 'coupon-x-discount-pop-up') ?></div>
                     </div>
                 </div>
             </div>

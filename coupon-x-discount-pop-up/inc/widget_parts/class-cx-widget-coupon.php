@@ -53,12 +53,12 @@ class Cx_Widget_Coupon
                         <div class="coupon-code-option4 rounded-md select-no-coupon-code coupon-type <?php echo esc_attr(4 === $type ? 'active-type' : ''); ?>">
                             <div class="coupon-code-option-titlebox">
                                 <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000" style='width:60%; float:left'> <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"/> </svg></span>
-                                <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x'); ?></h4>
+                                <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x-discount-pop-up'); ?></h4>
                             </div>
-                            <p><?php esc_html_e("Don't want to show coupons? Use the widget for only collecting emails, showing announcements, or showing promotional offers via attention-grabbing widget pop-ups!", 'coupon-x'); ?></p>
+                            <p><?php esc_html_e("Don't want to show coupons? Use the widget for only collecting emails, showing announcements, or showing promotional offers via attention-grabbing widget pop-ups!", 'coupon-x-discount-pop-up'); ?></p>
                             <span class='svg-icon'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
-                                <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
+                                <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x-discount-pop-up'); ?> </button>
                             </span>
                         </div>
                         <?php
@@ -67,12 +67,12 @@ class Cx_Widget_Coupon
                     <div class="custom-coupon-code rounded-md coupon-type <?php echo esc_attr(3 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon1.svg'); ?>"></span>
-                            <h4><?php esc_html_e('Create a new Woocommerce discount with Coupon X', 'coupon-x'); ?></h4>
+                            <h4><?php esc_html_e('Create a new Woocommerce discount with Coupon X', 'coupon-x-discount-pop-up'); ?></h4>
                         </div>
-                        <p><?php esc_html_e("Create a new Woocommerce percentage or fixed discount coupon for your users. You can also customize the targeting on a coupon level and it's active dates from one plugin!", 'coupon-x'); ?></p>
+                        <p><?php esc_html_e("Create a new Woocommerce percentage or fixed discount coupon for your users. You can also customize the targeting on a coupon level and it's active dates from one plugin!", 'coupon-x-discount-pop-up'); ?></p>
                         <span class='svg-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
-                            <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
+                            <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x-discount-pop-up'); ?> </button>
                         </span>
                         <?php
                         if (0 === $wc_status) {
@@ -82,10 +82,10 @@ class Cx_Widget_Coupon
                             <div class='cx-wc-msg'>
                                 <span>
                                     <a href='<?php echo esc_url(admin_url().'plugin-install.php?s=WooCommerce&tab=search&type=term'); ?>'>
-                                        <?php esc_html_e('Install WooCommerce', 'coupon-x'); ?>
+                                        <?php esc_html_e('Install WooCommerce', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </span>
-                                <span><?php esc_html_e('to use this feature', 'coupon-x'); ?>  </span>
+                                <span><?php esc_html_e('to use this feature', 'coupon-x-discount-pop-up'); ?>  </span>
                             </div>
                             <?php
                         }
@@ -94,13 +94,13 @@ class Cx_Widget_Coupon
                     <div class="coupon-code-option2 rounded-md select-wp-exisitng-coupon coupon-type <?php echo esc_attr(1 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon2.svg'); ?>"></span>
-                            <h4><?php esc_html_e('Use a pre-existing Woocommerce discount coupon', 'coupon-x'); ?></h4>
+                            <h4><?php esc_html_e('Use a pre-existing Woocommerce discount coupon', 'coupon-x-discount-pop-up'); ?></h4>
                         </div>
-                        <p><?php esc_html_e('Have an existing Woocommerce coupon? Use it with Coupon X!', 'coupon-x'); ?></p>
+                        <p><?php esc_html_e('Have an existing Woocommerce coupon? Use it with Coupon X!', 'coupon-x-discount-pop-up'); ?></p>
 
                         <span class='svg-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
-                            <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
+                            <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x-discount-pop-up'); ?> </button>
                         </span>
                         <?php
                         if (0 === $wc_status) {
@@ -110,10 +110,10 @@ class Cx_Widget_Coupon
                             <div class='cx-wc-msg'>
                                 <span>
                                     <a href='<?php echo esc_url(admin_url().'plugin-install.php?s=WooCommerce&tab=search&type=term'); ?>'>
-                                    <?php esc_html_e('Install WooCommerce', 'coupon-x'); ?>
+                                    <?php esc_html_e('Install WooCommerce', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </span>
-                                <span><?php esc_html_e('to use this feature', 'coupon-x'); ?>  </span>
+                                <span><?php esc_html_e('to use this feature', 'coupon-x-discount-pop-up'); ?>  </span>
                             </div>
                             <?php
                         }
@@ -122,12 +122,12 @@ class Cx_Widget_Coupon
                     <div class="coupon-code-option3 rounded-md select-wp-generate-unique-coupon coupon-type <?php echo esc_attr(2 === $type ? 'active-type' : ''); ?><?php echo esc_attr(0 === $wc_status ? 'disable' : ''); ?>">
                         <div class="coupon-code-option-titlebox">
                             <span><img src="<?php echo esc_url(COUPON_X_URL.'assets/img/Icon3.svg'); ?>"></span>
-                            <h4><?php esc_html_e('Generate unique Woocommerce coupons for each new visitor', 'coupon-x'); ?></h4>
+                            <h4><?php esc_html_e('Generate unique Woocommerce coupons for each new visitor', 'coupon-x-discount-pop-up'); ?></h4>
                         </div>
-                        <p><?php esc_html_e('Coupon X will create unique coupons for every new visitor. Coupon X will create many new coupons.', 'coupon-x'); ?></p>
+                        <p><?php esc_html_e('Coupon X will create unique coupons for every new visitor. Coupon X will create many new coupons.', 'coupon-x-discount-pop-up'); ?></p>
                         <span class='svg-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
-                            <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
+                            <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x-discount-pop-up'); ?> </button>
                         </span>
                         <?php
                         if (0 === $wc_status) {
@@ -137,10 +137,10 @@ class Cx_Widget_Coupon
                             <div class='cx-wc-msg'>
                                 <span>
                                     <a href='<?php echo esc_url(admin_url().'plugin-install.php?s=WooCommerce&tab=search&type=term'); ?>'>
-                                        <?php esc_html_e('Install WooCommerce', 'coupon-x'); ?>
+                                        <?php esc_html_e('Install WooCommerce', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </span>
-                                <span><?php esc_html_e('to use this feature', 'coupon-x'); ?>  </span>
+                                <span><?php esc_html_e('to use this feature', 'coupon-x-discount-pop-up'); ?>  </span>
                             </div>
                             <?php
                         }
@@ -154,12 +154,12 @@ class Cx_Widget_Coupon
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000" style='width:60%; float:left'> <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"/> </svg>
                                 </span>
-                                <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x'); ?></h4>
+                                <h4><?php esc_html_e("Announcement Pop up - don't show a coupon code", 'coupon-x-discount-pop-up'); ?></h4>
                             </div>
-                            <p><?php esc_html_e("Don't want to show coupons? Use the widget for only collecting emails, showing announcements, or showing promotional offers via attention-grabbing widget pop-ups!", 'coupon-x'); ?></p>
+                            <p><?php esc_html_e("Don't want to show coupons? Use the widget for only collecting emails, showing announcements, or showing promotional offers via attention-grabbing widget pop-ups!", 'coupon-x-discount-pop-up'); ?></p>
                             <span class='svg-icon'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none"> <circle cx="31.5" cy="31.5" r="31.5" class="icon-morbox" fill="#C4CED8"></circle> <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7672 16.1979C34.7625 15.2409 36.3451 15.272 37.3021 16.2672L51.4077 30.9371L37.3648 46.665C36.4453 47.695 34.8649 47.7844 33.835 46.8648C32.805 45.9453 32.7156 44.3649 33.6352 43.335L42.4164 33.5H14C12.6193 33.5 11.5 32.3807 11.5 31C11.5 29.6193 12.6193 28.5 14 28.5H42.1279L33.6979 19.7328C32.7409 18.7375 32.772 17.1549 33.7672 16.1979Z" fill="white"></path> </svg>
-                                <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x'); ?> </button>
+                                <button class=' btn-blue btn-selected'><?php esc_html_e('Selected', 'coupon-x-discount-pop-up'); ?> </button>
                             </span>
                         </div>
                         <?php
@@ -192,7 +192,7 @@ class Cx_Widget_Coupon
             <div class='existing-inner-wrap'>
                 <div class='existing-coupon-form'>
                     <p>
-                        <?php esc_html_e('Please select one of your wp discount codes (you can create a new discount code in your Discounts page)', 'coupon-x'); ?>
+                        <?php esc_html_e('Please select one of your wp discount codes (you can create a new discount code in your Discounts page)', 'coupon-x-discount-pop-up'); ?>
                     </p>
                     <div id="search-wp-coupon-codes-data" class="flex items-center mt-2.5 !rounded">
                         <span class="search-svg pl-2.5">
@@ -202,7 +202,7 @@ class Cx_Widget_Coupon
                             </svg>
                         </span>
                         <input type="text" class=" flex-1 !rounded" id="search-wp-coupon-codes-text" name="search-wp-coupon-codes-text"
-                               placeholder="<?php esc_html_e('Search existing coupon code', 'coupon-x'); ?>"
+                               placeholder="<?php esc_html_e('Search existing coupon code', 'coupon-x-discount-pop-up'); ?>"
                                autocomplete="off"/>
                     </div>
                     <div class="coupon-details-table">
@@ -220,24 +220,47 @@ class Cx_Widget_Coupon
                         $db_prefix = $wpdb->prefix;
                         $time = time();
 
-                        $query = "SELECT {$db_prefix}posts.*
-                            FROM {$db_prefix}posts
-                            INNER JOIN {$db_prefix}postmeta
-                            ON ( {$db_prefix}posts.ID = {$db_prefix}postmeta.post_id )
-                            WHERE 1=1
-                            AND ( ( {$db_prefix}postmeta.meta_key = 'date_expires'
-                            AND CAST({$db_prefix}postmeta.meta_value AS SIGNED) >= '".$time."' )
-                            OR ( {$db_prefix}postmeta.meta_key = 'date_expires'
-                            AND {$db_prefix}postmeta.meta_value IS NULL )
-                            OR ( {$db_prefix}postmeta.meta_key = 'date_expires'
-                            AND {$db_prefix}postmeta.meta_value = '' ) )
-                            AND {$db_prefix}posts.post_type = 'shop_coupon'
-                            AND (({$db_prefix}posts.post_status = 'publish'))
-                            GROUP BY {$db_prefix}posts.ID
-                            ORDER BY {$db_prefix}posts.post_title ASC";
+                        // $query = "SELECT {$db_prefix}posts.*
+                        //     FROM {$db_prefix}posts
+                        //     INNER JOIN {$db_prefix}postmeta
+                        //     ON ( {$db_prefix}posts.ID = {$db_prefix}postmeta.post_id )
+                        //     WHERE 1=1
+                        //     AND ( ( {$db_prefix}postmeta.meta_key = 'date_expires'
+                        //     AND CAST({$db_prefix}postmeta.meta_value AS SIGNED) >= '".$time."' )
+                        //     OR ( {$db_prefix}postmeta.meta_key = 'date_expires'
+                        //     AND {$db_prefix}postmeta.meta_value IS NULL )
+                        //     OR ( {$db_prefix}postmeta.meta_key = 'date_expires'
+                        //     AND {$db_prefix}postmeta.meta_value = '' ) )
+                        //     AND {$db_prefix}posts.post_type = 'shop_coupon'
+                        //     AND (({$db_prefix}posts.post_status = 'publish'))
+                        //     GROUP BY {$db_prefix}posts.ID
+                        //     ORDER BY {$db_prefix}posts.post_title ASC";
 
-                        // Get the coupons using get_posts
-                        $coupons = $wpdb->get_results($query);
+                        // // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                        // $coupons = $wpdb->get_results($query);
+                        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                        $coupons = $wpdb->get_results(
+                            $wpdb->prepare(
+                                "SELECT p.*
+                                FROM {$wpdb->posts} p
+                                INNER JOIN {$wpdb->postmeta} pm
+                                ON ( p.ID = pm.post_id )
+                                WHERE 1=1
+                                AND ( ( pm.meta_key = 'date_expires'
+                                AND CAST(pm.meta_value AS SIGNED) >= %d )
+                                OR ( pm.meta_key = 'date_expires'
+                                AND pm.meta_value IS NULL )
+                                OR ( pm.meta_key = 'date_expires'
+                                AND pm.meta_value = '' ) )
+                                AND p.post_type = %s
+                                AND p.post_status = %s
+                                GROUP BY p.ID
+                                ORDER BY p.post_title ASC",
+                                $time,
+                                'shop_coupon',
+                                'publish'
+                            )
+                        );
                         ?>
                         <table class='tbl-coupons'>
                             <?php
@@ -245,9 +268,9 @@ class Cx_Widget_Coupon
                                 ?>
                                 <thead>
                                 <th></th>
-                                <th><?php esc_html_e('Coupon code', 'coupon-x'); ?> </th>
-                                <th><?php esc_html_e('Coupon type', 'coupon-x'); ?> </th>
-                                <th><?php esc_html_e('Coupon value', 'coupon-x'); ?> </th>
+                                <th><?php esc_html_e('Coupon code', 'coupon-x-discount-pop-up'); ?> </th>
+                                <th><?php esc_html_e('Coupon type', 'coupon-x-discount-pop-up'); ?> </th>
+                                <th><?php esc_html_e('Coupon value', 'coupon-x-discount-pop-up'); ?> </th>
                                 </thead>
                                 <tbody>
                                 <?php
@@ -272,9 +295,9 @@ class Cx_Widget_Coupon
                                             <?php
                                             $discount_type = get_post_meta($id, 'discount_type', true);
                                             if ('percent' === $discount_type) {
-                                                echo esc_html__('Percentage discount', 'coupon-x');
+                                                echo esc_html__('Percentage discount', 'coupon-x-discount-pop-up');
                                             } else {
-                                                echo esc_html__('Fixed cart discount', 'coupon-x');
+                                                echo esc_html__('Fixed cart discount', 'coupon-x-discount-pop-up');
                                             }
                                             ?>
                                         </td>
@@ -293,7 +316,7 @@ class Cx_Widget_Coupon
                                 ?>
                                 <tr>
                                     <td colspan=4>
-                                        <?php esc_html_e('No coupon codes found', 'coupon-x'); ?>
+                                        <?php esc_html_e('No coupon codes found', 'coupon-x-discount-pop-up'); ?>
                                     </td>
                                 </tr>
                                 <?php
@@ -307,7 +330,7 @@ class Cx_Widget_Coupon
                         <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" style="width:150px; height:150px;"><path fill="#000" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"> <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform> </path></svg>
                     </div>
                 </div>
-                <p class='hide ex-error'><?php esc_attr_e('Please select one coupon code from the list', 'coupon-x'); ?> </p>
+                <p class='hide ex-error'><?php esc_attr_e('Please select one coupon code from the list', 'coupon-x-discount-pop-up'); ?> </p>
             </div>
         </div>
         <?php
@@ -330,33 +353,33 @@ class Cx_Widget_Coupon
         <div id="couponapp-wp-unique-coupon-code" class="couponapp-conversation-data couponapp-wp-unique-coupon-code">
             <div class='unique-coupon-div'>
                 <p class='hide'>
-                    <?php esc_html_e('Coupon X will create a new coupon code for each store visitor. If you want to show the same coupon code for all your visitors, please', 'coupon-x'); ?>
+                    <?php esc_html_e('Coupon X will create a new coupon code for each store visitor. If you want to show the same coupon code for all your visitors, please', 'coupon-x-discount-pop-up'); ?>
                     <strong><a href="#"
-                               class="select-wp-exisitng-coupon"><?php esc_html_e('select an existing code', 'coupon-x'); ?></a>
-                    </strong><?php esc_html_e(' or ', 'coupon-x'); ?><strong><a href="#"
-                                                                                class="custom-coupon-code"><?php esc_html_e('create a new coupon code', 'coupon-x'); ?></a></strong>
+                               class="select-wp-exisitng-coupon"><?php esc_html_e('select an existing code', 'coupon-x-discount-pop-up'); ?></a>
+                    </strong><?php esc_html_e(' or ', 'coupon-x-discount-pop-up'); ?><strong><a href="#"
+                                                                                class="custom-coupon-code"><?php esc_html_e('create a new coupon code', 'coupon-x-discount-pop-up'); ?></a></strong>
                 </p>
                 <div class="unique-coupon-code-wrap discount-code-wrap <?php echo esc_attr(3 !== $type ? 'hide' : ''); ?>">
                     <label for="discount-code">
-                        <?php esc_html_e('Discount Code', 'coupon-x'); ?>
+                        <?php esc_html_e('Discount Code', 'coupon-x-discount-pop-up'); ?>
                     </label>
                     <input type="text" id="discount-code" class="discount-code"
-                           placeholder="<?php echo esc_attr__('Discount name', 'coupon-x'); ?>"
+                           placeholder="<?php echo esc_attr__('Discount name', 'coupon-x-discount-pop-up'); ?>"
                            name="cx_settings[unique_coupon][discount_code]"
                            value="<?php echo esc_attr($settings['discount_code']); ?>" step="any"/>
                     <p class="discount_code_error hide" style="color:#FF0000;">
-                        <?php esc_html_e('Please fill out the Discount code value', 'coupon-x'); ?>
+                        <?php esc_html_e('Please fill out the Discount code value', 'coupon-x-discount-pop-up'); ?>
                     </p>
                 </div>
                 <div class="unique-coupon-code-wrap">
-                    <h3><?php esc_html_e('Type', 'coupon-x'); ?></h3>
+                    <h3><?php esc_html_e('Type', 'coupon-x-discount-pop-up'); ?></h3>
                     <ul>
                         <li>
                             <label>
                                 <input type="radio" class="discount_type_percentage"
                                        name="cx_settings[unique_coupon][discount_type]"
                                        value="percent" <?php echo checked('percent', $settings['discount_type'], false); ?> />
-                                <?php esc_html_e('Percentage', 'coupon-x'); ?>
+                                <?php esc_html_e('Percentage', 'coupon-x-discount-pop-up'); ?>
                             </label>
                         </li>
                         <li>
@@ -364,38 +387,44 @@ class Cx_Widget_Coupon
                                 <input type="radio" class="discount_type_fixed"
                                        name="cx_settings[unique_coupon][discount_type]"
                                        value="fixed" <?php echo checked('fixed', $settings['discount_type'], false); ?> />
-                                <?php esc_html_e('Fixed amount', 'coupon-x'); ?>
+                                <?php esc_html_e('Fixed amount', 'coupon-x-discount-pop-up'); ?>
                             </label>
                         </li>
                     </ul>
                 </div>
                 <div class="unique-coupon-code-wrap">
-                    <h3><?php esc_html_e('Value', 'coupon-x'); ?></h3>
+                    <h3><?php esc_html_e('Value', 'coupon-x-discount-pop-up'); ?></h3>
                     <label for="discount-value">
-                        <?php esc_html_e('Discount value', 'coupon-x'); ?>
+                        <?php esc_html_e('Discount value', 'coupon-x-discount-pop-up'); ?>
                     </label>
                     <input type="number" id="discount-value" class="discount-value" placeholder=""
                            name="cx_settings[unique_coupon][discount_value]"
                            value="<?php echo esc_attr($settings['discount_value']); ?>" step="any" min="1"/>
                     <p class="discount_value_error hide" style="color:#FF0000;">
-                        <?php esc_html_e('Please fill out the Discount value field', 'coupon-x'); ?>
+                        <?php esc_html_e('Please fill out the Discount value field', 'coupon-x-discount-pop-up'); ?>
                     </p>
                 </div>
                 <?php
                 $freeShipping = isset($settings['free_shipping']) ? $settings['free_shipping'] : 0;
                 ?>
                 <div class="unique-coupon-code-wrap">
-                    <h3><?php esc_html_e('Free Shipping', 'coupon-x'); ?></h3>
+                    <h3><?php esc_html_e('Free Shipping', 'coupon-x-discount-pop-up'); ?></h3>
                     <div class='row'>
                         <div class='row-elements full mb-0'>
                             <label for="cx_free_shipping">
                                 <input type="hidden" name="cx_settings[unique_coupon][free_shipping]" value="0">
                                 <input id="cx_free_shipping" type='checkbox' name='cx_settings[unique_coupon][free_shipping]' value='1' <?php echo checked($freeShipping, 1); ?> class='coupon-free-shipping'>
-                                <?php esc_html_e('Allow free shipping', 'coupon-x'); ?>
+                                <?php esc_html_e('Allow free shipping', 'coupon-x-discount-pop-up'); ?>
                                 <span class="img-tooltip">
                                     <span class="dashicons dashicons-editor-help"></span>
                                     <span class="tooltiptext">
-                                        <?php printf( __( 'A <a href="%s" target="_blank">free shipping method</a> must be enabled in your shipping zone and be set to require "a valid free shipping coupon" (see the "Free Shipping Requires" setting).', 'coupon-x' ), 'https://docs.woocommerce.com/document/free-shipping/' ) ?>
+                                        <?php echo wp_kses_post( 
+                                            sprintf( 
+                                                // translators: %s: URL.
+                                                __( 'A <a href="%s" target="_blank">free shipping method</a> must be enabled in your shipping zone and be set to require "a valid free shipping coupon" (see the "Free Shipping Requires" setting).', 'coupon-x-discount-pop-up' ), esc_url( 'https://docs.woocommerce.com/document/free-shipping/' ) 
+                                                ) 
+                                            ); 
+                                        ?>
                                     </span>
                                 </span>
                             </label>
@@ -404,9 +433,9 @@ class Cx_Widget_Coupon
                 </div>
                 <?php
                 $applies_to          = [
-                    'order'       => esc_html__('All Products', 'coupon-x'),
-                    'collections' => esc_html__('Specific collections', 'coupon-x'),
-                    'products'    => esc_html__('Specific products', 'coupon-x'),
+                    'order'       => esc_html__('All Products', 'coupon-x-discount-pop-up'),
+                    'collections' => esc_html__('Specific collections', 'coupon-x-discount-pop-up'),
+                    'products'    => esc_html__('Specific products', 'coupon-x-discount-pop-up'),
                 ];
                 $collections = get_terms(
                     [
@@ -422,10 +451,10 @@ class Cx_Widget_Coupon
                     ]
                 );
                 $applies_to_products = isset($settings['products']) ? $settings['products'] : [];
-                $applies_to_collections = isset($settings['cats']) ? $settings['cats'] : [];
+                $applies_to_collections = isset($settings['cats']) ? $settings['cats'] : []; 
                 ?>
                 <div class="unique-coupon-code-wrap">
-                    <h3><?php esc_html_e('Applies to', 'coupon-x'); ?></h3>
+                    <h3><?php esc_html_e('Applies to', 'coupon-x-discount-pop-up'); ?></h3>
                     <ul class="discount-applies-to">
                         <?php
                         foreach ($applies_to as $key => $val) {
@@ -445,7 +474,7 @@ class Cx_Widget_Coupon
                         <select class="cart_collections couponx-select2 applies_to_collections"
                                 name="cx_settings[unique_coupon][cats][]" multiple="multiple">
                             <?php
-                            if (!empty($collections)) :
+                            if (!empty($collections) && !is_wp_error($collections)) :
                                 foreach ($collections as $collection) :
                                     ?>
                                     <option value="<?php echo esc_attr($collection->term_id); ?>"
@@ -457,11 +486,15 @@ class Cx_Widget_Coupon
                                     ><?php echo esc_attr($collection->name); ?></option>
                                     <?php
                                 endforeach;
+                            else:
+                                ?>
+                                <option value=""><?php esc_html_e('No collections found', 'coupon-x-discount-pop-up'); ?></option>
+                                <?php
                             endif;
                             ?>
                         </select>
                         <p class="applies_to_collections_error hide" style="color:#FF0000;">
-                            <?php esc_html_e('Specific collections  must be added', 'coupon-x'); ?>
+                            <?php esc_html_e('Specific collections  must be added', 'coupon-x-discount-pop-up'); ?>
                         </p>
                     </div>
                     <div class="applies-to-products <?php echo esc_attr('products' !== $settings['applies_to'] ? 'hide' : ''); ?>">
@@ -484,18 +517,18 @@ class Cx_Widget_Coupon
                             ?>
                         </select>
                         <p class="applies_to_products_error hide" style="color:#FF0000;">
-                            <?php esc_html_e('Specific products must be added', 'coupon-x'); ?>
+                            <?php esc_html_e('Specific products must be added', 'coupon-x-discount-pop-up'); ?>
                         </p>
                     </div>
                 </div>
                 <div class="unique-coupon-code-wrap">
-                    <h3><?php esc_html_e('Minimum requirements', 'coupon-x'); ?></h3>
+                    <h3><?php esc_html_e('Minimum requirements', 'coupon-x-discount-pop-up'); ?></h3>
                     <select name="cx_settings[unique_coupon][min_req]" class="min-req">
                         <option value="none" <?php echo selected($settings['min_req'], 'none', false); ?>>
-                            <?php esc_html_e('None', 'coupon-x'); ?>
+                            <?php esc_html_e('None', 'coupon-x-discount-pop-up'); ?>
                         </option>
                         <option value="subtotal" <?php echo selected($settings['min_req'], 'subtotal', false); ?>>
-                            <?php esc_html_e('Minimum purchase amount', 'coupon-x'); ?>
+                            <?php esc_html_e('Minimum purchase amount', 'coupon-x-discount-pop-up'); ?>
                         </option>
                     </select>
                     <div class="discount-min-requirements <?php echo esc_attr('subtotal' !== $settings['min_req'] ? 'hide' : ''); ?>">
@@ -503,16 +536,16 @@ class Cx_Widget_Coupon
                         <input type="text" id="discount-min-req" class="discount-min-req" placeholder=""
                                name="cx_settings[unique_coupon][min_val]"
                                value="<?php echo esc_attr($settings['min_val']); ?>"/>
-                        <?php esc_html_e('Applies to all products.', 'coupon-x'); ?>
+                        <?php esc_html_e('Applies to all products.', 'coupon-x-discount-pop-up'); ?>
                         <p class="min_val_error hide" style="color:#FF0000;">
-                            <?php esc_html_e('Please fill out the Minimum purchase amount', 'coupon-x'); ?>
+                            <?php esc_html_e('Please fill out the Minimum purchase amount', 'coupon-x-discount-pop-up'); ?>
                         </p>
                     </div>
                     <div class="discount-min-qty-items <?php echo 'qty' !== $settings['min_req'] ? 'hide' : ''; ?>">
                         <input type="text" id="discount-value" class="discount-min-req" placeholder=""
                                name="cx_settings[unique_coupon][discount_perqty]"
                                value="<?php echo esc_attr($settings['discount_perqty']); ?>"/>
-                        <?php esc_html_e('Applies to all products.', 'coupon-x'); ?>
+                        <?php esc_html_e('Applies to all products.', 'coupon-x-discount-pop-up'); ?>
                     </div>
                 </div>
                 <?php
@@ -523,14 +556,14 @@ class Cx_Widget_Coupon
                 ?>
                 <div class="unique-coupon-code-wrap">
                     <h3>
-                        <?php esc_html_e('Usage limits', 'coupon-x'); ?>
+                        <?php esc_html_e('Usage limits', 'coupon-x-discount-pop-up'); ?>
                         <label class="couponapp-switch">
                             <input type="checkbox" name="cx_settings[unique_coupon][enable_usage_limits]"
                                    value="1" <?php echo checked($enable_usage_limits, 1, false); ?>
                                    class='usage-limit'/>
                             <span class="cx-slider round">
-                            <span class="on"><?php esc_html_e('On', 'coupon-x'); ?></span>
-                            <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                            <span class="on"><?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                            <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                         </span>
                         </label>
                     </h3>
@@ -540,9 +573,9 @@ class Cx_Widget_Coupon
                                 <input type="checkbox" name="cx_settings[unique_coupon][enable_no_item_limit]"
                                        value="1" <?php echo checked($enable_no_item_limit, 1, false); ?>
                                        class='enable-item-limit'/>
-                                <?php esc_html_e('Limit number of times this discount can be used in total per unique discount code', 'coupon-x'); ?>
+                                <?php esc_html_e('Limit number of times this discount can be used in total per unique discount code', 'coupon-x-discount-pop-up'); ?>
                                 <span class="icon label-tooltip coupon-tab-design usage-limits"
-                                      title="<?php esc_html_e('Control how many times the coupon can be used in total per unique discount code. For example, if you set 5, the user that gets a unique discount code, can use the coupon a maximum of 5 times in total', 'coupon-x'); ?>">
+                                      title="<?php esc_html_e('Control how many times the coupon can be used in total per unique discount code. For example, if you set 5, the user that gets a unique discount code, can use the coupon a maximum of 5 times in total', 'coupon-x-discount-pop-up'); ?>">
                                 <span class="dashicons dashicons-editor-help"></span>
                             </span>
                             </label>
@@ -557,9 +590,9 @@ class Cx_Widget_Coupon
                             <label>
                                 <input type="checkbox" name="cx_settings[unique_coupon][enable_user_limit]"
                                        value="1" <?php echo checked($enable_user_limit, 1, false); ?>/>
-                                <?php esc_html_e('Limit to one use per customer', 'coupon-x'); ?>
+                                <?php esc_html_e('Limit to one use per customer', 'coupon-x-discount-pop-up'); ?>
                                 <span class="icon label-tooltip coupon-tab-design perperson"
-                                      title="<?php esc_html_e('If a user has already bought something with the coupon, the user cannot use the same coupon more than once', 'coupon-x'); ?>">
+                                      title="<?php esc_html_e('If a user has already bought something with the coupon, the user cannot use the same coupon more than once', 'coupon-x-discount-pop-up'); ?>">
                                 <span class="dashicons dashicons-editor-help"></span>
                             </span>
                             </label>
@@ -568,26 +601,26 @@ class Cx_Widget_Coupon
                 </div>
                 <div class="unique-coupon-code-wrap">
                     <h3>
-                        <?php esc_html_e('Active dates', 'coupon-x'); ?>
+                        <?php esc_html_e('Active dates', 'coupon-x-discount-pop-up'); ?>
                         <label class="couponapp-switch">
                             <input type="checkbox" name="cx_settings[unique_coupon][enable_date]" value="1"
                                    class='active-dates' <?php echo checked($enable_date, 1, false); ?> />
                             <span class="cx-slider round">
-                            <span class="on"><?php esc_html_e('On', 'coupon-x'); ?></span>
-                            <span class="off"><?php esc_html_e('Off', 'coupon-x'); ?></span>
+                            <span class="on"><?php esc_html_e('On', 'coupon-x-discount-pop-up'); ?></span>
+                            <span class="off"><?php esc_html_e('Off', 'coupon-x-discount-pop-up'); ?></span>
                         </span>
                         </label>
 
                     </h3>
                     <div class="unique-coupon-code-start-dates <?php echo 1 !== $enable_date ? 'hide' : ''; ?>">
 <!--                        <div class="row-elements  half">-->
-<!--                            <label>--><?php //esc_html_e('Start date', 'coupon-x'); ?><!--</label>-->
+<!--                            <label>--><?php //esc_html_e('Start date', 'coupon-x-discount-pop-up'); ?><!--</label>-->
 <!--                            <input type="text" name="cx_settings[unique_coupon][start_date]"-->
 <!--                                   value="--><?php //echo esc_attr($settings['start_date']); ?><!--"-->
 <!--                                   class="coupon-required date-picker ui-datepicker-input-active-st-date active_start_date"/>-->
 <!--                        </div>-->
                         <div class="row-elements  half">
-                            <label><?php esc_html_e('End date', 'coupon-x'); ?></label>
+                            <label><?php esc_html_e('End date', 'coupon-x-discount-pop-up'); ?></label>
                             <input type="text" name="cx_settings[unique_coupon][end_date]"
                                    value="<?php echo esc_attr($settings['end_date']); ?>"
                                    class="coupon-required date-picker ui-datepicker-input-active-end-date active_end_date"/>

@@ -1,9 +1,9 @@
-=== Coupon X - Discount Popups & Promo Codes Pop Ups for WooCommerce ===
+=== Coupon X - Discount Popups, Promo Codes Pop Ups for WooCommerce & Announcement Popups ===
 Contributors: premio, galdub, tomeraharon
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
 Tested up to: 6.9
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -26,7 +26,7 @@ Using Coupon X you can create announcement emails, collect emails, <strong>gener
 * Launch a coupon code pop up when a visitor clicks on your popup teaser on the corner of your website
 * Reduce cart abandonment by using exit intent trigger on your coupon code popup
 
-Want to try our robust Pro version? Check out <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X Pro plans"><strong>Coupon X Pro Plans</strong></a>.
+Try our robust Pro version and check out the <a href="https://premio.io/downloads/coupon-x-discount-pop-up/?utm_source=wordpressorg" target="_blank" title="Coupon X Pro plans"><strong>Coupon X Pro Plans</strong></a>.
 
 = 💪 How does Coupon X Work? =
 When you install the plugin, you’ll be able to customize your beautiful discount pop up or announcement pop up and decide if you want to create a unique coupon code for each visitor or use the same coupon code for all of your visitors. You can also create notification pop ups.
@@ -47,7 +47,7 @@ You will get all the features of the free plan, plus:
 5. New! Send coupon codes via email - you can send a coupon code via email to your website’s visitors after they enter their email address
 6. Cart targeting - show your coupon pop ups based on the current cart data. For example, you can show a discount popup just for visitors with specific items in their cart, or based on the cart value
 7. Order history targeting - show discount popups if your customer has purchased a certain product or products, or if their purchase value is above or below a certain amount. You can show your discount pop ups to new customers only, or display coupon pop ups to customers who spent a certain amount or purchased a certain amount of items
-8. Native integrations with Mailchimp and Klaviyo - sync your discount pop ups email contacts with Mailchimp and Klaviyo
+8. Native integrations with Mailchimp & Klaviyo - sync your discount pop ups email contacts with Mailchimp and Klaviyo
 9. Page targeting - show your promo code pop ups on specific pages (or don’t show them on specific pages) based on targeting rules like contains/exact/starts with/ends with
 10. Country targeting - show discount codes pop ups for specific countries 
 11. Date & Day Scheduling - schedule your discounts and coupon popups to specific time, date, and day. Use this feature to offer time-limited coupons and discounts, or to start a promotion from a specific date
@@ -57,7 +57,7 @@ You will get all the features of the free plan, plus:
 = ▶️ Live Demo of Coupon X =
 A live demo of the Coupon X plugin is available at <a href="https://demo.premio.io/coupon-x/?utm_source=wordpressorg" target="_blank" title="Premio.io demo site">Premio's demo site</a>. 
 
-= 🔗 Native Integrations With Mailchimp and Klaviyo =
+= 🔗 Integrations With Mailchimp & Klaviyo =
 <strong>Pro feature: </strong>Integrate your Coupon X coupon pop ups with Mailchimp and Klaviyo. Whenever your visitors submit their email, you can sync it with Mailchimp and Klaviyo. Using these integrations with Mailchimp and Klaviyo you can send discounts and coupons through email. 
 
 = 🚀 Create engaging discount pop ups and coupon code pop ups with Coupon X =
@@ -71,7 +71,7 @@ You can show your popups after your visitors click on the coupon icon, or just s
 Enhance your discount pop ups with captivating images. Now, you have the power to add visually appealing visuals to different sections of your pop-up. Showcase your latest products, feature eye-catching promotions, or create a sense of urgency with enticing visuals.
 You can place images in different position inside your discount pop ups and make your pop ups stand out. Customize your pop ups do align with your brand.
 
-= 🎯 Easy. Effective. Highly Targeted =
+= 🎯 Easy. Effective. Highly Targeted Popups =
 Coupon X for WordPress comes with a user-friendly coupon code pop up builder with easy UI and powerful popup features, no coding required. In just a few clicks, you can create your own attractive discount code pop ups and coupon popups and launch them directly on your WordPress website.
 
 To better reach out to your target audience, optimize your discount pop ups with Coupon X’s targeting rules. Supplement your popup with the right smart trigger like exit intent trigger to recover abandoned carts, so you won’t interfere with their browsing experience and reduce your bumps from increasing your sales.
@@ -104,7 +104,7 @@ Whether you wish to use a pre-existing coupon to show on Coupon X, generate uniq
 
 With our seamless WooCommerce integration, you don’t have to worry about managing, creating, or testing coupons. Install Coupon X, which plugs in with your WooCommerce plugin without effort and lets you create discounts and coupons seamlessly. 
 
-= 📣 Many popup styles to choose from =
+= 📣 Many popup styles =
 The Pro version of Coupon X lets you to showcase your coupons and discount codes in various styles. With layouts like a slide-in popup, lightbox popup, and a floating bar - the possibilities are endless. Use these awesome layouts based on your visitor targeting preferences, website design, and your own taste. 
 
 = 📧 Collect leads and send them to email/ integrations with Mailchimp and Klaviyo =
@@ -171,6 +171,9 @@ No, Coupon X pop ups work on any website. If you have WooCommerce installed, you
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.4.6 =
+Improved support method
 
 = 1.4.5 =
 Updated for WordPress 6.9 compatibility.

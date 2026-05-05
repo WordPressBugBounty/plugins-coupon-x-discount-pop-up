@@ -46,7 +46,7 @@ class Cx_Help
             'footer_menu' => array( 
                 'support' => array(
                     'title' => esc_html("Get Support", "coupon-x-discount-pop-up"),
-                    'link' =>  esc_url("https://wordpress.org/support/plugin/coupon-x-discount-pop-up/"),
+                    'link' =>  esc_url("https://premio.io/help/coupon-x-for-wordpress/"),
                     'status' => true,
                 ),
                 'upgrade_to_pro' => array(
@@ -68,7 +68,7 @@ class Cx_Help
                 ),
                 'get_support' => array(
                     'title' => esc_html("Get Support", "coupon-x-discount-pop-up"),
-                    'link' =>   esc_url("https://wordpress.org/support/plugin/coupon-x-discount-pop-up/"),
+                    'link' =>   esc_url("https://premio.io/help/coupon-x-for-wordpress/"),
                     'icon' => esc_url(COUPON_X_URL."assets/img/help/help-circle.svg"),
                 ),
                 'contact' => array(

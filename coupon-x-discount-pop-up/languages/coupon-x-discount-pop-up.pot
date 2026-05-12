@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coupon X Discount Pop Up 1.4.6\n"
+"Project-Id-Version: Coupon X Discount Pop Up 1.4.7\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/couponx-free-uncompressed\n"
-"POT-Creation-Date: 2026-05-05 08:58:54+00:00\n"
+"POT-Creation-Date: 2026-05-12 06:30:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,7 +61,7 @@ msgid "Enter your email and unlock amazing deals!"
 msgstr ""
 
 #: inc/class-create-widget.php:94 inc/class-cx-widget-list.php:120
-#: inc/class-dashboard.php:599 inc/pages/help.php:58
+#: inc/class-dashboard.php:599 inc/pages/help.php:57
 msgid "Email"
 msgstr ""
 
@@ -941,44 +941,36 @@ msgid "Support"
 msgstr ""
 
 #: inc/pages/help.php:52
-msgid "Co-Founder at Premio"
+msgid "Contact Us"
 msgstr ""
 
 #: inc/pages/help.php:55
 msgid ""
-"Hello! Are you experiencing any problems with coupon-x? Please let me know "
-":)"
+"Are you experiencing any issues with coupon-x? Please let us know, we’d be "
+"happy to help 🙏"
 msgstr ""
 
-#: inc/pages/help.php:62
-msgid "How can I help you?"
+#: inc/pages/help.php:60
+msgid "How can we help you?"
 msgstr ""
 
-#: inc/pages/help.php:65 inc/pages/help.php:119
+#: inc/pages/help.php:63 inc/pages/help.php:113
 msgid "Chat"
 msgstr ""
 
-#: inc/pages/help.php:71
-msgid "Or"
-msgstr ""
-
-#: inc/pages/help.php:72
-msgid "Visit our Help Center >>"
-msgstr ""
-
-#: inc/pages/help.php:108
+#: inc/pages/help.php:102
 msgid "Sending Request..."
 msgstr ""
 
-#: inc/pages/help.php:125
+#: inc/pages/help.php:119
 msgid "Done!"
 msgstr ""
 
-#: inc/pages/help.php:132
+#: inc/pages/help.php:126
 msgid "Your message is sent successfully."
 msgstr ""
 
-#: inc/pages/help.php:140
+#: inc/pages/help.php:134
 #. translators: %s: Email address.
 msgid "There is some problem in sending request. Please send us mail on %1$s"
 msgstr ""

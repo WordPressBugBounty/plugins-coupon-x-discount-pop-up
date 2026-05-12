@@ -3,7 +3,7 @@ Contributors: premio, galdub, tomeraharon
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 3.1
 Tested up to: 6.9
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -171,6 +171,9 @@ No, Coupon X pop ups work on any website. If you have WooCommerce installed, you
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.4.7 =
+Improve chat form interface
 
 = 1.4.6 =
 Improved support method

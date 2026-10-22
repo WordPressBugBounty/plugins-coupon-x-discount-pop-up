@@ -31,7 +31,8 @@ class Couponx_Frontend
         add_action('wp_enqueue_scripts', [ $this, 'include_coupon_scripts' ]);
         add_action('wp_head', [ $this, 'load_fonts' ], 5);
         add_action('wp_footer', [ $this, 'display_coupon_widget' ]);
-        add_action('init', [ $this, 'apply_cx_coupon_link' ]);
+        // wp_loaded: the WooCommerce session and cart exist by then (they don't on init).
+        add_action('wp_loaded', [ $this, 'apply_cx_coupon_link' ], 20);
 //        add_action('woocommerce_before_cart_table', [ $this, 'apply_coupon_from_session' ]);
         add_action('wp_loaded', [$this, 'apply_coupon_from_session'], 30);
         add_action('woocommerce_add_to_cart', [$this, 'apply_coupon_from_session']);
@@ -45,16 +46,34 @@ class Couponx_Frontend
 
 
     /**
-     * Load coupon x fonts.
+     * Active widgets with their settings, loaded once per request
+     * (load_fonts() and display_coupon_widget() used to run the same query twice).
+     *
+     * @var array|null
      */
-    public function load_fonts()
-    {
+    private $active_widgets = null;
 
+
+    /**
+     * Get the active widgets as [widget_id => settings].
+     *
+     * @return array
+     */
+    private function get_active_widgets()
+    {
+        if (null !== $this->active_widgets) {
+            return $this->active_widgets;
+        }
+
+        $this->active_widgets = [];
         $widgets = get_posts(
             [
-                'numberposts' => -1,
-                'post_type'   => 'cx_widget',
-                'meta_query'  => [
+                'numberposts'      => 20,
+                'post_type'        => 'cx_widget',
+                'post_status'      => 'publish',
+                'no_found_rows'    => true,
+                'suppress_filters' => false,
+                'meta_query'       => [
                     [
                         'key'     => 'status',
                         'value'   => 1,
@@ -64,40 +83,51 @@ class Couponx_Frontend
             ]
         );
 
-        if (is_array($widgets) && count($widgets)) {
-            foreach ($widgets as $widget) {
-                $widget_id       = $widget->ID;
-
-                $widget_settings = get_post_meta($widget_id, 'prm_cx_widget_data', true);
-                if(empty($widget_settings)) {
-                    $postContent = $this->clean_json_string($widget->post_content);
-                    $widget_settings = json_decode($postContent, true);
-                }
-
-                $showIcon = isset($widget_settings['tab']['show_icon']) ? $widget_settings['tab']['show_icon'] : 1;
-                $popupFont = isset($widget_settings['popup']['font']) ? $widget_settings['popup']['font'] : "Google_Fonts-Poppins";
-                if($showIcon == 1) {
-                    $font = explode('-', $widget_settings['tab']['font']);
-                } else {
-                    $font = explode('-', $popupFont);
-                }
-                $font_type       = str_replace('_', ' ', $font[0]);
-                $font_family     = str_replace('_', ' ', $font[1]);
-
-                if ('System stack' !== $font_family) {
-                    $font_url = 'https://fonts.googleapis.com/css?family='.esc_attr($font_family).':400,500,600,700';
-                    wp_enqueue_style('google-front-fonts', $font_url);
-                }
-
-                $css  = Cx_Helper::get_tab_css_frontend($widget_settings['tab']);
-                $css .= Cx_Helper::get_css_frontend($widget_settings, $widget_id);
+        foreach ((array) $widgets as $widget) {
+            $widget_settings = get_post_meta($widget->ID, 'prm_cx_widget_data', true);
+            if (empty($widget_settings)) {
+                $postContent     = $this->clean_json_string($widget->post_content);
+                $widget_settings = json_decode($postContent, true);
             }
-        }else{
-            $css = '';
+            if (is_array($widget_settings) && !empty($widget_settings['popup']) && !empty($widget_settings['tab'])) {
+                $this->active_widgets[$widget->ID] = $widget_settings;
+            }
+        }
+
+        return $this->active_widgets;
+
+    }//end get_active_widgets()
+
+
+    /**
+     * Load coupon x fonts and the widget styles.
+     */
+    public function load_fonts()
+    {
+        $css = '';
+
+        foreach ($this->get_active_widgets() as $widget_id => $widget_settings) {
+            $showIcon  = isset($widget_settings['tab']['show_icon']) ? $widget_settings['tab']['show_icon'] : 1;
+            $popupFont = isset($widget_settings['popup']['font']) ? $widget_settings['popup']['font'] : 'Google_Fonts-Poppins';
+            $font      = explode('-', 1 == $showIcon ? (string) ($widget_settings['tab']['font'] ?? '') : (string) $popupFont);
+            $font_family = str_replace('_', ' ', $font[1] ?? '');
+
+            if ('' !== $font_family && 'System stack' !== $font_family) {
+                $font_url = 'https://fonts.googleapis.com/css?family=' . rawurlencode($font_family) . ':400,500,600,700';
+                wp_enqueue_style('google-front-fonts-' . sanitize_title($font_family), $font_url, [], null);
+            }
+
+            // Every widget's styles (the old code kept only the last widget's CSS).
+            $css .= Cx_Helper::get_tab_css_frontend($widget_settings['tab']);
+            $css .= Cx_Helper::get_css_frontend($widget_settings, $widget_id);
+        }
+
+        if ('' === $css) {
+            return;
         }
         ?>
-        <style>
-        <?php echo esc_attr($css); ?>        
+        <style id="coupon-x-widget-css">
+        <?php echo wp_strip_all_tags($css); // esc_attr() turned quotes in font names into &quot; ?>
         </style>
         <?php
 
@@ -109,9 +139,14 @@ class Couponx_Frontend
      */
     public function include_coupon_scripts()
     {
-        $min = defined('COUPON_X_FREE_DEV_MODE') && COUPON_X_FREE_DEV_MODE ? '' : '.min';
-        wp_enqueue_style('cx-style', COUPON_X_URL.'assets/css/frontend'.esc_attr($min).'.css', '', COUPON_X_VERSION);
-        wp_enqueue_script('cx-script', COUPON_X_URL.'assets/js/frontend'.esc_attr($min).'.js', [ 'jquery' ], COUPON_X_VERSION);
+        // Built with Laravel Mix from src/frontend (vanilla JS, no jQuery dependency).
+        $css_file = 'dist/css/style.css';
+        $js_file  = 'dist/js/script.js';
+        $css_ver  = file_exists(COUPON_X_PATH.'/'.$css_file) ? COUPON_X_VERSION.'.'.filemtime(COUPON_X_PATH.'/'.$css_file) : COUPON_X_VERSION;
+        $js_ver   = file_exists(COUPON_X_PATH.'/'.$js_file) ? COUPON_X_VERSION.'.'.filemtime(COUPON_X_PATH.'/'.$js_file) : COUPON_X_VERSION;
+
+        wp_enqueue_style('cx-style', COUPON_X_URL.$css_file, [], $css_ver);
+        wp_enqueue_script('cx-script', COUPON_X_URL.$js_file, [], $js_ver, true);
         wp_localize_script(
             'cx-script',
             'cx_data',
@@ -134,186 +169,18 @@ class Couponx_Frontend
      */
     public function display_coupon_widget()
     {
-
-        $widgets = get_posts(
-            [
-                'numberposts' => -1,
-                'post_type'   => 'cx_widget',
-                'meta_query'  => [
-                    [
-                        'key'     => 'status',
-                        'value'   => 1,
-                        'compare' => '=',
-                    ],
-                ],
-            ]
-        );
-        if (is_array($widgets) && count($widgets)) {
-            foreach ($widgets as $widget) {
-                $widget_id       = $widget->ID;
-
-                $widget_settings = get_post_meta($widget_id, 'prm_cx_widget_data', true);
-                if(empty($widget_settings)) {
-                    $postContent = $this->clean_json_string($widget->post_content);
-                    $widget_settings = json_decode($postContent, true);
-                }
-
-                $this->render_discount_tab($widget_settings, $widget_id);
+        foreach ($this->get_active_widgets() as $widget_id => $widget_settings) {
+            // Coupon widgets need WooCommerce; only announcement-only widgets work without it.
+            $needs_woocommerce = 'style-4' !== ($widget_settings['popup']['style'] ?? '')
+                && 4 !== (int) ($widget_settings['popup']['coupon_type'] ?? 0);
+            if ($needs_woocommerce && !class_exists('WooCommerce')) {
+                continue;
             }
+
+            $this->render_discount_tab($widget_settings, $widget_id);
         }
 
     }//end display_coupon_widget()
-
-
-    /**
-     * Check if discount is applicable
-     *
-     * @param : widget_settings $widget_settings widget settings array.
-     *
-     * @return boolean
-     */
-    public function is_discount_applicable($widget_settings)
-    {
-
-        if ('2' === $widget_settings['popup']['coupon_type']
-            || '3' === $widget_settings['popup']['coupon_type']
-        ) {
-            $is_valid_product = false;
-            $is_valid_min     = true;
-            $is_valid_date    = true;
-            $applies_to       = $widget_settings['unique_coupon']['applies_to'];
-            if ('order' === $applies_to) {
-                $is_valid_product = true;
-            } else {
-                $is_valid_product = $this->is_valid_product($applies_to, $widget_settings['unique_coupon']);
-            }
-
-            if (! $is_valid_product) {
-                return false;
-            }
-
-            if ('none' !== $widget_settings['unique_coupon']['min_req']) {
-                $is_valid_min = $this->is_valid_min_req($widget_settings['unique_coupon']);
-            }
-
-            if (! $is_valid_min) {
-                return false;
-            }
-
-            if (isset($widget_settings['unique_coupon']['enable_date'])
-                && 1 === (int) $widget_settings['unique_coupon']['enable_date']
-            ) {
-                $is_valid_date = $this->is_valid_date($widget_settings['unique_coupon']);
-            }
-
-            if (! $is_valid_date) {
-                return false;
-            }
-
-            return true;
-        }//end if
-
-    }//end is_discount_applicable()
-
-
-    /**
-     * Check if product is applicable for discount
-     *
-     * @param : applies_to            $applies_to            string.
-     * @param : unique_coupon_setting $unique_coupon_setting coupon settings.
-     *
-     * @return boolean
-     */
-    public function is_valid_product($applies_to, $unique_coupon_setting)
-    {
-
-        $product_id = get_the_ID();
-
-        if ('collections' === $applies_to) {
-            $terms = get_the_terms($product_id, 'product_cat');
-
-            $term_ids = [];
-            foreach ($terms as $term) {
-                $term_ids[] = $term->term_id;
-            }
-
-            $ids = array_intersect($term_ids, $unique_coupon_setting['cats']);
-            if (is_array($ids) && count($ids) > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if ('products' === $applies_to) {
-            if (in_array((string) $product_id, $unique_coupon_setting['products'], true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }//end if
-
-        return false;
-
-    }//end is_valid_product()
-
-
-    /**
-     * Check if cart satisfies the minimum requirement
-     *
-     * @param unique_coupon_setting $unique_coupon_setting coupon settings.
-     *
-     * @return boolean
-     */
-    public function is_valid_min_req($unique_coupon_setting)
-    {
-        if(function_exists('WC')) {
-            if ('subtotal' === $unique_coupon_setting['min_req']) {
-                // discount type is cart totals. Get cart total and compare it with settings value.
-                $cart_total = WC()->cart->subtotal;
-                if ($cart_total >= $unique_coupon_setting['min_val']) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else if ('qty' === $unique_coupon_setting['min_req']) {
-                // discount type is number of cart items. Get total number of products in cart and compare it with settings value.
-                $cart_product_count = WC()->cart->get_cart_contents_count();
-                if ($cart_product_count >= $unique_coupon_setting['discount_perqty']) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        } else {
-            return false;
-        }
-
-    }//end is_valid_min_req()
-
-
-    /**
-     * Check if coupon date is valid.
-     *
-     * @param start_date $start_date valid start date.
-     * @param end_date   $end_date   valid end date.
-     *
-     * @return boolean
-     */
-    public function is_valid_date($start_date, $end_date)
-    {
-        $date1 = $start_date.' 00:00';
-        $date2 = $end_date.' 23:59';
-
-        $dt         = strtotime(gmdate('Y-m-d H:i'));
-        $timestamp1 = strtotime($date1);
-        $timestamp2 = strtotime($date2);
-
-        if ($dt >= $timestamp1 && $dt <= $timestamp2) {
-            return true;
-        }
-
-        return false;
-
-    }//end is_valid_date()
 
 
     /**
@@ -432,6 +299,12 @@ class Couponx_Frontend
         } else if (3 === (int) $coupon_type) {
             $coupon_code_text = $widget_settings['unique_coupon']['discount_code'];
         } else {
+            $coupon_code_text = '';
+        }
+
+        // "Collect email first, then show the coupon": the code is sent by capture_email()
+        // after a valid email, so it must not be printed in the page source before that.
+        if ('style-2' === ($widget_settings['popup']['style'] ?? '')) {
             $coupon_code_text = '';
         }
 
@@ -724,6 +597,9 @@ class Couponx_Frontend
                         </p>
                     </div>
                     <span class="required-text-msg"><?php echo esc_attr(@$email_settings['validation_text']) ?></span>
+                    <div class="cx-hp-field" aria-hidden="true" style="position:absolute !important;left:-9999px !important;width:1px;height:1px;overflow:hidden;">
+                        <input type="text" name="cx_hp" value="" tabindex="-1" autocomplete="off" />
+                    </div>
                     <div class="form-wrap cx-clear cx-form-wrap">
                         <p class="coupon-code-email-text">
                             <input type="hidden" name="hide_coup_code" class='hide_coup_code' value="<?php echo esc_attr($coupon_code_text); ?>">
@@ -765,7 +641,7 @@ class Couponx_Frontend
         if(function_exists('wc_get_cart_url')) {
             $link = wc_get_cart_url() . '?cx_code=';
             if (1 === (int)$settings['coupon']['link_type']) {
-                $couponcode_link = wc_get_cart_url() . '?cx_code=' . esc_attr($coupon_code_text);
+                $couponcode_link = wc_get_cart_url() . '?cx_code=' . rawurlencode($coupon_code_text);
             }
         }
 
@@ -852,7 +728,7 @@ class Couponx_Frontend
                     ?>
                 </h4>
                 <div class="form-wrap cx-clear">
-                    <a href="<?php echo esc_attr($couponcode_link); ?>" class="button btn btn-blue coupon-button coupon-code-link"  <?php echo esc_attr($target); ?> data-widget-token='<?php echo esc_attr(wp_create_nonce("widget_token_".$widget_id)); ?>' data-widget-id="<?php echo esc_attr($widget_id); ?>" data-type="<?php echo esc_attr($settings['coupon']['link_type']); ?>" data-url = '<?php echo esc_url($link); ?>' >
+                    <a href="<?php echo esc_url($couponcode_link); ?>" class="button btn btn-blue coupon-button coupon-code-link"  <?php echo esc_attr($target); ?> data-widget-token='<?php echo esc_attr(wp_create_nonce("widget_token_".$widget_id)); ?>' data-widget-id="<?php echo esc_attr($widget_id); ?>" data-type="<?php echo esc_attr($settings['coupon']['link_type']); ?>" data-url = '<?php echo esc_url($link); ?>' >
                         <?php echo esc_attr($coupon_settings['cpy_btn']); ?>
                     </a>
                 </div>
@@ -997,7 +873,7 @@ class Couponx_Frontend
                     $target  = 1 === (int) $new_tab ? 'blank' : '';
                     ?>
                     <div class="form-wrap cx-clear">
-                        <a href="#"  url="<?php echo esc_attr($btn_link); ?>" class="button btn btn-blue coupon-button <?php echo esc_attr($cls).' '.esc_attr($target); ?>" >
+                        <a href="#"  url="<?php echo esc_url($btn_link); ?>" class="button btn btn-blue coupon-button <?php echo esc_attr($cls).' '.esc_attr($target); ?>" >
                     <?php echo esc_attr($an_settings['cpy_btn']); ?>
                         </a>
                     </div>
@@ -1015,46 +891,59 @@ class Couponx_Frontend
 
 
     /**
-     * Get coupon code from url and save it in the wc session.
+     * Get coupon code from url (?cx_code=) and save it in the WooCommerce session.
      */
     public function apply_cx_coupon_link()
     {
-
-        if (isset($_GET['cx_code'])) {
-            if(function_exists('WC')) {
-                if (!WC()->session->has_session()) {
-                    WC()->session->set_customer_session_cookie(true);
-                }
-
-                $coupon_code = WC()->session->get('cx_code');
-                if (empty($coupon_code) && isset($_GET['cx_code'])) {
-                    $coupon_code = filter_input(INPUT_GET, 'cx_code');
-
-                    WC()->session->set('cx_code', $coupon_code);
-                    // Set the coupon code in session.
-                }
-            }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (!isset($_GET['cx_code']) || is_admin() || !function_exists('WC') || !isset(WC()->session)) {
+            return;
         }
+
+        $coupon_code = wc_format_coupon_code(sanitize_text_field(wp_unslash((string) filter_input(INPUT_GET, 'cx_code'))));
+        if ('' === $coupon_code) {
+            return;
+        }
+
+        if (!WC()->session->has_session()) {
+            WC()->session->set_customer_session_cookie(true);
+        }
+
+        // The newest link wins (an older pending code used to block it).
+        WC()->session->set('cx_code', $coupon_code);
+        $this->apply_coupon_from_session();
 
     }//end apply_cx_coupon_link()
 
 
     /**
-     * Apply coupon code from session.
+     * Apply the coupon code saved from a coupon link.
+     *
+     * The code stays in the session until the cart has items, so it is applied
+     * as soon as the visitor adds a product (it used to be dropped on an empty cart).
      */
     public function apply_coupon_from_session()
     {
-        if(function_exists('WC')) {
-            if(isset(WC()->session) && WC()->session->get('cx_code') != null) {
-                $coupon_code = sanitize_text_field(WC()->session->get('cx_code'));
-                if (!empty($coupon_code) && !WC()->cart->has_discount($coupon_code)) {
-                    WC()->cart->add_discount($coupon_code);
-                    // apply the coupon discount.
-                    WC()->session->__unset('cx_code');
-                    // remove coupon code from session.
-                }
-            }
+        if (!function_exists('WC') || !isset(WC()->session) || !isset(WC()->cart) || (is_admin() && !wp_doing_ajax())) {
+            return;
         }
+
+        $coupon_code = WC()->session->get('cx_code');
+        if (empty($coupon_code)) {
+            return;
+        }
+
+        if (WC()->cart->is_empty()) {
+            return;
+        }
+
+        $coupon_code = sanitize_text_field($coupon_code);
+        if (!WC()->cart->has_discount($coupon_code)) {
+            WC()->cart->add_discount($coupon_code);
+        }
+
+        // Tried once with items in the cart: an invalid code must not show an error on every page.
+        WC()->session->__unset('cx_code');
 
     }//end apply_coupon_from_session()
 

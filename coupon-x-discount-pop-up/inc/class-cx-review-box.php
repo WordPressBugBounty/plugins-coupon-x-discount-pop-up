@@ -160,11 +160,8 @@ class Cx_review_box
                 ];
 
                 // Sending message to Crisp API
-                $apiResponse = wp_safe_remote_post("https://premioapps.com/premio/send-feedback-api.php", ['body' => $apiParams, 'timeout' => 15, 'sslverify' => true]);
-
-                if (is_wp_error($apiResponse)) {
-                    wp_safe_remote_post("https://premioapps.com/premio/send-feedback-api.php", ['body' => $apiParams, 'timeout' => 15, 'sslverify' => false]);
-                }
+                // No retry without certificate verification: it would send the data unprotected.
+                wp_safe_remote_post("https://premioapps.com/premio/send-feedback-api.php", ['body' => $apiParams, 'timeout' => 15, 'sslverify' => true]);
             }//end if
 
             die;

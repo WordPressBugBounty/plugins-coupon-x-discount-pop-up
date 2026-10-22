@@ -105,7 +105,7 @@ class Create_Widget
                 'consent_required' => 0,
                 'customer_email'   => 1,
                 'error'            => esc_html__('You have already used this email address, please try another email address', 'coupon-x-discount-pop-up'),
-                'error_color'      => '#FFFFFF',
+                'error_color'      => '#DD0000',
                 'send_coupon'      => 0,
             ],
             'coupon'        => [

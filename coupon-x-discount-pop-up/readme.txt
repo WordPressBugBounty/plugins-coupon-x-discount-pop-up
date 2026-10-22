@@ -3,7 +3,7 @@ Contributors: premio, galdub, tomeraharon
 Tags: discount pop up, coupon popups, pop up, pop ups, promo pop ups
 Requires at least: 4.7
 Tested up to: 7.1
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 Plugin URI: https://premio.io/downloads/coupon-x-discount-pop-up/
 License: GPLv3
 
@@ -82,7 +82,7 @@ Coupon X offers exit intent trigger that lets you show your coupon codes and dis
 Utilize this feature for your discount coupons and you get higher chances of converting your visitors into sales, subscribers, or leads.
 
 = 💰 Improve cart value and customer shopping experience =
-Who doesn’t love discounts, right? Help your visitors make purchasing decisions faster and easier with discount pop ups! To make it more effective, Coupon X also enables you to add a discount countdown timer to your popups to give a sense of urgency to your visitors and let them know the promo offer is there for a limited time only.
+Who doesn’t love discounts, right? Help your visitors make purchasing decisions faster and easier with discount pop ups! To make it more effective, Coupon X also enables you to add a discount countdown timer to your popups to give a sense of urgency to your visitors and let them know the promo offer is there for a limited time only. Ideal for Black Friday, Cyber Monday, and BFCM pop ups to create urgency and boost conversions.
 
 = 🖥️ Variety of popups are available =
 Coupon X can help you create a better shopping experience for your customers. Start creating beautiful target discount code pop ups, countdown popups, promo codes, coupon code popups to engage with your audience and increase your conversion rate.
@@ -104,7 +104,7 @@ Whether you wish to use a pre-existing coupon to show on Coupon X, generate uniq
 
 With our seamless WooCommerce integration, you don’t have to worry about managing, creating, or testing coupons. Install Coupon X, which plugs in with your WooCommerce plugin without effort and lets you create discounts and coupons seamlessly. 
 
-= 📣 Many popup styles =
+= 📣 Beautiful popup styles =
 The Pro version of Coupon X lets you to showcase your coupons and discount codes in various styles. With layouts like a slide-in popup, lightbox popup, and a floating bar - the possibilities are endless. Use these awesome layouts based on your visitor targeting preferences, website design, and your own taste. 
 
 = 📧 Collect leads and send them to email/ integrations with Mailchimp and Klaviyo =
@@ -172,6 +172,12 @@ No, Coupon X pop ups work on any website. If you have WooCommerce installed, you
 Just follow our <a href="https://premio.io/wordpress-premio-pro-version-installation-guide/" target="_blank" title="WordPress installation guide">pro installation guide</a>.
 
 == Changelog ==
+
+= 1.4.8 =
+Improved: Removed the widget’s jQuery dependency and switched to vanilla JavaScript.
+Fixed: Cache-clearing issues with Autoptimize, Breeze, and LiteSpeed Cache when saving widgets.
+Fixed: Popups appearing immediately instead of respecting the configured display delay.
+Fixed: Layout issues on the Recommended Plugins page.
 
 = 1.4.7 =
 Improve chat form interface

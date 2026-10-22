@@ -1129,6 +1129,66 @@ class Cx_Helper
 
 
     /**
+     * Font family value that is safe inside a <style> block.
+     *
+     * esc_attr() turned the quotes of the "System stack" fonts into &quot;, which broke the CSS.
+     * Font names only need letters, digits, spaces, commas, hyphens and quotes.
+     *
+     * @param string $font_family font family.
+     *
+     * @return string
+     */
+    public static function css_font_family($font_family)
+    {
+        if ('System stack' === $font_family) {
+            $font_family = '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+        }
+        return preg_replace('/[^A-Za-z0-9 ,"\'\-]/', '', (string) $font_family);
+    }
+
+
+    /**
+     * The widget's Custom CSS, safe to print inside a <style> block.
+     *
+     * esc_attr() turned ">" into &gt; and quotes into &quot;, which broke child selectors,
+     * content: "..." and quoted font names. Only "<" (which could close the style block)
+     * is removed; CSS itself never needs it.
+     *
+     * @param string $css custom css.
+     *
+     * @return string
+     */
+    public static function custom_css($css)
+    {
+        return str_replace('<', '', wp_strip_all_tags((string) $css));
+    }
+
+
+    /**
+     * Color of the "already used this email" message.
+     *
+     * The default error color was white, the same as the default popup background, so the
+     * message was invisible. When the two colors match, a readable red is used instead.
+     *
+     * @param array $main email screen settings.
+     *
+     * @return string
+     */
+    public static function email_error_color($main)
+    {
+        $error = strtolower(trim((string) ($main['error_color'] ?? '')));
+        $bg    = strtolower(trim((string) ($main['bgcolor'] ?? '#ffffff')));
+        $short = function ($color) {
+            return preg_replace('/^#([0-9a-f])\1([0-9a-f])\2([0-9a-f])\3$/', '#$1$2$3', $color);
+        };
+        if ('' === $error || $short($error) === $short($bg)) {
+            return '#dd0000';
+        }
+        return $error;
+    }
+
+
+    /**
      * Build and render tab css on frontend
      *
      * @param : $settings array of widget settings.
@@ -1161,8 +1221,8 @@ class Cx_Helper
         $font_type   = str_replace('_', ' ', $font[0]);
         $font_family = str_replace('_', ' ', $font[1]);
         $css         = '
-            .tab-front-box{ font-family:'.esc_attr($font_family).'; }
-            .tab-front-box button{ font-family:'.esc_attr($font_family).' !important; }
+            .tab-front-box{ font-family:'.self::css_font_family($font_family).'; }
+            .tab-front-box button{ font-family:'.self::css_font_family($font_family).' !important; }
             .tab-front-box .tab-icon svg{fill:'.esc_attr($settings['icon_color']).'; }
             .tab-front-box .couponapp-tab-shape-hexagon .tab-icon {
                 width: '.esc_attr($settings['tab_size']).'px;
@@ -1291,12 +1351,12 @@ class Cx_Helper
 			#tab-box-front-'.esc_attr($widgetcounter).' h4,
 			#tab-box-front-'.esc_attr($widgetcounter).' .coupon-button,
 			#tab-box-front-'.esc_attr($widgetcounter).' input
-			{ font-family: '.esc_attr($font_family).' !important}
+			{ font-family: '.self::css_font_family($font_family).' !important}
 			#tab-box-front-'.esc_attr($widgetcounter).'.couponapp-position-custom.couponapp-position-left {
 
 				bottom: '.esc_attr($bottomSpacing).'px;
 				left: '.esc_attr($sideSpacing).'px;
-				font-family'.esc_attr($font_family).'
+				font-family: '.self::css_font_family($font_family).';
 			}
 
 			#tab-box-front-'.esc_attr($widgetcounter).'.couponapp-position-custom.couponapp-position-right {
@@ -1368,18 +1428,13 @@ class Cx_Helper
 					display:block
 				}
 			}
-			'.esc_attr($settings['popup']['custom_css']).'							
-			
-			
-			#tab-box-front-0 .tab-box-content.tab-box-email-content {
-			    background-color:'.esc_attr($settings['main']['bgcolor']).'
-			}
+			'.self::custom_css($settings['popup']['custom_css'] ?? '').'
 			#tab-box-front-'.esc_attr($widgetcounter).' .tab-box-email-content .form-wrap{
 				border-color:'.esc_attr($settings['main']['email_brdcolor']).';
 				background-color:'.esc_attr($settings['main']['email_color']).'
 			}
-			.coupon-email-error {
-            	color : '.esc_attr($settings['main']['error_color']).';
+			#tab-box-front-'.esc_attr($widgetcounter).' .coupon-email-error {
+            	color : '.esc_attr(self::email_error_color($settings['main'] ?? [])).';
             	font-size: 12px
             }
 		';

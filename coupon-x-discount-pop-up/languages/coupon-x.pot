@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coupon X Discount Pop Up 1.4.3\n"
+"Project-Id-Version: Coupon X Discount Pop Up 1.4.4\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/couponx-free-uncompressed\n"
-"POT-Creation-Date: 2025-08-26 07:21:42+00:00\n"
+"POT-Creation-Date: 2025-12-09 11:02:43+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,21 +29,22 @@ msgstr ""
 msgid "Your first widget is up!"
 msgstr ""
 
-#: inc/class-coupon-x.php:80
+#: inc/class-coupon-x.php:84
+#. translators: %s: HTML link to the Coupon X help center.
 msgid ""
 "Yay - we’re happy you chose Coupon X for your website. If you run into "
 "anything, the %s is always here for you."
 msgstr ""
 
-#: inc/class-coupon-x.php:80
+#: inc/class-coupon-x.php:87
 msgid "help center"
 msgstr ""
 
-#: inc/class-coupon-x.php:82
+#: inc/class-coupon-x.php:92
 msgid "Back to Dashboard"
 msgstr ""
 
-#: inc/class-coupon-x.php:109
+#: inc/class-coupon-x.php:119
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -60,7 +61,7 @@ msgid "Enter your email and unlock amazing deals!"
 msgstr ""
 
 #: inc/class-create-widget.php:94 inc/class-cx-widget-list.php:120
-#: inc/class-dashboard.php:446 inc/class-dashboard.php:675
+#: inc/class-dashboard.php:599 inc/class-dashboard.php:828
 #: inc/pages/help.php:58
 msgid "Email"
 msgstr ""
@@ -109,125 +110,125 @@ msgstr ""
 msgid "CLAIM NOW"
 msgstr ""
 
-#: inc/class-create-widget.php:243 inc/class-create-widget.php:244
-msgid "1. Icon Design"
-msgstr ""
-
-#: inc/class-create-widget.php:250 inc/class-create-widget.php:251
-msgid "2. Choose Coupon"
-msgstr ""
-
-#: inc/class-create-widget.php:257
-msgid "3. Pop up Design"
-msgstr ""
-
-#: inc/class-create-widget.php:258
-msgid "3. Pop up"
-msgstr ""
-
-#: inc/class-create-widget.php:264 inc/class-create-widget.php:265
-msgid "4. Triggers & Targeting"
-msgstr ""
-
-#: inc/class-create-widget.php:285
-msgid "Back"
-msgstr ""
-
-#: inc/class-create-widget.php:292
-msgid "Next"
-msgstr ""
-
-#: inc/class-create-widget.php:307
-msgid "Save Widget"
-msgstr ""
-
-#: inc/class-create-widget.php:308
-msgid "Save"
-msgstr ""
-
-#: inc/class-create-widget.php:319
-msgid "Save & Close"
-msgstr ""
-
-#: inc/class-create-widget.php:350
-msgid "Select a coupon"
-msgstr ""
-
-#: inc/class-create-widget.php:352
-msgid "Please select a coupon code before moving to the next step"
-msgstr ""
-
-#: inc/class-create-widget.php:354
-msgid "Select coupon"
-msgstr ""
-
-#: inc/class-create-widget.php:357
-msgid "Select a layout"
-msgstr ""
-
-#: inc/class-create-widget.php:359
-msgid "Please select a popup layout before moving to the next step"
-msgstr ""
-
-#: inc/class-create-widget.php:362
-msgid "Select layout"
-msgstr ""
-
-#: inc/class-create-widget.php:365
-msgid "No trigger was selected"
-msgstr ""
-
-#: inc/class-create-widget.php:382
-msgid "Settings saved (visit your  "
-msgstr ""
-
-#: inc/class-create-widget.php:382 inc/class-dashboard.php:82
-#: inc/class-dashboard.php:83
+#: inc/class-create-widget.php:239 inc/class-create-widget.php:385
+#: inc/class-dashboard.php:91 inc/class-dashboard.php:92
 msgid "Dashboard"
 msgstr ""
 
-#: inc/class-create-widget.php:382
+#: inc/class-create-widget.php:246 inc/class-create-widget.php:247
+msgid "1. Icon Design"
+msgstr ""
+
+#: inc/class-create-widget.php:253 inc/class-create-widget.php:254
+msgid "2. Choose Coupon"
+msgstr ""
+
+#: inc/class-create-widget.php:260
+msgid "3. Pop up Design"
+msgstr ""
+
+#: inc/class-create-widget.php:261
+msgid "3. Pop up"
+msgstr ""
+
+#: inc/class-create-widget.php:267 inc/class-create-widget.php:268
+msgid "4. Triggers & Targeting"
+msgstr ""
+
+#: inc/class-create-widget.php:288
+msgid "Back"
+msgstr ""
+
+#: inc/class-create-widget.php:295
+msgid "Next"
+msgstr ""
+
+#: inc/class-create-widget.php:310
+msgid "Save Widget"
+msgstr ""
+
+#: inc/class-create-widget.php:311
+msgid "Save"
+msgstr ""
+
+#: inc/class-create-widget.php:322
+msgid "Save & Close"
+msgstr ""
+
+#: inc/class-create-widget.php:353
+msgid "Select a coupon"
+msgstr ""
+
+#: inc/class-create-widget.php:355
+msgid "Please select a coupon code before moving to the next step"
+msgstr ""
+
+#: inc/class-create-widget.php:357
+msgid "Select coupon"
+msgstr ""
+
+#: inc/class-create-widget.php:360
+msgid "Select a layout"
+msgstr ""
+
+#: inc/class-create-widget.php:362
+msgid "Please select a popup layout before moving to the next step"
+msgstr ""
+
+#: inc/class-create-widget.php:365
+msgid "Select layout"
+msgstr ""
+
+#: inc/class-create-widget.php:368
+msgid "No trigger was selected"
+msgstr ""
+
+#: inc/class-create-widget.php:385
+msgid "Settings saved (visit your  "
+msgstr ""
+
+#: inc/class-create-widget.php:385
 msgid " for stats)"
 msgstr ""
 
-#: inc/class-create-widget.php:388
+#: inc/class-create-widget.php:391
 msgid "You've already created a Coupon X widget. Please "
 msgstr ""
 
-#: inc/class-create-widget.php:388
+#: inc/class-create-widget.php:391
 msgid "go to the dashboard"
 msgstr ""
 
-#: inc/class-create-widget.php:388
+#: inc/class-create-widget.php:391
 msgid " to edit it."
 msgstr ""
 
-#: inc/class-create-widget.php:407
-#: inc/widget_parts/class-cx-widget-popup.php:1559
+#: inc/class-create-widget.php:410
+#: inc/widget_parts/class-cx-widget-popup.php:1613
 msgid "Upgrade to Pro 🎉"
 msgstr ""
 
-#: inc/class-create-widget.php:408
+#: inc/class-create-widget.php:411
 msgid ""
 "Enjoy awesome features like beautiful timer templates, sending leads to "
 "email, emails integrations and more"
 msgstr ""
 
-#: inc/class-create-widget.php:411
-#: inc/widget_parts/class-cx-widget-popup.php:1536
-#: inc/widget_parts/class-cx-widget-popup.php:1563
+#: inc/class-create-widget.php:414
+#: inc/widget_parts/class-cx-widget-popup.php:1590
+#: inc/widget_parts/class-cx-widget-popup.php:1617
 msgid "Upgrade Now"
 msgstr ""
 
-#: inc/class-create-widget.php:414
-#: inc/widget_parts/class-cx-widget-popup.php:1540
-#: inc/widget_parts/class-cx-widget-popup.php:1567
+#: inc/class-create-widget.php:417
+#: inc/widget_parts/class-cx-widget-popup.php:1594
+#: inc/widget_parts/class-cx-widget-popup.php:1621
 msgid "Cancel anytime. No strings attached"
 msgstr ""
 
-#: inc/class-create-widget.php:415
-#: inc/widget_parts/class-cx-widget-popup.php:1541
-#: inc/widget_parts/class-cx-widget-popup.php:1568
+#: inc/class-create-widget.php:418
+#: inc/widget_parts/class-cx-widget-popup.php:1595
+#: inc/widget_parts/class-cx-widget-popup.php:1622
 msgid "30 days refund"
 msgstr ""
 
@@ -556,12 +557,12 @@ msgstr ""
 msgid "Frequently Asked Questions"
 msgstr ""
 
-#: inc/class-cx-rest.php:117 inc/class-cx-rest.php:169
-#: inc/class-cx-rest.php:962
+#: inc/class-cx-rest.php:117 inc/class-cx-rest.php:170
+#: inc/class-cx-rest.php:966
 msgid "Request could not be completed due to missing parameters"
 msgstr ""
 
-#: inc/class-cx-rest.php:886
+#: inc/class-cx-rest.php:891
 msgid "Something went wrong. Please contact site administrator"
 msgstr ""
 
@@ -629,9 +630,9 @@ msgid "Submit"
 msgstr ""
 
 #: inc/class-cx-widget-list.php:49 inc/class-cx-widget-list.php:201
-#: inc/class-dashboard.php:96 inc/class-dashboard.php:97
-#: inc/class-dashboard.php:108 inc/class-dashboard.php:109
-#: inc/class-dashboard.php:119 inc/class-dashboard.php:120
+#: inc/class-dashboard.php:105 inc/class-dashboard.php:106
+#: inc/class-dashboard.php:117 inc/class-dashboard.php:118
+#: inc/class-dashboard.php:129 inc/class-dashboard.php:130
 msgid "Create New Widget"
 msgstr ""
 
@@ -639,7 +640,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: inc/class-cx-widget-list.php:55 inc/class-dashboard.php:447
+#: inc/class-cx-widget-list.php:55 inc/class-dashboard.php:600
 msgid "Widget Name"
 msgstr ""
 
@@ -686,14 +687,14 @@ msgid "Actions"
 msgstr ""
 
 #: inc/class-cx-widget-list.php:109
-#: inc/widget_parts/class-cx-widget-coupon.php:532
-#: inc/widget_parts/class-cx-widget-coupon.php:576
+#: inc/widget_parts/class-cx-widget-coupon.php:559
+#: inc/widget_parts/class-cx-widget-coupon.php:603
 #: inc/widget_parts/class-cx-widget-popup.php:414
-#: inc/widget_parts/class-cx-widget-popup.php:758
-#: inc/widget_parts/class-cx-widget-popup.php:1382
-#: inc/widget_parts/class-cx-widget-popup.php:1451
+#: inc/widget_parts/class-cx-widget-popup.php:778
+#: inc/widget_parts/class-cx-widget-popup.php:1425
+#: inc/widget_parts/class-cx-widget-popup.php:1494
 #: inc/widget_parts/class-cx-widget-tab.php:60
-#: inc/widget_parts/class-cx-widget-tab.php:348
+#: inc/widget_parts/class-cx-widget-tab.php:361
 #: inc/widget_parts/class-cx-widget-triggers.php:597
 #: inc/widget_parts/class-cx-widget-triggers.php:612
 #: inc/widget_parts/class-cx-widget-triggers.php:627
@@ -702,14 +703,14 @@ msgid "On"
 msgstr ""
 
 #: inc/class-cx-widget-list.php:110
-#: inc/widget_parts/class-cx-widget-coupon.php:533
-#: inc/widget_parts/class-cx-widget-coupon.php:577
+#: inc/widget_parts/class-cx-widget-coupon.php:560
+#: inc/widget_parts/class-cx-widget-coupon.php:604
 #: inc/widget_parts/class-cx-widget-popup.php:415
-#: inc/widget_parts/class-cx-widget-popup.php:759
-#: inc/widget_parts/class-cx-widget-popup.php:1383
-#: inc/widget_parts/class-cx-widget-popup.php:1452
+#: inc/widget_parts/class-cx-widget-popup.php:779
+#: inc/widget_parts/class-cx-widget-popup.php:1426
+#: inc/widget_parts/class-cx-widget-popup.php:1495
 #: inc/widget_parts/class-cx-widget-tab.php:61
-#: inc/widget_parts/class-cx-widget-tab.php:349
+#: inc/widget_parts/class-cx-widget-tab.php:362
 #: inc/widget_parts/class-cx-widget-triggers.php:598
 #: inc/widget_parts/class-cx-widget-triggers.php:613
 #: inc/widget_parts/class-cx-widget-triggers.php:628
@@ -753,113 +754,113 @@ msgstr ""
 msgid "Create beautiful promo code pop ups and get more sales today!"
 msgstr ""
 
-#: inc/class-dashboard.php:72 inc/class-dashboard.php:73
+#: inc/class-dashboard.php:81 inc/class-dashboard.php:82
 #: inc/class-email-signup.php:60
 msgid "Coupon X"
 msgstr ""
 
-#: inc/class-dashboard.php:129 inc/class-dashboard.php:130
+#: inc/class-dashboard.php:139 inc/class-dashboard.php:140
 msgid "Leads"
 msgstr ""
 
-#: inc/class-dashboard.php:140 inc/class-dashboard.php:141
+#: inc/class-dashboard.php:151 inc/class-dashboard.php:152
 msgid "Integrations"
 msgstr ""
 
-#: inc/class-dashboard.php:153 inc/class-dashboard.php:154
+#: inc/class-dashboard.php:166 inc/class-dashboard.php:167
 msgid "Recommended Plugins"
 msgstr ""
 
-#: inc/class-dashboard.php:166 inc/class-dashboard.php:167
+#: inc/class-dashboard.php:179 inc/class-dashboard.php:180
 msgid "Upgrade to Pro ⭐️"
 msgstr ""
 
-#: inc/class-dashboard.php:178 inc/class-dashboard.php:179
+#: inc/class-dashboard.php:191 inc/class-dashboard.php:192
 msgid "Coupon X Pro Features"
 msgstr ""
 
-#: inc/class-dashboard.php:213
+#: inc/class-dashboard.php:333
 msgid "Add New"
 msgstr ""
 
-#: inc/class-dashboard.php:214
+#: inc/class-dashboard.php:334
 msgid "Add New CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:215
+#: inc/class-dashboard.php:335
 msgid "New CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:216
+#: inc/class-dashboard.php:336
 msgid "Edit CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:217
+#: inc/class-dashboard.php:337
 msgid "View CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:218
+#: inc/class-dashboard.php:338
 msgid "All CX Widgets"
 msgstr ""
 
-#: inc/class-dashboard.php:219
+#: inc/class-dashboard.php:339
 msgid "Search CX Widgets"
 msgstr ""
 
-#: inc/class-dashboard.php:220
+#: inc/class-dashboard.php:340
 msgid "No coupon found."
 msgstr ""
 
-#: inc/class-dashboard.php:221
+#: inc/class-dashboard.php:341
 msgid "No coupon found in Trash."
 msgstr ""
 
-#: inc/class-dashboard.php:225
+#: inc/class-dashboard.php:345
 msgid "CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:445
+#: inc/class-dashboard.php:598
 msgid "Name"
 msgstr ""
 
-#: inc/class-dashboard.php:448
+#: inc/class-dashboard.php:601
 msgid "Date"
 msgstr ""
 
-#: inc/class-dashboard.php:449
+#: inc/class-dashboard.php:602
 msgid "Ip Address"
 msgstr ""
 
-#: inc/class-dashboard.php:482
+#: inc/class-dashboard.php:635
 msgid "Delete Lead?"
 msgstr ""
 
-#: inc/class-dashboard.php:491
+#: inc/class-dashboard.php:644
 msgid "Record(s) deleted successfully"
 msgstr ""
 
-#: inc/class-dashboard.php:538 inc/class-dashboard.php:542
-#: inc/class-dashboard.php:547
+#: inc/class-dashboard.php:691 inc/class-dashboard.php:695
+#: inc/class-dashboard.php:700
 msgid "Your request is not valid"
 msgstr ""
 
-#: inc/class-dashboard.php:658
+#: inc/class-dashboard.php:811
 msgid "%s is required"
 msgstr ""
 
-#: inc/class-dashboard.php:667
+#: inc/class-dashboard.php:820
 msgid "Please enter your message"
 msgstr ""
 
-#: inc/class-dashboard.php:799 inc/pages/help.php:25
+#: inc/class-dashboard.php:952 inc/pages/help.php:25
 msgid "Need help?"
 msgstr ""
 
-#: inc/class-dashboard.php:800
+#: inc/class-dashboard.php:953
 msgid "Upgrade"
 msgstr ""
 
-#: inc/class-dashboard.php:900
+#: inc/class-dashboard.php:1053
 msgid "Are you sure about that?"
 msgstr ""
 
@@ -1184,182 +1185,186 @@ msgstr ""
 msgid "Search existing coupon code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:248
+#: inc/widget_parts/class-cx-widget-coupon.php:271
 msgid "Coupon code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:249
+#: inc/widget_parts/class-cx-widget-coupon.php:272
 msgid "Coupon type"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:250
+#: inc/widget_parts/class-cx-widget-coupon.php:273
 msgid "Coupon value"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:275
+#: inc/widget_parts/class-cx-widget-coupon.php:298
 msgid "Percentage discount"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:277
+#: inc/widget_parts/class-cx-widget-coupon.php:300
 msgid "Fixed cart discount"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:296
+#: inc/widget_parts/class-cx-widget-coupon.php:319
 msgid "No coupon codes found"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:310
+#: inc/widget_parts/class-cx-widget-coupon.php:333
 msgid "Please select one coupon code from the list"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:333
+#: inc/widget_parts/class-cx-widget-coupon.php:356
 msgid ""
 "Coupon X will create a new coupon code for each store visitor. If you want "
 "to show the same coupon code for all your visitors, please"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:335
+#: inc/widget_parts/class-cx-widget-coupon.php:358
 msgid "select an existing code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:336
+#: inc/widget_parts/class-cx-widget-coupon.php:359
 msgid " or "
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:337
+#: inc/widget_parts/class-cx-widget-coupon.php:360
 msgid "create a new coupon code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:341
+#: inc/widget_parts/class-cx-widget-coupon.php:364
 msgid "Discount Code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:344
+#: inc/widget_parts/class-cx-widget-coupon.php:367
 msgid "Discount name"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:348
+#: inc/widget_parts/class-cx-widget-coupon.php:371
 msgid "Please fill out the Discount code value"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:352
+#: inc/widget_parts/class-cx-widget-coupon.php:375
 msgid "Type"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:359
+#: inc/widget_parts/class-cx-widget-coupon.php:382
 msgid "Percentage"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:367
+#: inc/widget_parts/class-cx-widget-coupon.php:390
 msgid "Fixed amount"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:373
+#: inc/widget_parts/class-cx-widget-coupon.php:396
 msgid "Value"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:375
+#: inc/widget_parts/class-cx-widget-coupon.php:398
 msgid "Discount value"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:381
+#: inc/widget_parts/class-cx-widget-coupon.php:404
 msgid "Please fill out the Discount value field"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:388
+#: inc/widget_parts/class-cx-widget-coupon.php:411
 msgid "Free Shipping"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:394
+#: inc/widget_parts/class-cx-widget-coupon.php:417
 msgid "Allow free shipping"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:398
+#: inc/widget_parts/class-cx-widget-coupon.php:421
 msgid ""
 "A <a href=\"%s\" target=\"_blank\">free shipping method</a> must be enabled "
 "in your shipping zone and be set to require \"a valid free shipping "
 "coupon\" (see the \"Free Shipping Requires\" setting)."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:407
+#: inc/widget_parts/class-cx-widget-coupon.php:430
 msgid "All Products"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:408
+#: inc/widget_parts/class-cx-widget-coupon.php:431
 msgid "Specific collections"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:409
+#: inc/widget_parts/class-cx-widget-coupon.php:432
 #: inc/widget_parts/class-cx-widget-triggers.php:393
 msgid "Specific products"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:428
+#: inc/widget_parts/class-cx-widget-coupon.php:451
 msgid "Applies to"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:464
+#: inc/widget_parts/class-cx-widget-coupon.php:485
+msgid "No collections found"
+msgstr ""
+
+#: inc/widget_parts/class-cx-widget-coupon.php:491
 msgid "Specific collections  must be added"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:487
+#: inc/widget_parts/class-cx-widget-coupon.php:514
 msgid "Specific products must be added"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:492
+#: inc/widget_parts/class-cx-widget-coupon.php:519
 msgid "Minimum requirements"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:495
-#: inc/widget_parts/class-cx-widget-tab.php:407
+#: inc/widget_parts/class-cx-widget-coupon.php:522
+#: inc/widget_parts/class-cx-widget-tab.php:426
 msgid "None"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:498
+#: inc/widget_parts/class-cx-widget-coupon.php:525
 msgid "Minimum purchase amount"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:506
-#: inc/widget_parts/class-cx-widget-coupon.php:515
+#: inc/widget_parts/class-cx-widget-coupon.php:533
+#: inc/widget_parts/class-cx-widget-coupon.php:542
 msgid "Applies to all products."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:508
+#: inc/widget_parts/class-cx-widget-coupon.php:535
 msgid "Please fill out the Minimum purchase amount"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:526
+#: inc/widget_parts/class-cx-widget-coupon.php:553
 msgid "Usage limits"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:543
+#: inc/widget_parts/class-cx-widget-coupon.php:570
 msgid ""
 "Limit number of times this discount can be used in total per unique "
 "discount code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:545
+#: inc/widget_parts/class-cx-widget-coupon.php:572
 msgid ""
 "Control how many times the coupon can be used in total per unique discount "
 "code. For example, if you set 5, the user that gets a unique discount code, "
 "can use the coupon a maximum of 5 times in total"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:560
+#: inc/widget_parts/class-cx-widget-coupon.php:587
 msgid "Limit to one use per customer"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:562
+#: inc/widget_parts/class-cx-widget-coupon.php:589
 msgid ""
 "If a user has already bought something with the coupon, the user cannot use "
 "the same coupon more than once"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:571
+#: inc/widget_parts/class-cx-widget-coupon.php:598
 msgid "Active dates"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-coupon.php:590
+#: inc/widget_parts/class-cx-widget-coupon.php:617
 msgid "End date"
 msgstr ""
 
@@ -1385,48 +1390,48 @@ msgid "Floating Bar"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:112
-#: inc/widget_parts/class-cx-widget-tab.php:176
+#: inc/widget_parts/class-cx-widget-tab.php:183
 msgid "Position"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:118
 #: inc/widget_parts/class-cx-widget-popup.php:147
-#: inc/widget_parts/class-cx-widget-popup.php:929
-#: inc/widget_parts/class-cx-widget-tab.php:182
-#: inc/widget_parts/class-cx-widget-tab.php:215
+#: inc/widget_parts/class-cx-widget-popup.php:972
+#: inc/widget_parts/class-cx-widget-tab.php:189
+#: inc/widget_parts/class-cx-widget-tab.php:222
 msgid "Left"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:119
 #: inc/widget_parts/class-cx-widget-popup.php:148
-#: inc/widget_parts/class-cx-widget-popup.php:947
-#: inc/widget_parts/class-cx-widget-tab.php:183
-#: inc/widget_parts/class-cx-widget-tab.php:216
+#: inc/widget_parts/class-cx-widget-popup.php:990
+#: inc/widget_parts/class-cx-widget-tab.php:190
+#: inc/widget_parts/class-cx-widget-tab.php:223
 msgid "Right"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:120
-#: inc/widget_parts/class-cx-widget-tab.php:184
+#: inc/widget_parts/class-cx-widget-tab.php:191
 msgid "Custom"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:140
-#: inc/widget_parts/class-cx-widget-tab.php:208
+#: inc/widget_parts/class-cx-widget-tab.php:215
 msgid "Slide Selection"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:171
-#: inc/widget_parts/class-cx-widget-tab.php:240
+#: inc/widget_parts/class-cx-widget-tab.php:247
 msgid "Bottom Spacing (px)"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:178
-#: inc/widget_parts/class-cx-widget-tab.php:248
+#: inc/widget_parts/class-cx-widget-tab.php:255
 msgid "Side Spacing (px)"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:186
-#: inc/widget_parts/class-cx-widget-tab.php:374
+#: inc/widget_parts/class-cx-widget-tab.php:393
 msgid "Font Family"
 msgstr ""
 
@@ -1546,13 +1551,13 @@ msgid "seconds"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:456
-#: inc/widget_parts/class-cx-widget-tab.php:500
+#: inc/widget_parts/class-cx-widget-tab.php:519
 msgid "Preview"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:478
-#: inc/widget_parts/class-cx-widget-popup.php:794
-#: inc/widget_parts/class-cx-widget-popup.php:1394
+#: inc/widget_parts/class-cx-widget-popup.php:814
+#: inc/widget_parts/class-cx-widget-popup.php:1437
 msgid "Headline"
 msgstr ""
 
@@ -1578,14 +1583,14 @@ msgid "Email placeholder"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:558
-#: inc/widget_parts/class-cx-widget-popup.php:820
-#: inc/widget_parts/class-cx-widget-popup.php:1460
+#: inc/widget_parts/class-cx-widget-popup.php:840
+#: inc/widget_parts/class-cx-widget-popup.php:1503
 msgid "Text Inside Button"
 msgstr ""
 
 #: inc/widget_parts/class-cx-widget-popup.php:566
-#: inc/widget_parts/class-cx-widget-popup.php:828
-#: inc/widget_parts/class-cx-widget-popup.php:1420
+#: inc/widget_parts/class-cx-widget-popup.php:848
+#: inc/widget_parts/class-cx-widget-popup.php:1463
 msgid "Description"
 msgstr ""
 
@@ -1593,156 +1598,156 @@ msgstr ""
 msgid "Consent checkbox"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:686
+#: inc/widget_parts/class-cx-widget-popup.php:706
 msgid "Your leads will be saved to"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:688
+#: inc/widget_parts/class-cx-widget-popup.php:708
 msgid "this site"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:691
+#: inc/widget_parts/class-cx-widget-popup.php:711
 msgid ""
 "Your leads will be saved in your local database, you will be able to find "
 "them "
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:691
+#: inc/widget_parts/class-cx-widget-popup.php:711
 msgid "here"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:701
+#: inc/widget_parts/class-cx-widget-popup.php:721
 msgid "Send coupon to client"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:713
+#: inc/widget_parts/class-cx-widget-popup.php:733
 msgid "Sends leads to Mailchimp"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:725
+#: inc/widget_parts/class-cx-widget-popup.php:745
 msgid "Sends leads to Klaviyo"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:763
-#: inc/widget_parts/class-cx-widget-popup.php:1387
+#: inc/widget_parts/class-cx-widget-popup.php:783
+#: inc/widget_parts/class-cx-widget-popup.php:1430
 msgid "Use the same styles like the email collection screen "
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:776
+#: inc/widget_parts/class-cx-widget-popup.php:796
 msgid "How to show the coupon?"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:783
+#: inc/widget_parts/class-cx-widget-popup.php:803
 msgid "Display the coupon rightaway"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:786
+#: inc/widget_parts/class-cx-widget-popup.php:806
 msgid "Show the coupon when users claims it (Pro)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:901
+#: inc/widget_parts/class-cx-widget-popup.php:944
 msgid "Add an image"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:905
+#: inc/widget_parts/class-cx-widget-popup.php:948
 msgid ""
 "Enhance popups with images. Customize layouts and position images wherever "
 "you want"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:933
+#: inc/widget_parts/class-cx-widget-popup.php:976
 msgid "Show an image on the left side of the pop up"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:951
+#: inc/widget_parts/class-cx-widget-popup.php:994
 msgid "Show an image on the right side of the pop up"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:965
+#: inc/widget_parts/class-cx-widget-popup.php:1008
 msgid "Top"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:969
+#: inc/widget_parts/class-cx-widget-popup.php:1012
 msgid "Show an image on the top side of the pop up"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:983
+#: inc/widget_parts/class-cx-widget-popup.php:1026
 msgid "Cover"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:987
+#: inc/widget_parts/class-cx-widget-popup.php:1030
 msgid ""
 "Show the image as the main background (covers the whole background) of the "
 "popup"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1019
+#: inc/widget_parts/class-cx-widget-popup.php:1062
 msgid "Background Elements"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1023
+#: inc/widget_parts/class-cx-widget-popup.php:1066
 msgid "Add beautiful elements to your widget's background."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1047
+#: inc/widget_parts/class-cx-widget-popup.php:1090
 msgid "Confetti"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1058
+#: inc/widget_parts/class-cx-widget-popup.php:1101
 msgid "Nature"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1069
+#: inc/widget_parts/class-cx-widget-popup.php:1112
 msgid "Discount"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1080
+#: inc/widget_parts/class-cx-widget-popup.php:1123
 msgid "Notification Bell"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1091
+#: inc/widget_parts/class-cx-widget-popup.php:1134
 msgid "Gifts"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1148
+#: inc/widget_parts/class-cx-widget-popup.php:1191
 msgid "Unique Code"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1446
+#: inc/widget_parts/class-cx-widget-popup.php:1489
 msgid "Display Button"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1468
+#: inc/widget_parts/class-cx-widget-popup.php:1511
 msgid "Action On Button Click"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1472
+#: inc/widget_parts/class-cx-widget-popup.php:1515
 msgid "Hide the widget"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1475
+#: inc/widget_parts/class-cx-widget-popup.php:1518
 msgid "Redirect the visitor to another URL"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1483
+#: inc/widget_parts/class-cx-widget-popup.php:1526
 msgid "Button Redirection Link"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1495
+#: inc/widget_parts/class-cx-widget-popup.php:1538
 msgid "Open in a New Tab"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1532
+#: inc/widget_parts/class-cx-widget-popup.php:1586
 msgid "Send coupons via  email 📩"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1533
+#: inc/widget_parts/class-cx-widget-popup.php:1587
 msgid ""
 "Easily send coupons to your customers via email. Customize the content of "
 "the email, sending identity, sending time & more when you upgrade to Pro."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-popup.php:1560
+#: inc/widget_parts/class-cx-widget-popup.php:1614
 msgid ""
 "Enjoy awesome features like 2-step coupon generation, beautiful timer "
 "templates, sending leads to email, email integrations and more."
@@ -1764,132 +1769,132 @@ msgstr ""
 msgid "What's the your widget's name?"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:94
+#: inc/widget_parts/class-cx-widget-tab.php:100
 msgid "Icon"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:147
+#: inc/widget_parts/class-cx-widget-tab.php:154
 msgid "Icon background shape"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:151
+#: inc/widget_parts/class-cx-widget-tab.php:158
 msgid "--- Select Icon background shape ---"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:155
+#: inc/widget_parts/class-cx-widget-tab.php:162
 msgid "Circle"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:156
+#: inc/widget_parts/class-cx-widget-tab.php:163
 msgid "Square"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:157
+#: inc/widget_parts/class-cx-widget-tab.php:164
 msgid "Leaf"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:158
+#: inc/widget_parts/class-cx-widget-tab.php:165
 msgid "Hexagon"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:258
+#: inc/widget_parts/class-cx-widget-tab.php:265
 msgid "Icon background size (px)"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:268
+#: inc/widget_parts/class-cx-widget-tab.php:275
 msgid "Call to action"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:286
+#: inc/widget_parts/class-cx-widget-tab.php:299
 msgid "Show CTA"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:293
-#: inc/widget_parts/class-cx-widget-tab.php:316
-#: inc/widget_parts/class-cx-widget-tab.php:441
+#: inc/widget_parts/class-cx-widget-tab.php:306
+#: inc/widget_parts/class-cx-widget-tab.php:329
+#: inc/widget_parts/class-cx-widget-tab.php:460
 msgid "Always"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:300
+#: inc/widget_parts/class-cx-widget-tab.php:313
 msgid "Until 1st click/hover"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:309
+#: inc/widget_parts/class-cx-widget-tab.php:322
 msgid "Show Icon"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:323
+#: inc/widget_parts/class-cx-widget-tab.php:336
 msgid "Hide after conversion"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:326
+#: inc/widget_parts/class-cx-widget-tab.php:339
 msgid ""
 "Hide the icon after a user has converted, which means copied the coupon "
 "code or submitted their email."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:339
+#: inc/widget_parts/class-cx-widget-tab.php:352
 msgid ""
 "Increase your click-rate by displaying a pending messages icon near your "
 "Coupon widget to let your visitors know that you're waiting for them to "
 "contact you."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:342
+#: inc/widget_parts/class-cx-widget-tab.php:355
 msgid "Pending messages"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:357
+#: inc/widget_parts/class-cx-widget-tab.php:370
 msgid "Number of messages"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:403
+#: inc/widget_parts/class-cx-widget-tab.php:422
 msgid "Attention Effect"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:412
+#: inc/widget_parts/class-cx-widget-tab.php:431
 msgid "Flash"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:413
+#: inc/widget_parts/class-cx-widget-tab.php:432
 msgid "Shake"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:414
+#: inc/widget_parts/class-cx-widget-tab.php:433
 msgid "Swing"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:415
+#: inc/widget_parts/class-cx-widget-tab.php:434
 msgid "Tada"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:416
+#: inc/widget_parts/class-cx-widget-tab.php:435
 msgid "Heartbeat"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:417
+#: inc/widget_parts/class-cx-widget-tab.php:436
 msgid "Wobble"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:434
+#: inc/widget_parts/class-cx-widget-tab.php:453
 msgid "Show Attention Effect"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:443
+#: inc/widget_parts/class-cx-widget-tab.php:462
 msgid ""
 "Display the attention effect at all times, even if the visitor has already "
 "clicked on the icon."
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:452
+#: inc/widget_parts/class-cx-widget-tab.php:471
 msgid "Until 1st click"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:526
+#: inc/widget_parts/class-cx-widget-tab.php:545
 msgid "Pop up preview will be displayed in the \"Pop Up Design\" step"
 msgstr ""
 
-#: inc/widget_parts/class-cx-widget-tab.php:557
+#: inc/widget_parts/class-cx-widget-tab.php:576
 msgid ""
 "The Icon is currently hidden. If you want to display it, enable the \"Show "
 "icon\" option."
@@ -2302,22 +2307,22 @@ msgstr ""
 msgid "https://premio.io/downloads/coupon-x-discount-pop-up/"
 msgstr ""
 
-#: inc/class-dashboard.php:209
+#: inc/class-dashboard.php:329
 msgctxt "Post type general name"
 msgid "CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:210
+#: inc/class-dashboard.php:330
 msgctxt "Post type singular name"
 msgid "CX Widget"
 msgstr ""
 
-#: inc/class-dashboard.php:211
+#: inc/class-dashboard.php:331
 msgctxt "Admin Menu text"
 msgid "CX Widgets"
 msgstr ""
 
-#: inc/class-dashboard.php:212
+#: inc/class-dashboard.php:332
 msgctxt "Add New on Toolbar"
 msgid "CX Widgets"
 msgstr ""

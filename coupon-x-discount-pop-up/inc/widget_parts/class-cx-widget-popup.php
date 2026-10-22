@@ -393,7 +393,7 @@ class Cx_Widget_Popup
                                     </span>
                                 </div>
                             </label>
-                            <textarea name='cx_settings[popup][custom_css]' class='input-element custom-css' rows="10" placeholder="#tab-box-front-0 .tab-box-content.tab-box-couponcode-content{border-style: dotted;}"><?php echo esc_attr($popup_settings['custom_css']); ?></textarea>
+                            <textarea name='cx_settings[popup][custom_css]' class='input-element custom-css' rows="10" placeholder="<?php echo esc_attr('#tab-box-front-' . (isset($_GET['id']) ? absint($_GET['id']) : '{widget-id}') . ' .tab-box-content.tab-box-couponcode-content{border-style: dotted;}'); ?>"><?php echo esc_attr($popup_settings['custom_css']); ?></textarea>
                         </div>
                     </div>
                     <div class='row '>

@@ -48,8 +48,8 @@ class Cx_Widget_List
             <a class='new-widget' href='<?php echo esc_attr($new_widget_url); ?>'>
             <?php esc_html_e('Create New Widget', 'coupon-x-discount-pop-up'); ?>
             </a>            
+            <input type='hidden' name='cx_nonce' value = '<?php echo esc_attr(wp_create_nonce('wp_rest')); ?>' />
             <table class='widget-listing'>
-                <input type='hidden' name='cx_nonce' value = '<?php echo esc_attr(wp_create_nonce('wp_rest')); ?>' />
                 <thead>
                     <th> <?php esc_html_e('Status', 'coupon-x-discount-pop-up'); ?> </th>
                     <th> <?php esc_html_e('Widget Name', 'coupon-x-discount-pop-up'); ?> </th>
@@ -64,7 +64,7 @@ class Cx_Widget_List
                         <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of unique times your widget was opened', 'coupon-x-discount-pop-up'); ?>">
                             <span class="dashicons dashicons-editor-help dashboard-wrap"></span>
                         </span> 
-                        <?php esc_html_e('Open Rate', 'coupon-x-discount-pop-up'); ?>
+                        <?php esc_html_e('Opens', 'coupon-x-discount-pop-up'); ?>
                     </th>
                     <th> 
                         <span class="icon label-tooltip coupon-dashboard" title="<?php esc_html_e('The number of times people click on the Copy button on your widget', 'coupon-x-discount-pop-up'); ?>">

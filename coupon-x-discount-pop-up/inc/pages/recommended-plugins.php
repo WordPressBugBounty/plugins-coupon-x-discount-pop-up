@@ -115,7 +115,7 @@ if ( $data && ! is_wp_error( $data ) ) {
 
 <div class="wrap recommended-plugins">
     <div class="wp-list-table widefat plugin-install">
-        <div class="the-list">
+        <div class="the-list cx-plugin-list">
             <?php
             foreach ((array) $recommendedPlugins as $plugin) {
                 if (is_object($plugin)) {
@@ -301,131 +301,135 @@ if ( $data && ! is_wp_error( $data ) ) {
 
                 $last_updated_timestamp = strtotime($plugin['last_updated']);
                 ?>
-                <div class="plugin-card plugin-card-<?php echo sanitize_html_class($plugin['slug']); ?>">
-                    <?php
-                    if (! $compatible_php || ! $compatible_wp) {
-                        echo '<div class="notice inline notice-error notice-alt"><p>';
-                        if (! $compatible_php && ! $compatible_wp) {
-                            esc_html_e('This plugin doesn&#8217;t work with your versions of WordPress and PHP.', 'coupon-x-discount-pop-up');
-                            if (current_user_can('update_core') && current_user_can('update_php')) {
-                                printf(
-                                // translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page.
-                                    ' '.esc_html__( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.', 'coupon-x-discount-pop-up'),
-                                    esc_url(self_admin_url('update-core.php')),
-                                    esc_url(wp_get_update_php_url())
-                                );
-                                wp_update_php_annotation('</p><p><em>', '</em>');
-                            } else if (current_user_can('update_core')) {
-                                printf(
-                                // translators: %s: URL to WordPress Updates screen.
-                                    ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', 'coupon-x-discount-pop-up'),
-                                    esc_url(self_admin_url('update-core.php'))
-                                );
-                            } else if (current_user_can('update_php')) {
-                                printf(
-                                // translators: %s: URL to Update PHP page.
-                                    ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', 'coupon-x-discount-pop-up'),
-                                    esc_url(wp_get_update_php_url())
-                                );
-                                wp_update_php_annotation('</p><p><em>', '</em>');
-                            }//end if
-                        } else if (! $compatible_wp) {
-                            esc_html_e('This plugin doesn&#8217;t work with your version of WordPress.', 'coupon-x-discount-pop-up');
-                            if (current_user_can('update_core')) {
-                                printf(
-                                // translators: %s: URL to WordPress Updates screen.
-                                    ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', 'coupon-x-discount-pop-up'),
-                                    esc_url(self_admin_url('update-core.php'))
-                                );
-                            }
-                        } else if (! $compatible_php) {
-                            esc_html_e('This plugin doesn&#8217;t work with your version of PHP.', 'coupon-x-discount-pop-up');
-                            if (current_user_can('update_php')) {
-                                printf(
-                                // translators: %s: URL to Update PHP page.
-                                    ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', 'coupon-x-discount-pop-up'),
-                                    esc_url(wp_get_update_php_url())
-                                );
-                                wp_update_php_annotation('</p><p><em>', '</em>');
-                            }
-                        }//end if
+                    <div class="plugin-flex">
+                        <div class="plugin-padding">
+                            <div class="plugin-card plugin-card-<?php echo sanitize_html_class($plugin['slug']); ?>">
+                                <?php
+                                if (! $compatible_php || ! $compatible_wp) {
+                                    echo '<div class="notice inline notice-error notice-alt"><p>';
+                                    if (! $compatible_php && ! $compatible_wp) {
+                                        esc_html_e('This plugin doesn&#8217;t work with your versions of WordPress and PHP.', 'coupon-x-discount-pop-up');
+                                        if (current_user_can('update_core') && current_user_can('update_php')) {
+                                            printf(
+                                            // translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page.
+                                                ' '.esc_html__( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.', 'coupon-x-discount-pop-up'),
+                                                esc_url(self_admin_url('update-core.php')),
+                                                esc_url(wp_get_update_php_url())
+                                            );
+                                            wp_update_php_annotation('</p><p><em>', '</em>');
+                                        } else if (current_user_can('update_core')) {
+                                            printf(
+                                            // translators: %s: URL to WordPress Updates screen.
+                                                ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', 'coupon-x-discount-pop-up'),
+                                                esc_url(self_admin_url('update-core.php'))
+                                            );
+                                        } else if (current_user_can('update_php')) {
+                                            printf(
+                                            // translators: %s: URL to Update PHP page.
+                                                ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', 'coupon-x-discount-pop-up'),
+                                                esc_url(wp_get_update_php_url())
+                                            );
+                                            wp_update_php_annotation('</p><p><em>', '</em>');
+                                        }//end if
+                                    } else if (! $compatible_wp) {
+                                        esc_html_e('This plugin doesn&#8217;t work with your version of WordPress.', 'coupon-x-discount-pop-up');
+                                        if (current_user_can('update_core')) {
+                                            printf(
+                                            // translators: %s: URL to WordPress Updates screen.
+                                                ' '.esc_html__( '<a href="%s">Please update WordPress</a>.', 'coupon-x-discount-pop-up'),
+                                                esc_url(self_admin_url('update-core.php'))
+                                            );
+                                        }
+                                    } else if (! $compatible_php) {
+                                        esc_html_e('This plugin doesn&#8217;t work with your version of PHP.', 'coupon-x-discount-pop-up');
+                                        if (current_user_can('update_php')) {
+                                            printf(
+                                            // translators: %s: URL to Update PHP page.
+                                                ' '.esc_html__( '<a href="%s">Learn more about updating PHP</a>.', 'coupon-x-discount-pop-up'),
+                                                esc_url(wp_get_update_php_url())
+                                            );
+                                            wp_update_php_annotation('</p><p><em>', '</em>');
+                                        }
+                                    }//end if
 
-                        echo '</p></div>';
-                    }//end if
-                    ?>
-                    <div class="plugin-card-top">
-                        <div class="name column-name">
-                            <h3>
-                                <a href="<?php echo esc_url($details_link); ?>" class="thickbox open-plugin-details-modal">
-                                    <?php echo esc_attr($title); ?>
-                                    <img src="<?php echo esc_attr($plugin_icon_url); ?>" class="plugin-icon" alt="" />
-                                </a>
-                            </h3>
-                        </div>
-                        <div class="action-links">
-                            <?php
-                            if ($action_links) {
-                                echo '<ul class="plugin-action-buttons"><li>'.wp_kses_post(implode('</li><li>', $action_links)).'</li></ul>';
-                            }
-                            ?>
-                        </div>
-                        <div class="desc column-description">
-                            <p><?php echo esc_attr($description); ?></p>
-                            <p class="authors"><?php echo wp_kses($author, $pluginsAllowedTags); ?></p>
+                                    echo '</p></div>';
+                                }//end if
+                                ?>
+                                <div class="plugin-card-top">
+                                    <div class="name column-name">
+                                        <h3>
+                                            <a href="<?php echo esc_url($details_link); ?>" class="thickbox open-plugin-details-modal">
+                                                <?php echo esc_attr($title); ?>
+                                                <img src="<?php echo esc_attr($plugin_icon_url); ?>" class="plugin-icon" alt="" />
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="action-links">
+                                        <?php
+                                        if ($action_links) {
+                                            echo '<ul class="plugin-action-buttons"><li>'.wp_kses_post(implode('</li><li>', $action_links)).'</li></ul>';
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="desc column-description">
+                                        <p><?php echo esc_attr($description); ?></p>
+                                        <p class="authors"><?php echo wp_kses($author, $pluginsAllowedTags); ?></p>
+                                    </div>
+                                </div>
+                                <div class="plugin-card-bottom">
+                                    <div class="vers column-rating">
+                                        <?php
+                                        wp_star_rating(
+                                            [
+                                                'rating' => $plugin['rating'],
+                                                'type'   => 'percent',
+                                                'number' => $plugin['num_ratings'],
+                                            ]
+                                        );
+                                        ?>
+                                        <span class="num-ratings" aria-hidden="true">(<?php echo esc_attr(number_format_i18n($plugin['num_ratings'])); ?>)</span>
+                                    </div>
+                                    <div class="column-updated">
+                                        <strong><?php esc_html_e('Last Updated:', 'coupon-x-discount-pop-up'); ?></strong>
+                                        <?php
+                                        // translators: %s: Human-readable time difference.
+                                        printf(esc_html__( '%s ago', 'coupon-x-discount-pop-up'), esc_attr(human_time_diff($last_updated_timestamp)));
+                                        ?>
+                                    </div>
+                                    <div class="column-downloaded">
+                                        <?php
+                                        if ($plugin['active_installs'] >= 1000000) {
+                                            $active_installs_millions = floor(($plugin['active_installs'] / 1000000));
+                                            $active_installs_text     = sprintf(
+                                            // translators: %s: Number of millions.
+                                                _nx('%s+ Million', '%s+ Million', $active_installs_millions, 'Active plugin installations', 'coupon-x-discount-pop-up'),
+                                                number_format_i18n($active_installs_millions)
+                                            );
+                                        } else if (0 == $plugin['active_installs']) {
+                                            $active_installs_text = esc_html__('Less Than 10', 'coupon-x-discount-pop-up');
+                                        } else {
+                                            $active_installs_text = number_format_i18n($plugin['active_installs']).'+';
+                                        }
+
+                                        // translators: %s: Number of installations.
+                                        printf(esc_html__( '%s Active Installations', 'coupon-x-discount-pop-up'), esc_attr($active_installs_text));
+                                        ?>
+                                    </div>
+                                    <div class="column-compatibility">
+                                        <?php
+                                        if (! $tested_wp) {
+                                            echo '<span class="compatibility-untested">'.esc_html__( 'Untested with your version of WordPress', 'coupon-x-discount-pop-up').'</span>';
+                                        } else if (! $compatible_wp) {
+                                            echo '<span class="compatibility-incompatible">'.wp_kses( '<strong>Incompatible</strong> with your version of WordPress', $pluginsAllowedTags).'</span>';
+                                        } else {
+                                            echo '<span class="compatibility-compatible">'.wp_kses( '<strong>Compatible</strong> with your version of WordPress', $pluginsAllowedTags).'</span>';
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="plugin-card-bottom">
-                        <div class="vers column-rating">
-                            <?php
-                            wp_star_rating(
-                                [
-                                    'rating' => $plugin['rating'],
-                                    'type'   => 'percent',
-                                    'number' => $plugin['num_ratings'],
-                                ]
-                            );
-                            ?>
-                            <span class="num-ratings" aria-hidden="true">(<?php echo esc_attr(number_format_i18n($plugin['num_ratings'])); ?>)</span>
-                        </div>
-                        <div class="column-updated">
-                            <strong><?php esc_html_e('Last Updated:', 'coupon-x-discount-pop-up'); ?></strong>
-                            <?php
-                            // translators: %s: Human-readable time difference.
-                            printf(esc_html__( '%s ago', 'coupon-x-discount-pop-up'), esc_attr(human_time_diff($last_updated_timestamp)));
-                            ?>
-                        </div>
-                        <div class="column-downloaded">
-                            <?php
-                            if ($plugin['active_installs'] >= 1000000) {
-                                $active_installs_millions = floor(($plugin['active_installs'] / 1000000));
-                                $active_installs_text     = sprintf(
-                                // translators: %s: Number of millions.
-                                    _nx('%s+ Million', '%s+ Million', $active_installs_millions, 'Active plugin installations', 'coupon-x-discount-pop-up'),
-                                    number_format_i18n($active_installs_millions)
-                                );
-                            } else if (0 == $plugin['active_installs']) {
-                                $active_installs_text = esc_html__('Less Than 10', 'coupon-x-discount-pop-up');
-                            } else {
-                                $active_installs_text = number_format_i18n($plugin['active_installs']).'+';
-                            }
-
-                            // translators: %s: Number of installations.
-                            printf(esc_html__( '%s Active Installations', 'coupon-x-discount-pop-up'), esc_attr($active_installs_text));
-                            ?>
-                        </div>
-                        <div class="column-compatibility">
-                            <?php
-                            if (! $tested_wp) {
-                                echo '<span class="compatibility-untested">'.esc_html__( 'Untested with your version of WordPress', 'coupon-x-discount-pop-up').'</span>';
-                            } else if (! $compatible_wp) {
-                                echo '<span class="compatibility-incompatible">'.wp_kses( '<strong>Incompatible</strong> with your version of WordPress', $pluginsAllowedTags).'</span>';
-                            } else {
-                                echo '<span class="compatibility-compatible">'.wp_kses( '<strong>Compatible</strong> with your version of WordPress', $pluginsAllowedTags).'</span>';
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
                 <?php
             }//end foreach
             ?>
@@ -437,6 +441,29 @@ if ( $data && ! is_wp_error( $data ) ) {
 
 </div>
 <style>
+    .wrap {
+        width: 100%;
+        margin: 0 auto !important;
+        max-width: 1180px;
+        padding: 0 !important;
+    }
+    #wpcontent {
+        padding: 0 20px !important;
+    }
+    .cx-plugin-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .cx-plugin-list .plugin-flex {
+        flex: 50%;
+    }
+    .plugin-padding {
+        padding: 8px;
+    }
+    .cx-plugin-list .plugin-card {
+        margin: 0!important;
+        width: 100%!important;
+    }
     .mystickyelement-contact-form-leads-btn {
         float: right;
     }

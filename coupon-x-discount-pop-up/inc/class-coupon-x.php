@@ -49,8 +49,15 @@ class Coupon_X
             if (is_array($widgets) && count($widgets)) {
                 foreach ($widgets as $widget) {
                     $widget_id = $widget->ID;
-                    $widget_settings = unserialize($widget->post_content);
-                    update_post_meta($widget_id, 'prm_cx_widget_data', $widget_settings);
+                    if (!is_serialized($widget->post_content) || '' !== (string) get_post_meta($widget_id, 'prm_cx_widget_data', true)) {
+                        continue;
+                    }
+                    // Plain arrays only: never create objects from stored data.
+                    // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
+                    $widget_settings = @unserialize(trim($widget->post_content), ['allowed_classes' => false]);
+                    if (is_array($widget_settings)) {
+                        update_post_meta($widget_id, 'prm_cx_widget_data', $widget_settings);
+                    }
                 }
             }
         }

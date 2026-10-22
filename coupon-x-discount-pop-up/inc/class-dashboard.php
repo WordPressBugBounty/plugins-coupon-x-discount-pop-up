@@ -43,6 +43,8 @@ class Dashboard
         add_filter('plugin_action_links_'.COUPON_X_PLUGIN_BASE, [ $this, 'upgrade_action_links' ]);
         add_action('admin_head', [$this, 'admin_head']);
         add_action('wp_ajax_search_woo_product', [$this, 'search_woo_product']);
+        add_action('admin_post_cx_export_leads', [$this, 'export_leads']);
+        add_filter('admin_title', [$this, 'edit_widget_admin_title'], 10, 2);
         add_action( 'admin_init', [ $this, 'check_for_redirection' ]);
 
     }//end __construct()
@@ -340,23 +342,47 @@ class Dashboard
             'not_found'          => __('No coupon found.', 'coupon-x-discount-pop-up'),
             'not_found_in_trash' => __('No coupon found in Trash.', 'coupon-x-discount-pop-up'),
         ];
-        $args   = [
-            'labels'             => $labels,
-            'description'        => __('CX Widget', 'coupon-x-discount-pop-up'),
-            'public'             => true,
-            'publicly_queryable' => true,
-            'show_ui'            => true,
-            'show_in_menu'       => false,
-            'query_var'          => true,
-            'rewrite'            => [ 'slug' => 'cx_widget' ],
-            'capability_type'    => 'post',
-            'has_archive'        => true,
-            'hierarchical'       => false,
-            'supports'           => [ 'title' ],
-            'show_in_rest'       => false,
+        // Widgets are internal configuration: no frontend URLs, archives, search results or
+        // sitemap entries, and only administrators may manage them.
+        $args = [
+            'labels'              => $labels,
+            'description'         => __('CX Widget', 'coupon-x-discount-pop-up'),
+            'public'              => false,
+            'publicly_queryable'  => false,
+            'exclude_from_search' => true,
+            'show_ui'             => false,
+            'show_in_menu'        => false,
+            'show_in_nav_menus'   => false,
+            'query_var'           => false,
+            'rewrite'             => false,
+            'has_archive'         => false,
+            'hierarchical'        => false,
+            'supports'            => [ 'title' ],
+            'show_in_rest'        => false,
+            'capability_type'     => 'post',
+            'map_meta_cap'        => true,
+            'capabilities'        => [
+                'create_posts'           => 'manage_options',
+                'edit_posts'             => 'manage_options',
+                'edit_others_posts'      => 'manage_options',
+                'edit_published_posts'   => 'manage_options',
+                'edit_private_posts'     => 'manage_options',
+                'publish_posts'          => 'manage_options',
+                'read_private_posts'     => 'manage_options',
+                'delete_posts'           => 'manage_options',
+                'delete_others_posts'    => 'manage_options',
+                'delete_published_posts' => 'manage_options',
+                'delete_private_posts'   => 'manage_options',
+            ],
         ];
 
         register_post_type('cx_widget', $args);
+
+        // Remove the old public /cx_widget/ rewrite rules once after this change.
+        if ('1' !== get_option('cx_widget_cpt_private')) {
+            update_option('cx_widget_cpt_private', '1', false);
+            flush_rewrite_rules(false);
+        }
 
     }//end register_cx_post_type()
 
@@ -434,7 +460,7 @@ class Dashboard
             wp_enqueue_script('select2-js', COUPON_X_URL.'assets/js/select2.min.js', '', COUPON_X_VERSION);
 
             wp_enqueue_script('cx-settings-script', COUPON_X_URL.'assets/js/settings'.esc_attr($min).'.js', [ 'jquery', 'jquery-ui-tabs', 'jquery-ui-dialog', 'jscolorpicker', 'wp-i18n', 'js-timpepicker', 'jquery-ui-tooltip', 'jquery-ui-slider' ], COUPON_X_VERSION);
-            wp_enqueue_script('cx-mailcheck-script', COUPON_X_URL.'assets/js/mailcheck'.esc_attr($min).'.js', [ 'jquery' ], time());
+            wp_enqueue_script('cx-mailcheck-script', COUPON_X_URL.'assets/js/mailcheck'.esc_attr($min).'.js', [ 'jquery' ], COUPON_X_VERSION);
 
             wp_localize_script(
                 'cx-settings-script',
@@ -461,8 +487,9 @@ class Dashboard
                 'cx-listing-js',
                 'cx_data',
                 [
-                    'url'      => admin_url('admin-ajax.php'),
-                    'site_url' => site_url(),
+                    'url'        => admin_url('admin-ajax.php'),
+                    'site_url'   => site_url(),
+                    'export_url' => wp_nonce_url(admin_url('admin-post.php?action=cx_export_leads'), 'cx_export_leads'),
                 ]
             );
 
@@ -586,8 +613,21 @@ class Dashboard
     { 
         global $wpdb;
         $leads_tbl = $wpdb->prefix.'cx_leads';
+
+        // Load one page of leads at a time instead of the whole table.
+        $per_page = 500;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $paged    = isset($_GET['paged']) ? max(1, absint($_GET['paged'])) : 1;
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
-        $leads = $wpdb->get_results("SELECT * FROM `{$leads_tbl}` ORDER BY id DESC");
+        $total    = (int) $wpdb->get_var("SELECT COUNT(*) FROM `{$leads_tbl}`");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+        $leads    = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT id, name, email, widget_name, date, ip_address FROM `{$leads_tbl}` ORDER BY id DESC LIMIT %d OFFSET %d",
+                $per_page,
+                ($paged - 1) * $per_page
+            )
+        );
         ?>
 
         <div class='listing'>
@@ -631,6 +671,21 @@ class Dashboard
                     ?>
                 </tbody>
             </table>
+            <?php
+            if ($total > $per_page) {
+                $links = paginate_links(
+                    [
+                        'base'      => add_query_arg('paged', '%#%'),
+                        'format'    => '',
+                        'current'   => $paged,
+                        'total'     => (int) ceil($total / $per_page),
+                        'prev_text' => '&laquo;',
+                        'next_text' => '&raquo;',
+                    ]
+                );
+                echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post($links) . '</div></div>';
+            }
+            ?>
         </div>
         <div id="lead-delete-confirm" class="couponapp-widget-dialog" title="<?php esc_attr_e('Delete Lead?', 'coupon-x-discount-pop-up'); ?>" style='display: none;'>
             <p class='desc'>
@@ -649,6 +704,71 @@ class Dashboard
         <?php
 
     }//end display_coupon_leads()
+
+
+    /**
+     * Browser title "Edit Widget" instead of "Create New Widget" when an existing widget is open.
+     *
+     * @param string $admin_title full admin title.
+     * @param string $title       page title.
+     *
+     * @return string
+     */
+    public function edit_widget_admin_title($admin_title, $title)
+    {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (isset($_GET['page'], $_GET['id']) && 'add_couponx' === $_GET['page'] && absint($_GET['id']) > 0) {
+            $edit_title = __('Edit Widget', 'coupon-x-discount-pop-up');
+            return str_replace($title, $edit_title, $admin_title);
+        }
+        return $admin_title;
+
+    }//end edit_widget_admin_title()
+
+
+    /**
+     * Download all leads as CSV (the table only holds one page of leads).
+     */
+    public function export_leads()
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You are not allowed to export leads.', 'coupon-x-discount-pop-up'), '', ['response' => 403]);
+        }
+        check_admin_referer('cx_export_leads');
+
+        global $wpdb;
+        $leads_tbl = $wpdb->prefix . 'cx_leads';
+
+        nocache_headers();
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=coupon-x-leads-' . gmdate('Y-m-d') . '.csv');
+
+        $out = fopen('php://output', 'w');
+        fputcsv($out, ['Name', 'Email', 'Widget Name', 'Date'], ',', '"', '');
+
+        // Values come from visitors: a leading = + - @ (or tab / CR) would run as a formula in Excel.
+        $safe = function ($value) {
+            $value = (string) $value;
+            return preg_match('/^[=+\-@\t\r]/', $value) ? "'" . $value : $value;
+        };
+
+        $offset = 0;
+        do {
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+            $rows = $wpdb->get_results(
+                $wpdb->prepare("SELECT name, email, widget_name, date FROM `{$leads_tbl}` ORDER BY id DESC LIMIT 1000 OFFSET %d", $offset)
+            );
+            foreach ((array) $rows as $row) {
+                // Empty escape character: standard CSV, and no PHP 8.4 deprecation notice in the file.
+                fputcsv($out, [$safe($row->name), $safe($row->email), $safe($row->widget_name), gmdate('F j, Y', strtotime($row->date))], ',', '"', '');
+            }
+            $offset += 1000;
+        } while (!empty($rows) && count($rows) === 1000);
+
+        fclose($out);
+        exit;
+
+    }//end export_leads()
 
 
     /**
@@ -770,7 +890,7 @@ class Dashboard
             $api_url = 'https://premioapps.com/premio/send-message-api.php';
 
             // Sending message to Crisp API.
-            $api_response = wp_safe_remote_post(
+            wp_safe_remote_post(
                 $api_url,
                 [
                     'body'      => $api_params,
@@ -778,17 +898,7 @@ class Dashboard
                     'sslverify' => true,
                 ]
             );
-
-            if (is_wp_error($api_response)) {
-                wp_safe_remote_post(
-                    $api_url,
-                    [
-                        'body'      => $api_params,
-                        'timeout'   => 15,
-                        'sslverify' => false,
-                    ]
-                );
-            }
+            // No retry without certificate verification: it would send the data unprotected.
         }//end if
 
         echo json_encode($response);
@@ -834,6 +944,13 @@ class Dashboard
                 'message' => 'Email is not valid',
             ];
             $error_array[] = $error;
+        }
+
+        if (!current_user_can('manage_options')) {
+            $error_array[] = [
+                'key'     => 'nonce',
+                'message' => 'Your request is not valid',
+            ];
         }
 
         if (empty($error_array)) {
@@ -895,7 +1012,7 @@ class Dashboard
             $api_url = 'https://premioapps.com/premio/send-message-api.php';
 
             // Sending message to Crisp API.
-            $api_response = wp_safe_remote_post(
+            wp_safe_remote_post(
                 $api_url,
                 [
                     'body'      => $api_params,
@@ -903,17 +1020,7 @@ class Dashboard
                     'sslverify' => true,
                 ]
             );
-
-            if (is_wp_error($api_response)) {
-                wp_safe_remote_post(
-                    $api_url,
-                    [
-                        'body'      => $api_params,
-                        'timeout'   => 15,
-                        'sslverify' => false,
-                    ]
-                );
-            }
+            // No retry without certificate verification: it would send the data unprotected.
 
             $response['status'] = 1;
         } else {
@@ -974,7 +1081,7 @@ class Dashboard
     {
         ?>
         <div class="couponapp-new-widget-wrap">
-            <h2>Integrations</h2>
+            <h2><?php esc_html_e('Integrations', 'coupon-x-discount-pop-up'); ?></h2>
             <div class="couponapp-new-widget-row">
                 <div class="couponapp-features">
                     <ul>
@@ -984,13 +1091,13 @@ class Dashboard
                                     <img src="<?php echo esc_url(COUPON_X_URL.'assets/img/mailchimp.png'); ?>">
                                 </div>
                                 <div class="feature-title couponapp-feature-bottom">
-                                    Connect your widget to Mailchimp                                    
+                                    <?php esc_html_e('Connect your widget to Mailchimp', 'coupon-x-discount-pop-up'); ?>
                                     <table >
                                         <tbody>
                                             <tr>
                                                 <td class='mc-td'>
                                                     <p>
-                                                        <input type="button" class="integrate-element-form button-primary connect-to-mailchimp" name="btn-submit" value="Connect to Mailchimp">
+                                                        <input type="button" class="integrate-element-form button-primary connect-to-mailchimp" name="btn-submit" value="<?php esc_attr_e('Connect to Mailchimp', 'coupon-x-discount-pop-up'); ?>">
                                                     </p>
                                                 </td>                                                
                                             </tr>
@@ -998,7 +1105,7 @@ class Dashboard
                                     </table>
                                     <p class="note">
                                         <a href="https://mailchimp.com/help/about-api-keys/" target="_blank">
-                                            How to create your API key
+                                            <?php esc_html_e('How to create your API key', 'coupon-x-discount-pop-up'); ?>
                                         </a>
                                     </p>
                                 </div>
@@ -1006,7 +1113,7 @@ class Dashboard
                                 <span class='popup-upgrade '>
                                     <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
                                         <span class="dashicons dashicons-lock"></span>
-                                        UPGRADE NOW
+                                        <?php esc_html_e('UPGRADE NOW', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </span>
                             </div>
@@ -1017,15 +1124,14 @@ class Dashboard
                                     <img src="<?php echo esc_url(COUPON_X_URL.'assets/img/klaviyo_icon.png'); ?>">
                                 </div>
                                 <div class="feature-title couponapp-feature-bottom">
-                                    Connect your widget to Klaviyo
+                                    <?php esc_html_e('Connect your widget to Klaviyo', 'coupon-x-discount-pop-up'); ?>
                                     <form method="post" action="" id="elements-klv-form">
                                         <table>
                                             <tbody>                                                                                
                                                 <tr>
                                                     <td class='mc-td'>
                                                         <p>
-                                                            <input type='button' class="integrate-element-form button-primary connect-klaviyo" name="connect_klaviyo" value="
-                                                        Connect to Klaviyo">
+                                                            <input type='button' class="integrate-element-form button-primary connect-klaviyo" name="connect_klaviyo" value="<?php esc_attr_e('Connect to Klaviyo', 'coupon-x-discount-pop-up'); ?>">
                                                         </p>
                                                     </td>                                                    
                                                 </tr>  
@@ -1033,15 +1139,16 @@ class Dashboard
                                         </table>   
                                         <p class="note">
                                             <a href="https://help.klaviyo.com/hc/en-us/articles/115005062267-How-to-Manage-Your-Account-s-API-Keys" target="_blank">
-                                                How to create your API key
+                                                <?php esc_html_e('How to create your API key', 'coupon-x-discount-pop-up'); ?>
                                             </a>
-                                        </p>                           
+                                        </p>
+                                    </form>
                                 </div>
                                 <div class='overlay'></div>
                                 <span class='popup-upgrade '>
                                     <a target='_blank' href="<?php echo esc_url(admin_url('admin.php?page=couponx_pricing_tbl')); ?>">
                                         <span class="dashicons dashicons-lock"></span>
-                                        UPGRADE NOW
+                                        <?php esc_html_e('UPGRADE NOW', 'coupon-x-discount-pop-up'); ?>
                                     </a>
                                 </span>
                             </div>
@@ -1062,6 +1169,13 @@ class Dashboard
 
     public function search_woo_product() {
         global $wpdb;
+
+        // Admin-only product/category search for the widget settings page.
+        $nonce = (string) filter_input(INPUT_POST, 'nonce');
+        if (!current_user_can('manage_options') || empty($nonce) || !wp_verify_nonce($nonce, 'wp_rest')) {
+            echo json_encode([]);
+            exit;
+        }
 
         $items = [];
         $search = filter_input(INPUT_POST,'search');

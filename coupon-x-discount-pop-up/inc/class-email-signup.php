@@ -132,7 +132,7 @@ class Cx_SIGNUP_CLASS {
      */
     public function update_status() {
    
-        if(!empty($_REQUEST['nonce']) && wp_verify_nonce($_REQUEST['nonce'], 'coupon_x_signup_nonce')) {
+        if(current_user_can('manage_options') && !empty($_REQUEST['nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['nonce'])), 'coupon_x_signup_nonce')) {
             $status = sanitize_text_field($_REQUEST['status']);
             $email = sanitize_text_field($_REQUEST['email']);
             if($status == 1) {
@@ -145,11 +145,8 @@ class Cx_SIGNUP_CLASS {
                 ];
 
                 // Signup Email for Chaty
-                $apiResponse = wp_safe_remote_post($url, ['body' => $apiParams, 'timeout' => 15, 'sslverify' => true]);
-
-                if (is_wp_error($apiResponse)) {
-                    wp_safe_remote_post($url, ['body' => $apiParams, 'timeout' => 15, 'sslverify' => false]);
-                }
+                // No retry without certificate verification: it would send the email unprotected.
+                wp_safe_remote_post($url, ['body' => $apiParams, 'timeout' => 15, 'sslverify' => true]);
             } else { 
                 $next_date = date('Y-m-d', strtotime('+7 days'));
                 $next_signup_date = get_option(self::$next_signup_date);
